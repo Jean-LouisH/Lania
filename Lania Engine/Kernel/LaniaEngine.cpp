@@ -1,6 +1,6 @@
 /*
-**						This file is part of:
-**							LANIA ENGINE
+**                     This file is part of:
+**                         LANIA ENGINE
 **
 ** Copyright(c) 2017 Jean-Louis Haywood
 **
@@ -27,8 +27,8 @@
 * Lania Engine
 *
 * Description: Lania Engine, named after the Laniakea Supercluster (Hawaiian for
-* "immense heaven"), is a 2D & 3D game engine that is being developed for personal
-* research, learning & fun.
+* "immense heaven"), is a 2D and 3D game engine that is being developed for personal
+* research, experimentation & fun.
 *
 * Author:         Jean-Louis Haywood
 * Created:        5th March 2017

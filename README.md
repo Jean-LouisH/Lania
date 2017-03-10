@@ -1,6 +1,6 @@
 # Lania Engine
 
-Lania Engine, named after the Laniakea Supercluster (Hawaiian for "immense heaven"), is a 2D & 3D game engine that is being developed for personal research, learning & fun.
+Lania Engine, named after the Laniakea Supercluster (Hawaiian for "immense heaven"), is a 2D and 3D game engine that is being developed for personal research, experimentation & fun.
 
 # Third Party Libraries
 
@@ -14,7 +14,7 @@ Lania Engine, named after the Laniakea Supercluster (Hawaiian for "immense heave
 
 - Upstream: http://kcat.strangesoft.net/openal.html
 - Version: 1.17.2
-- License: LGPL-licensed
+- License: LGPL
 
 
 ## libpng

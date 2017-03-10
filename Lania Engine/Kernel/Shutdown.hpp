@@ -1,6 +1,6 @@
 /*
-**						This file is part of:
-**							LANIA ENGINE
+**                     This file is part of:
+**                         LANIA ENGINE
 **
 ** Copyright(c) 2017 Jean-Louis Haywood
 **
