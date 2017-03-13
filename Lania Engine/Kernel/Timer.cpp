@@ -24,9 +24,47 @@
 */
 
 #include "Timer.hpp"
+#include <ctime>
 #include <SDL.h>
 
-void Timer::idle()
+void Timer::idle(int delayMilliseconds)
 {
-	SDL_Delay(20);
+	SDL_Delay(delayMilliseconds);
+}
+
+void Timer::initTime()
+{
+	currentTime = time(NULL);
+	startTime = currentTime;
+	sampledTime = currentTime;
+}
+
+void Timer::updateCurrentTime()
+{
+	currentTime = time(NULL);
+}
+
+void Timer::updateEngineTime()
+{
+	engineTime = currentTime - startTime;
+}
+
+void Timer::updateSimulationTime(int frameCount, int FPS)
+{
+	simulationTime = frameCount / FPS;
+}
+
+double Timer::calculateFPS(int passedFrames)
+{
+	double FPS;
+
+	FPS = passedFrames / (currentTime - sampledTime);
+	sampledTime = time(NULL);
+
+	return FPS;
+}
+
+double Timer::calculateElapsedTime()
+{
+	return currentTime - sampledTime;
 }
