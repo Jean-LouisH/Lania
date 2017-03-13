@@ -31,7 +31,10 @@
 * Initializes user code and assets for engine runtime.
 */
 
-
 #pragma once
 
-void initializeEngine();
+#include "RuntimeData.hpp"
+#include "Timer.hpp"
+#include <SDL.h>
+
+void initializeEngine(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow);
