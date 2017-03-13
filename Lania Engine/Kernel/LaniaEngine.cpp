@@ -38,10 +38,17 @@
 #include "Initialization.hpp"
 #include "SimulationLoop.hpp"
 #include "Shutdown.hpp"
+#include "RuntimeData.hpp"
+#include "Timer.hpp"
+#include <SDL.h>
 
 void run_LaniaEngine()
 {
-	initializeEngine();
-	runSimulationLoop();
-	shutdownEngine();
+	Timer timer;
+	RuntimeData runtimeData;
+	static SDL_Window *SDLWindow;
+
+	initializeEngine(&runtimeData, &timer, SDLWindow);
+	runSimulationLoop(&runtimeData, &timer, SDLWindow);
+	shutdownEngine(SDLWindow);
 }
