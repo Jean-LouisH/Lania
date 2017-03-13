@@ -24,17 +24,45 @@
 */
 
 #include "SimulationLoop.hpp"
-#include "Timer.hpp"
+#include "../Modules/Common/Events/Events.hpp"
+#include "../Modules/Common/Input/Input.hpp"
+#include <iostream>
 
-void runSimulationLoop()
+#define FPS_REFRESH_DELAY 1.0f
+
+void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow)
 {
-	Timer timer;
+	Events eventSystem;
+	Input inputSystem;
 	bool isRunning = true;
 
 	do
 	{
+		/*OS events*/
+		isRunning = eventSystem.handleSDLEvents(&inputSystem);
 
-		timer.idle();
+		/*Time updates*/
+		timer->updateCurrentTime();
+		timer->updateEngineTime();
+
+		/*Simulation updates*/
+		if (runtimeData->gameState != PAUSED)
+		{
+			timer->updateSimulationTime(runtimeData->frameCount, runtimeData->targetFPS);
+			runtimeData->frameCount++;
+			runtimeData->passedFrames++;
+		}
+
+		/*FPS calculation and refresh rate*/
+		if (timer->calculateElapsedTime() >= FPS_REFRESH_DELAY)
+		{
+			runtimeData->FPS = timer->calculateFPS(runtimeData->passedFrames);
+			runtimeData->passedFrames = 1;
+		}
+
+		std::cout << "FPS:" << runtimeData->FPS << std::endl;
+
+		timer->idle((int)(1000 / runtimeData->targetFPS));
 
 	} while (isRunning);
 }

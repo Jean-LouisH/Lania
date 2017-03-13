@@ -34,4 +34,8 @@
 
 #pragma once
 
-void runSimulationLoop();
+#include "RuntimeData.hpp"
+#include "Timer.hpp"
+#include <SDL.h>
+
+void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow);
