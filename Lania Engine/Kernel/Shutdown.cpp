@@ -25,7 +25,8 @@
 
 #include "Shutdown.hpp"
 
-void shutdownEngine()
+void shutdownEngine(SDL_Window* SDLWindow)
 {
-
+	SDL_Quit();
+	SDL_DestroyWindow(SDLWindow);
 }

@@ -33,4 +33,6 @@
 
 #pragma once
 
-void shutdownEngine();
+#include <SDL.h>
+
+void shutdownEngine(SDL_Window* SDLWindow);
