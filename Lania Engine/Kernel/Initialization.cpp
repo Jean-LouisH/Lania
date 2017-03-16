@@ -25,13 +25,12 @@
 
 #include "Initialization.hpp"
 
-#define ASPECT_RATIO 1.777f
-
 void initializeEngine(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow)
 {
 	runtimeData->windowTitle = "Lania Engine";
+	runtimeData->aspectRatio = 1.777;
 	runtimeData->windowHeight = 480;
-	runtimeData->windowWidth = (int)(runtimeData->windowHeight * ASPECT_RATIO);
+	runtimeData->windowWidth = (int)(runtimeData->windowHeight * runtimeData->aspectRatio);
 	runtimeData->targetFPS = 60;
 	runtimeData->gameState = GAMEPLAY;
 	runtimeData->frameCount = 1;
@@ -39,9 +38,8 @@ void initializeEngine(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWin
 
 	timer->initTime();
 
-	SDL_Init(SDL_INIT_EVERYTHING);
 	const char* title = runtimeData->windowTitle.c_str();
-
+	SDL_Init(SDL_INIT_EVERYTHING);
 	SDLWindow = SDL_CreateWindow(title,
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,

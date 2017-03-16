@@ -28,10 +28,9 @@
 #include "../Modules/Common/Input/Input.hpp"
 #include <iostream>
 
-#define FPS_REFRESH_DELAY 1.0f
-
 void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow)
 {
+	float fpsRefreshDelay = 1.0;
 	Events eventSystem;
 	Input inputSystem;
 	bool isRunning = true;
@@ -54,7 +53,7 @@ void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWi
 		}
 
 		/*FPS calculation and refresh rate*/
-		if (timer->calculateElapsedTime() >= FPS_REFRESH_DELAY)
+		if (timer->calculateElapsedTime() >= fpsRefreshDelay)
 		{
 			runtimeData->FPS = timer->calculateFPS(runtimeData->passedFrames);
 			runtimeData->passedFrames = 1;

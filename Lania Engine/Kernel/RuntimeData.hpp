@@ -46,8 +46,9 @@ enum gameStates
 typedef struct
 {
 	std::string windowTitle;
-	int windowWidth;
+	float aspectRatio;
 	int windowHeight;
+	int windowWidth;
 	int frameCount;
 	int targetFPS;
 	double FPS;
