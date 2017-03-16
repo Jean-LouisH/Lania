@@ -34,7 +34,7 @@
 #pragma once
 
 #include "RuntimeData.hpp"
-#include "Timer.hpp"
+#include "../Modules/Common/Timer/Timer.hpp"
 #include <SDL.h>
 
 void initializeEngine(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow);
