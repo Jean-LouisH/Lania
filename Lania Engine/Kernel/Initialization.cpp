@@ -28,13 +28,13 @@
 void initializeEngine(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow)
 {
 	runtimeData->windowTitle = "Lania Engine";
-	runtimeData->aspectRatio = 1.777;
-	runtimeData->windowHeight = 480;
-	runtimeData->windowWidth = (int)(runtimeData->windowHeight * runtimeData->aspectRatio);
+	runtimeData->aspectRatio = (16.0 / 9.0);
+	runtimeData->windowHeightPixels = 480;
+	runtimeData->windowWidthPixels = (int)(runtimeData->windowHeightPixels * runtimeData->aspectRatio);
 	runtimeData->targetFPS = 60;
 	runtimeData->gameState = GAMEPLAY;
 	runtimeData->frameCount = 1;
-	runtimeData->passedFrames = 1;
+	runtimeData->passedFrames = 0;
 
 	timer->initTime();
 
@@ -43,7 +43,7 @@ void initializeEngine(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWin
 	SDLWindow = SDL_CreateWindow(title,
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
-		runtimeData->windowWidth,
-		runtimeData->windowHeight,
+		runtimeData->windowWidthPixels,
+		runtimeData->windowHeightPixels,
 		SDL_WINDOW_OPENGL);
 }

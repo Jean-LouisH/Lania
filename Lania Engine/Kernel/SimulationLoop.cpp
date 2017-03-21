@@ -56,7 +56,7 @@ void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWi
 		if (timer->calculateElapsedTime() >= fpsRefreshDelay)
 		{
 			runtimeData->FPS = timer->calculateFPS(runtimeData->passedFrames);
-			runtimeData->passedFrames = 1;
+			runtimeData->passedFrames = 0;
 		}
 
 		std::cout << "FPS:" << runtimeData->FPS << std::endl;
