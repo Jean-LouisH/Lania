@@ -31,6 +31,11 @@ bool Events::handleSDLEvents(Input* inputSystem)
 	{
 		switch (SDLEvents.type)
 		{
+			/*Close window button*/
+			case SDL_QUIT:
+				return false;
+			break;
+
 			/*Keyboard inputs*/
 			case SDL_KEYDOWN:
 				if (SDLEvents.key.keysym.sym == SDLK_ESCAPE)
@@ -41,7 +46,7 @@ bool Events::handleSDLEvents(Input* inputSystem)
 				{
 					inputSystem->keyboardBuffer[SDLEvents.key.keysym.sym] = true;
 				}
-				break;
+			break;
 
 			case SDL_KEYUP: if (SDLEvents.key.keysym.sym < 128)
 							{
