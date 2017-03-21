@@ -47,8 +47,8 @@ typedef struct
 {
 	std::string windowTitle;
 	float aspectRatio;
-	int windowHeight;
-	int windowWidth;
+	int windowHeightPixels;
+	int windowWidthPixels;
 	int frameCount;
 	int targetFPS;
 	double FPS;
