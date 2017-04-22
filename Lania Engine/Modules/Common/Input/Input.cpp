@@ -28,8 +28,5 @@
 bool Input::isPressed(unsigned char input)
 {
 	//XOR gated ASCII character for capital or common letters.
-	if (keyboardBuffer[input] || keyboardBuffer[(input ^ 0x0020)])
-		return true;
-	else
-		return false;
+	return (m_keyboardBuffer[input] || m_keyboardBuffer[(input ^ 0x0020)]) ? true : false;
 }

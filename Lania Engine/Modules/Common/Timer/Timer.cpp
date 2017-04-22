@@ -34,37 +34,37 @@ void Timer::idle(int delayMilliseconds)
 
 void Timer::initTime()
 {
-	currentTime = time(NULL);
-	startTime = currentTime;
-	sampledTime = currentTime;
+	m_currentTime = time(NULL);
+	m_startTime = m_currentTime;
+	m_sampledTime = m_currentTime;
 }
 
 void Timer::updateCurrentTime()
 {
-	currentTime = time(NULL);
+	m_currentTime = time(NULL);
 }
 
 void Timer::updateEngineTime()
 {
-	engineTime = currentTime - startTime;
+	m_engineTime = m_currentTime - m_startTime;
 }
 
 void Timer::updateSimulationTime(int frameCount, int FPS)
 {
-	simulationTime = frameCount / FPS;
+	m_simulationTime = frameCount / FPS;
 }
 
 double Timer::calculateFPS(int passedFrames)
 {
 	double FPS;
 
-	FPS = passedFrames / (currentTime - sampledTime);
-	sampledTime = time(NULL);
+	FPS = passedFrames / (m_currentTime - m_sampledTime);
+	m_sampledTime = time(NULL);
 
 	return FPS;
 }
 
 double Timer::calculateElapsedTime()
 {
-	return currentTime - sampledTime;
+	return m_currentTime - m_sampledTime;
 }

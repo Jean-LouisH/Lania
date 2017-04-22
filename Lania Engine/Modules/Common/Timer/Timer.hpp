@@ -37,11 +37,11 @@ class Timer
 {
 private:
 public:
-	double engineTime;
-	double simulationTime;
-	double startTime;
-	double currentTime;
-	double sampledTime;
+	double m_engineTime;
+	double m_simulationTime;
+	double m_startTime;
+	double m_currentTime;
+	double m_sampledTime;
 	void idle(int delayMilliseconds);
 	void initTime();
 	void updateCurrentTime();
