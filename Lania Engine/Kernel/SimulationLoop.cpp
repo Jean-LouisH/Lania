@@ -26,19 +26,22 @@
 #include "SimulationLoop.hpp"
 #include "../Modules/Common/Events/Events.hpp"
 #include "../Modules/Common/Input/Input.hpp"
-#include <iostream>
+#include "../Modules/Common/Console/Console.hpp"
 
 void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow)
 {
 	float fpsRefreshDelay = 1.0;
 	Events eventSystem;
 	Input inputSystem;
+	Console console;
 	bool isRunning = true;
 
 	do
 	{
 		/*OS events*/
 		isRunning = eventSystem.handleSDLEvents(&inputSystem);
+
+		//Input
 
 		/*Time updates*/
 		timer->updateCurrentTime();
@@ -48,6 +51,14 @@ void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWi
 		if (runtimeData->gameState != PAUSED)
 		{
 			timer->updateSimulationTime(runtimeData->frameCount, runtimeData->targetFPS);
+			//Script
+				//AI
+				//Algorithms
+				//Assets
+			//Update
+				//Animation
+				//Physics
+				//Geometry
 			runtimeData->frameCount++;
 			runtimeData->passedFrames++;
 		}
@@ -59,8 +70,11 @@ void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWi
 			runtimeData->passedFrames = 0;
 		}
 
-		std::cout << "FPS:" << runtimeData->FPS << std::endl;
+		//Rendering
+		//Audio
+		//Buffer Swap
 
+		console.printFPS(runtimeData->FPS);
 		timer->idle((int)(1000 / runtimeData->targetFPS));
 
 	} while (isRunning);
