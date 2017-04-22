@@ -121,6 +121,7 @@
     <ClCompile Include="Kernel\Shutdown.cpp" />
     <ClCompile Include="Kernel\SimulationLoop.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Modules\Common\Console\Console.cpp" />
     <ClCompile Include="Modules\Common\Events\Events.cpp" />
     <ClCompile Include="Modules\Common\Input\Input.cpp" />
     <ClCompile Include="Modules\Common\Timer\Timer.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="Kernel\LaniaEngine.hpp" />
     <ClInclude Include="Kernel\Shutdown.hpp" />
     <ClInclude Include="Kernel\SimulationLoop.hpp" />
+    <ClInclude Include="Modules\Common\Console\Console.hpp" />
     <ClInclude Include="Modules\Common\Events\Events.hpp" />
     <ClInclude Include="Modules\Common\Input\Input.hpp" />
     <ClInclude Include="Modules\Common\Timer\Timer.hpp" />
