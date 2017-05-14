@@ -69,7 +69,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>C:\Development\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
+    <LibraryPath>C:\Software Development Kits\SDL2\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -83,7 +83,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Development\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Software Development Kits\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -121,10 +121,10 @@
     <ClCompile Include="Kernel\Shutdown.cpp" />
     <ClCompile Include="Kernel\SimulationLoop.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Modules\Common\Console\Console.cpp" />
-    <ClCompile Include="Modules\Common\Events\Events.cpp" />
-    <ClCompile Include="Modules\Common\Input\Input.cpp" />
-    <ClCompile Include="Modules\Common\Timer\Timer.cpp" />
+    <ClCompile Include="Modules\Console\Console.cpp" />
+    <ClCompile Include="Modules\Events\Events.cpp" />
+    <ClCompile Include="Modules\Input\Input.cpp" />
+    <ClCompile Include="Modules\Timer\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Kernel\RuntimeData.hpp" />
@@ -132,10 +132,10 @@
     <ClInclude Include="Kernel\LaniaEngine.hpp" />
     <ClInclude Include="Kernel\Shutdown.hpp" />
     <ClInclude Include="Kernel\SimulationLoop.hpp" />
-    <ClInclude Include="Modules\Common\Console\Console.hpp" />
-    <ClInclude Include="Modules\Common\Events\Events.hpp" />
-    <ClInclude Include="Modules\Common\Input\Input.hpp" />
-    <ClInclude Include="Modules\Common\Timer\Timer.hpp" />
+    <ClInclude Include="Modules\Console\Console.hpp" />
+    <ClInclude Include="Modules\Events\Events.hpp" />
+    <ClInclude Include="Modules\Input\Input.hpp" />
+    <ClInclude Include="Modules\Timer\Timer.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

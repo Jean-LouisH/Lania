@@ -30,16 +30,16 @@
     <ClCompile Include="Kernel\SimulationLoop.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Common\Events\Events.cpp">
+    <ClCompile Include="Modules\Timer\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Common\Input\Input.cpp">
+    <ClCompile Include="Modules\Input\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Common\Timer\Timer.cpp">
+    <ClCompile Include="Modules\Events\Events.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Common\Console\Console.cpp">
+    <ClCompile Include="Modules\Console\Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -59,16 +59,16 @@
     <ClInclude Include="Kernel\RuntimeData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Common\Events\Events.hpp">
+    <ClInclude Include="Modules\Console\Console.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Common\Input\Input.hpp">
+    <ClInclude Include="Modules\Events\Events.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Common\Timer\Timer.hpp">
+    <ClInclude Include="Modules\Input\Input.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Common\Console\Console.hpp">
+    <ClInclude Include="Modules\Timer\Timer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

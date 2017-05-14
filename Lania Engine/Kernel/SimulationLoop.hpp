@@ -35,7 +35,7 @@
 #pragma once
 
 #include "RuntimeData.hpp"
-#include "../Modules/Common/Timer/Timer.hpp"
+#include "../Modules/Timer/Timer.hpp"
 #include <SDL.h>
 
 void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow);

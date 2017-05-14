@@ -39,7 +39,7 @@
 #include "SimulationLoop.hpp"
 #include "Shutdown.hpp"
 #include "RuntimeData.hpp"
-#include "../Modules/Common/Timer/Timer.hpp"
+#include "../Modules/Timer/Timer.hpp"
 #include <SDL.h>
 
 void run_LaniaEngine()

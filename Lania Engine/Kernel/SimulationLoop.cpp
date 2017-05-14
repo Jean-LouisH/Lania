@@ -24,9 +24,9 @@
 */
 
 #include "SimulationLoop.hpp"
-#include "../Modules/Common/Events/Events.hpp"
-#include "../Modules/Common/Input/Input.hpp"
-#include "../Modules/Common/Console/Console.hpp"
+#include "../Modules/Events/Events.hpp"
+#include "../Modules/Input/Input.hpp"
+#include "../Modules/Console/Console.hpp"
 
 void runSimulationLoop(RuntimeData* runtimeData, Timer* timer, SDL_Window* SDLWindow)
 {

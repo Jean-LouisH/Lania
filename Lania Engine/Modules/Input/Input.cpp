@@ -25,6 +25,7 @@
 
 #include "Input.hpp"
 
+
 bool Input::isPressed(unsigned char input)
 {
 	//XOR gated ASCII character for capital or common letters.
