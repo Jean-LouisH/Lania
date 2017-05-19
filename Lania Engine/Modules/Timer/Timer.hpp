@@ -37,11 +37,11 @@ class Timer
 {
 private:
 public:
-	double m_engineTime;
-	double m_simulationTime;
-	double m_startTime;
-	double m_currentTime;
-	double m_sampledTime;
+	double engineTime;
+	double simulationTime;
+	double startTime;
+	double currentTime;
+	double sampledTime;
 	void idle(int delayMilliseconds);
 	void initTime();
 	void updateCurrentTime();
@@ -49,5 +49,4 @@ public:
 	void updateSimulationTime(int frameCount, int FPS);
 	double calculateFPS(int passedFrames);
 	double calculateElapsedTime();
-
 };

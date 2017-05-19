@@ -25,9 +25,8 @@
 
 #include "Input.hpp"
 
-
 bool Input::isPressed(unsigned char input)
 {
 	//XOR gated ASCII character for capital or common letters.
-	return (m_keyboardBuffer[input] || m_keyboardBuffer[(input ^ 0x0020)]) ? true : false;
+	return (keyboardBuffer[input] || keyboardBuffer[(input ^ 0x0020)]) ? true : false;
 }

@@ -27,31 +27,32 @@
 
 bool Events::handleSDLEvents(Input* inputSystem)
 {
-	while (SDL_PollEvent(&m_SDLEvents))
+	while (SDL_PollEvent(&SDLEvents))
 	{
-		switch (m_SDLEvents.type)
+		switch (SDLEvents.type)
 		{
 			/*Close window button*/
-			case SDL_QUIT:
-				return false;
+		case SDL_QUIT:
+			return false;
 			break;
 
 			/*Keyboard inputs*/
-			case SDL_KEYDOWN:
-				if (m_SDLEvents.key.keysym.sym == SDLK_ESCAPE)
-				{
-					return false;
-				}
-				else if (m_SDLEvents.key.keysym.sym < 128)
-				{
-					inputSystem->m_keyboardBuffer[m_SDLEvents.key.keysym.sym] = true;
-				}
+		case SDL_KEYDOWN:
+			if (SDLEvents.key.keysym.sym == SDLK_ESCAPE)
+			{
+				return false;
+			}
+			else if (SDLEvents.key.keysym.sym < 128)
+			{
+				inputSystem->keyboardBuffer[SDLEvents.key.keysym.sym] = true;
+			}
 			break;
 
-			case SDL_KEYUP: if (m_SDLEvents.key.keysym.sym < 128)
-							{
-								inputSystem->m_keyboardBuffer[m_SDLEvents.key.keysym.sym] = false;
-							} 
+		case SDL_KEYUP:
+			if (SDLEvents.key.keysym.sym < 128)
+			{
+				inputSystem->keyboardBuffer[SDLEvents.key.keysym.sym] = false;
+			}
 			break;
 		}
 	}

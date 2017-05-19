@@ -37,6 +37,6 @@ class Input
 {
 private:
 public:
-	bool m_keyboardBuffer[128];
+	bool keyboardBuffer[128];
 	bool isPressed(unsigned char input);
 };

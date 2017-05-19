@@ -39,7 +39,7 @@
 class Events
 {
 private:
-	SDL_Event m_SDLEvents;
+	SDL_Event SDLEvents;
 public:
 	bool handleSDLEvents(Input* inputSystem);
 };
