@@ -26,14 +26,53 @@
 /**
 * Lania Engine
 *
-* Description: Lania Engine, named after the Laniakea Supercluster (Hawaiian for 
-* "immense heaven"), is a 2D and 3D game engine that is being developed for personal
-* research, experimentation & fun.
+* Description: Lania Engine, named after the Laniakea Supercluster
+* (Hawaiian for "immeasurable heaven"), is a data oriented 2D/3D
+* real-time simulation and game engine.
 *
-* Author:         Jean-Louis Haywood
-* Created:        5th March 2017
+* Author: Jean-Louis Haywood
+* Created: 5th March 2017
 */
 
-#pragma once
+#include <SDL.h>
+#include <string>
+#include "Performance.hpp"
+#include "../Modules/Console/Console.hpp"
+#include "../Modules/Events/Events.hpp"
+#include "../Modules/Input/Input.hpp"
+#include "../Modules/Timer/Timer.hpp"
 
-void run_LaniaEngine();
+enum gameStates
+{
+	TITLESCREEN,
+	GAMEPLAY,
+	PAUSED
+};
+
+typedef struct
+{
+	std::string windowTitle;
+	float aspectRatio;
+	int windowHeightPixels;
+	int windowWidthPixels;
+	int frameCount;
+	int targetFPS;
+	unsigned char gameState;
+	bool isRunning;
+}RuntimeData;
+
+class LaniaEngine
+{
+private:
+	RuntimeData runtime;
+	SDL_Window *sdlWindow;
+	Console console;
+	Events eventSystem;
+	Input inputSystem;
+	Performance performance;
+	Timer timer;
+public:
+	void initialize();
+	void runSimulationLoop();
+	void shutdown();
+};

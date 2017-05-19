@@ -18,45 +18,30 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Kernel\Initialization.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Kernel\Shutdown.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Kernel\LaniaEngine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Kernel\SimulationLoop.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\Timer\Timer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\Input\Input.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Modules\Events\Events.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Modules\Console\Console.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Modules\Events\Events.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Input\Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Modules\Timer\Timer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Kernel\Performance.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Kernel\Initialization.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Kernel\Shutdown.hpp">
+    <ClInclude Include="Engine Assets\Mathematics\Mathematics.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Kernel\LaniaEngine.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Kernel\SimulationLoop.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Kernel\RuntimeData.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Modules\Console\Console.hpp">
@@ -69,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Modules\Timer\Timer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Kernel\Performance.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

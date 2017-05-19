@@ -23,32 +23,67 @@
 ** SOFTWARE.
 */
 
-/**
-* Lania Engine
-*
-* Description: Lania Engine, named after the Laniakea Supercluster (Hawaiian for
-* "immense heaven"), is a 2D and 3D game engine that is being developed for personal
-* research, experimentation & fun.
-*
-* Author:         Jean-Louis Haywood
-* Created:        5th March 2017
-*/
-
 #include "LaniaEngine.hpp"
-#include "Initialization.hpp"
-#include "SimulationLoop.hpp"
-#include "Shutdown.hpp"
-#include "RuntimeData.hpp"
-#include "../Modules/Timer/Timer.hpp"
-#include <SDL.h>
 
-void run_LaniaEngine()
+void LaniaEngine::initialize()
 {
-	Timer timer;
-	RuntimeData runtimeData;
-	static SDL_Window *SDLWindow;
+	runtime.windowTitle = "Lania Engine";
+	runtime.aspectRatio = (16.0 / 9.0);
+	runtime.windowHeightPixels = 480;
+	runtime.windowWidthPixels = (int)(runtime.windowHeightPixels * 
+		runtime.aspectRatio);
+	runtime.targetFPS = 60;
+	runtime.gameState = GAMEPLAY;
+	runtime.frameCount = 1;
+	runtime.isRunning = true;
 
-	initializeEngine(&runtimeData, &timer, SDLWindow);
-	runSimulationLoop(&runtimeData, &timer, SDLWindow);
-	shutdownEngine(SDLWindow);
+	performance.passedFrames = 0;
+	performance.fpsRefreshDelay = 1.0;
+
+	timer.initTime();
+
+	const char *title = runtime.windowTitle.c_str();
+	SDL_Init(SDL_INIT_EVERYTHING);
+	sdlWindow = SDL_CreateWindow(
+		title,
+		SDL_WINDOWPOS_UNDEFINED,
+		SDL_WINDOWPOS_UNDEFINED,
+		runtime.windowWidthPixels,
+		runtime.windowHeightPixels,
+		SDL_WINDOW_OPENGL);
+}
+
+void LaniaEngine::runSimulationLoop()
+{
+	do
+	{
+		runtime.isRunning = eventSystem.handleSDLEvents(&inputSystem);
+
+		timer.updateCurrentTime();
+		timer.updateEngineTime();
+
+		if (runtime.gameState != PAUSED)
+		{
+			timer.updateSimulationTime(runtime.frameCount,
+				runtime.targetFPS);
+			runtime.frameCount++;
+			performance.passedFrames++;
+		}
+
+		if (timer.calculateElapsedTime() >= performance.fpsRefreshDelay)
+		{
+			performance.FPS = timer.calculateFPS(performance.passedFrames);
+			performance.passedFrames = 0;
+		}
+
+		console.printFPS(performance.FPS);
+		timer.idle((int)(1000 / runtime.targetFPS));
+
+	} while (runtime.isRunning);
+}
+
+void LaniaEngine::shutdown()
+{
+	SDL_Quit();
+	SDL_DestroyWindow(sdlWindow);
 }

@@ -18,6 +18,24 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Kernel\LaniaEngine.cpp" />
+    <ClCompile Include="Kernel\Performance.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Modules\Console\Console.cpp" />
+    <ClCompile Include="Modules\Events\Events.cpp" />
+    <ClCompile Include="Modules\Input\Input.cpp" />
+    <ClCompile Include="Modules\Timer\Timer.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Engine Assets\Mathematics\Mathematics.hpp" />
+    <ClInclude Include="Kernel\LaniaEngine.hpp" />
+    <ClInclude Include="Kernel\Performance.hpp" />
+    <ClInclude Include="Modules\Console\Console.hpp" />
+    <ClInclude Include="Modules\Events\Events.hpp" />
+    <ClInclude Include="Modules\Input\Input.hpp" />
+    <ClInclude Include="Modules\Timer\Timer.hpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3DB7EEE7-D076-4A00-A077-85C8368B8792}</ProjectGuid>
     <RootNamespace>LaniaEngine</RootNamespace>
@@ -115,28 +133,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Kernel\Initialization.cpp" />
-    <ClCompile Include="Kernel\LaniaEngine.cpp" />
-    <ClCompile Include="Kernel\Shutdown.cpp" />
-    <ClCompile Include="Kernel\SimulationLoop.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Modules\Console\Console.cpp" />
-    <ClCompile Include="Modules\Events\Events.cpp" />
-    <ClCompile Include="Modules\Input\Input.cpp" />
-    <ClCompile Include="Modules\Timer\Timer.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Kernel\RuntimeData.hpp" />
-    <ClInclude Include="Kernel\Initialization.hpp" />
-    <ClInclude Include="Kernel\LaniaEngine.hpp" />
-    <ClInclude Include="Kernel\Shutdown.hpp" />
-    <ClInclude Include="Kernel\SimulationLoop.hpp" />
-    <ClInclude Include="Modules\Console\Console.hpp" />
-    <ClInclude Include="Modules\Events\Events.hpp" />
-    <ClInclude Include="Modules\Input\Input.hpp" />
-    <ClInclude Include="Modules\Timer\Timer.hpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

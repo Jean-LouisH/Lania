@@ -25,8 +25,14 @@
 
 #include "Kernel/LaniaEngine.hpp"
 
+#undef main main
+
 int main()
 {
-	run_LaniaEngine();
+	LaniaEngine laniaEngine;
+
+	laniaEngine.initialize();
+	laniaEngine.runSimulationLoop();
+	laniaEngine.shutdown();
 	return 0;
 }
