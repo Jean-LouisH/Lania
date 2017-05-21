@@ -46,6 +46,7 @@ public:
 	void initTime();
 	void updateCurrentTime();
 	void updateEngineTime();
+	void updateSampledTime();
 	void updateSimulationTime(int frameCount, int FPS);
 	double calculateFPS(int passedFrames);
 	double calculateElapsedTime();

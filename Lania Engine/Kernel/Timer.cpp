@@ -54,14 +54,9 @@ void Timer::updateSimulationTime(int frameCount, int FPS)
 	simulationTime = frameCount / FPS;
 }
 
-double Timer::calculateFPS(int passedFrames)
+void Timer::updateSampledTime()
 {
-	double FPS;
-
-	FPS = passedFrames / (currentTime - sampledTime);
 	sampledTime = time(NULL);
-
-	return FPS;
 }
 
 double Timer::calculateElapsedTime()

@@ -30,10 +30,10 @@
     <ClCompile Include="Modules\Input\Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Modules\Timer\Timer.cpp">
+    <ClCompile Include="Kernel\Performance.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Kernel\Performance.cpp">
+    <ClCompile Include="Kernel\Timer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -53,10 +53,10 @@
     <ClInclude Include="Modules\Input\Input.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Modules\Timer\Timer.hpp">
+    <ClInclude Include="Kernel\Performance.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Kernel\Performance.hpp">
+    <ClInclude Include="Kernel\Timer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -21,20 +21,20 @@
   <ItemGroup>
     <ClCompile Include="Kernel\LaniaEngine.cpp" />
     <ClCompile Include="Kernel\Performance.cpp" />
+    <ClCompile Include="Kernel\Timer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Modules\Console\Console.cpp" />
     <ClCompile Include="Modules\Events\Events.cpp" />
     <ClCompile Include="Modules\Input\Input.cpp" />
-    <ClCompile Include="Modules\Timer\Timer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine Assets\Mathematics\Mathematics.hpp" />
     <ClInclude Include="Kernel\LaniaEngine.hpp" />
     <ClInclude Include="Kernel\Performance.hpp" />
+    <ClInclude Include="Kernel\Timer.hpp" />
     <ClInclude Include="Modules\Console\Console.hpp" />
     <ClInclude Include="Modules\Events\Events.hpp" />
     <ClInclude Include="Modules\Input\Input.hpp" />
-    <ClInclude Include="Modules\Timer\Timer.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3DB7EEE7-D076-4A00-A077-85C8368B8792}</ProjectGuid>
