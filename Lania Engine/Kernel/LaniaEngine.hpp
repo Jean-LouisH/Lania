@@ -37,10 +37,10 @@
 #include <SDL.h>
 #include <string>
 #include "Performance.hpp"
+#include "Timer.hpp"
 #include "../Modules/Console/Console.hpp"
 #include "../Modules/Events/Events.hpp"
 #include "../Modules/Input/Input.hpp"
-#include "../Modules/Timer/Timer.hpp"
 
 enum gameStates
 {

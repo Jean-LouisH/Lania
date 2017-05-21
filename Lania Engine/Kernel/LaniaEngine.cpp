@@ -27,6 +27,8 @@
 
 void LaniaEngine::initialize()
 {
+	timer.initTime();
+
 	runtime.windowTitle = "Lania Engine";
 	runtime.aspectRatio = (16.0 / 9.0);
 	runtime.windowHeightPixels = 480;
@@ -39,8 +41,6 @@ void LaniaEngine::initialize()
 
 	performance.passedFrames = 0;
 	performance.fpsRefreshDelay = 1.0;
-
-	timer.initTime();
 
 	const char *title = runtime.windowTitle.c_str();
 	SDL_Init(SDL_INIT_EVERYTHING);
@@ -72,8 +72,9 @@ void LaniaEngine::runSimulationLoop()
 
 		if (timer.calculateElapsedTime() >= performance.fpsRefreshDelay)
 		{
-			performance.FPS = timer.calculateFPS(performance.passedFrames);
+			performance.calculateFPS(timer.currentTime, timer.sampledTime);
 			performance.passedFrames = 0;
+			timer.updateSampledTime();
 		}
 
 		console.printFPS(performance.FPS);

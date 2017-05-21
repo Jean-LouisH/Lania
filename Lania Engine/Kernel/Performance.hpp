@@ -30,4 +30,5 @@ public:
 	double FPS;
 	int passedFrames;
 	float fpsRefreshDelay;
+	void calculateFPS(double currentTime, double sampledTime);
 };
