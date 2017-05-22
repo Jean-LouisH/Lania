@@ -31,6 +31,8 @@
 * Contains the working data for the engine runtime.
 */
 
+#pragma once
+
 #include <string>
 
 enum gameStates

@@ -31,6 +31,8 @@
 * Computes physics operations for 2D and 3D space.
 */
 
+#pragma once
+
 class PhysicsEngine
 {
 private:

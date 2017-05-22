@@ -31,6 +31,8 @@
 * Parses LaniaScript and other script files for runtime.
 */
 
+#pragma once
+
 class Interpreter
 {
 private:

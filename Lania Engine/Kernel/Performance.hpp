@@ -31,6 +31,8 @@
 * Assesses the runtime parameters that indicate satisfactory engine performance.
 */
 
+#pragma once
+
 class Performance
 {
 private:

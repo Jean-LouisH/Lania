@@ -43,7 +43,7 @@ public:
 	double currentTime;
 	double sampledTime;
 	void idle(int delayMilliseconds);
-	void initTime();
+	void initialize();
 	void updateCurrentTime();
 	void updateEngineTime();
 	void updateSampledTime();

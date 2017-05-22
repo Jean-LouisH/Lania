@@ -28,8 +28,10 @@
 *
 * Author: Jean-Louis Haywood
 *
-* 2D and 3D rendering handler which interfaces with other processing objects.
+* Handles rendering display lists for processing as 2D or 3D.
 */
+
+#pragma once
 
 class RenderingEngine
 {

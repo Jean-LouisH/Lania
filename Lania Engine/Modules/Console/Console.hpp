@@ -28,7 +28,7 @@
 *
 * Author: Jean-Louis Haywood
 *
-* Inputs and outputs streams to and from the engine via console.
+* Channels commands and data to and from the engine via console.
 */
 
 #pragma once

@@ -28,8 +28,10 @@
 *
 * Author: Jean-Louis Haywood
 *
-* Receives the audio play list and commands then passes it to 2D or 3D processing.
+* Receives the audio play list and commands then passes it to 2D or 3D stereo processing.
 */
+
+#pragma once
 
 class AudioEngine
 {

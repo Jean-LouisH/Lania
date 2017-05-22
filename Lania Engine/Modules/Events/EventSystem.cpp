@@ -44,7 +44,7 @@ Messages EventSystem::handleSDLEvents()
 			{
 				messages.isRunning = false;
 			}
-			else if (SDLEvents.key.keysym.sym < 128)
+			else if (SDLEvents.key.keysym.sym < 128) //ASCII values are below 128.
 			{
 				messages.keyboardBuffer[SDLEvents.key.keysym.sym] = true;
 			}

@@ -34,6 +34,8 @@
 * Created: 5th March 2017
 */
 
+#pragma once
+
 #include <SDL.h>
 #include "Performance.hpp"
 #include "RuntimeData.hpp"

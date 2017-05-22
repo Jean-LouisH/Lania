@@ -27,7 +27,7 @@
 
 void LaniaEngine::initialize()
 {
-	timer.initTime();
+	timer.initialize();
 
 	runtime.windowTitle = "Lania Engine";
 	runtime.aspectRatio = (16.0 / 9.0);
@@ -58,6 +58,7 @@ void LaniaEngine::runSimulationLoop()
 	do
 	{
 		messages = eventSystem.handleSDLEvents();
+
 		runtime.isRunning = messages.isRunning;
 		*inputSystem.keyboardBuffer = *messages.keyboardBuffer;
 
@@ -68,6 +69,7 @@ void LaniaEngine::runSimulationLoop()
 		{
 			timer.updateSimulationTime(runtime.frameCount,
 				runtime.targetFPS);
+			//Script, processing and runtime to be added.
 			runtime.frameCount++;
 			performance.passedFrames++;
 		}
@@ -79,6 +81,7 @@ void LaniaEngine::runSimulationLoop()
 			timer.updateSampledTime();
 		}
 
+		/*Outputs and processing lists.*/
 		console.printFPS(performance.FPS);
 		timer.idle((int)(1000 / runtime.targetFPS));
 

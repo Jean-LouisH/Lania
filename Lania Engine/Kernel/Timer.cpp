@@ -32,7 +32,7 @@ void Timer::idle(int delayMilliseconds)
 	SDL_Delay(delayMilliseconds);
 }
 
-void Timer::initTime()
+void Timer::initialize()
 {
 	currentTime = time(NULL);
 	startTime = currentTime;
