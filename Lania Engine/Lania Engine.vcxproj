@@ -23,18 +23,27 @@
     <ClCompile Include="Kernel\Performance.cpp" />
     <ClCompile Include="Kernel\Timer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Modules\AudioEngine\AudioEngine.cpp" />
     <ClCompile Include="Modules\Console\Console.cpp" />
-    <ClCompile Include="Modules\Events\Events.cpp" />
-    <ClCompile Include="Modules\Input\Input.cpp" />
+    <ClCompile Include="Modules\Events\EventSystem.cpp" />
+    <ClCompile Include="Modules\Input\InputSystem.cpp" />
+    <ClCompile Include="Modules\Interpreter\Interpreter.cpp" />
+    <ClCompile Include="Modules\PhysicsEngine\PhysicsEngine.cpp" />
+    <ClCompile Include="Modules\RenderingEngine\RenderingEngine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine Assets\Mathematics\Mathematics.hpp" />
     <ClInclude Include="Kernel\LaniaEngine.hpp" />
     <ClInclude Include="Kernel\Performance.hpp" />
+    <ClInclude Include="Kernel\RuntimeData.hpp" />
     <ClInclude Include="Kernel\Timer.hpp" />
+    <ClInclude Include="Modules\AudioEngine\AudioEngine.hpp" />
     <ClInclude Include="Modules\Console\Console.hpp" />
-    <ClInclude Include="Modules\Events\Events.hpp" />
-    <ClInclude Include="Modules\Input\Input.hpp" />
+    <ClInclude Include="Modules\Events\EventSystem.hpp" />
+    <ClInclude Include="Modules\Input\InputSystem.hpp" />
+    <ClInclude Include="Modules\Interpreter\Interpreter.hpp" />
+    <ClInclude Include="Modules\PhysicsEngine\PhysicsEngine.hpp" />
+    <ClInclude Include="Modules\RenderingEngine\RenderingEngine.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3DB7EEE7-D076-4A00-A077-85C8368B8792}</ProjectGuid>

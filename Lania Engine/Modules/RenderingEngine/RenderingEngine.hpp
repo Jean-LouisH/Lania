@@ -23,39 +23,16 @@
 ** SOFTWARE.
 */
 
-#include "Events.hpp"
+/**
+* RenderingEngine
+*
+* Author: Jean-Louis Haywood
+*
+* 2D and 3D rendering handler which interfaces with other processing objects.
+*/
 
-bool Events::handleSDLEvents(Input* inputSystem)
+class RenderingEngine
 {
-	while (SDL_PollEvent(&SDLEvents))
-	{
-		switch (SDLEvents.type)
-		{
-			/*Close window button*/
-		case SDL_QUIT:
-			return false;
-			break;
-
-			/*Keyboard inputs*/
-		case SDL_KEYDOWN:
-			if (SDLEvents.key.keysym.sym == SDLK_ESCAPE)
-			{
-				return false;
-			}
-			else if (SDLEvents.key.keysym.sym < 128)
-			{
-				inputSystem->keyboardBuffer[SDLEvents.key.keysym.sym] = true;
-			}
-			break;
-
-		case SDL_KEYUP:
-			if (SDLEvents.key.keysym.sym < 128)
-			{
-				inputSystem->keyboardBuffer[SDLEvents.key.keysym.sym] = false;
-			}
-			break;
-		}
-	}
-
-	return true;
-}
+private:
+public:
+};

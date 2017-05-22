@@ -23,9 +23,9 @@
 ** SOFTWARE.
 */
 
-#include "Input.hpp"
+#include "InputSystem.hpp"
 
-bool Input::isPressed(unsigned char input)
+bool InputSystem::isPressed(unsigned char input)
 {
 	//XOR gated ASCII character for capital or common letters.
 	return (keyboardBuffer[input] || keyboardBuffer[(input ^ 0x0020)]) ? true : false;

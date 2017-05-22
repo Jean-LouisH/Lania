@@ -23,20 +23,4 @@
 ** SOFTWARE.
 */
 
-/**
-* Inputs
-*
-* Author: Jean-Louis Haywood
-*
-* Houses keyboard, mouse and game controller buffers and methods to process inputs.
-*/
-
-#pragma once
-
-class Input
-{
-private:
-public:
-	bool keyboardBuffer[128];
-	bool isPressed(unsigned char input);
-};
+#include "PhysicsEngine.hpp"

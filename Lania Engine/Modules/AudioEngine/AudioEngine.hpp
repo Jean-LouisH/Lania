@@ -24,22 +24,15 @@
 */
 
 /**
-* Events
+* AudioEngine
 *
 * Author: Jean-Louis Haywood
 *
-* Handles the operating system events for the engine.
+* Receives the audio play list and commands then passes it to 2D or 3D processing.
 */
 
-#pragma once
-
-#include <SDL.h>
-#include "../Input/Input.hpp"
-
-class Events
+class AudioEngine
 {
 private:
-	SDL_Event SDLEvents;
 public:
-	bool handleSDLEvents(Input* inputSystem);
 };
