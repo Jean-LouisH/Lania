@@ -23,6 +23,14 @@
 ** SOFTWARE.
 */
 
+/**
+* Performance
+*
+* Author: Jean-Louis Haywood
+*
+* Assesses the runtime parameters that indicate satisfactory engine performance.
+*/
+
 class Performance
 {
 private:

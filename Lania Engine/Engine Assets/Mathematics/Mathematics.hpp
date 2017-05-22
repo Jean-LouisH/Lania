@@ -23,6 +23,14 @@
 ** SOFTWARE.
 */
 
+/**
+* Mathematics
+*
+* Author: Jean-Louis Haywood
+*
+* Provides procedures to compute common geometry and math problems.
+*/
+
 #pragma once
 
 #include <cmath>
