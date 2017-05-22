@@ -35,7 +35,7 @@ void LaniaEngine::initialize()
 	runtime.windowWidthPixels = (int)(runtime.windowHeightPixels * 
 		runtime.aspectRatio);
 	runtime.targetFPS = 60;
-	runtime.gameState = GAMEPLAY;
+	runtime.state = GAMEPLAY;
 	runtime.frameCount = 1;
 	runtime.isRunning = true;
 
@@ -57,12 +57,14 @@ void LaniaEngine::runSimulationLoop()
 {
 	do
 	{
-		runtime.isRunning = eventSystem.handleSDLEvents(&inputSystem);
+		messages = eventSystem.handleSDLEvents();
+		runtime.isRunning = messages.isRunning;
+		*inputSystem.keyboardBuffer = *messages.keyboardBuffer;
 
 		timer.updateCurrentTime();
 		timer.updateEngineTime();
 
-		if (runtime.gameState != PAUSED)
+		if (runtime.state != PAUSED)
 		{
 			timer.updateSimulationTime(runtime.frameCount,
 				runtime.targetFPS);
@@ -85,6 +87,6 @@ void LaniaEngine::runSimulationLoop()
 
 void LaniaEngine::shutdown()
 {
-	SDL_Quit();
 	SDL_DestroyWindow(sdlWindow);
+	SDL_Quit();
 }

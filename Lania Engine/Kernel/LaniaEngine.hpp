@@ -35,42 +35,32 @@
 */
 
 #include <SDL.h>
-#include <string>
 #include "Performance.hpp"
+#include "RuntimeData.hpp"
 #include "Timer.hpp"
+#include "../Modules/AudioEngine/AudioEngine.hpp"
 #include "../Modules/Console/Console.hpp"
-#include "../Modules/Events/Events.hpp"
-#include "../Modules/Input/Input.hpp"
-
-enum gameStates
-{
-	TITLESCREEN,
-	GAMEPLAY,
-	PAUSED
-};
-
-typedef struct
-{
-	std::string windowTitle;
-	float aspectRatio;
-	int windowHeightPixels;
-	int windowWidthPixels;
-	int frameCount;
-	int targetFPS;
-	unsigned char gameState;
-	bool isRunning;
-}RuntimeData;
+#include "../Modules/Events/EventSystem.hpp"
+#include "../Modules/Input/InputSystem.hpp"
+#include "../Modules/Interpreter/Interpreter.hpp"
+#include "../Modules/PhysicsEngine/PhysicsEngine.hpp"
+#include "../Modules/RenderingEngine/RenderingEngine.hpp"
 
 class LaniaEngine
 {
 private:
 	RuntimeData runtime;
 	SDL_Window *sdlWindow;
+	AudioEngine audioEngine;
 	Console console;
-	Events eventSystem;
-	Input inputSystem;
+	EventSystem eventSystem;
+	InputSystem inputSystem;
+	Interpreter interpreter;
+	PhysicsEngine physicsEngine;
+	RenderingEngine renderingEngine;
 	Performance performance;
 	Timer timer;
+	Messages messages;
 public:
 	void initialize();
 	void runSimulationLoop();
