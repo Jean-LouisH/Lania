@@ -49,6 +49,7 @@
     <ProjectGuid>{3DB7EEE7-D076-4A00-A077-85C8368B8792}</ProjectGuid>
     <RootNamespace>LaniaEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <ProjectName>LaniaEngine</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
