@@ -2,8 +2,6 @@
 
 Lania Engine, named after the Laniakea Supercluster (Hawaiian for "immeasurable heaven"), is a data oriented 2D/3D real-time simulation and game engine.
 
-### Current Phase: Pre-Alpha
-
 # Third Party Libraries
 
 ## SDL
