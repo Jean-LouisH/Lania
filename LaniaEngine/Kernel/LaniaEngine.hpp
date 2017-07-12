@@ -52,7 +52,8 @@ class LaniaEngine
 {
 private:
 	RuntimeData runtime;
-	SDL_Window *sdlWindow;
+	SDL_Window *window;
+	SDL_GLContext context;
 	AudioEngine audioEngine;
 	Console console;
 	EventSystem eventSystem;
