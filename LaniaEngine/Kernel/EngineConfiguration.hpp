@@ -24,52 +24,30 @@
 */
 
 /**
-* Lania Engine
-*
-* Description: Lania Engine, named after the Laniakea Supercluster
-* (Hawaiian for "immeasurable heaven"), is a data oriented 2D/3D
-* real-time simulation and game engine.
+* EngineConfiguration
 *
 * Author: Jean-Louis Haywood
-* Created: 5th March 2017
+*
+* Initializes the engine runtime states according to the configuration file "LaniaConfig.txt"
 */
 
 #pragma once
 
-#include <SDL.h>
-#include "EngineConfiguration.hpp"
-#include "FileSystem.hpp"
-#include "Performance.hpp"
-#include "RuntimeData.hpp"
-#include "Timer.hpp"
-#include "../Modules/AudioEngine/AudioEngine.hpp"
-#include "../Modules/Console/Console.hpp"
-#include "../Modules/Events/EventSystem.hpp"
-#include "../Modules/Input/InputSystem.hpp"
-#include "../Modules/Interpreter/Interpreter.hpp"
-#include "../Modules/PhysicsEngine/PhysicsEngine.hpp"
-#include "../Modules/RenderingEngine/RenderingEngine.hpp"
+#include <string>
 
-class LaniaEngine
+class EngineConfiguration
 {
 private:
-	RuntimeData runtime;
-	SDL_Window *window;
-	SDL_GLContext context;
-	AudioEngine audioEngine;
-	Console console;
-	EngineConfiguration engineConfig;
-	EventSystem eventSystem;
-	FileSystem fileSystem;
-	InputSystem inputSystem;
-	Interpreter interpreter;
-	PhysicsEngine physicsEngine;
-	RenderingEngine renderingEngine;
-	Performance performance;
-	Timer timer;
-	Messages messages;
 public:
-	void initialize();
-	void runSimulationLoop();
-	void shutdown();
+	std::string windowTitle;
+	int resolutionHeightPixels;
+	int resolutionWidthPixels;
+	int targetFPS;
+	double FPSRefreshDelay;
+	//glContext
+	int windowXPosition;
+	int windowYPosition;
+	//glBufferDepth
+	//SDL_swap_interval
+	void parseConfigFile(std::string fileContent);
 };

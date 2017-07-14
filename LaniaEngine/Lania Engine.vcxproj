@@ -19,6 +19,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Kernel\EngineConfiguration.cpp" />
+    <ClCompile Include="Kernel\FileSystem.cpp" />
     <ClCompile Include="Kernel\LaniaEngine.cpp" />
     <ClCompile Include="Kernel\Performance.cpp" />
     <ClCompile Include="Kernel\Timer.cpp" />
@@ -33,6 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine Assets\Mathematics\Mathematics.hpp" />
+    <ClInclude Include="Kernel\EngineConfiguration.hpp" />
+    <ClInclude Include="Kernel\FileSystem.hpp" />
     <ClInclude Include="Kernel\LaniaEngine.hpp" />
     <ClInclude Include="Kernel\Performance.hpp" />
     <ClInclude Include="Kernel\RuntimeData.hpp" />
