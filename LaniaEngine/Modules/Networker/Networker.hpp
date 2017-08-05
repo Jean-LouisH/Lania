@@ -3,9 +3,9 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Rendering Engine
+* Networker
 *
-* Handles rendering display lists for processing as 2D or 3D.
+* Handles all IO requests for networking ports throughout the engine. 
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
@@ -15,7 +15,7 @@
 
 namespace Lania
 {
-	class RenderingEngine
+	class Networker
 	{
 	private:
 	public:

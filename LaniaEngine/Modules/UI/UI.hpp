@@ -3,9 +3,9 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Rendering Engine
+* UI
 *
-* Handles rendering display lists for processing as 2D or 3D.
+* Defines the common properties and behaviour for user interfaces.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
@@ -15,7 +15,7 @@
 
 namespace Lania
 {
-	class RenderingEngine
+	class UI
 	{
 	private:
 	public:

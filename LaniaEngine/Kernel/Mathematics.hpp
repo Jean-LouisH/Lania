@@ -3,9 +3,9 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Rendering Engine
+* Mathematics
 *
-* Handles rendering display lists for processing as 2D or 3D.
+* Provides procedures to compute common geometry and math problems.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
@@ -13,11 +13,9 @@
 
 #pragma once
 
+#include <cmath>
+
 namespace Lania
 {
-	class RenderingEngine
-	{
-	private:
-	public:
-	};
+	
 }

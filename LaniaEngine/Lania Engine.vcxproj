@@ -25,29 +25,35 @@
     <ClCompile Include="Kernel\Performance.cpp" />
     <ClCompile Include="Kernel\Timer.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Modules\AIEngine\AIEngine.cpp" />
     <ClCompile Include="Modules\AudioEngine\AudioEngine.cpp" />
     <ClCompile Include="Modules\Console\Console.cpp" />
     <ClCompile Include="Modules\Events\EventSystem.cpp" />
     <ClCompile Include="Modules\Input\InputSystem.cpp" />
     <ClCompile Include="Modules\Interpreter\Interpreter.cpp" />
+    <ClCompile Include="Modules\Networker\Networker.cpp" />
     <ClCompile Include="Modules\PhysicsEngine\PhysicsEngine.cpp" />
     <ClCompile Include="Modules\RenderingEngine\RenderingEngine.cpp" />
+    <ClCompile Include="Modules\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Engine Assets\Mathematics\Mathematics.hpp" />
     <ClInclude Include="Kernel\EngineConfiguration.hpp" />
     <ClInclude Include="Kernel\FileSystem.hpp" />
     <ClInclude Include="Kernel\LaniaEngine.hpp" />
+    <ClInclude Include="Kernel\Mathematics.hpp" />
     <ClInclude Include="Kernel\Performance.hpp" />
     <ClInclude Include="Kernel\RuntimeData.hpp" />
     <ClInclude Include="Kernel\Timer.hpp" />
+    <ClInclude Include="Modules\AIEngine\AIEngine.hpp" />
     <ClInclude Include="Modules\AudioEngine\AudioEngine.hpp" />
     <ClInclude Include="Modules\Console\Console.hpp" />
     <ClInclude Include="Modules\Events\EventSystem.hpp" />
     <ClInclude Include="Modules\Input\InputSystem.hpp" />
     <ClInclude Include="Modules\Interpreter\Interpreter.hpp" />
+    <ClInclude Include="Modules\Networker\Networker.hpp" />
     <ClInclude Include="Modules\PhysicsEngine\PhysicsEngine.hpp" />
     <ClInclude Include="Modules\RenderingEngine\RenderingEngine.hpp" />
+    <ClInclude Include="Modules\UI\UI.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{3DB7EEE7-D076-4A00-A077-85C8368B8792}</ProjectGuid>

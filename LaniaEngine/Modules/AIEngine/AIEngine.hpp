@@ -3,9 +3,9 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Rendering Engine
+* AI Engine
 *
-* Handles rendering display lists for processing as 2D or 3D.
+* Handles and offloads the implementation of common game AI algorithms from the scripting language.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
@@ -15,7 +15,7 @@
 
 namespace Lania
 {
-	class RenderingEngine
+	class AIEngine
 	{
 	private:
 	public:
