@@ -23,8 +23,8 @@ namespace Lania
 	{
 	private:
 	public:
-		string loadFileContents(std::string filePath);
-		void storeFileContents(std::string filePath, std::string fileContents);
-		void appendFileContents(std::string filePath);
+		string read(std::string filePath);
+		void write(std::string filePath, std::string fileContents);
+		void append(std::string filePath, std::string fileContents);
 	};
 }
