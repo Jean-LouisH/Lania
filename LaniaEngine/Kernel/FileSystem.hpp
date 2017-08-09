@@ -14,6 +14,7 @@
 #pragma once
 
 #include <string>
+#include <queue>
 
 using namespace std;
 
@@ -22,9 +23,11 @@ namespace Lania
 	class FileSystem
 	{
 	private:
+		queue<char*> occupiedMemory;
 	public:
-		string read(std::string filePath);
-		void write(std::string filePath, std::string fileContents);
-		void append(std::string filePath, std::string fileContents);
+		char* read(string filePath);
+		void write(string filePath, char* fileData);
+		void append(string filePath, char* fileData);
+		void freeMemory();
 	};
 }

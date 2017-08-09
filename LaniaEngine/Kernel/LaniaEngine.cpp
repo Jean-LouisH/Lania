@@ -6,7 +6,8 @@ void LaniaEngine::initialize()
 {
 	timer.initialize();
 
-	runtime.windowTitle = "Lania Engine";
+	engineConfig.parseConfigFile(fileSystem.read("LaniaConfig.cfg"));
+	runtime.windowTitle = "Lania Engine (Pre-alpha)";
 	runtime.aspectRatio = (16.0 / 9.0);
 	runtime.windowHeightPixels = 480;
 	runtime.windowWidthPixels = (int)(runtime.windowHeightPixels * 
@@ -19,10 +20,10 @@ void LaniaEngine::initialize()
 	performance.passedFrames = 0;
 	performance.fpsRefreshDelay = 1.0;
 
-	const char *title = runtime.windowTitle.c_str();
-
 	if (SDL_Init(SDL_INIT_EVERYTHING))
+	{
 		SDL_Log("SDL could not initialize because: %s", SDL_GetError());
+	}
 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
@@ -30,7 +31,7 @@ void LaniaEngine::initialize()
 	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
 
 	window = SDL_CreateWindow(
-		title,
+		runtime.windowTitle.c_str(),
 		SDL_WINDOWPOS_UNDEFINED,
 		SDL_WINDOWPOS_UNDEFINED,
 		runtime.windowWidthPixels,
@@ -38,7 +39,9 @@ void LaniaEngine::initialize()
 		SDL_WINDOW_OPENGL);
 
 	if (window == NULL)
+	{
 		SDL_Log("SDL could not create the window because: %s", SDL_GetError());
+	}
 
 	context = SDL_GL_CreateContext(window);
 	SDL_GL_SetSwapInterval(1);
@@ -75,6 +78,7 @@ void LaniaEngine::runSimulationLoop()
 		/*Outputs and processing lists.*/
 		console.printFPS(performance.FPS);
 		SDL_GL_SwapWindow(window);
+		fileSystem.freeMemory();
 		timer.idle((int)(1000 / runtime.targetFPS));
 
 	} while (runtime.isRunning);
