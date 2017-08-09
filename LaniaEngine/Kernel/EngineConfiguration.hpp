@@ -5,7 +5,7 @@
 *
 * Engine Configuration
 *
-* Initializes the engine runtime states according to the configuration file "LaniaConfig.txt"
+* Initializes the engine runtime states according to the configuration file "LaniaConfig.cfg"
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
@@ -33,7 +33,7 @@ namespace Lania
 		int windowYPosition;
 		//glBufferDepth
 		//SDL_swap_interval
-		void parseConfigFile(string fileContent);
+		void parseConfigFile(char* fileData);
 	};
 }
 	

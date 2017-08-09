@@ -1,6 +1,6 @@
 #include "EngineConfiguration.hpp"
 
-void Lania::EngineConfiguration::parseConfigFile(std::string fileContent)
+void Lania::EngineConfiguration::parseConfigFile(char* fileContent)
 {
 
 }
