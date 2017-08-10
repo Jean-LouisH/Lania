@@ -6,13 +6,7 @@ void LaniaEngine::initialize()
 {
 	timer.initialize();
 
-	engineConfig.parseConfigFile(fileSystem.read("LaniaConfig.cfg"));
-	runtime.windowTitle = "Lania Engine (Pre-alpha)";
-	runtime.aspectRatio = (16.0 / 9.0);
-	runtime.windowHeightPixels = 480;
-	runtime.windowWidthPixels = (int)(runtime.windowHeightPixels * 
-		runtime.aspectRatio);
-	runtime.targetFPS = 60;
+	runtime = engineConfig.parseInitConfig(fileSystem.read("LaniaConfig.cfg"));
 	runtime.state = GAMEPLAY;
 	runtime.frameCount = 1;
 	runtime.isRunning = true;
@@ -25,6 +19,16 @@ void LaniaEngine::initialize()
 		SDL_Log("SDL could not initialize because: %s", SDL_GetError());
 	}
 
+	if (runtime.windowXPosition == 0)
+	{
+		runtime.windowXPosition = SDL_WINDOWPOS_UNDEFINED;
+	}
+
+	if (runtime.windowYPosition == 0)
+	{
+		runtime.windowYPosition = SDL_WINDOWPOS_UNDEFINED;
+	}
+
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -32,8 +36,8 @@ void LaniaEngine::initialize()
 
 	window = SDL_CreateWindow(
 		runtime.windowTitle.c_str(),
-		SDL_WINDOWPOS_UNDEFINED,
-		SDL_WINDOWPOS_UNDEFINED,
+		runtime.windowXPosition,
+		runtime.windowYPosition,
 		runtime.windowWidthPixels,
 		runtime.windowHeightPixels,
 		SDL_WINDOW_OPENGL);
