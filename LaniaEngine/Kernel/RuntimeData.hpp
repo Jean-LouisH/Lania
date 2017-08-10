@@ -29,11 +29,12 @@ namespace Lania
 	typedef struct
 	{
 		string windowTitle;
-		float aspectRatio;
 		int windowHeightPixels;
 		int windowWidthPixels;
 		int frameCount;
 		int targetFPS;
+		unsigned int windowXPosition;
+		unsigned int windowYPosition;
 		unsigned char state;
 		bool isRunning;
 	}RuntimeData;
