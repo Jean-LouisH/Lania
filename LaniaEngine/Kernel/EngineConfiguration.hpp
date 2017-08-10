@@ -14,6 +14,7 @@
 #pragma once
 
 #include <string>
+#include "RuntimeData.hpp"
 
 using namespace std;
 
@@ -23,17 +24,6 @@ namespace Lania
 	{
 	private:
 	public:
-		string windowTitle;
-		int resolutionHeightPixels;
-		int resolutionWidthPixels;
-		int targetFPS;
-		double FPSRefreshDelay;
-		//glContext
-		int windowXPosition;
-		int windowYPosition;
-		//glBufferDepth
-		//SDL_swap_interval
-		void parseConfigFile(char* fileData);
+		RuntimeData parseInitConfig(char* fileData);
 	};
 }
-	
