@@ -5,88 +5,101 @@ Lania::RuntimeData Lania::EngineConfiguration::parseInitConfig(char* fileContent
 	Lania::RuntimeData configData;
 	int readPosition = 0;
 
-	string configTitle = "";
+	string key = "";
+	string value = "";
 
-	while (fileContent[readPosition] != NULL &&
-		fileContent[readPosition] != ':')
+	enum
 	{
-		configTitle += fileContent[readPosition];
-		readPosition++;
-	}
-
-	readPosition++;
+		COMMENTING,
+		LOADING_KEY,
+		LOADING_VALUE,
+		FINISHED
+	};
+	
+	unsigned char parseState = LOADING_KEY;
 
 	do
 	{
-		string key = "";
-		string value = "";
-
-		while (fileContent[readPosition] != NULL &&
-			fileContent[readPosition] == '\n' || 
-			fileContent[readPosition] == ' ')
+		switch (fileContent[readPosition])
 		{
+		case '-':
+			if (fileContent[readPosition + 1] == '-')
+			{
+				parseState = COMMENTING;
+				readPosition++;
+			}
+			break;
+		case '=':
+			if (parseState != COMMENTING)
+			{
+				parseState = LOADING_VALUE;
+			}
 			readPosition++;
+			break;
+		case '\n':
+			key = "";
+			value = "";
+			parseState = LOADING_KEY;
+			break;
+		case '+':
+			if (fileContent[readPosition + 1] == '+')
+			{
+				parseState = FINISHED;
+			}
+			readPosition++;
+			break;
 		}
 
-		while (fileContent[readPosition] != NULL &&
-			fileContent[readPosition] != ':')
+		if (parseState == LOADING_KEY && 
+			fileContent[readPosition] != '\n')
 		{
 			key += fileContent[readPosition];
-			readPosition++;
 		}
-
-		readPosition++;
-
-		while (fileContent[readPosition] != NULL &&
-			fileContent[readPosition] == '\n' ||
-			fileContent[readPosition] == ' ')
-		{
-			readPosition++;
-		}
-
-		while (fileContent[readPosition] != NULL &&
+		else if (parseState == LOADING_VALUE && 
 			fileContent[readPosition] != '\n')
 		{
 			value += fileContent[readPosition];
-			readPosition++;
 		}
-
+		
+		if (fileContent[readPosition + 1] == '\n')
+		{
+			if (key == "Window Title")
+			{
+				configData.windowTitle = value;
+			}
+			else if (key == "Window Width")
+			{
+				configData.windowWidthPixels = std::stoi(value);
+			}
+			else if (key == "Window Height")
+			{
+				configData.windowHeightPixels = std::stoi(value);
+			}
+			else if (key == "Target FPS")
+			{
+				configData.targetFPS = std::stoi(value);
+			}
+			else if (key == "Rendering API")
+			{
+				;
+			}
+			else if (key == "Window X Position")
+			{
+				configData.windowXPosition = std::stoi(value);
+			}
+			else if (key == "Window Y Position")
+			{
+				configData.windowYPosition = std::stoi(value);
+			}
+			else if (key == "Windowed")
+			{
+				;
+			}
+		}
 		readPosition++;
 
-		if (key == "Window Title")
-		{
-			configData.windowTitle = value;
-		}
-		else if (key == "Window Width")
-		{
-			configData.windowWidthPixels = std::stoi(value);
-		}
-		else if (key == "Window Height")
-		{
-			configData.windowHeightPixels = std::stoi(value);
-		}
-		else if (key == "Target FPS")
-		{
-			configData.targetFPS = std::stoi(value);
-		}
-		else if (key == "Rendering API")
-		{
-			;
-		}
-		else if (key == "Window X Position")
-		{
-			configData.windowXPosition = std::stoi(value);
-		}
-		else if (key == "Window Y Position")
-		{
-			configData.windowYPosition = std::stoi(value);
-		}
-		else if (key == "Windowed")
-		{
-			;
-		}
-	} while (fileContent[readPosition] != NULL);
-
+	} while (fileContent[readPosition] != '\0' &&
+		parseState != FINISHED);
 
 	return configData;
 }
