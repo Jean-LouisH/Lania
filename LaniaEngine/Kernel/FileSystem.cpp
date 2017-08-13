@@ -6,18 +6,22 @@ char* Lania::FileSystem::read(string filePath)
 
 	ifstream inputFile;
 
+	filePath.substr(filePath.find_last_of(".") + 1) == "cfg";
+
 	/*If it has these extensions, it is interpreted as text
 	 *Otherwise it is read as binary data.*/
-	if (filePath.find(".txt") != string::npos ||
-		filePath.find(".xml") != string::npos ||
-		filePath.find(".cfg") != string::npos)
+	if (filePath.substr(filePath.find_last_of(".") + 1) == "txt" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "xml" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "cfg" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "log" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "csv")
 	{
 		inputFile.open(filePath);
 		string loadedContents((istreambuf_iterator<char>(inputFile)),
 			istreambuf_iterator<char>());
 		char* fileString = _strdup(loadedContents.c_str());
 		inputFile.close();
-		this->occupiedMemory.push(fileString);
+		this->fileCache.push(fileString);
 
 		return fileString;
 	}
@@ -43,7 +47,7 @@ char* Lania::FileSystem::read(string filePath)
 		memcpy(fileData + sizeof(int), buffer, size);
 		delete[] buffer;
 		inputFile.close();
-		this->occupiedMemory.push(fileData);
+		this->fileCache.push(fileData);
 
 		return fileData;
 	}
@@ -53,9 +57,11 @@ void Lania::FileSystem::write(string filePath, char* fileData)
 {
 	ofstream outputFile;
 
-	if (filePath.find(".txt") != string::npos ||
-		filePath.find(".xml") != string::npos ||
-		filePath.find(".cfg") != string::npos)
+	if (filePath.substr(filePath.find_last_of(".") + 1) == "txt" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "xml" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "cfg" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "log" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "csv")
 	{
 		outputFile.open(filePath);
 		outputFile << fileData;
@@ -83,9 +89,11 @@ void Lania::FileSystem::append(string filePath, char* fileData)
 {
 	ofstream outputFile;
 
-	if (filePath.find(".txt") != string::npos ||
-		filePath.find(".xml") != string::npos ||
-		filePath.find(".cfg") != string::npos)
+	if (filePath.substr(filePath.find_last_of(".") + 1) == "txt" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "xml" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "cfg" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "log" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "csv")
 	{
 		outputFile.open(filePath, ios::app);
 		outputFile << fileData;
@@ -111,10 +119,10 @@ void Lania::FileSystem::append(string filePath, char* fileData)
 
 void Lania::FileSystem::freeMemory()
 {
-	while (!this->occupiedMemory.empty())
+	while (!this->fileCache.empty())
 	{
-		char* memorySegment = occupiedMemory.front();
-		occupiedMemory.pop();
+		char* memorySegment = fileCache.front();
+		fileCache.pop();
 		delete[] memorySegment;
 	}
 }

@@ -23,7 +23,7 @@ namespace Lania
 	class FileSystem
 	{
 	private:
-		queue<char*> occupiedMemory;
+		queue<char*> fileCache;
 	public:
 		char* read(string filePath);
 		void write(string filePath, char* fileData);
