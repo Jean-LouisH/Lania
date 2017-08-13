@@ -24,9 +24,9 @@ void Lania::Timer::updateEngineTime()
 	engineTime = currentTime - startTime;
 }
 
-void Lania::Timer::updateSimulationTime(int frameCount, int FPS)
+void Lania::Timer::updateSimulationTime(int FPS)
 {
-	simulationTime = frameCount / FPS;
+	simulationTime += 1.0 / FPS;
 }
 
 void Lania::Timer::updateSampledTime()

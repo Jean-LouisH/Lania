@@ -29,7 +29,7 @@ namespace Lania
 		void updateCurrentTime();
 		void updateEngineTime();
 		void updateSampledTime();
-		void updateSimulationTime(int frameCount, int FPS);
+		void updateSimulationTime(int FPS);
 		double calculateElapsedTime();
 	};
 }

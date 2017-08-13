@@ -31,7 +31,6 @@ namespace Lania
 		string windowTitle;
 		int windowHeightPixels;
 		int windowWidthPixels;
-		int frameCount;
 		int targetFPS;
 		unsigned int windowXPosition;
 		unsigned int windowYPosition;
