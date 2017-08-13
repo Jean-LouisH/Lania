@@ -33,8 +33,8 @@ Lania::RuntimeData Lania::EngineConfiguration::parseInitConfig(char* fileContent
 			if (parseState != COMMENTING)
 			{
 				parseState = LOADING_VALUE;
+				readPosition++;
 			}
-			readPosition++;
 			break;
 		case '\n':
 			key = "";
@@ -46,7 +46,6 @@ Lania::RuntimeData Lania::EngineConfiguration::parseInitConfig(char* fileContent
 			{
 				parseState = FINISHED;
 			}
-			readPosition++;
 			break;
 		}
 
@@ -100,6 +99,9 @@ Lania::RuntimeData Lania::EngineConfiguration::parseInitConfig(char* fileContent
 
 	} while (fileContent[readPosition] != '\0' &&
 		parseState != FINISHED);
+
+	configData.state = GAMEPLAY;
+	configData.isRunning = true;
 
 	return configData;
 }
