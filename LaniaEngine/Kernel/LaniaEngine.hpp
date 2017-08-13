@@ -59,6 +59,8 @@ private:
 	Lania::PhysicsEngine physicsEngine;
 	Lania::RenderingEngine renderingEngine;
 	Lania::UI ui;
+
+	void dispatchMessages(Lania::Messages messages);
 public:
 	void initialize();
 	void runSimulationLoop();

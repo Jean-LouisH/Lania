@@ -5,14 +5,8 @@ using namespace Lania;
 void LaniaEngine::initialize()
 {
 	timer.initialize();
-
-	runtime = engineConfig.parseInitConfig(fileSystem.read("LaniaConfig.cfg"));
-	runtime.state = GAMEPLAY;
-	runtime.frameCount = 1;
-	runtime.isRunning = true;
-
-	performance.passedFrames = 0;
 	performance.fpsRefreshDelay = 1.0;
+	runtime = engineConfig.parseInitConfig(fileSystem.read("LaniaConfig.cfg"));
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{
@@ -48,30 +42,29 @@ void LaniaEngine::initialize()
 	}
 
 	context = SDL_GL_CreateContext(window);
-	SDL_GL_SetSwapInterval(1);
+	SDL_GL_SetSwapInterval(0);
 }
 
 void LaniaEngine::runSimulationLoop()
 {
 	do
 	{
-		messages = eventSystem.handleSDLEvents();
-
-		runtime.isRunning = messages.isRunning;
-		*inputSystem.keyboardBuffer = *messages.keyboardBuffer;
+		this->dispatchMessages(eventSystem.handleSDLEvents());
 
 		timer.updateCurrentTime();
 		timer.updateEngineTime();
 
 		if (runtime.state != PAUSED)
 		{
-			timer.updateSimulationTime(runtime.frameCount,
-				runtime.targetFPS);
+			timer.updateSimulationTime(runtime.targetFPS);
 			//Script, processing and runtime to be added.
-			runtime.frameCount++;
-			performance.passedFrames++;
 		}
 
+		/*Outputs and processing lists.*/
+		//console.printFPS(performance.FPS);
+		SDL_GL_SwapWindow(window);
+
+		performance.passedFrames++;
 		if (timer.calculateElapsedTime() >= performance.fpsRefreshDelay)
 		{
 			performance.calculateFPS(timer.currentTime, timer.sampledTime);
@@ -79,9 +72,6 @@ void LaniaEngine::runSimulationLoop()
 			timer.updateSampledTime();
 		}
 
-		/*Outputs and processing lists.*/
-		console.printFPS(performance.FPS);
-		SDL_GL_SwapWindow(window);
 		fileSystem.freeMemory();
 		timer.idle((int)(1000 / runtime.targetFPS));
 
@@ -92,4 +82,10 @@ void LaniaEngine::shutdown()
 {
 	SDL_DestroyWindow(window);
 	SDL_Quit();
+}
+
+void LaniaEngine::dispatchMessages(Lania::Messages messages)
+{
+	runtime.isRunning = messages.isRunning;
+	*inputSystem.keyboardBuffer = *messages.keyboardBuffer;
 }
