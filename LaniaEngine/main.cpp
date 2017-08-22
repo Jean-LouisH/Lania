@@ -1,4 +1,4 @@
-#include "Kernel/LaniaEngine.hpp"
+#include "Core/LaniaEngine.hpp"
 
 #undef main main //reverses SDL's main definition.
 

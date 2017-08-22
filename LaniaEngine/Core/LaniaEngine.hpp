@@ -42,7 +42,7 @@ private:
 	SDL_GLContext context;
 	SDL_Window *window;
 
-	/*Lania Kernel Utilities*/
+	/*Lania Core Utilities*/
 	Lania::EngineConfiguration engineConfig;
 	Lania::FileSystem fileSystem;
 	Lania::Performance performance;

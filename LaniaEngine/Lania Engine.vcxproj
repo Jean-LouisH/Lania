@@ -19,11 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Kernel\EngineConfiguration.cpp" />
-    <ClCompile Include="Kernel\FileSystem.cpp" />
-    <ClCompile Include="Kernel\LaniaEngine.cpp" />
-    <ClCompile Include="Kernel\Performance.cpp" />
-    <ClCompile Include="Kernel\Timer.cpp" />
+    <ClCompile Include="Core\EngineConfiguration.cpp" />
+    <ClCompile Include="Core\FileSystem.cpp" />
+    <ClCompile Include="Core\LaniaEngine.cpp" />
+    <ClCompile Include="Core\Performance.cpp" />
+    <ClCompile Include="Core\Timer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Modules\AIEngine\AIEngine.cpp" />
     <ClCompile Include="Modules\AudioEngine\AudioEngine.cpp" />
@@ -37,13 +37,12 @@
     <ClCompile Include="Modules\UI\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Kernel\EngineConfiguration.hpp" />
-    <ClInclude Include="Kernel\FileSystem.hpp" />
-    <ClInclude Include="Kernel\LaniaEngine.hpp" />
-    <ClInclude Include="Kernel\Mathematics.hpp" />
-    <ClInclude Include="Kernel\Performance.hpp" />
-    <ClInclude Include="Kernel\RuntimeData.hpp" />
-    <ClInclude Include="Kernel\Timer.hpp" />
+    <ClInclude Include="Core\EngineConfiguration.hpp" />
+    <ClInclude Include="Core\FileSystem.hpp" />
+    <ClInclude Include="Core\LaniaEngine.hpp" />
+    <ClInclude Include="Core\Performance.hpp" />
+    <ClInclude Include="Core\RuntimeData.hpp" />
+    <ClInclude Include="Core\Timer.hpp" />
     <ClInclude Include="Modules\AIEngine\AIEngine.hpp" />
     <ClInclude Include="Modules\AudioEngine\AudioEngine.hpp" />
     <ClInclude Include="Modules\Console\Console.hpp" />
