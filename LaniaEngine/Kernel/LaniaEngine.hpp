@@ -3,7 +3,7 @@
 *           https://jean-louish.github.io/LaniaEngine/
 *
 * Lania Engine, named after the Laniakea Supercluster
-* (Hawaiian for "immeasurable heaven"), is a data oriented 2D/3D
+* (Hawaiian for "immeasurable heaven"), is a 2D/3D
 * real-time simulation and game engine.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
