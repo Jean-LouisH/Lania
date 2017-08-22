@@ -11,43 +11,46 @@ void LaniaEngine::initialize()
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{
 		SDL_Log("SDL could not initialize because: %s", SDL_GetError());
+		runtime.isRunning = false;
 	}
-
-	if (runtime.windowXPosition == 0)
+	else
 	{
-		runtime.windowXPosition = SDL_WINDOWPOS_UNDEFINED;
+		if (runtime.windowXPosition == 0)
+		{
+			runtime.windowXPosition = SDL_WINDOWPOS_UNDEFINED;
+		}
+
+		if (runtime.windowYPosition == 0)
+		{
+			runtime.windowYPosition = SDL_WINDOWPOS_UNDEFINED;
+		}
+
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+		SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
+
+		window = SDL_CreateWindow(
+			runtime.windowTitle.c_str(),
+			runtime.windowXPosition,
+			runtime.windowYPosition,
+			runtime.windowWidthPixels,
+			runtime.windowHeightPixels,
+			SDL_WINDOW_OPENGL);
+
+		if (window == NULL)
+		{
+			SDL_Log("SDL could not create the window because: %s", SDL_GetError());
+		}
+
+		context = SDL_GL_CreateContext(window);
+		SDL_GL_SetSwapInterval(0);
 	}
-
-	if (runtime.windowYPosition == 0)
-	{
-		runtime.windowYPosition = SDL_WINDOWPOS_UNDEFINED;
-	}
-
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-	SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 24);
-
-	window = SDL_CreateWindow(
-		runtime.windowTitle.c_str(),
-		runtime.windowXPosition,
-		runtime.windowYPosition,
-		runtime.windowWidthPixels,
-		runtime.windowHeightPixels,
-		SDL_WINDOW_OPENGL);
-
-	if (window == NULL)
-	{
-		SDL_Log("SDL could not create the window because: %s", SDL_GetError());
-	}
-
-	context = SDL_GL_CreateContext(window);
-	SDL_GL_SetSwapInterval(0);
 }
 
 void LaniaEngine::runSimulationLoop()
 {
-	do
+	while (runtime.isRunning)
 	{
 		this->dispatchMessages(eventSystem.handleSDLEvents());
 
@@ -75,7 +78,7 @@ void LaniaEngine::runSimulationLoop()
 		fileSystem.freeMemory();
 		timer.idle((int)(1000 / runtime.targetFPS));
 
-	} while (runtime.isRunning);
+	}
 }
 
 void LaniaEngine::shutdown()
