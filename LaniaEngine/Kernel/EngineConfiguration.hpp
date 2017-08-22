@@ -13,10 +13,7 @@
 
 #pragma once
 
-#include <string>
 #include "RuntimeData.hpp"
-
-using namespace std;
 
 namespace Lania
 {
