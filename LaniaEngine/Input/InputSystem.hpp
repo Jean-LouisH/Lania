@@ -3,21 +3,22 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Physics Engine
+* Input System
 *
-* Computes physics operations for 2D and 3D space.
+* Houses keyboard, mouse and game controller buffers and methods to process inputs.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 #pragma once
 
 namespace Lania
 {
-	class PhysicsEngine
+	class InputSystem
 	{
 	private:
 	public:
+		bool keyboardBuffer[128];
+		bool isPressed(unsigned char input);
 	};
 }

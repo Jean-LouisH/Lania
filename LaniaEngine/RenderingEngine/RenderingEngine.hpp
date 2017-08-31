@@ -3,19 +3,18 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Interpreter
+* Rendering Engine
 *
-* Parses LaniaScript and other script files for runtime.
+* Handles rendering display lists for processing as 2D or 3D.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 #pragma once
 
 namespace Lania
 {
-	class Interpreter
+	class RenderingEngine
 	{
 	private:
 	public:

@@ -8,7 +8,6 @@
 * Contains the working data for the engine runtime.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 #pragma once

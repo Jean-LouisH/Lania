@@ -7,29 +7,28 @@
 * real-time simulation and game engine.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 * Created: 5th March 2017
 */
 
 #pragma once
 
 #include <SDL.h>
+#include "CommandLine.hpp"
 #include "EngineConfiguration.hpp"
 #include "FileSystem.hpp"
 #include "Mathematics.hpp"
+#include "Networker.hpp"
 #include "Performance.hpp"
 #include "RuntimeData.hpp"
 #include "Timer.hpp"
-#include "../Modules/AIEngine/AIEngine.hpp"
-#include "../Modules/AudioEngine/AudioEngine.hpp"
-#include "../Modules/Console/Console.hpp"
-#include "../Modules/Events/EventSystem.hpp"
-#include "../Modules/Input/InputSystem.hpp"
-#include "../Modules/Interpreter/Interpreter.hpp"
-#include "../Modules/Networker/Networker.hpp"
-#include "../Modules/PhysicsEngine/PhysicsEngine.hpp"
-#include "../Modules/RenderingEngine/RenderingEngine.hpp"
-#include "../Modules/UI/UI.hpp"
+#include "UI.hpp"
+#include "../AIEngine/AIEngine.hpp"
+#include "../AudioEngine/AudioEngine.hpp"
+#include "../Events/EventSystem.hpp"
+#include "../Input/InputSystem.hpp"
+#include "../Interpreter/Interpreter.hpp"
+#include "../PhysicsEngine/PhysicsEngine.hpp"
+#include "../RenderingEngine/RenderingEngine.hpp"
 
 class LaniaEngine
 {
@@ -43,22 +42,23 @@ private:
 	SDL_Window *window;
 
 	/*Lania Core Utilities*/
+	Lania::CommandLine commandLine;
 	Lania::EngineConfiguration engineConfig;
 	Lania::FileSystem fileSystem;
+	Lania::Networker networker;
 	Lania::Performance performance;
 	Lania::Timer timer;
+	Lania::UI ui;
+
 
 	/*Lania Engine Modules*/
 	Lania::AIEngine aiEngine;
 	Lania::AudioEngine audioEngine;
-	Lania::Console console;
 	Lania::EventSystem eventSystem;
 	Lania::InputSystem inputSystem;
 	Lania::Interpreter interpreter;
-	Lania::Networker networker;
 	Lania::PhysicsEngine physicsEngine;
 	Lania::RenderingEngine renderingEngine;
-	Lania::UI ui;
 
 	void dispatchMessages(Lania::Messages messages);
 public:

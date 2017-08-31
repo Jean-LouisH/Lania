@@ -3,19 +3,18 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* UI
+* Networker
 *
-* Defines the common properties and behaviour for user interfaces.
+* Handles all IO requests for networking ports throughout the engine. 
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 #pragma once
 
 namespace Lania
 {
-	class UI
+	class Networker
 	{
 	private:
 	public:

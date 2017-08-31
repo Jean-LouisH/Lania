@@ -3,19 +3,18 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Audio Engine
+* UI
 *
-* Receives the audio play list and commands, then passes it to 2D or 3D stereo processing.
+* Defines the common properties and behaviour for user interfaces.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 #pragma once
 
 namespace Lania
 {
-	class AudioEngine
+	class UI
 	{
 	private:
 	public:

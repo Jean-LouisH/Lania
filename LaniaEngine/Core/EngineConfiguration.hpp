@@ -8,7 +8,6 @@
 * Initializes the engine runtime states according to the configuration file "LaniaConfig.cfg"
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 #pragma once

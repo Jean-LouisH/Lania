@@ -3,24 +3,20 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Console
+* Audio Engine
 *
-* Channels commands and data to and from the engine via console.
+* Receives the audio play list and commands, then passes it to 2D or 3D stereo processing.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 #pragma once
 
-#include <iostream>
-
 namespace Lania
 {
-	class Console
+	class AudioEngine
 	{
 	private:
 	public:
-		void printFPS(double fps);
 	};
 }
