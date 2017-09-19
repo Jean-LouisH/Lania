@@ -3,9 +3,9 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Interpreter
+* Timing
 *
-* Parses LaniaScript and other script files for runtime.
+* Defines engine and simulation time data.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 */
@@ -14,9 +14,10 @@
 
 namespace Lania
 {
-	class Interpreter
+	typedef struct
 	{
-	private:
-	public:
-	};
+		double simulation;
+		double current;
+		double last;
+	}Timing;
 }
