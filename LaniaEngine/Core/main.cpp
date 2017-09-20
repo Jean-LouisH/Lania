@@ -26,12 +26,16 @@ int main()
 	}
 	else
 	{
-
+		
 	}
 
 	do
 	{
-
+		SDL_Delay((int)(1000 / 60));
+		timing.current = SDL_GetTicks();
+		double deltaMilliseconds = (timing.current - timing.last);
+		timing.simulation += deltaMilliseconds;
+		timing.last = timing.current;
 	} while (true);
 
 	SDL_Quit();
