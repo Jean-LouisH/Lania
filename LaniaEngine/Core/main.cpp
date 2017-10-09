@@ -12,6 +12,8 @@
 
 #include <SDL.h>
 #include "Timing.hpp"
+#include "Logging.hpp"
+#include "Events.hpp"
 
 #undef main main //reverses SDL's main definition.
 
@@ -26,17 +28,16 @@ int main()
 	}
 	else
 	{
-		
+
 	}
 
-	do
+	while(handleEvents())
 	{
-		SDL_Delay((int)(1000 / 60));
 		timing.current = SDL_GetTicks();
-		double deltaMilliseconds = (timing.current - timing.last);
-		timing.simulation += deltaMilliseconds;
+		timing.simulation += (timing.current - timing.last);
 		timing.last = timing.current;
-	} while (true);
+		SDL_Delay(1000 / 60);
+	}
 
 	SDL_Quit();
 

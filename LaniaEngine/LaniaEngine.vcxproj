@@ -116,9 +116,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Events.hpp" />
+    <ClInclude Include="Core\Logging.hpp" />
     <ClInclude Include="Core\Timing.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Events.cpp" />
+    <ClCompile Include="Core\Logging.cpp" />
     <ClCompile Include="Core\main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
