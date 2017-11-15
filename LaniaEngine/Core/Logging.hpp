@@ -10,14 +10,13 @@
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 */
 
-
 #pragma once
 
 #include <iostream>
 #include <string>
 
-namespace Logging
+namespace Log
 {
-	void toConsole(std::string message);
-	void toFile(std::string message);
+	void messageConsole(std::string message);
+	void messageFile(std::string message);
 };
