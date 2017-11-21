@@ -1,0 +1,26 @@
+Lania file format
+
+*Has distinct raw binaries of assets with XML chunk separators. Assets are loaded flat and not within directories.
+*Currently fairly transparent with no compression or encryption algorithms.
+
+Structure
+===============
+
+Header Chunks
+------------------
+[Magic Number] = 0x4C414E4941
+[Size]
+[Version]
+[Developer]
+[Config]
+[Icon]
+
+Data Macro Chunks 
+(Each common chunk is open tagged with file names and sizes, and close tagged)
+-----------------
+{Scenes}
+{Scripts}
+{Graphics} -> Textures, Shaders, Meshes, Fonts
+{Audio} -> Music, Sounds
+{Animations}
+{Texts}
