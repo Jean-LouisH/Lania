@@ -5,14 +5,14 @@
 Lania::EngineData Lania::initialize()
 {
 	EngineData engine;
-	engine.isRunning = true;
+	engine.state = RUNNING;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{
 		SDL_Log(
 			"SDL could not initialize because: %s",
 			SDL_GetError);
-		engine.isRunning = false;
+		engine.state = SHUTDOWN;
 	}
 	else
 	{
@@ -43,7 +43,7 @@ Lania::EngineData Lania::initialize()
 			SDL_Log(
 				"SDL could not create the window because: %s",
 				SDL_GetError());
-			engine.isRunning = false;
+			engine.state = SHUTDOWN;
 		}
 
 		engine.glContext = SDL_GL_CreateContext(engine.window);
@@ -51,7 +51,7 @@ Lania::EngineData Lania::initialize()
 
 		if (glewInit() != GLEW_OK)
 		{
-			engine.isRunning = false;
+			engine.state = SHUTDOWN;
 		}
 
 		engine.glVersion = glGetString(GL_VERSION);

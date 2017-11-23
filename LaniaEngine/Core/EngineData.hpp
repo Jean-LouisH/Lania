@@ -18,6 +18,12 @@
 
 namespace Lania
 {
+	enum gameStates
+	{
+		RUNNING,
+		SHUTDOWN,
+	};
+
 	typedef struct
 	{
 		SDL_Window* window;
@@ -28,6 +34,5 @@ namespace Lania
 		int windowWidthPixels;
 		int targetFPS;
 		unsigned char state;
-		bool isRunning;
 	}EngineData;
 }

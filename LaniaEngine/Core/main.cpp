@@ -25,9 +25,9 @@ int main()
 	Lania::Timing timing = {0.0};
 	Lania::EngineData engine = Lania::initialize();
 
-	while(engine.isRunning)
+	while(engine.state != Lania::gameStates::SHUTDOWN)
 	{
-		engine.isRunning = handleEvents();
+		engine.state = handleEvents();
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		SDL_GL_SwapWindow(engine.window);
 		timing.current = SDL_GetTicks();
