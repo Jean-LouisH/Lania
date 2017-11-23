@@ -1,0 +1,17 @@
+--Player movements
+
+moveUp()
+{
+}
+
+moveDown()
+{
+}
+
+moveLeft()
+{
+}
+
+moveRight()
+{
+}

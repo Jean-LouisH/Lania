@@ -1,0 +1,13 @@
+--Gameplay
+
+dimension = "2d"
+background_audio = "Background.ogg"
+2d_layer_0 = "Background.png"
+
+input_event_map = {
+UP = "player.moveUp()", 
+DOWN = "player.moveDown()",
+LEFT = "player.moveLeft()", 
+RIGHT = "player.moveRight()"}
+
+Sprite player = {texture = "Player.png"}
