@@ -28,10 +28,11 @@ namespace Lania
 	{
 		SDL_Window* window;
 		SDL_GLContext glContext;
-		const GLubyte* glVersion;
+		char* APIVersion;
 		std::string windowTitle;
-		int windowHeightPixels;
 		int windowWidthPixels;
+		int windowHeightPixels;
+		unsigned char windowFlags;
 		int targetFPS;
 		unsigned char state;
 	}EngineData;

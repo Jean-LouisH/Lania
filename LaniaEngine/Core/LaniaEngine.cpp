@@ -1,10 +1,16 @@
 #include "LaniaEngine.hpp"
+#include "Configuration.hpp"
+#include "File.hpp"
 #include <GL\glew.h>
 #include <SDL.h>
 
 Lania::EngineData Lania::initialize()
 {
-	EngineData engine;
+
+	//Development Test 
+	std::string initFilePath = "../Demos/Basic/Init.cfg";
+
+	EngineData engine = Config::parseInit(File::read(initFilePath));
 	engine.state = RUNNING;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
@@ -17,8 +23,6 @@ Lania::EngineData Lania::initialize()
 	else
 	{
 		engine.targetFPS = 60;
-		engine.windowWidthPixels = 800;
-		engine.windowHeightPixels = 600;
 
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 		SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
@@ -31,12 +35,12 @@ Lania::EngineData Lania::initialize()
 		SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
 		engine.window = SDL_CreateWindow(
-			"Lania Engine",
+			engine.windowTitle.c_str(),
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
 			engine.windowWidthPixels,
 			engine.windowHeightPixels,
-			SDL_WINDOW_OPENGL);
+			engine.windowFlags);
 
 		if (engine.window == NULL)
 		{
@@ -54,7 +58,7 @@ Lania::EngineData Lania::initialize()
 			engine.state = SHUTDOWN;
 		}
 
-		engine.glVersion = glGetString(GL_VERSION);
+		engine.APIVersion = (char*)glGetString(GL_VERSION);
 	}
 	return engine;
 }
