@@ -1,11 +1,12 @@
 #include "Events.hpp"
 #include "Logging.hpp"
+#include "EngineData.hpp"
 #include <SDL_events.h>
 
-bool handleEvents()
+unsigned char OSEvents::handle()
 {
 	SDL_Event SDLEvents;
-	bool isRunning = true;
+	unsigned char state = Lania::gameStates::RUNNING;
 
 	while (SDL_PollEvent(&SDLEvents))
 	{
@@ -13,18 +14,18 @@ bool handleEvents()
 		{
 			/*Close window button*/
 		case SDL_QUIT:
-			isRunning = false;
+			state = Lania::gameStates::SHUTDOWN;
 			break;
 
 			/*Keyboard inputs*/
 		case SDL_KEYDOWN:
 			if (SDLEvents.key.keysym.sym == SDLK_ESCAPE)
 			{
-				isRunning = false;
+				state = Lania::gameStates::SHUTDOWN;
 			}
 			break;
 		}
 	}
 
-	return isRunning;
+	return state;
 }

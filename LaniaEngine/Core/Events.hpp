@@ -12,4 +12,7 @@
 
 #pragma once
 
-bool handleEvents();
+namespace OSEvents
+{
+	unsigned char handle();
+}
