@@ -10,4 +10,8 @@ DOWN = "player.moveDown()",
 LEFT = "player.moveLeft()", 
 RIGHT = "player.moveRight()"}
 
+2D_Camera camera = {
+viewport = 2d_layout_0.dimensions, 
+target = 2d_layout_0.centre}
+
 Sprite player = {texture = "Player.png"}
