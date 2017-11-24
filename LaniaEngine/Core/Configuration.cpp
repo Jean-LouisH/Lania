@@ -73,33 +73,25 @@ Lania::EngineData Config::parseInit(char* fileContent)
 			{
 				std::string width;
 				std::string height;
-				std::string delimiter = "x";
 
 				int start = 0;
-				int end = value.find(delimiter);
+				int end = value.find("x");
 
-				while (end != std::string::npos)
-				{
-					width = value.substr(start, end - start);
-					start = end + delimiter.length();
-					end = value.find(delimiter, start);
-					height = value.substr(start, end - start);
-				}
+				width = value.substr(start, end - start);
+				start = end + 1;
+				end = value.find("x", start);
+				height = value.substr(start, end - start);
 
 				configData.windowWidthPixels = std::stoi(width);
 				configData.windowHeightPixels = std::stoi(height);
 			}
 			else if (key == "rendering_api")
 			{
-				if (value == "SDL")
-				{
-					configData.windowFlags |= NULL;
-				}
-				else if (value == "OpenGL")
+				if (value == "OpenGL")
 				{
 					configData.windowFlags |= SDL_WINDOW_OPENGL;
 				}
-				if (value == "Vulkan")
+				else if (value == "Vulkan")
 				{
 					configData.windowFlags |= SDL_WINDOW_VULKAN;
 				}
