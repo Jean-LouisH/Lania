@@ -1,0 +1,16 @@
+Initial configuration
+
+* Is in the form of "Init.cfg" for project directories. 
+* Defines data to initiate before the application loads, such as window configuration.
+
+keywords;
+
+For application window.
+
+title 		-  to appear on the window.
+resolution 		- in the format of "width x height" 
+rendering_api 	- from either "SDL", "OpenGL" or "Vulkan"
+fullscreen 		- "false", "true"
+resizable		- "false", "true"
+maximized		- "false", "true"
+main_scene		- The first scene to load. Referenced as "x.lscn".

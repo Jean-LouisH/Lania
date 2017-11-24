@@ -8,7 +8,7 @@ Structure
 
 Header Chunks
 ------------------
-[Magic Number] = 0x4C414E4941
+[Magic Number] = 0x4C414E4941 or "LANIA"
 [Size]
 [Version]
 [Developer]
