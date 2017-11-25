@@ -11,6 +11,8 @@ char* File::read(std::string filePath)
 		filePath.substr(filePath.find_last_of(".") + 1) == "xml" ||
 		filePath.substr(filePath.find_last_of(".") + 1) == "cfg" ||
 		filePath.substr(filePath.find_last_of(".") + 1) == "log" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "lscn" ||
+		filePath.substr(filePath.find_last_of(".") + 1) == "lasc" ||
 		filePath.substr(filePath.find_last_of(".") + 1) == "csv")
 	{
 		inputFile.open(filePath);
