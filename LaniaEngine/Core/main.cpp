@@ -14,9 +14,11 @@
 
 #include "LaniaEngine.hpp"
 #include "EngineData.hpp"
+#include "File.hpp"
 #include "Timing.hpp"
 #include "Logging.hpp"
 #include "Events.hpp"
+#include "UnitTesting.hpp"
 
 #undef main main //reverses SDL's main definition.
 
@@ -24,6 +26,12 @@ int main()
 {
 	Lania::Timing timing = {0.0};
 	Lania::EngineData engine = Lania::initialize();
+
+	char* mainSceneContents = File::read(
+		"../Demos/Basic/" +
+		engine.windowTitle +
+		"/Scenes/" +
+		engine.mainScene);
 
 	while(engine.state != Lania::gameStates::SHUTDOWN)
 	{

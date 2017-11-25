@@ -30,6 +30,7 @@ namespace Lania
 		SDL_GLContext glContext;
 		char* APIVersion;
 		char* platform;
+		std::string mainScene;
 		std::string windowTitle;
 		int windowWidthPixels;
 		int windowHeightPixels;

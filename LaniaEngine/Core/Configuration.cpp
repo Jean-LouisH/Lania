@@ -117,6 +117,10 @@ Lania::EngineData Config::parseInit(char* fileContent)
 					configData.windowFlags |= SDL_WINDOW_MAXIMIZED;
 				}
 			}
+			else if (key == "main_scene")
+			{
+				configData.mainScene = value;
+			}
 		}
 		readPosition++;
 
