@@ -123,6 +123,7 @@
     <ClInclude Include="Core\LaniaEngine.hpp" />
     <ClInclude Include="Core\Logging.hpp" />
     <ClInclude Include="Core\Timing.hpp" />
+    <ClInclude Include="Core\UnitTesting.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Configuration.cpp" />
@@ -131,6 +132,7 @@
     <ClCompile Include="Core\LaniaEngine.cpp" />
     <ClCompile Include="Core\Logging.cpp" />
     <ClCompile Include="Core\main.cpp" />
+    <ClCompile Include="Core\UnitTesting.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
