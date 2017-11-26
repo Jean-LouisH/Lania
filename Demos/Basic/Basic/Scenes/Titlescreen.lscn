@@ -1,6 +1,6 @@
 --Titlescreen
 
-dimension = "2d"
-background_audio = "Titlescreen.ogg"
-2d_layer_0 = "Titlescreen.png"
-input_event_map = {ENTER = {"Click.ogg","Gameplay.lscn"}}
+dimensions = 2;
+background_audio = "Titlescreen.ogg";
+image_layers = {"Titlescreen.png"};
+input_event_map = {ENTER = {"Click.ogg","Gameplay.lscn"}};
