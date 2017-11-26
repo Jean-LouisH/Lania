@@ -1,0 +1,29 @@
+LaniaScript
+
+
+Camera operations
+--------------------------
+Centre to Scene
+Follow
+Target
+Mirror (X or Y)
+Limit
+Rotate (X, Y, Z)
+Zoom
+Scale
+Scroll to
+
+States
+--------------------------
+Paused
+Menu
+Gameplay
+
+Audio operations
+--------------------------
+Play
+Pause
+Stop
+
+Event lists
+---------------------------

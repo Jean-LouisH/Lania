@@ -8,8 +8,8 @@ keywords;
 For application window.
 
 title 		-  to appear on the window.
-resolution 		- in the format of "width x height" 
-rendering_api 	- from either "SDL", "OpenGL" or "Vulkan"
+resolution 		- in the format of "WidthxHeight" 
+rendering_api 	- from either "OpenGL" or "Vulkan"
 fullscreen 		- "false", "true"
 resizable		- "false", "true"
 maximized		- "false", "true"
