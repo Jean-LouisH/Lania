@@ -11,6 +11,7 @@
 
 #include <SDL.h>
 #include <GL/glew.h>
+#include <vector>
 
 #include "LaniaEngine.hpp"
 #include "EngineData.hpp"
@@ -22,6 +23,19 @@
 
 #undef main main //reverses SDL's main definition.
 
+typedef struct
+{
+	double width;
+	double height;
+	double angle;
+	double target;
+}Camera_2D;
+
+typedef struct
+{
+	std::string texture;
+}Sprite;
+
 int main()
 {
 	Lania::Timing timing = {0.0};
@@ -32,6 +46,12 @@ int main()
 		engine.windowTitle +
 		"/Scenes/" +
 		engine.mainScene);
+
+	unsigned char dimensions;
+	std::string background_audio;
+	std::vector<std::string> image_layers;
+	std::vector<std::string> input_event_map;
+	std::vector<Camera_2D> cameras;
 
 	while(engine.state != Lania::gameStates::SHUTDOWN)
 	{
