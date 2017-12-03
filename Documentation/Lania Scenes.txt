@@ -2,12 +2,14 @@ Lania Scenes
 
 To do or correct:
 
-*Define events to be partition by app states 
+*Define events to be partitioned by app states 
 to differentiate, for example, gamplay and
 menu states and what the inputs do in them.
 *List switchable attributes, such as friction,
 gravity, etc to objects and the scene.
-*Define multiple press entry in inputs.
+*Define multiple press entry in input
+(Amount of milliseconds between button presses).
+*Find a way to define scene transition styles.
 
 
 =============================
@@ -68,6 +70,9 @@ Text = {content, x, y, size, font, colour, bold, italic, underlined}
 Events
 
 *Events can trigger loading scripts or sounds.
+*An event for waiting for a previous event to 
+finish (like audio fanfares) can be implemented
+(in seconds).
 
 Input keys
 
@@ -78,3 +83,4 @@ UP
 DOWN
 LEFT
 RIGHT
+ENTER
