@@ -1,7 +1,7 @@
 #include "LaniaEngine.hpp"
 #include "Configuration.hpp"
-#include "File.hpp"
-#include <GL\glew.h>
+#include "OS/File.hpp"
+#include <GL/glew.h>
 #include <SDL.h>
 
 Lania::EngineData Lania::initialize()

@@ -15,26 +15,17 @@
 
 #include "LaniaEngine.hpp"
 #include "EngineData.hpp"
-#include "File.hpp"
 #include "Timing.hpp"
-#include "Logging.hpp"
-#include "Events.hpp"
 #include "UnitTesting.hpp"
 
+#include "OS/File.hpp"
+#include "OS/Logging.hpp"
+#include "OS/OS.hpp"
+
+#include "../Scenes/2D/Camera2D.hpp"
+#include "../Scenes/2D/Sprite.hpp"
+
 #undef main main //reverses SDL's main definition.
-
-typedef struct
-{
-	double width;
-	double height;
-	double angle;
-	double target;
-}Camera_2D;
-
-typedef struct
-{
-	std::string texture;
-}Sprite;
 
 int main()
 {
@@ -49,13 +40,14 @@ int main()
 
 	unsigned char dimensions;
 	std::string background_audio;
-	std::vector<std::string> image_layers;
+	//std::vector<std::string> image_layers;
+	std::string background_layer;
 	std::vector<std::string> input_event_map;
 	std::vector<Camera_2D> cameras;
 
 	while(engine.state != Lania::gameStates::SHUTDOWN)
 	{
-		engine.state = OSEvents::handle();
+		OS::handleEvents(&engine);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		SDL_GL_SwapWindow(engine.window);
 		timing.current = SDL_GetTicks();
