@@ -16,6 +16,7 @@
 
 namespace File
 {
+	bool exists(std::string filepath);
 	char* read(std::string filePath);
 	void write(std::string filePath, char* fileData);
 	void append(std::string filePath, char* fileData);

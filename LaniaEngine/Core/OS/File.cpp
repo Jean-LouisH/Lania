@@ -1,6 +1,22 @@
 #include "File.hpp"
 #include <fstream>
 
+bool File::exists(std::string filepath)
+{
+	std::ifstream file;
+	file.open(filepath);
+	if (!file)
+	{
+		file.close();
+		return false;
+	}
+	else
+	{
+		file.close();
+		return true;
+	}
+}
+
 char* File::read(std::string filePath)
 {
 	std::ifstream inputFile;

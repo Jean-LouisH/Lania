@@ -3,16 +3,18 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Events
+* OS
 *
-* Receives keyboard inputs.
+* Receives inputs and events from the keyboard, mouse and OS messages.
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 */
 
 #pragma once
 
-namespace OSEvents
+#include "../EngineData.hpp"
+
+namespace OS
 {
-	unsigned char handle();
+	void handleEvents(Lania::EngineData* engine);
 }
