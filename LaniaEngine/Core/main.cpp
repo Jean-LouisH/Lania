@@ -17,11 +17,10 @@
 #include "EngineData.hpp"
 #include "Timing.hpp"
 #include "UnitTesting.hpp"
-
 #include "OS/File.hpp"
 #include "OS/Logging.hpp"
 #include "OS/OS.hpp"
-
+#include "../Input/Keyboard.hpp"
 #include "../Scenes/2D/Camera2D.hpp"
 #include "../Scenes/2D/Sprite.hpp"
 
@@ -54,6 +53,7 @@ int main()
 		timing.simulation += (timing.current - timing.last);
 		timing.last = timing.current;
 		SDL_Delay(1000 / engine.targetFPS);
+		Input::update(engine.keyBuffer);
 	}
 
 	Lania::shutdown(&engine);

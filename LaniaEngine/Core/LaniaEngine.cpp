@@ -1,5 +1,7 @@
 #include "LaniaEngine.hpp"
 #include "Configuration.hpp"
+#include "EngineData.hpp"
+#include "../Input/Keyboard.hpp"
 #include "OS/File.hpp"
 #include <GL/glew.h>
 #include <SDL.h>
@@ -14,6 +16,11 @@ Lania::EngineData Lania::initialize()
 	engine.APIVersion = NULL;
 	engine.glContext = NULL;
 	engine.platform = (char*)SDL_GetPlatform();
+
+	for (int i = 0; i < KEY_BUFFER_SIZE; i++)
+	{
+		engine.keyBuffer[i] = NEUTRAL;
+	}
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{

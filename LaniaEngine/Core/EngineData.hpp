@@ -24,6 +24,11 @@ namespace Lania
 		SHUTDOWN,
 	};
 
+	enum
+	{
+		KEY_BUFFER_SIZE = 128,
+	};
+
 	typedef struct
 	{
 		SDL_Window* window;
@@ -36,6 +41,7 @@ namespace Lania
 		int windowHeightPixels;
 		unsigned char windowFlags;
 		int targetFPS;
+		unsigned char keyBuffer[KEY_BUFFER_SIZE];
 		unsigned char state;
 	}EngineData;
 }

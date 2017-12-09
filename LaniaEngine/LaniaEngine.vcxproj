@@ -124,6 +124,7 @@
     <ClInclude Include="Core\OS\Logging.hpp" />
     <ClInclude Include="Core\Timing.hpp" />
     <ClInclude Include="Core\UnitTesting.hpp" />
+    <ClInclude Include="Input\Keyboard.hpp" />
     <ClInclude Include="Scenes\2D\Camera2D.hpp" />
     <ClInclude Include="Scenes\2D\Sprite.hpp" />
     <ClInclude Include="Scenes\Scenes.hpp" />
@@ -136,6 +137,7 @@
     <ClCompile Include="Core\OS\File.cpp" />
     <ClCompile Include="Core\OS\Logging.cpp" />
     <ClCompile Include="Core\UnitTesting.cpp" />
+    <ClCompile Include="Input\Keyboard.cpp" />
     <ClCompile Include="Scenes\Scenes.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
