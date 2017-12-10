@@ -82,11 +82,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Software Development Kits\glm;C:\Software Development Kits\glew-2.1.0\include;C:\Software Development Kits\SDL2\SDL2-2.0.6\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Software Development Kits\boost_1_65_1;C:\Software Development Kits\glm;C:\Software Development Kits\glew-2.1.0\include;C:\Software Development Kits\SDL2\SDL2-2.0.6\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>C:\Software Development Kits\SDL2\SDL2-2.0.6\lib\x64;C:\Software Development Kits\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
