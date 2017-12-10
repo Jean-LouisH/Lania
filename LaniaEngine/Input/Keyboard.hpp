@@ -12,16 +12,26 @@
 
 #pragma once
 
-enum keyStates
-{
-	NEUTRAL,
-	DOWN,
-	HELD,
-	UP,
-};
+#include "SDL_stdinc.h"
+#include "SDL_keycode.h"
 
 namespace Input
 {
+	enum keyStates
+	{
+		NEUTRAL,
+		DOWN,
+		HELD,
+		UP,
+	};
+
+	typedef struct
+	{
+		Uint8 state;
+		SDL_Keycode value;
+		Uint32 timestamp;
+	}KeyEvent;
+
 	bool isPressed(
 		unsigned char input,
 		unsigned char keyBuffer[]);

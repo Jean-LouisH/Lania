@@ -13,8 +13,10 @@
 #pragma once
 
 #include <iostream>
-#include <SDL.h>
-#include <GL/glew.h>
+#include "SDL.h"
+#include "GL/glew.h"
+#include "boost/container/vector.hpp"
+#include "../Input/Keyboard.hpp"
 
 namespace Lania
 {
@@ -42,6 +44,7 @@ namespace Lania
 		unsigned char windowFlags;
 		int targetFPS;
 		unsigned char keyBuffer[KEY_BUFFER_SIZE];
+		boost::container::vector<Input::KeyEvent> keyEvents;
 		unsigned char state;
 	}EngineData;
 }

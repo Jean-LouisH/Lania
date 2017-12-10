@@ -2,7 +2,7 @@
 #include "Logging.hpp"
 #include "../EngineData.hpp"
 #include "../../Input/Keyboard.hpp"
-#include <SDL_events.h>
+#include "SDL_events.h"
 
 void OS::handleEvents(Lania::EngineData* engine)
 {
@@ -26,13 +26,21 @@ void OS::handleEvents(Lania::EngineData* engine)
 			}
 			else if (SDLEvents.key.keysym.sym < 128) //ASCII values are below 128.
 			{
-				engine->keyBuffer[SDLEvents.key.keysym.sym] = DOWN;
+				engine->keyBuffer[SDLEvents.key.keysym.sym] = Input::DOWN;
+				engine->keyEvents.push_back({
+					Input::DOWN,
+					SDLEvents.key.keysym.sym,
+					SDLEvents.key.timestamp });
 			}
 			break;
 		case SDL_KEYUP:
 			if (SDLEvents.key.keysym.sym < 128)
 			{
-				engine->keyBuffer[SDLEvents.key.keysym.sym] = UP;
+				engine->keyBuffer[SDLEvents.key.keysym.sym] = Input::UP;
+				engine->keyEvents.push_back({
+					Input::UP,
+					SDLEvents.key.keysym.sym,
+					SDLEvents.key.timestamp });
 			}
 			break;
 		}
