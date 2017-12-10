@@ -1,5 +1,5 @@
 #include "Configuration.hpp"
-#include <SDL_video.h>
+#include "SDL_video.h"
 #include <string>
 
 Lania::EngineData Config::parseInit(char* fileContent)

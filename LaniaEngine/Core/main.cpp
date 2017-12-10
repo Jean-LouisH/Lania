@@ -9,8 +9,8 @@
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 */
 
-#include <SDL.h>
-#include <GL/glew.h>
+#include "SDL.h"
+#include "GL/glew.h"
 #include <vector>
 
 #include "LaniaEngine.hpp"
@@ -24,9 +24,7 @@
 #include "../Scenes/2D/Camera2D.hpp"
 #include "../Scenes/2D/Sprite.hpp"
 
-#undef main main //reverses SDL's main definition.
-
-int main()
+int main(int argc, char* argv[])
 {
 	Lania::Timing timing = {0.0};
 	Lania::EngineData engine = Lania::initialize();

@@ -3,8 +3,8 @@
 #include "EngineData.hpp"
 #include "../Input/Keyboard.hpp"
 #include "OS/File.hpp"
-#include <GL/glew.h>
-#include <SDL.h>
+#include "GL/glew.h"
+#include "SDL.h"
 
 Lania::EngineData Lania::initialize()
 {
@@ -19,7 +19,7 @@ Lania::EngineData Lania::initialize()
 
 	for (int i = 0; i < KEY_BUFFER_SIZE; i++)
 	{
-		engine.keyBuffer[i] = NEUTRAL;
+		engine.keyBuffer[i] = Input::NEUTRAL;
 	}
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
