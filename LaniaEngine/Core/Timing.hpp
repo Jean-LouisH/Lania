@@ -17,7 +17,10 @@ namespace Lania
 	typedef struct
 	{
 		double simulation;
-		double current;
-		double last;
+		int cycleStart;
+		int cycleEnd;
+		int cycleDelta;
+		int frameDelay;
+		int frame;
 	}Timing;
 }

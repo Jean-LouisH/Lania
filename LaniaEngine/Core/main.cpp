@@ -26,7 +26,7 @@
 
 int main(int argc, char* argv[])
 {
-	Lania::Timing timing = {0.0};
+	Lania::Timing time = {0.0};
 	Lania::EngineData engine = Lania::initialize();
 
 	char* mainSceneContents = File::read(
@@ -44,14 +44,21 @@ int main(int argc, char* argv[])
 
 	while(engine.state != Lania::gameStates::SHUTDOWN)
 	{
+		time.cycleStart = SDL_GetTicks();
 		OS::handleEvents(&engine);
+
+		time.simulation += time.frame;
+
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		SDL_GL_SwapWindow(engine.window);
-		timing.current = SDL_GetTicks();
-		timing.simulation += (timing.current - timing.last);
-		timing.last = timing.current;
-		SDL_Delay(1000 / engine.targetFPS);
 		Input::update(engine.keyBuffer);
+
+		time.cycleEnd = SDL_GetTicks();
+		time.cycleDelta = time.cycleEnd - time.cycleStart;
+		time.frameDelay = (1000.0 / engine.targetFPS) - time.cycleDelta;
+		if (time.frameDelay > 0)
+			SDL_Delay(time.frameDelay);
+		time.frame = SDL_GetTicks() - time.cycleStart;
 	}
 
 	Lania::shutdown(&engine);
