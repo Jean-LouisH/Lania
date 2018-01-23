@@ -3,7 +3,7 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Engine Data
+* Engine
 *
 * Contains the working data for the engine runtime.
 *
@@ -46,5 +46,5 @@ namespace Lania
 		unsigned char keyBuffer[KEY_BUFFER_SIZE];
 		boost::container::vector<Input::KeyEvent> keyEvents;
 		unsigned char state;
-	}EngineData;
+	}Engine;
 }

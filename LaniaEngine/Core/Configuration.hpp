@@ -12,9 +12,9 @@
 
 #pragma once
 
-#include "EngineData.hpp"
+#include "Engine.hpp"
 
 namespace Config
 {
-	Lania::EngineData parseInit(char* fileContent);
+	Lania::Engine parseInit(char* fileContent);
 }

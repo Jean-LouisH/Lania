@@ -1,10 +1,10 @@
 #include "OS.hpp"
 #include "Logging.hpp"
-#include "../EngineData.hpp"
+#include "../Engine.hpp"
 #include "../../Input/Keyboard.hpp"
 #include "SDL_events.h"
 
-void OS::handleEvents(Lania::EngineData* engine)
+void OS::handleEvents(Lania::Engine* engine)
 {
 	SDL_Event SDLEvents;
 	engine->state = Lania::gameStates::RUNNING;

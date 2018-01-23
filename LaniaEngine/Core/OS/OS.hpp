@@ -12,9 +12,9 @@
 
 #pragma once
 
-#include "../EngineData.hpp"
+#include "../Engine.hpp"
 
 namespace OS
 {
-	void handleEvents(Lania::EngineData* engine);
+	void handleEvents(Lania::Engine* engine);
 }

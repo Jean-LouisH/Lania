@@ -11,10 +11,10 @@
 
 #pragma once
 
-#include "EngineData.hpp"
+#include "Engine.hpp"
 
 namespace Lania
 {
-	EngineData initialize();
-	void shutdown(EngineData* engine);
+	Engine init();
+	void shutdown(Engine* engine);
 }

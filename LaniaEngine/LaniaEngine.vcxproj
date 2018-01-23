@@ -118,7 +118,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core\Configuration.hpp" />
-    <ClInclude Include="Core\EngineData.hpp" />
+    <ClInclude Include="Core\Engine.hpp" />
     <ClInclude Include="Core\LaniaEngine.hpp" />
     <ClInclude Include="Core\OS\OS.hpp" />
     <ClInclude Include="Core\OS\File.hpp" />

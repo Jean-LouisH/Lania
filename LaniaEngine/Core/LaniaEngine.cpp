@@ -1,17 +1,17 @@
 #include "LaniaEngine.hpp"
 #include "Configuration.hpp"
-#include "EngineData.hpp"
+#include "Engine.hpp"
 #include "../Input/Keyboard.hpp"
 #include "OS/File.hpp"
 #include "GL/glew.h"
 #include "SDL.h"
 
-Lania::EngineData Lania::initialize()
+Lania::Engine Lania::init()
 {
 	//Development Test 
 	std::string initFilePath = "../Demos/Basic/Init.cfg";
 
-	EngineData engine = Config::parseInit(File::read(initFilePath));
+	Engine engine = Config::parseInit(File::read(initFilePath));
 	engine.state = RUNNING;
 	engine.APIVersion = NULL;
 	engine.glContext = NULL;
@@ -84,7 +84,7 @@ Lania::EngineData Lania::initialize()
 	return engine;
 }
 
-void Lania::shutdown(EngineData* engine)
+void Lania::shutdown(Engine* engine)
 {
 	SDL_GL_DeleteContext(engine->glContext);
 	SDL_DestroyWindow(engine->window);

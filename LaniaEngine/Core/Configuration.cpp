@@ -2,9 +2,9 @@
 #include "SDL_video.h"
 #include <string>
 
-Lania::EngineData Config::parseInit(char* fileContent)
+Lania::Engine Config::parseInit(char* fileContent)
 {
-	Lania::EngineData configData;
+	Lania::Engine configData;
 	configData.windowFlags = 0;
 	int readPosition = 0;
 
