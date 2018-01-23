@@ -14,7 +14,7 @@
 
 namespace Lania
 {
-	typedef struct
+	typedef struct Timing
 	{
 		double simulation;
 		int cycleStart;
@@ -22,5 +22,14 @@ namespace Lania
 		int cycleDelta;
 		int frameDelay;
 		int frame;
+		int lag;
+		Timing() :
+			simulation(0.0),
+			cycleStart(0),
+			cycleEnd(0),
+			cycleDelta(0),
+			frameDelay(0),
+			frame(0),
+			lag(0) {}
 	}Timing;
 }
