@@ -12,10 +12,19 @@
 
 #pragma once
 
+#include <vector>
+
 namespace Lania
 {
+	typedef struct Timers
+	{
+		std::vector<double> performance;
+		std::vector<double> application;
+	}Timers;
+
 	typedef struct Timing
 	{
+		Timers timers;
 		double simulation;
 		int cycleStart;
 		int cycleEnd;
