@@ -49,11 +49,11 @@ int main(int argc, char* argv[])
 		time.cycleStart = SDL_GetTicks();
 		OS::handleEvents(&engine);
 
-		time.simulation += time.frame;
 		time.lag += time.frame;
 
 		while (time.lag >= MS_PER_UPDATE)
 		{
+			time.simulation += MS_PER_UPDATE;
 			time.lag -= MS_PER_UPDATE;
 		}
 
