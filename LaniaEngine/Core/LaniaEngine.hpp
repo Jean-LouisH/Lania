@@ -6,15 +6,20 @@
 * (Hawaiian for "immeasurable heaven"), is a 2D/3D
 * real-time simulation and game engine.
 *
-* Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
 
 #pragma once
 
 #include "Engine.hpp"
+#include "Application.hpp"
 
 namespace Lania
 {
-	Engine init();
-	void shutdown(Engine* engine);
+	void initialize(Engine* engine);
+	void loop(Engine* engine, Application* application);
+	void script(Engine* engine, Application* application);
+	void compute(Engine* engine, Application* application);
+	void output(Engine* engine);
+	void shutdown(Engine* engine, Application* application);
 }
