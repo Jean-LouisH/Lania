@@ -1,28 +1,28 @@
 #include "Keyboard.hpp"
 
-bool Input::isPressed(
+bool Key::isPressed(
 	unsigned char input,
 	unsigned char keyBuffer[])
 {
 	//XOR gated ASCII character for capital or common letters.
-	return (keyBuffer[input] == DOWN || keyBuffer[(input ^ 0x0020)] == DOWN);
+	return (keyBuffer[input] == KEY_DOWN || keyBuffer[(input ^ 0x0020)] == KEY_DOWN);
 }
 
-bool Input::isReleased(
+bool Key::isReleased(
 	unsigned char input,
 	unsigned char keyBuffer[])
 {
-	return (keyBuffer[input] == UP || keyBuffer[(input ^ 0x0020)] == UP);
+	return (keyBuffer[input] == KEY_UP || keyBuffer[(input ^ 0x0020)] == KEY_UP);
 }
 
-bool Input::isNeutral(
+bool Key::isNeutral(
 	unsigned char input,
 	unsigned char keyBuffer[])
 {
-	return (keyBuffer[input] == NEUTRAL || keyBuffer[(input ^ 0x0020)] == NEUTRAL);
+	return (keyBuffer[input] == KEY_NEUTRAL || keyBuffer[(input ^ 0x0020)] == KEY_NEUTRAL);
 }
 
-bool Input::isHeldFor(
+bool Key::isHeldFor(
 	unsigned char input,
 	double targetSecondsHeld,
 	unsigned char keyBuffer[],
@@ -32,8 +32,8 @@ bool Input::isHeldFor(
 	static bool completed = false;
 	bool flag = false;
 
-	if ((keyBuffer[input] == HELD ||
-		keyBuffer[(input ^ 0x0020)] == HELD) &&
+	if ((keyBuffer[input] == KEY_HELD ||
+		keyBuffer[(input ^ 0x0020)] == KEY_HELD) &&
 		!completed)
 	{
 		if ((simulationTime - startTime) > targetSecondsHeld)
@@ -43,7 +43,7 @@ bool Input::isHeldFor(
 			completed = true;
 		}
 	}
-	else if (keyBuffer[input] == NEUTRAL)
+	else if (keyBuffer[input] == KEY_NEUTRAL)
 	{
 		startTime = simulationTime;
 		completed = false;
@@ -52,13 +52,13 @@ bool Input::isHeldFor(
 	return (flag);
 }
 
-void Input::update(unsigned char keyBuffer[])
+void Key::update(unsigned char keyBuffer[])
 {
 	for (int i = 0; i < 128; i++)
 	{
-		if (keyBuffer[i] == DOWN)
-			keyBuffer[i] = HELD;
-		if (keyBuffer[i] == UP)
-			keyBuffer[i] = NEUTRAL;
+		if (keyBuffer[i] == KEY_DOWN)
+			keyBuffer[i] = KEY_HELD;
+		if (keyBuffer[i] == KEY_UP)
+			keyBuffer[i] = KEY_NEUTRAL;
 	}
 }
