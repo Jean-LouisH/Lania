@@ -63,9 +63,12 @@ int main(int argc, char* argv[])
 
 		time.cycleEnd = SDL_GetTicks();
 		time.cycleDelta = time.cycleEnd - time.cycleStart;
-		time.frameDelay = (1000.0 / engine.targetFPS) - time.cycleDelta;
-		if (time.frameDelay > 0 && engine.targetFPS != -1)
-			SDL_Delay(time.frameDelay);
+		if (engine.targetFPS > 0)
+		{
+			time.frameDelay = (1000.0 / engine.targetFPS) - time.cycleDelta;
+			if (time.frameDelay > 0)
+				SDL_Delay(time.frameDelay);
+		}
 		time.frame = SDL_GetTicks() - time.cycleStart;
 	}
 	Lania::shutdown(&engine);
