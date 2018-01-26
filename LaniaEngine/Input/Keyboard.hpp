@@ -7,7 +7,7 @@
 *
 * Defines the procedures for detecting key presses.
 *
-* Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
 
 #pragma once
@@ -15,14 +15,14 @@
 #include "SDL_stdinc.h"
 #include "SDL_keycode.h"
 
-namespace Input
+namespace Key
 {
 	enum keyStates
 	{
-		NEUTRAL,
-		DOWN,
-		HELD,
-		UP,
+		KEY_NEUTRAL,
+		KEY_DOWN,
+		KEY_HELD,
+		KEY_UP,
 	};
 
 	typedef struct

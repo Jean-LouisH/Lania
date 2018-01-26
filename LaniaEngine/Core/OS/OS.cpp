@@ -1,12 +1,13 @@
 #include "OS.hpp"
 #include "Logging.hpp"
 #include "../Engine.hpp"
-#include "../../Input/Keyboard.hpp"
+#include "../Input.hpp"
 #include "SDL_events.h"
 
 void OS::handleEvents(Lania::Engine* engine)
 {
 	SDL_Event SDLEvents;
+	engine->time.input.setStart();
 	engine->state = Lania::gameStates::RUNNING;
 
 	while (SDL_PollEvent(&SDLEvents))
@@ -26,9 +27,9 @@ void OS::handleEvents(Lania::Engine* engine)
 			}
 			else if (SDLEvents.key.keysym.sym < 128) //ASCII values are below 128.
 			{
-				engine->keyBuffer[SDLEvents.key.keysym.sym] = Input::DOWN;
+				engine->keyBuffer[SDLEvents.key.keysym.sym] = Key::KEY_DOWN;
 				engine->keyEvents.push_back({
-					Input::DOWN,
+					Key::KEY_DOWN,
 					SDLEvents.key.keysym.sym,
 					SDLEvents.key.timestamp });
 			}
@@ -36,13 +37,14 @@ void OS::handleEvents(Lania::Engine* engine)
 		case SDL_KEYUP:
 			if (SDLEvents.key.keysym.sym < 128)
 			{
-				engine->keyBuffer[SDLEvents.key.keysym.sym] = Input::UP;
+				engine->keyBuffer[SDLEvents.key.keysym.sym] = Key::KEY_UP;
 				engine->keyEvents.push_back({
-					Input::UP,
+					Key::KEY_UP,
 					SDLEvents.key.keysym.sym,
 					SDLEvents.key.timestamp });
 			}
 			break;
 		}
 	}
+	engine->time.input.setEnd();
 }
