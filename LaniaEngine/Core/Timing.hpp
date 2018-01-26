@@ -7,38 +7,40 @@
 *
 * Defines engine and simulation time data.
 *
-* Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
 
 #pragma once
 
-#include <vector>
+#include <chrono>
 
 namespace Lania
 {
-	typedef struct Timers
+	typedef struct Execution
 	{
-		std::vector<double> performance;
-		std::vector<double> application;
-	}Timers;
+		std::chrono::time_point<std::chrono::steady_clock> start;
+		std::chrono::time_point<std::chrono::steady_clock> end;
+		long long int delta;
+		void setStart();
+		void setEnd();
+		Execution() :
+			delta(0)
+		{}
+	}Execution;
 
 	typedef struct Timing
 	{
-		Timers timers;
+		Execution cycle;
+		Execution frame;
+		Execution input;
+		Execution script;
+		Execution compute;
+		Execution output;
 		double simulation;
-		int cycleStart;
-		int cycleEnd;
-		int cycleDelta;
-		int frameDelay;
-		int frame;
 		int lag;
 		Timing() :
 			simulation(0.0),
-			cycleStart(0),
-			cycleEnd(0),
-			cycleDelta(0),
-			frameDelay(0),
-			frame(0),
-			lag(0) {}
+			lag(0) 
+		{}
 	}Timing;
 }
