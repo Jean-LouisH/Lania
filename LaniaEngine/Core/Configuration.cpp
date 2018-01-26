@@ -2,10 +2,10 @@
 #include "SDL_video.h"
 #include <string>
 
-Lania::Engine Config::parseInit(char* fileContent)
+Lania::AppConfig Config::parseInit(char* fileContent)
 {
-	Lania::Engine configData;
-	configData.windowFlags = 0;
+	Lania::AppConfig appConfig;
+	appConfig.windowFlags = 0;
 	int readPosition = 0;
 
 	std::string key = "";
@@ -67,7 +67,7 @@ Lania::Engine Config::parseInit(char* fileContent)
 		{
 			if (key == "title")
 			{
-				configData.windowTitle = value;
+				appConfig.appName = value;
 			}
 			else if (key == "resolution")
 			{
@@ -82,44 +82,44 @@ Lania::Engine Config::parseInit(char* fileContent)
 				end = value.find("x", start);
 				height = value.substr(start, end - start);
 
-				configData.windowWidthPixels = std::stoi(width);
-				configData.windowHeightPixels = std::stoi(height);
+				appConfig.windowWidthPixels = std::stoi(width);
+				appConfig.windowHeightPixels = std::stoi(height);
 			}
 			else if (key == "rendering_api")
 			{
 				if (value == "OpenGL")
 				{
-					configData.windowFlags |= SDL_WINDOW_OPENGL;
+					appConfig.windowFlags |= SDL_WINDOW_OPENGL;
 				}
 				else if (value == "Vulkan")
 				{
-					configData.windowFlags |= SDL_WINDOW_VULKAN;
+					appConfig.windowFlags |= SDL_WINDOW_VULKAN;
 				}
 			}
 			else if (key == "fullscreen")
 			{
 				if (value == "true")
 				{
-					configData.windowFlags |= SDL_WINDOW_FULLSCREEN;
+					appConfig.windowFlags |= SDL_WINDOW_FULLSCREEN;
 				}
 			}
 			else if (key == "resizable")
 			{
 				if (value == "true")
 				{
-					configData.windowFlags |= SDL_WINDOW_RESIZABLE;
+					appConfig.windowFlags |= SDL_WINDOW_RESIZABLE;
 				}
 			}
 			else if (key == "maximized")
 			{
 				if (value == "true")
 				{
-					configData.windowFlags |= SDL_WINDOW_MAXIMIZED;
+					appConfig.windowFlags |= SDL_WINDOW_MAXIMIZED;
 				}
 			}
 			else if (key == "main_scene")
 			{
-				configData.mainScene = value;
+				appConfig.mainScene = value;
 			}
 		}
 		readPosition++;
@@ -127,5 +127,5 @@ Lania::Engine Config::parseInit(char* fileContent)
 	} while (fileContent[readPosition] != '\0' &&
 		parseState != FINISHED);
 
-	return configData;
+	return appConfig;
 }

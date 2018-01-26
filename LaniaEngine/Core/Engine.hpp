@@ -7,7 +7,7 @@
 *
 * Contains the working data for the engine runtime.
 *
-* Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
 
 #pragma once
@@ -16,7 +16,10 @@
 #include "SDL.h"
 #include "GL/glew.h"
 #include "boost/container/vector.hpp"
-#include "../Input/Keyboard.hpp"
+#include "Timing.hpp"
+#include "Configuration.hpp"
+#include "Input.hpp"
+#include "Output.hpp"
 
 namespace Lania
 {
@@ -31,20 +34,24 @@ namespace Lania
 		KEY_BUFFER_SIZE = 128,
 	};
 
-	typedef struct
+	typedef struct Engine
 	{
+		unsigned char keyBuffer[KEY_BUFFER_SIZE];
+		boost::container::vector<Key::KeyEvent> keyEvents;
 		SDL_Window* window;
 		SDL_GLContext glContext;
-		char* APIVersion;
+		char* renderingAPI;
 		char* platform;
-		std::string mainScene;
-		std::string windowTitle;
-		int windowWidthPixels;
-		int windowHeightPixels;
-		unsigned char windowFlags;
-		int targetFPS;
-		unsigned char keyBuffer[KEY_BUFFER_SIZE];
-		boost::container::vector<Input::KeyEvent> keyEvents;
+		Timing time;
+		AppConfig appConfig;
+		Input input;
+		Output output;
 		unsigned char state;
+		Engine() :
+			window(NULL),
+			glContext(NULL),
+			renderingAPI(NULL),
+			platform(NULL),
+			state(0) {}
 	}Engine;
 }
