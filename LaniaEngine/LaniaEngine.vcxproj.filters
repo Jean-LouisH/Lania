@@ -36,19 +36,19 @@
     <ClInclude Include="Core\OS\OS.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Scenes\2D\Camera2D.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\2D\Sprite.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scenes\Scenes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Input\Keyboard.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\Engine.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Application.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Input.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Output.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -74,10 +74,10 @@
     <ClCompile Include="Core\OS\OS.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Scenes\Scenes.cpp">
+    <ClCompile Include="Input\Keyboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Input\Keyboard.cpp">
+    <ClCompile Include="Core\Timing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

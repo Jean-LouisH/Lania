@@ -117,18 +117,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Application.hpp" />
     <ClInclude Include="Core\Configuration.hpp" />
     <ClInclude Include="Core\Engine.hpp" />
+    <ClInclude Include="Core\Input.hpp" />
     <ClInclude Include="Core\LaniaEngine.hpp" />
     <ClInclude Include="Core\OS\OS.hpp" />
     <ClInclude Include="Core\OS\File.hpp" />
     <ClInclude Include="Core\OS\Logging.hpp" />
+    <ClInclude Include="Core\Output.hpp" />
     <ClInclude Include="Core\Timing.hpp" />
     <ClInclude Include="Core\UnitTesting.hpp" />
     <ClInclude Include="Input\Keyboard.hpp" />
-    <ClInclude Include="Scenes\2D\Camera2D.hpp" />
-    <ClInclude Include="Scenes\2D\Sprite.hpp" />
-    <ClInclude Include="Scenes\Scenes.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Configuration.cpp" />
@@ -137,9 +137,9 @@
     <ClCompile Include="Core\OS\OS.cpp" />
     <ClCompile Include="Core\OS\File.cpp" />
     <ClCompile Include="Core\OS\Logging.cpp" />
+    <ClCompile Include="Core\Timing.cpp" />
     <ClCompile Include="Core\UnitTesting.cpp" />
     <ClCompile Include="Input\Keyboard.cpp" />
-    <ClCompile Include="Scenes\Scenes.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
