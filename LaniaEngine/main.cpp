@@ -10,7 +10,7 @@
 */
 
 #include "SDL.h"
-#include "LaniaEngine.hpp"
+#include "Core/LaniaEngine.hpp"
 
 int main(int argc, char* argv[])
 {
