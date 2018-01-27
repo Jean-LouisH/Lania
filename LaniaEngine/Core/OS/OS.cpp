@@ -4,7 +4,7 @@
 #include "../Input.hpp"
 #include "SDL_events.h"
 
-void OS::handleEvents(Lania::Engine* engine)
+void OS::listenForEvents(Lania::Engine* engine)
 {
 	SDL_Event SDLEvents;
 	engine->time.input.setStart();

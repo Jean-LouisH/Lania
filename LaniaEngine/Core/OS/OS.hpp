@@ -16,5 +16,5 @@
 
 namespace OS
 {
-	void handleEvents(Lania::Engine* engine);
+	void listenForEvents(Lania::Engine* engine);
 }
