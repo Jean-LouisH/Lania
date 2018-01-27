@@ -117,7 +117,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Application.hpp" />
+    <ClInclude Include="Application\Application.hpp" />
+    <ClInclude Include="Application\Scripting\StackFrame.hpp" />
+    <ClInclude Include="Constants.hpp" />
     <ClInclude Include="Core\Configuration.hpp" />
     <ClInclude Include="Core\Engine.hpp" />
     <ClInclude Include="Core\Input.hpp" />
@@ -133,13 +135,13 @@
   <ItemGroup>
     <ClCompile Include="Core\Configuration.cpp" />
     <ClCompile Include="Core\LaniaEngine.cpp" />
-    <ClCompile Include="Core\main.cpp" />
     <ClCompile Include="Core\OS\OS.cpp" />
     <ClCompile Include="Core\OS\File.cpp" />
     <ClCompile Include="Core\OS\Logging.cpp" />
     <ClCompile Include="Core\Timing.cpp" />
     <ClCompile Include="Core\UnitTesting.cpp" />
     <ClCompile Include="Input\Keyboard.cpp" />
+    <ClCompile Include="main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
