@@ -46,12 +46,16 @@ namespace Lania
 		AppConfig appConfig;
 		Input input;
 		Output output;
+		long long int frameCount;
+		int FPS;
 		unsigned char state;
 		Engine() :
 			window(NULL),
 			glContext(NULL),
 			renderingAPI(NULL),
 			platform(NULL),
+			frameCount(0),
+			FPS(0),
 			state(0) {}
 	}Engine;
 }

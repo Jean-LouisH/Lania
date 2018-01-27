@@ -5,10 +5,9 @@
 #include "OS/File.hpp"
 #include "OS/OS.hpp"
 #include "GL/glew.h"
+#include "../Constants.hpp"
 #include "SDL.h"
-
-#define MS_PER_UPDATE 8
-#define MS_PER_NS 1000000
+#include <sstream>
 
 void Lania::initialize(Engine* engine)
 {
@@ -90,16 +89,17 @@ void Lania::initialize(Engine* engine)
 
 void Lania::loop(Engine* engine, Application* application)
 {
+	Timing* time = &engine->time;
+	time->FPS.setStart();
+
 	while (engine->state != SHUTDOWN)
 	{
-		Timing* time = &engine->time;
-
 		time->frame.setStart();
 		time->cycle.setStart();
 
 		time->lag += time->frame.delta / MS_PER_NS;
 
-		OS::handleEvents(engine);
+		OS::listenForEvents(engine);
 		Lania::script(engine, application);
 		Lania::compute(engine, application);
 		Lania::output(engine);
@@ -115,6 +115,20 @@ void Lania::loop(Engine* engine, Application* application)
 				SDL_Delay(delay);
 		}
 		time->frame.setEnd();
+		engine->frameCount++;
+
+		static int passedFrames;
+		passedFrames++;
+		time->FPS.setEnd();
+		if (time->FPS.delta / MS_PER_NS >= 1000)
+		{
+			engine->FPS = (passedFrames / (time->FPS.delta / S_PER_NS));
+			time->FPS.setStart();
+			passedFrames = 1;
+			std::string FPSString = std::to_string(engine->FPS);
+			SDL_SetWindowTitle(engine->window,
+				(engine->appConfig.appName + " - FPS:" + FPSString).c_str());
+		}
 	}
 }
 

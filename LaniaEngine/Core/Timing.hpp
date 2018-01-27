@@ -18,9 +18,9 @@ namespace Lania
 {
 	typedef struct Execution
 	{
+		long long int delta;
 		std::chrono::time_point<std::chrono::steady_clock> start;
 		std::chrono::time_point<std::chrono::steady_clock> end;
-		long long int delta;
 		void setStart();
 		void setEnd();
 		Execution() :
@@ -36,6 +36,7 @@ namespace Lania
 		Execution script;
 		Execution compute;
 		Execution output;
+		Execution FPS;
 		double simulation;
 		int lag;
 		Timing() :
