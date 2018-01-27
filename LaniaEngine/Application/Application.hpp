@@ -12,10 +12,13 @@
 
 #pragma once
 
+#include <stack>
+#include "Scripting\StackFrame.hpp"
+
 namespace Lania
 {
 	typedef struct Application
 	{
-
+		std::stack<StackFrame> callStack;
 	}Application;
 }
