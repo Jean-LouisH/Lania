@@ -23,7 +23,7 @@ void Lania::initialize(Engine* engine)
 
 	for (int i = 0; i < KEY_BUFFER_SIZE; i++)
 	{
-		engine->keyBuffer[i] = Key::KEY_NEUTRAL;
+		engine->input.keyBuffer[i] = Key::KEY_NEUTRAL;
 	}
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
@@ -89,7 +89,7 @@ void Lania::initialize(Engine* engine)
 
 void Lania::loop(Engine* engine, Application* application)
 {
-	Timing* time = &engine->time;
+	Timer* time = &engine->timer;
 	time->FPS.setStart();
 
 	while (engine->state != SHUTDOWN)
@@ -104,13 +104,11 @@ void Lania::loop(Engine* engine, Application* application)
 		Lania::compute(engine, application);
 		Lania::output(engine);
 
-		Key::update(engine->keyBuffer);
-
 		time->cycle.setEnd();
 		if (engine->appConfig.targetFPS > 0)
 		{
 			int delay = (1000.0 / engine->appConfig.targetFPS) -
-				(engine->time.cycle.delta / MS_PER_NS);
+				(engine->timer.cycle.delta / MS_PER_NS);
 			if (delay > 0)
 				SDL_Delay(delay);
 		}
@@ -134,14 +132,14 @@ void Lania::loop(Engine* engine, Application* application)
 
 void Lania::script(Engine* engine, Application* application)
 {
-	Timing* time = &engine->time;
+	Timer* time = &engine->timer;
 	time->script.setStart();
 	time->script.setEnd();
 }
 
 void Lania::compute(Engine* engine, Application* application)
 {
-	Timing* time = &engine->time;
+	Timer* time = &engine->timer;
 	time->compute.setStart();
 	while (time->lag >= MS_PER_UPDATE)
 	{
@@ -153,7 +151,7 @@ void Lania::compute(Engine* engine, Application* application)
 
 void Lania::output(Engine* engine)
 {
-	Timing* time = &engine->time;
+	Timer* time = &engine->timer;
 	time->output.setStart();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	SDL_GL_SwapWindow(engine->window);

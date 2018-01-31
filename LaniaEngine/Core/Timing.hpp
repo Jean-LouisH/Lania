@@ -28,7 +28,7 @@ namespace Lania
 		{}
 	}Execution;
 
-	typedef struct Timing
+	typedef struct Timer
 	{
 		Execution cycle;
 		Execution frame;
@@ -39,7 +39,7 @@ namespace Lania
 		Execution FPS;
 		double simulation;
 		int lag;
-		Timing() :
+		Timer() :
 			simulation(0.0),
 			lag(0) 
 		{}
