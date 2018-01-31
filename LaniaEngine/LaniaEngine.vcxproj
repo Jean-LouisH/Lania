@@ -118,6 +118,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application\Application.hpp" />
+    <ClInclude Include="Application\Scenes\Scenes.hpp" />
+    <ClInclude Include="Application\Scripting\Bytecode.hpp" />
     <ClInclude Include="Application\Scripting\StackFrame.hpp" />
     <ClInclude Include="Constants.hpp" />
     <ClInclude Include="Core\Configuration.hpp" />
