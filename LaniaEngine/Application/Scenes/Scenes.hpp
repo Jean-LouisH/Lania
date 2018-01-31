@@ -11,3 +11,13 @@
 */
 
 #pragma once
+
+#include <vector>
+#include <map>
+#include "../../Core/Input.hpp"
+
+typedef struct Scene
+{
+	unsigned char dimension;
+	std::vector<std::map<Key::KeyEvent, int>> keyMap;
+}Scene;
