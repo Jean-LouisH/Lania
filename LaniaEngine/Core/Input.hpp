@@ -13,8 +13,15 @@
 #pragma once
 
 #include "../Input/Keyboard.hpp"
+#include <vector>
+
+enum
+{
+	KEY_BUFFER_SIZE = 128,
+};
 
 typedef struct Input
 {
-
+	unsigned char keyBuffer[KEY_BUFFER_SIZE];
+	std::vector<Key::KeyEvent> keyEvents;
 }Input;

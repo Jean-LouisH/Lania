@@ -15,7 +15,6 @@
 #include <iostream>
 #include "SDL.h"
 #include "GL/glew.h"
-#include "boost/container/vector.hpp"
 #include "Timing.hpp"
 #include "Configuration.hpp"
 #include "Input.hpp"
@@ -29,20 +28,14 @@ namespace Lania
 		SHUTDOWN,
 	};
 
-	enum
-	{
-		KEY_BUFFER_SIZE = 128,
-	};
-
 	typedef struct Engine
 	{
-		unsigned char keyBuffer[KEY_BUFFER_SIZE];
-		boost::container::vector<Key::KeyEvent> keyEvents;
 		SDL_Window* window;
 		SDL_GLContext glContext;
 		char* renderingAPI;
 		char* platform;
-		Timing time;
+		char* filepath;
+		Timer timer;
 		AppConfig appConfig;
 		Input input;
 		Output output;

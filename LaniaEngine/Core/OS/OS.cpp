@@ -7,7 +7,7 @@
 void OS::listenForEvents(Lania::Engine* engine)
 {
 	SDL_Event SDLEvents;
-	engine->time.input.setStart();
+	engine->timer.input.setStart();
 	engine->state = Lania::gameStates::RUNNING;
 
 	while (SDL_PollEvent(&SDLEvents))
@@ -27,8 +27,7 @@ void OS::listenForEvents(Lania::Engine* engine)
 			}
 			else if (SDLEvents.key.keysym.sym < 128) //ASCII values are below 128.
 			{
-				engine->keyBuffer[SDLEvents.key.keysym.sym] = Key::KEY_DOWN;
-				engine->keyEvents.push_back({
+				engine->input.keyEvents.push_back({
 					Key::KEY_DOWN,
 					SDLEvents.key.keysym.sym,
 					SDLEvents.key.timestamp });
@@ -37,8 +36,7 @@ void OS::listenForEvents(Lania::Engine* engine)
 		case SDL_KEYUP:
 			if (SDLEvents.key.keysym.sym < 128)
 			{
-				engine->keyBuffer[SDLEvents.key.keysym.sym] = Key::KEY_UP;
-				engine->keyEvents.push_back({
+				engine->input.keyEvents.push_back({
 					Key::KEY_UP,
 					SDLEvents.key.keysym.sym,
 					SDLEvents.key.timestamp });
@@ -46,5 +44,5 @@ void OS::listenForEvents(Lania::Engine* engine)
 			break;
 		}
 	}
-	engine->time.input.setEnd();
+	engine->timer.input.setEnd();
 }
