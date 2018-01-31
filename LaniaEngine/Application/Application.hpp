@@ -12,13 +12,16 @@
 
 #pragma once
 
+#include <vector>
 #include <stack>
-#include "Scripting\StackFrame.hpp"
+#include "Scripting/StackFrame.hpp"
+#include "Scripting/Bytecode.hpp"
 
 namespace Lania
 {
 	typedef struct Application
 	{
 		std::stack<StackFrame> callStack;
+		std::vector<Bytecode> bytecodes;
 	}Application;
 }
