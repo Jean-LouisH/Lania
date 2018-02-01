@@ -15,7 +15,7 @@
 #include <iostream>
 #include "SDL.h"
 #include "GL/glew.h"
-#include "Timing.hpp"
+#include "Timer.hpp"
 #include "Configuration.hpp"
 #include "Input.hpp"
 #include "Output.hpp"
