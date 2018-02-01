@@ -16,8 +16,11 @@
 #include <map>
 #include "../../Core/Input.hpp"
 
-typedef struct Scene
+namespace Lania
 {
-	unsigned char dimension;
-	std::vector<std::map<Key::KeyEvent, int>> keyMap;
-}Scene;
+	typedef struct Scene
+	{
+		unsigned char dimension;
+		std::vector<std::map<SDL_Keycode, std::vector<int>>> keyMaps;
+	}Scene;
+}
