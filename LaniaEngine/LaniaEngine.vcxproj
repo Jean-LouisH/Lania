@@ -120,7 +120,7 @@
     <ClInclude Include="Application\Application.hpp" />
     <ClInclude Include="Application\Scenes\Scenes.hpp" />
     <ClInclude Include="Application\Scripting\Bytecode.hpp" />
-    <ClInclude Include="Application\Scripting\StackFrame.hpp" />
+    <ClInclude Include="Application\Scripting\Variables.hpp" />
     <ClInclude Include="Constants.hpp" />
     <ClInclude Include="Core\Configuration.hpp" />
     <ClInclude Include="Core\Engine.hpp" />
@@ -130,17 +130,18 @@
     <ClInclude Include="Core\OS\File.hpp" />
     <ClInclude Include="Core\OS\Logging.hpp" />
     <ClInclude Include="Core\Output.hpp" />
-    <ClInclude Include="Core\Timing.hpp" />
+    <ClInclude Include="Core\Timer.hpp" />
     <ClInclude Include="Core\UnitTesting.hpp" />
     <ClInclude Include="Input\Keyboard.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Core\Configuration.cpp" />
     <ClCompile Include="Core\LaniaEngine.cpp" />
     <ClCompile Include="Core\OS\OS.cpp" />
     <ClCompile Include="Core\OS\File.cpp" />
     <ClCompile Include="Core\OS\Logging.cpp" />
-    <ClCompile Include="Core\Timing.cpp" />
+    <ClCompile Include="Core\Timer.cpp" />
     <ClCompile Include="Core\UnitTesting.cpp" />
     <ClCompile Include="Input\Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
