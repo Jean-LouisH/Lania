@@ -14,14 +14,23 @@
 
 #include <vector>
 #include <stack>
-#include "Scripting/StackFrame.hpp"
+#include <string>
+#include "Scripting/Variables.hpp"
 #include "Scripting/Bytecode.hpp"
+#include "Scenes/Scenes.hpp"
 
 namespace Lania
 {
 	typedef struct Application
 	{
-		std::stack<StackFrame> callStack;
-		std::vector<Bytecode> bytecodes;
+		Scene scene;
+		Variables global;
+		std::stack<Variables> callStack;
+
+		std::vector<Bytecode> scripts;
+		void loadScene(std::string filepath);
+		void clearScene();
+		SDL_Keycode getSDLKeycode(std::string inputCode);
+		void loadScript(std::string filepath);
 	}Application;
 }
