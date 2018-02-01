@@ -12,7 +12,7 @@
 void Lania::initialize(Engine* engine)
 {
 	//Development Test 
-	std::string initFilePath = "../Demos/Basic/Init.cfg";
+	std::string initFilePath = "../Demos/IncrementTest/Init.cfg";
 
 	AppConfig* appConfig = &engine->appConfig;
 	unsigned char* state = &engine->state;
@@ -92,6 +92,13 @@ void Lania::loop(Engine* engine, Application* application)
 	Timer* time = &engine->timer;
 	time->FPS.setStart();
 
+	//Development Test
+	application->loadScene(
+		"../Demos/IncrementTest/" +
+		engine->appConfig.appName +
+		"/Scenes/" +
+		engine->appConfig.mainScene);
+
 	while (engine->state != SHUTDOWN)
 	{
 		time->frame.setStart();
@@ -134,6 +141,7 @@ void Lania::script(Engine* engine, Application* application)
 {
 	Timer* time = &engine->timer;
 	time->script.setStart();
+
 	time->script.setEnd();
 }
 
