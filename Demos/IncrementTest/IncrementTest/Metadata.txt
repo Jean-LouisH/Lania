@@ -1,0 +1,5 @@
+name = "Increment Test"
+version = 1.0.0
+app_type = simulation
+developer = "Jean-Louis Haywood"
+description = "Tests loading up a scene with an input script to increment a static variable whenever 'i' is pressed."

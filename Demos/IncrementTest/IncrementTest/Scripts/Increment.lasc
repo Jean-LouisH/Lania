@@ -1,0 +1,6 @@
+uint32 global;
+
+incrementGlobal()
+{
+	global++;
+}
