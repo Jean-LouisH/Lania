@@ -12,7 +12,37 @@
 
 #pragma once
 
-typedef struct Bytecode
-{
+#include <vector>
+#include <string>
 
-}Bytecode;
+namespace Lania
+{
+	enum opcodes
+	{
+		INC,
+		DEC,
+		ADD,
+		ADDI,
+		SUB,
+		SUBI,
+		MUL,
+		MULI,
+		DIV,
+		DIVI
+	};
+
+	typedef struct Instruction
+	{
+		int opcode;
+		int destination;
+		int source1;
+		int source2;
+		double immediateValue;
+		std::string immediateString;
+	}Instruction;
+
+	typedef struct Bytecode
+	{
+		std::vector<Instruction> instructions;
+	}Bytecode;
+}
