@@ -67,7 +67,7 @@ void Lania::Application::loadScene(std::string filepath)
 
 SDL_Keycode Lania::Application::getSDLKeycode(std::string inputCode)
 {
-
+	return 0;
 }
 
 

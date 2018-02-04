@@ -14,7 +14,10 @@
 
 #include "../Engine.hpp"
 
-namespace OS
+namespace Lania
 {
-	void listenForEvents(Lania::Engine* engine);
+	namespace OS
+	{
+		void listenForEvents(Lania::Engine* engine);
+	}
 }

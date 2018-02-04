@@ -5,7 +5,7 @@
 *
 * Input
 *
-*
+* Defines all means of input in the engine.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
@@ -15,13 +15,16 @@
 #include "../Input/Keyboard.hpp"
 #include <vector>
 
-enum
+namespace Lania
 {
-	KEY_BUFFER_SIZE = 128,
-};
+	enum sizes
+	{
+		KEY_BUFFER_SIZE = 128,
+	};
 
-typedef struct Input
-{
-	unsigned char keyBuffer[KEY_BUFFER_SIZE];
-	std::vector<Key::KeyEvent> keyEvents;
-}Input;
+	typedef struct Input
+	{
+		unsigned char keyBuffer[KEY_BUFFER_SIZE];
+		std::vector<Key::KeyEvent> keyEvents;
+	}Input;
+}

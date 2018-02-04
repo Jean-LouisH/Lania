@@ -4,11 +4,11 @@
 #include "../Input.hpp"
 #include "SDL_events.h"
 
-void OS::listenForEvents(Lania::Engine* engine)
+void Lania::OS::listenForEvents(Lania::Engine* engine)
 {
 	SDL_Event SDLEvents;
 	engine->timer.input.setStart();
-	engine->state = Lania::gameStates::RUNNING;
+	engine->state = Lania::engineStates::RUNNING_APPLICATION;
 
 	while (SDL_PollEvent(&SDLEvents))
 	{
@@ -16,14 +16,14 @@ void OS::listenForEvents(Lania::Engine* engine)
 		{
 			/*Close window button*/
 		case SDL_QUIT:
-			engine->state = Lania::gameStates::SHUTDOWN;
+			engine->state = Lania::engineStates::SHUTDOWN;
 			break;
 
 			/*Keyboard inputs*/
 		case SDL_KEYDOWN:
 			if (SDLEvents.key.keysym.sym == SDLK_ESCAPE)
 			{
-				engine->state = Lania::gameStates::SHUTDOWN;
+				engine->state = Lania::engineStates::SHUTDOWN;
 			}
 			else if (SDLEvents.key.keysym.sym < 128) //ASCII values are below 128.
 			{

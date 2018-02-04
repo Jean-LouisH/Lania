@@ -1,7 +1,7 @@
 #include "File.hpp"
 #include <fstream>
 
-bool File::exists(std::string filepath)
+bool Lania::File::exists(std::string filepath)
 {
 	std::ifstream file;
 	file.open(filepath);
@@ -17,7 +17,7 @@ bool File::exists(std::string filepath)
 	}
 }
 
-char* File::read(std::string filePath)
+char* Lania::File::read(std::string filePath)
 {
 	std::ifstream inputFile;
 
@@ -66,7 +66,7 @@ char* File::read(std::string filePath)
 	}
 }
 
-void File::write(std::string filePath, char* fileData)
+void Lania::File::write(std::string filePath, char* fileData)
 {
 	std::ofstream outputFile;
 
@@ -98,7 +98,7 @@ void File::write(std::string filePath, char* fileData)
 	outputFile.close();
 }
 
-void File::append(std::string filePath, char* fileData)
+void Lania::File::append(std::string filePath, char* fileData)
 {
 	std::ofstream outputFile;
 

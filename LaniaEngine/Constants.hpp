@@ -5,7 +5,7 @@
 *
 * Constants
 *
-*
+* Defines constants throughout the engine.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */

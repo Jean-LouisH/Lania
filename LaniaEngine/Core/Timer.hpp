@@ -5,7 +5,7 @@
 *
 * Timing
 *
-* Defines engine and simulation time data.
+* Defines engine and application time data.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */

@@ -5,7 +5,8 @@
 *
 * Bytecode
 *
-*
+* The list of instructions that controls the scripting engine
+* virtual machine.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */

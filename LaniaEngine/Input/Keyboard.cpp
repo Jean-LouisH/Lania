@@ -1,6 +1,6 @@
 #include "Keyboard.hpp"
 
-bool Key::isPressed(
+bool Lania::Key::isPressed(
 	unsigned char input,
 	unsigned char keyBuffer[])
 {
@@ -8,21 +8,21 @@ bool Key::isPressed(
 	return (keyBuffer[input] == KEY_DOWN || keyBuffer[(input ^ 0x0020)] == KEY_DOWN);
 }
 
-bool Key::isReleased(
+bool Lania::Key::isReleased(
 	unsigned char input,
 	unsigned char keyBuffer[])
 {
 	return (keyBuffer[input] == KEY_UP || keyBuffer[(input ^ 0x0020)] == KEY_UP);
 }
 
-bool Key::isNeutral(
+bool Lania::Key::isNeutral(
 	unsigned char input,
 	unsigned char keyBuffer[])
 {
 	return (keyBuffer[input] == KEY_NEUTRAL || keyBuffer[(input ^ 0x0020)] == KEY_NEUTRAL);
 }
 
-bool Key::isHeldFor(
+bool Lania::Key::isHeldFor(
 	unsigned char input,
 	double targetSecondsHeld,
 	unsigned char keyBuffer[],
@@ -52,7 +52,7 @@ bool Key::isHeldFor(
 	return (flag);
 }
 
-void Key::update(unsigned char keyBuffer[])
+void Lania::Key::update(unsigned char keyBuffer[])
 {
 	for (int i = 0; i < 128; i++)
 	{

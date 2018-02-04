@@ -15,40 +15,43 @@
 #include "SDL_stdinc.h"
 #include "SDL_keycode.h"
 
-namespace Key
+namespace Lania
 {
-	enum keyStates
+	namespace Key
 	{
-		KEY_NEUTRAL,
-		KEY_DOWN,
-		KEY_HELD,
-		KEY_UP,
-	};
+		enum keyStates
+		{
+			KEY_NEUTRAL,
+			KEY_DOWN,
+			KEY_HELD,
+			KEY_UP,
+		};
 
-	typedef struct
-	{
-		Uint8 state;
-		SDL_Keycode value;
-		Uint32 timestamp;
-	}KeyEvent;
+		typedef struct
+		{
+			Uint8 state;
+			SDL_Keycode value;
+			Uint32 timestamp;
+		}KeyEvent;
 
-	bool isPressed(
-		unsigned char input,
-		unsigned char keyBuffer[]);
+		bool isPressed(
+			unsigned char input,
+			unsigned char keyBuffer[]);
 
-	bool isReleased(
-		unsigned char input,
-		unsigned char keyBuffer[]);
+		bool isReleased(
+			unsigned char input,
+			unsigned char keyBuffer[]);
 
-	bool isNeutral(
-		unsigned char input,
-		unsigned char keyBuffer[]);
+		bool isNeutral(
+			unsigned char input,
+			unsigned char keyBuffer[]);
 
-	bool isHeldFor(
-		unsigned char input,
-		double seconds,
-		unsigned char keyBuffer[],
-		double simulationTime);
+		bool isHeldFor(
+			unsigned char input,
+			double seconds,
+			unsigned char keyBuffer[],
+			double simulationTime);
 
-	void update(unsigned char keyBuffer[]);
+		void update(unsigned char keyBuffer[]);
+	}
 }

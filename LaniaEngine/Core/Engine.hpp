@@ -5,7 +5,8 @@
 *
 * Engine
 *
-* Contains the working data for the engine runtime.
+* Forms the lowest layer of data that interfaces with the operating
+* system according to what the application layer dictates.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
@@ -22,9 +23,9 @@
 
 namespace Lania
 {
-	enum gameStates
+	enum engineStates
 	{
-		RUNNING,
+		RUNNING_APPLICATION,
 		SHUTDOWN,
 	};
 

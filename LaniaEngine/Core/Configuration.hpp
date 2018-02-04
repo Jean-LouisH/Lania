@@ -31,9 +31,9 @@ namespace Lania
 			windowFlags(0)
 		{}
 	}AppConfig;
-}
 
-namespace Config
-{
-	Lania::AppConfig parseInit(char* fileContent);
+	namespace Config
+	{
+		AppConfig parseInit(char* fileContent);
+	}
 }

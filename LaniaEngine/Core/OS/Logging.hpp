@@ -15,8 +15,11 @@
 #include <iostream>
 #include <string>
 
-namespace Log
+namespace Lania
 {
-	void messageConsole(std::string message);
-	void messageFile(std::string message);
-};
+	namespace Log
+	{
+		void messageConsole(std::string message);
+		void messageFile(std::string message);
+	}
+}

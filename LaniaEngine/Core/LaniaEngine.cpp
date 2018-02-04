@@ -19,7 +19,7 @@ void Lania::initialize(Engine* engine)
 
 	*appConfig = Config::parseInit(File::read(initFilePath));
 	engine->platform = (char*)SDL_GetPlatform();
-	*state = RUNNING;
+	*state = RUNNING_APPLICATION;
 
 	for (int i = 0; i < KEY_BUFFER_SIZE; i++)
 	{

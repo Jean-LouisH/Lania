@@ -5,7 +5,8 @@
 *
 * Application
 *
-*
+* The layer on top of the engine that accepts developer scripting,
+* scene and asset data to define and control the game / simulation.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
@@ -26,8 +27,8 @@ namespace Lania
 		Scene scene;
 		Variables global;
 		std::stack<Variables> callStack;
-
 		std::vector<Bytecode> scripts;
+
 		void loadScene(std::string filepath);
 		void clearScene();
 		SDL_Keycode getSDLKeycode(std::string inputCode);

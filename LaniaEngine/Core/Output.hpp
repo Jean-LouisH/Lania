@@ -5,14 +5,17 @@
 *
 * Output
 *
-*
+* Defines all means of output for the engine.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
 
 #pragma once
 
-typedef struct Output
+namespace Lania
 {
+	typedef struct Output
+	{
 
-}Output;
+	}Output;
+}

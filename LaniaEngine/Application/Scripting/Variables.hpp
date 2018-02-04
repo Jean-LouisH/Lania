@@ -5,7 +5,7 @@
 *
 * Variables
 *
-*
+* The variables to be stored statically or on the stack.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
@@ -26,7 +26,7 @@ namespace Lania
 		std::vector<short> int16s;
 		std::vector<int> int32s;
 		std::vector<long long int> int64s;
-		std::vector<float> floats;
-		std::vector<double> doubles;
+		std::vector<float> float32s;
+		std::vector<double> float64s;
 	}Variables;
 }

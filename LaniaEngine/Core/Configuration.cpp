@@ -2,9 +2,9 @@
 #include "SDL_video.h"
 #include <string>
 
-Lania::AppConfig Config::parseInit(char* fileContent)
+Lania::AppConfig Lania::Config::parseInit(char* fileContent)
 {
-	Lania::AppConfig appConfig;
+	AppConfig appConfig;
 	appConfig.windowFlags = 0;
 	int readPosition = 0;
 
