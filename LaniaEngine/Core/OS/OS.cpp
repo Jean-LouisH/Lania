@@ -25,7 +25,7 @@ void Lania::OS::listenForEvents(Lania::Engine* engine)
 			{
 				engine->state = Lania::engineStates::SHUTDOWN;
 			}
-			else if (SDLEvents.key.keysym.sym < 128) //ASCII values are below 128.
+			else
 			{
 				engine->input.keyEvents.push_back({
 					Key::KEY_DOWN,
@@ -34,13 +34,10 @@ void Lania::OS::listenForEvents(Lania::Engine* engine)
 			}
 			break;
 		case SDL_KEYUP:
-			if (SDLEvents.key.keysym.sym < 128)
-			{
-				engine->input.keyEvents.push_back({
-					Key::KEY_UP,
-					SDLEvents.key.keysym.sym,
-					SDLEvents.key.timestamp });
-			}
+			engine->input.keyEvents.push_back({
+				Key::KEY_UP,
+				SDLEvents.key.keysym.sym,
+				SDLEvents.key.timestamp });
 			break;
 		}
 	}

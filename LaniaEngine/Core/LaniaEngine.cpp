@@ -21,11 +21,6 @@ void Lania::initialize(Engine* engine)
 	engine->platform = (char*)SDL_GetPlatform();
 	*state = RUNNING_APPLICATION;
 
-	for (int i = 0; i < KEY_BUFFER_SIZE; i++)
-	{
-		engine->input.keyBuffer[i] = Key::KEY_NEUTRAL;
-	}
-
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{
 		SDL_Log(

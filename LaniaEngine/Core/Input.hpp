@@ -24,7 +24,6 @@ namespace Lania
 
 	typedef struct Input
 	{
-		unsigned char keyBuffer[KEY_BUFFER_SIZE];
 		std::vector<Key::KeyEvent> keyEvents;
 	}Input;
 }
