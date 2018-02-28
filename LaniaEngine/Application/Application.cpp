@@ -5,7 +5,6 @@
 void Lania::Application::loadScene(std::string filepath)
 {
 	char* sceneFileContents = File::read(filepath);
-
 	int readPosition = 0;
 
 	std::set<std::string> loadedScripts;
@@ -14,55 +13,143 @@ void Lania::Application::loadScene(std::string filepath)
 	std::string key = "";
 	std::string value = "";
 
-	clearScene();
+	this->clearScene();
 
 	enum
 	{
-		COMMENTING,
 		LOADING_KEY,
 		LOADING_VALUE,
 		FINISHED
 	};
 
-	if (key == "dimensions")
+	unsigned char parseState = LOADING_KEY;
+
+	do
 	{
-		if (value == "2")
+		switch (sceneFileContents[readPosition])
 		{
-			this->scene.dimension = 2;
+			case '=':
+				if (parseState == LOADING_KEY)
+				{
+					parseState = LOADING_VALUE;
+					readPosition++;
+				}
+				break;
+			case ';':
+				if (parseState == LOADING_VALUE)
+				{
+					key = "";
+					value = "";
+					parseState = LOADING_KEY;
+				}
+				break;
+			case '+':
+				if (sceneFileContents[readPosition + 1] == '+')
+				{
+					parseState = FINISHED;
+				}
+				break;
 		}
-		else if (value == "3")
+
+		if (parseState == LOADING_KEY &&
+			sceneFileContents[readPosition] != ';' &&
+			sceneFileContents[readPosition] != '\n')
 		{
-			this->scene.dimension = 3;
+			key += sceneFileContents[readPosition];
 		}
-	}
-	//else if (key == "input_event_map")
-	//{
-	//	std::string scriptSignature;
-	//	std::string inputCode;
-	//	std::string scriptName;
-	//	std::vector<int> scriptList;
-	//	int read = 0;
+		else if (parseState == LOADING_VALUE &&
+			sceneFileContents[readPosition] != ';' &&
+			sceneFileContents[readPosition] != '\n')
+		{
+			value += sceneFileContents[readPosition];
+		}
 
-	//	if (value[0] == '{')
-	//	{
-	//		readPosition++;
-	//		while (value[read] != '}')
-	//		{
+		if (sceneFileContents[readPosition + 1] == ';')
+		{
+			if (key == "dimensions")
+			{
+				if (value == "2")
+				{
+					this->scene.dimension = 2;
+				}
+				else if (value == "3")
+				{
+					this->scene.dimension = 3;
+				}
+			}
+			else if (key == "input_event_maps")
+			{
+				std::string scriptSignature;
+				std::string inputCode;
+				std::string scriptName;
+				bool loadingString = false;
+				std::vector<int> scriptList;
 
-	//		}
+				if (value[0] == '(')
+				{
+					parseState = LOADING_KEY;
 
-	//		this->scene.keyMaps.push_back(
-	//			std::pair<SDL_Keycode,
-	//			std::vector<int>>(getSDLKeycode(inputCode), scriptList));
-	//		this->scene.keyMaps.at(scriptCount).at(getSDLKeycode(inputCode)).at(scriptCount);
-	//	}
-	//	//newScene.keyMaps.blah;
-	//	if (!loadedScripts.count(scriptSignature))
-	//	{
-	//		//this->scripts.at(scriptCount).blah;
-	//		//scriptCount++;
-	//	}
-	//}
+					for (int i = 1; i < value.size() && value[i] != ')'; i++)
+					{
+						switch (value[i])
+						{
+							case '=':
+								parseState = LOADING_VALUE;
+								break;
+							case ',':
+								inputCode = "";
+								scriptName = "";
+								parseState = LOADING_KEY;
+								break;
+							case '+':
+								if (value[i + 1] == '+')
+								{
+									parseState = FINISHED;
+								}
+								break;
+							case '\"':
+								loadingString = !loadingString;
+								break;
+						}
+
+						if (parseState == LOADING_KEY &&
+							value[i] != '\n')
+						{
+							inputCode += value[i];
+						}
+						else if (parseState == LOADING_VALUE &&
+							loadingString &&
+							value[i] != '\"' &&
+							value[i] != '\n')
+						{
+							scriptName += value[i];
+						}
+
+						if (value[i + 1] == ',' || value[i + 1] == ')')
+						{
+							//pair input and script.
+						}
+					}
+
+					int a = 2;
+					int b = 4;
+					a = a + b;
+					//this->scene.keyMaps.push_back(
+					//	std::pair<SDL_Keycode,
+					//	std::vector<int>>(getSDLKeycode(inputCode), scriptList));
+					//this->scene.keyMaps.at(scriptCount).at(getSDLKeycode(inputCode)).at(scriptCount);
+				}
+				//newScene.keyMaps.blah;
+				if (!loadedScripts.count(scriptSignature))
+				{
+					//this->scripts.at(scriptCount).blah;
+					//scriptCount++;
+				}
+			}
+		}
+		readPosition++;
+	} while (sceneFileContents[readPosition] != '\0' &&
+		parseState != FINISHED);
 }
 
 SDL_Keycode Lania::Application::getSDLKeycode(std::string inputCode)

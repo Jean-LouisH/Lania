@@ -2,5 +2,10 @@ uint32 global;
 
 incrementGlobal()
 {
-	global++;
+	global += 1;
+}
+
+incrementGlobalTwo()
+{
+	global += 2;
 }
