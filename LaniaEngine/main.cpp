@@ -19,7 +19,8 @@ int main(int argc, char* argv[])
 	
 	engine.filepath = argv[0];
 	Lania::initialize(&engine);
-	Lania::loop(&engine, &application);
+	if (engine.state == Lania::RUNNING_APPLICATION)
+		Lania::loop(&engine, &application);
 	Lania::shutdown(&engine, &application);
 	return 0;
 }
