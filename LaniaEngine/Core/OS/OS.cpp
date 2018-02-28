@@ -8,7 +8,6 @@ void Lania::OS::listenForEvents(Lania::Engine* engine)
 {
 	SDL_Event SDLEvents;
 	engine->timer.input.setStart();
-	engine->state = Lania::engineStates::RUNNING_APPLICATION;
 
 	while (SDL_PollEvent(&SDLEvents))
 	{
@@ -16,14 +15,14 @@ void Lania::OS::listenForEvents(Lania::Engine* engine)
 		{
 			/*Close window button*/
 		case SDL_QUIT:
-			engine->state = Lania::engineStates::SHUTDOWN;
+			engine->state = Lania::SHUTDOWN;
 			break;
 
 			/*Keyboard inputs*/
 		case SDL_KEYDOWN:
 			if (SDLEvents.key.keysym.sym == SDLK_ESCAPE)
 			{
-				engine->state = Lania::engineStates::SHUTDOWN;
+				engine->state = Lania::SHUTDOWN;
 			}
 			else
 			{

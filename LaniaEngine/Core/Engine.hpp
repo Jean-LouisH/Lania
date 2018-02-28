@@ -23,7 +23,7 @@
 
 namespace Lania
 {
-	enum engineStates
+	enum
 	{
 		RUNNING_APPLICATION,
 		SHUTDOWN,
