@@ -34,11 +34,11 @@ namespace Lania
 			Uint32 timestamp;
 		}KeyEvent;
 
-		bool isPressed(unsigned char input);
-		bool isReleased(unsigned char input);
-		bool isNeutral(unsigned char input);
-		bool isHeldFor(
-			unsigned char input,
-			double targetSecondsHeld);
+		//bool isPressed(unsigned char input);
+		//bool isReleased(unsigned char input);
+		//bool isNeutral(unsigned char input);
+		//bool isHeldFor(
+		//	unsigned char input,
+		//	double targetSecondsHeld);
 	}
 }
