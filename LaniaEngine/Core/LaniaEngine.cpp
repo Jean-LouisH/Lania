@@ -30,6 +30,8 @@ void Lania::initialize(Engine* engine)
 	}
 	else
 	{
+		appConfig->targetFPS = 60;
+
 		if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
 		{
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
@@ -62,8 +64,7 @@ void Lania::initialize(Engine* engine)
 				SDL_GetError());
 			*state = SHUTDOWN;
 		}
-
-		if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
+		else if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
 		{
 			engine->glContext = SDL_GL_CreateContext(engine->window);
 			glViewport(0, 0, appConfig->windowWidthPixels, appConfig->windowHeightPixels);
@@ -78,7 +79,6 @@ void Lania::initialize(Engine* engine)
 		{
 			;
 		}
-		appConfig->targetFPS = 60;
 	}
 }
 
@@ -94,7 +94,7 @@ void Lania::loop(Engine* engine, Application* application)
 		"/Scenes/" +
 		engine->appConfig.mainScene);
 
-	while (engine->state != SHUTDOWN)
+	do
 	{
 		time->frame.setStart();
 		time->cycle.setStart();
@@ -129,7 +129,7 @@ void Lania::loop(Engine* engine, Application* application)
 			SDL_SetWindowTitle(engine->window,
 				(engine->appConfig.appName + " - FPS:" + FPSString).c_str());
 		}
-	}
+	} while (engine->state != SHUTDOWN);
 }
 
 void Lania::script(Engine* engine, Application* application)
