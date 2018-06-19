@@ -79,9 +79,8 @@ void Lania::Application::loadScene(std::string filepath)
 			}
 			else if (key == "input_event_maps")
 			{
-				std::string scriptSignature;
 				std::string inputCode;
-				std::string scriptName;
+				std::string scriptMethod;
 				bool loadingString = false;
 				std::vector<int> scriptList;
 
@@ -89,7 +88,8 @@ void Lania::Application::loadScene(std::string filepath)
 				{
 					parseState = LOADING_KEY;
 
-					for (int i = 1; i < value.size() && value[i] != ')'; i++)
+					for (int i = 1; i < value.size() && 
+						!(value[i] == ')' && !loadingString); i++)
 					{
 						switch (value[i])
 						{
@@ -98,7 +98,7 @@ void Lania::Application::loadScene(std::string filepath)
 								break;
 							case ',':
 								inputCode = "";
-								scriptName = "";
+								scriptMethod = "";
 								parseState = LOADING_KEY;
 								break;
 							case '+':
@@ -122,29 +122,29 @@ void Lania::Application::loadScene(std::string filepath)
 							value[i] != '\"' &&
 							value[i] != '\n')
 						{
-							scriptName += value[i];
+							scriptMethod += value[i];
 						}
 
-						if (value[i + 1] == ',' || value[i + 1] == ')')
+						if (value[i + 1] == ',' || (value[i + 1] == ')' && !loadingString))
 						{
+							this->loadScript(scriptMethod);
+							//this->scripts.
+							//this->scene.keyMaps.push_back()
 							//pair input and script.
 						}
 					}
 
-					int a = 2;
-					int b = 4;
-					a = a + b;
 					//this->scene.keyMaps.push_back(
 					//	std::pair<SDL_Keycode,
 					//	std::vector<int>>(getSDLKeycode(inputCode), scriptList));
 					//this->scene.keyMaps.at(scriptCount).at(getSDLKeycode(inputCode)).at(scriptCount);
 				}
 				//newScene.keyMaps.blah;
-				if (!loadedScripts.count(scriptSignature))
-				{
-					//this->scripts.at(scriptCount).blah;
-					//scriptCount++;
-				}
+				//if (!loadedScripts.count(scriptSignature))
+				//{
+				//	//this->scripts.at(scriptCount).blah;
+				//	//scriptCount++;
+				//}
 			}
 		}
 		readPosition++;
@@ -164,7 +164,10 @@ void Lania::Application::clearScene()
 	this->scene.keyMaps.clear();
 }
 
-void Lania::Application::loadScript(std::string filepath)
+unsigned int Lania::Application::loadScript(std::string filepath)
 {
 	char* scriptFileContents = File::read(filepath);
+
+	//return (this->scripts.size - 1);
+	return 0;
 }

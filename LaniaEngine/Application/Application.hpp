@@ -32,6 +32,6 @@ namespace Lania
 		void loadScene(std::string filepath);
 		void clearScene();
 		SDL_Keycode getSDLKeycode(std::string inputCode);
-		void loadScript(std::string filepath);
+		unsigned int loadScript(std::string filepath);
 	}Application;
 }
