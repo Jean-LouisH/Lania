@@ -88,11 +88,11 @@ void Lania::loop(Engine* engine, Application* application)
 	time->FPS.setStart();
 
 	//Development Test
-	application->loadScene(
-		"../Demos/IncrementTest/" +
-		engine->appConfig.appName +
-		"/Scenes/" +
-		engine->appConfig.mainScene);
+	//application->loadScene(
+	//	"../Demos/IncrementTest/" +
+	//	engine->appConfig.appName +
+	//	"/Scenes/" +
+	//	engine->appConfig.mainScene);
 
 	do
 	{
