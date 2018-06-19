@@ -13,19 +13,20 @@
 #pragma once
 
 #include <vector>
+#include <stdint.h>
 
 namespace Lania
 {
 	typedef struct Variables
 	{
-		std::vector<unsigned char> uint8s;
-		std::vector<unsigned short> uint16s;
-		std::vector<unsigned int> uint32s;
-		std::vector<unsigned long long int> uint64s;
-		std::vector<char> int8s;
-		std::vector<short> int16s;
-		std::vector<int> int32s;
-		std::vector<long long int> int64s;
+		std::vector<uint8_t> uint8s;
+		std::vector<uint16_t> uint16s;
+		std::vector<uint32_t> uint32s;
+		std::vector<uint64_t> uint64s;
+		std::vector<int8_t> int8s;
+		std::vector<int16_t> int16s;
+		std::vector<int32_t> int32s;
+		std::vector<int64_t> int64s;
 		std::vector<float> float32s;
 		std::vector<double> float64s;
 	}Variables;
