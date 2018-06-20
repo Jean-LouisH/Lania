@@ -14,7 +14,7 @@
 
 #include <vector>
 #include <map>
-#include "../../Core/Input.hpp"
+#include <Core/Input.hpp>
 
 namespace Lania
 {

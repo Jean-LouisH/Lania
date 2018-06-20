@@ -1,4 +1,5 @@
 #include "Timer.hpp"
+
 void Lania::Execution::setStart()
 {
 	this->start = std::chrono::high_resolution_clock::now();

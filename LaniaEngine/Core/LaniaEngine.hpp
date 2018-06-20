@@ -12,7 +12,7 @@
 #pragma once
 
 #include "Engine.hpp"
-#include "../Application/Application.hpp"
+#include <Application/Application.hpp>
 
 namespace Lania
 {

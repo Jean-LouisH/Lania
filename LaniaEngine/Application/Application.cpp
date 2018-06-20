@@ -1,5 +1,5 @@
 #include "Application.hpp"
-#include "../Core/OS/File.hpp"
+#include <Core/OS/File.hpp>
 #include <set>
 
 void Lania::Application::loadScene(std::string filepath)
