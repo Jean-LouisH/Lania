@@ -130,6 +130,7 @@
     <ClInclude Include="Constants.hpp" />
     <ClInclude Include="Core\Configuration.hpp" />
     <ClInclude Include="Core\DataStructures\List.hpp" />
+    <ClInclude Include="Core\DataStructures\String.hpp" />
     <ClInclude Include="Core\Engine.hpp" />
     <ClInclude Include="Core\Input.hpp" />
     <ClInclude Include="Core\LaniaEngine.hpp" />
@@ -145,6 +146,7 @@
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Application\Scenes\2D\Vector2.cpp" />
     <ClCompile Include="Core\Configuration.cpp" />
+    <ClCompile Include="Core\DataStructures\String.cpp" />
     <ClCompile Include="Core\LaniaEngine.cpp" />
     <ClCompile Include="Core\OS\OS.cpp" />
     <ClCompile Include="Core\OS\File.cpp" />
