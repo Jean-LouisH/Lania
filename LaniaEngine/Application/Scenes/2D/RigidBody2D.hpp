@@ -21,9 +21,15 @@ namespace Lania
 	{
 		Node node;
 		double mass;
+		double bounce;
+		double friction;
+		double angularDrag;
+		Vector2 angularVelocity;
+		double gravityScale;
 		double elasticity;
 		double rotation;
-		Vector2 velocity;
+		double linearDrag;
+		Vector2 linearVelocity;
 		Vector2 position;
 	}RigidBody2D;
 }
