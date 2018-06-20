@@ -12,7 +12,8 @@
 
 #pragma once
 
-#include "../Input/Keyboard.hpp"
+#include <SDL.h>
+#include <Input/Keyboard.hpp>
 #include <vector>
 
 namespace Lania
@@ -25,5 +26,6 @@ namespace Lania
 	typedef struct Input
 	{
 		std::vector<Key::KeyEvent> keyEvents;
+		std::vector<SDL_GameController*> gameControllers;
 	}Input;
 }

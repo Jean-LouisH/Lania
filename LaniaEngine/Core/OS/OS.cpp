@@ -1,13 +1,28 @@
 #include "OS.hpp"
 #include "Logging.hpp"
-#include "../Engine.hpp"
-#include "../Input.hpp"
+#include <Core/Engine.hpp>
+#include <Core/Input.hpp>
 #include "SDL_events.h"
 
 void Lania::OS::listenForEvents(Lania::Engine* engine)
 {
 	SDL_Event SDLEvents;
 	engine->timer.input.setStart();
+
+	if (SDL_NumJoysticks() != engine->input.gameControllers.size())
+	{
+		engine->input.gameControllers.clear();
+
+		for (int i = 0; i < SDL_NumJoysticks(); ++i)
+		{
+			if (SDL_IsGameController(i))
+			{
+				engine->input.gameControllers.push_back(SDL_GameControllerOpen(i));
+				if (!engine->input.gameControllers.back())
+					fprintf(stderr, "Could not open gamecontroller %i: %s\n", i, SDL_GetError());
+			}
+		}
+	}
 
 	while (SDL_PollEvent(&SDLEvents))
 	{

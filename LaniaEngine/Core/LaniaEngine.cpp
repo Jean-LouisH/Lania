@@ -5,7 +5,7 @@
 #include "OS/File.hpp"
 #include "OS/OS.hpp"
 #include "GL/glew.h"
-#include "../Constants.hpp"
+#include <Constants.hpp>
 #include "SDL.h"
 #include <sstream>
 
@@ -18,6 +18,7 @@ void Lania::initialize(Engine* engine)
 	unsigned char* state = &engine->state;
 
 	*appConfig = Config::parseInit(File::read(initFilePath));
+	SDL_GameControllerAddMappingsFromFile("../Data/gamecontrollerdb.txt");
 	engine->platform = (char*)SDL_GetPlatform();
 	*state = RUNNING_APPLICATION;
 
@@ -163,6 +164,10 @@ void Lania::output(Engine* engine)
 
 void Lania::shutdown(Engine* engine, Application* application)
 {
+	std::vector<SDL_GameController*>* gameControllers = &engine->input.gameControllers;
+	for (int i = 0; i < gameControllers->size(); ++i)
+		SDL_GameControllerClose(gameControllers->at(i));
+	gameControllers->clear();
 	SDL_GL_DeleteContext(engine->glContext);
 	SDL_DestroyWindow(engine->window);
 	SDL_Quit();
