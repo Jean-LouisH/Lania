@@ -108,6 +108,8 @@ void Lania::loop(Engine* engine, Application* application)
 		Lania::output(engine);
 
 		time->cycle.setEnd();
+		
+		//0 or less for unlimited FPS use.
 		if (engine->appConfig.targetFPS > 0)
 		{
 			int delay = (1000.0 / engine->appConfig.targetFPS) -
@@ -121,14 +123,17 @@ void Lania::loop(Engine* engine, Application* application)
 		static int passedFrames;
 		passedFrames++;
 		time->FPS.setEnd();
-		if (time->FPS.delta / MS_PER_NS >= 1000)
+		if (time->FPS.delta / MS_PER_NS >= MS_PER_S)
 		{
 			engine->FPS = (passedFrames / (time->FPS.delta / S_PER_NS));
 			time->FPS.setStart();
 			passedFrames = 1;
 			std::string FPSString = std::to_string(engine->FPS);
+			std::string workLoadString = 
+				std::to_string((int)(((double)time->cycle.delta / (double)time->frame.delta) * 100));
 			SDL_SetWindowTitle(engine->window,
-				(engine->appConfig.appName + " - FPS:" + FPSString).c_str());
+				(engine->appConfig.appName + " - FPS: " + FPSString +
+					", Work Load: " + workLoadString + "%").c_str());
 		}
 	} while (engine->state != SHUTDOWN);
 }
