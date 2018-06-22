@@ -21,6 +21,7 @@ namespace Lania
 		double x;
 		double y;
 
-		void normalize();
+		double length();
+		Vector2 normalized();
 	}Vector2;
 }
