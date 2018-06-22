@@ -1,11 +1,11 @@
 #include "Timer.hpp"
 
-void Lania::Execution::setStart()
+void Lania::ExecutionTimer::setStart()
 {
 	this->start = std::chrono::high_resolution_clock::now();
 }
 
-void Lania::Execution::setEnd()
+void Lania::ExecutionTimer::setEnd()
 {
 	this->end = std::chrono::high_resolution_clock::now();
 	this->delta = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();

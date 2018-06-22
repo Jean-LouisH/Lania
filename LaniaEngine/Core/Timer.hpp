@@ -13,32 +13,33 @@
 #pragma once
 
 #include <chrono>
+#include <stdint.h>
 
 namespace Lania
 {
-	typedef struct Execution
+	typedef struct ExecutionTimer
 	{
-		long long int delta;
+		uint64_t delta;
 		std::chrono::time_point<std::chrono::steady_clock> start;
 		std::chrono::time_point<std::chrono::steady_clock> end;
 		void setStart();
 		void setEnd();
-		Execution() :
+		ExecutionTimer() :
 			delta(0)
 		{}
-	}Execution;
+	}ExecutionTimer;
 
 	typedef struct Timer
 	{
-		Execution cycle;
-		Execution frame;
-		Execution input;
-		Execution script;
-		Execution compute;
-		Execution output;
-		Execution FPS;
+		ExecutionTimer cycle;
+		ExecutionTimer frame;
+		ExecutionTimer input;
+		ExecutionTimer script;
+		ExecutionTimer compute;
+		ExecutionTimer output;
+		ExecutionTimer FPS;
 		double simulation;
-		int lag;
+		uint64_t lag;
 		Timer() :
 			simulation(0.0),
 			lag(0) 
