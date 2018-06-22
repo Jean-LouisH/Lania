@@ -13,6 +13,7 @@
 #include <SDL_render.h>
 #include <Application/Scenes/Node.hpp>
 #include <Application/Scenes/2D/Rect.hpp>
+#include <Application/Scenes/2D/Vector2.hpp>
 
 namespace Lania
 {
@@ -21,6 +22,7 @@ namespace Lania
 		Node node;
 		SDL_Texture* texture;
 		Rect pixels;
+		Vector2 position;
 		bool xFlip;
 		bool yFlip;
 	}Sprite;
