@@ -13,3 +13,4 @@
 #define MS_PER_UPDATE 8
 #define S_PER_NS 1000000000
 #define MS_PER_NS 1000000
+#define MS_PER_S 1000
