@@ -13,13 +13,14 @@
 #pragma once
 
 #include <Core/DataStructures/List.hpp>
+#include <stdint.h>
 
 namespace Lania
 {
 	typedef struct Node
 	{
+		uint64_t id; //Memory address of the struct composed of this node.
 		Node* parent;
-		Lania::List<Node*> children;
-		int id;
+		List<Node*> children;
 	}Node;
 }

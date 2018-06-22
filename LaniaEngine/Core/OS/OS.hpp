@@ -18,6 +18,6 @@ namespace Lania
 {
 	namespace OS
 	{
-		void listenForEvents(Lania::Engine* engine);
+		void listenForEvents(Engine* engine);
 	}
 }
