@@ -12,15 +12,15 @@
 
 #pragma once
 
-#include <vector>
 #include <map>
+#include <stdint.h>
 #include <Core/Input.hpp>
 
 namespace Lania
 {
 	typedef struct Scene
 	{
-		unsigned char dimension;
-		std::vector<std::map<SDL_Keycode, std::vector<int>>> keyMaps;
+		uint8_t dimension;
+		std::multimap<SDL_Keycode, int> keyMaps;
 	}Scene;
 }
