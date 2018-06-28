@@ -10,10 +10,12 @@
 
 #pragma once
 
+#include <Application/Scenes/2D/Rect.hpp>
+#include <Application/Scenes/2D/Node2D.hpp>
+
 typedef struct
 {
-	double width;
-	double height;
-	double angle;
-	double target;
+	Node2D node;
+	Rect viewport;
+	double rotation;
 }Camera_2D;

@@ -11,7 +11,7 @@
 #pragma once
 
 #include <SDL_render.h>
-#include <Application/Scenes/Node.hpp>
+#include <Application/Scenes/2D/Node2D.hpp>
 #include <Application/Scenes/2D/Rect.hpp>
 #include <Application/Scenes/2D/Vector2.hpp>
 
@@ -19,10 +19,9 @@ namespace Lania
 {
 	typedef struct
 	{
-		Node node;
+		Node2D node;
 		SDL_Texture* texture;
 		Rect pixels;
-		Vector2 position;
 		bool xFlip;
 		bool yFlip;
 	}Sprite;
