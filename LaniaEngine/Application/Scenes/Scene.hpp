@@ -15,12 +15,20 @@
 #include <map>
 #include <stdint.h>
 #include <Core/Input.hpp>
+#include "2D/Scene2D.hpp"
+#include <Core/DataStructures/List.hpp>
 
 namespace Lania
 {
+	//typedef struct Scene
+	//{
+	//	uint8_t dimension;
+	//	std::multimap<SDL_Keycode, int> keyMaps;
+	//}Scene;
+
 	typedef struct Scene
 	{
-		uint8_t dimension;
-		std::multimap<SDL_Keycode, int> keyMaps;
+		List<Scene2D> subscenes2D;
+		List<uint8_t> z_indices;
 	}Scene;
 }

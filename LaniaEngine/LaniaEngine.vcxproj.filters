@@ -54,16 +54,10 @@
     <ClInclude Include="Application\Scripting\Bytecode.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Scenes\Scenes.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Timer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Application\Scripting\Variables.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Application\Scenes\Node.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\DataStructures\List.hpp">
@@ -88,6 +82,21 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Core\DataStructures\Stack.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scenes\2D\Scene2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scenes\Scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scenes\2D\Entity2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scenes\2D\Camera2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scenes\2D\Transform2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -118,13 +118,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application\Application.hpp" />
-    <ClInclude Include="Application\Scenes\2D\Node2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\Camera2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\Entity2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Rect.hpp" />
     <ClInclude Include="Application\Scenes\2D\RigidBody2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\Scene2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Sprite.hpp" />
     <ClInclude Include="Application\Scenes\2D\StaticBody2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\Transform2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Vector2.hpp" />
-    <ClInclude Include="Application\Scenes\Scenes.hpp" />
+    <ClInclude Include="Application\Scenes\Scene.hpp" />
     <ClInclude Include="Application\Scripting\Bytecode.hpp" />
     <ClInclude Include="Application\Scripting\Variables.hpp" />
     <ClInclude Include="Constants.hpp" />
