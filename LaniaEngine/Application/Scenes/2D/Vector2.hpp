@@ -12,8 +12,6 @@
 
 #pragma once
 
-#include <Application/Scenes/Node.hpp>
-
 namespace Lania
 {
 	typedef struct Vector2
@@ -22,6 +20,7 @@ namespace Lania
 		double y;
 
 		double length();
+		double direction();
 		Vector2 normalized();
 	}Vector2;
 }
