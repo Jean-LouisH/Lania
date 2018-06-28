@@ -12,23 +12,19 @@
 
 #pragma once
 
-#include <Application/Scenes/2D/Node2D.hpp>
 #include <Application/Scenes/2D/Vector2.hpp>
 
 namespace Lania
 {
 	typedef struct RigidBody2D
 	{
-		Node2D node;
 		double mass;
-		double bounce;
 		double friction;
 		double angularDrag;
-		Vector2 angularVelocity;
 		double gravityScale;
 		double elasticity;
-		double rotation;
 		double linearDrag;
+		Vector2 angularVelocity;
 		Vector2 linearVelocity;
 	}RigidBody2D;
 }

@@ -11,11 +11,14 @@
 #pragma once
 
 #include <Application/Scenes/2D/Rect.hpp>
-#include <Application/Scenes/2D/Node2D.hpp>
+#include <Application/Scenes/2D/Vector2.hpp>
 
-typedef struct
+namespace Lania
 {
-	Node2D node;
-	Rect viewport;
-	double rotation;
-}Camera_2D;
+	typedef struct Camera2D
+	{
+		Rect viewport;
+		double rotation;
+	}Camera2D;
+
+}
