@@ -14,7 +14,7 @@
 
 #include <SDL.h>
 #include <Input/Keyboard.hpp>
-#include <vector>
+#include <Core/DataStructures/List.hpp>
 
 namespace Lania
 {
@@ -25,7 +25,7 @@ namespace Lania
 
 	typedef struct Input
 	{
-		std::vector<Key::KeyEvent> keyEvents;
-		std::vector<SDL_GameController*> gameControllers;
+		List<Key::KeyEvent> keyEvents;
+		List<SDL_GameController*> gameControllers;
 	}Input;
 }

@@ -15,8 +15,5 @@
 namespace Lania
 {
 	template <class T>
-	class List
-	{
-
-	};
+	using List = std::vector<T>;
 }
