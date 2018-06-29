@@ -1,6 +1,6 @@
 #include "Configuration.hpp"
 #include "SDL_video.h"
-#include <string>
+#include <Core/DataStructures/String.hpp>
 
 Lania::AppConfig Lania::Config::parseInit(char* fileContent)
 {
@@ -8,8 +8,8 @@ Lania::AppConfig Lania::Config::parseInit(char* fileContent)
 	appConfig.windowFlags = 0;
 	int readPosition = 0;
 
-	std::string key = "";
-	std::string value = "";
+	String key = "";
+	String value = "";
 
 	enum
 	{
@@ -71,8 +71,8 @@ Lania::AppConfig Lania::Config::parseInit(char* fileContent)
 			}
 			else if (key == "resolution")
 			{
-				std::string width;
-				std::string height;
+				String width;
+				String height;
 
 				int start = 0;
 				int end = value.find("x");

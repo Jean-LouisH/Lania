@@ -10,32 +10,36 @@
 
 #pragma once
 
+#include <string>
+
 namespace Lania
 {
-	typedef struct String
-	{
-		char* data;
-		int length;
-		int capacity;
+	using String = std::string;
 
-		void clear();
-		void appendChar(const char character);
-		void appendCharArray(const char* charArray);
-		void appendString(const String string);
+	//typedef struct String
+	//{
+	//	char* data;
+	//	int length;
+	//	int capacity;
 
-		void operator+=(const char character)
-		{
-			appendChar(character);
-		}
+	//	void clear();
+	//	void appendChar(const char character);
+	//	void appendCharArray(const char* charArray);
+	//	void appendString(const String string);
 
-		void operator+=(const char* charArray)
-		{
-			appendCharArray(charArray);
-		}
+	//	void operator+=(const char character)
+	//	{
+	//		appendChar(character);
+	//	}
 
-		void operator+=(const String string)
-		{
-			appendString(string);
-		}
-	}String;
+	//	void operator+=(const char* charArray)
+	//	{
+	//		appendCharArray(charArray);
+	//	}
+
+	//	void operator+=(const String string)
+	//	{
+	//		appendString(string);
+	//	}
+	//}String;
 }

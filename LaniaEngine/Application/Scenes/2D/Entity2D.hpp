@@ -14,7 +14,7 @@
 
 #include <stdint.h>
 #include <Application/Scenes/2D/Transform2D.hpp>
-#include <map>
+#include <Core/DataStructures/Map.hpp>
 
 namespace Lania
 {
@@ -22,7 +22,6 @@ namespace Lania
 	{
 		CAMERA2D,
 		RIGIDBODY2D,
-		RECT,
 		POSITION,
 		SPRITE,
 		STATICBODY2D,
@@ -33,8 +32,8 @@ namespace Lania
 	{
 		uint64_t id;
 		Transform2D transform;
-		std::map<uint8_t, uint64_t> components;
-		std::map<uint64_t, Entity2D*> children;
+		Map<uint8_t, uint64_t> components;
+		Map<uint64_t, Entity2D*> children;
 		Entity2D* parent;
 	}Entity2D;
 }

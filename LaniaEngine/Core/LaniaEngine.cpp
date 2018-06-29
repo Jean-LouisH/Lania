@@ -7,12 +7,14 @@
 #include "GL/glew.h"
 #include <Constants.hpp>
 #include "SDL.h"
+#include <Core/DataStructures/String.hpp>
+#include <Core/DataStructures/List.hpp>
 #include <sstream>
 
 void Lania::initialize(Engine* engine)
 {
 	//Development Test 
-	std::string initFilePath = "../Demos/IncrementTest/Init.cfg";
+	String initFilePath = "../Demos/IncrementTest/Init.cfg";
 
 	AppConfig* appConfig = &engine->appConfig;
 	unsigned char* state = &engine->state;
@@ -128,12 +130,12 @@ void Lania::loop(Engine* engine, Application* application)
 			engine->FPS = (passedFrames / (time->FPS.delta / S_PER_NS));
 			time->FPS.setStart();
 			passedFrames = 1;
-			std::string FPSString = std::to_string(engine->FPS);
-			std::string workLoadString = 
+			String FPSString = std::to_string(engine->FPS);
+			String processString = 
 				std::to_string((int)(((double)time->cycle.delta / (double)time->frame.delta) * 100));
 			SDL_SetWindowTitle(engine->window,
 				(engine->appConfig.appName + " - FPS: " + FPSString +
-					", Work Load: " + workLoadString + "%").c_str());
+					", Process: " + processString + "%").c_str());
 		}
 	} while (engine->state != SHUTDOWN);
 }
@@ -169,7 +171,7 @@ void Lania::output(Engine* engine)
 
 void Lania::shutdown(Engine* engine, Application* application)
 {
-	std::vector<SDL_GameController*>* gameControllers = &engine->input.gameControllers;
+	List<SDL_GameController*>* gameControllers = &engine->input.gameControllers;
 	for (int i = 0; i < gameControllers->size(); ++i)
 		SDL_GameControllerClose(gameControllers->at(i));
 	gameControllers->clear();

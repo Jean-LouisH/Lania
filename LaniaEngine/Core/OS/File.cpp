@@ -1,4 +1,5 @@
 #include "File.hpp"
+#include <Core/DataStructures/String.hpp>
 #include <fstream>
 
 bool Lania::File::exists(std::string filepath)
@@ -32,7 +33,7 @@ char* Lania::File::read(std::string filePath)
 		filePath.substr(filePath.find_last_of(".") + 1) == "csv")
 	{
 		inputFile.open(filePath);
-		std::string loadedContents((std::istreambuf_iterator<char>(inputFile)),
+		String loadedContents((std::istreambuf_iterator<char>(inputFile)),
 			std::istreambuf_iterator<char>());
 		char* fileString = _strdup(loadedContents.c_str());
 		inputFile.close();

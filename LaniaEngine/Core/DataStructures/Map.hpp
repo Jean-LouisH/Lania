@@ -3,17 +3,17 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Stack
+* Map
 *
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 */
 
 #pragma once
 
-#include <stack>
+#include <map>
 
 namespace Lania
 {
-	template <class T>
-	using Stack = std::stack<T>;
+	template <class _Kty, class _Ty>
+	using Map = std::map<const _Kty, _Ty>;
 }

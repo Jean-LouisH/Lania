@@ -14,7 +14,7 @@
 #pragma once
 
 #include <Core/DataStructures/List.hpp>
-#include <string>
+#include <Core/DataStructures/String.hpp>
 
 namespace Lania
 {
@@ -39,7 +39,7 @@ namespace Lania
 		int source1;
 		int source2;
 		double immediateValue;
-		std::string immediateString;
+		String immediateString;
 	}Instruction;
 
 	typedef struct Bytecode

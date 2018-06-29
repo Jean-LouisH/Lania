@@ -14,8 +14,8 @@
 #pragma once
 
 #include <Core/DataStructures/List.hpp>
-#include <stack>
-#include <string>
+#include <Core/DataStructures/Stack.hpp>
+#include <Core/DataStructures/String.hpp>
 #include "Scripting/Variables.hpp"
 #include "Scripting/Bytecode.hpp"
 #include "Scenes/Scene.hpp"
@@ -26,13 +26,13 @@ namespace Lania
 	{
 		Scene scene;
 		Variables global;
-		std::stack<Variables> callStack;
+		Stack<Variables> callStack;
 		List<Bytecode> scripts;
 
-		//void loadScene(std::string filepath);
-		//void clearScene();
-		//SDL_Keycode getSDLKeycode(std::string inputCode);
-		//unsigned int loadScript(std::string filepath);
+		void loadScene(std::string filepath);
+		void clearScene();
+		SDL_Keycode getSDLKeycode(std::string inputCode);
+		unsigned int loadScript(std::string filepath);
 		Application()
 		{}
 	}Application;

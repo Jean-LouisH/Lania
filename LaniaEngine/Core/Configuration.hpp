@@ -13,7 +13,7 @@
 #pragma once
 
 #include <stdint.h>
-#include <string>
+#include <Core/DataStructures/String.hpp>
 
 namespace Lania
 {
@@ -23,8 +23,8 @@ namespace Lania
 		int windowHeightPixels;
 		int targetFPS;
 		uint8_t windowFlags;
-		std::string mainScene;
-		std::string appName;
+		String mainScene;
+		String appName;
 		AppConfig() :
 			windowWidthPixels(0),
 			windowHeightPixels(0),
