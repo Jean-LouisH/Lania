@@ -23,8 +23,8 @@ namespace Lania
 		double angularDrag;
 		double gravityScale;
 		double elasticity;
-		double linearDrag;
+		double drag;
 		Vector2 angularVelocity;
-		Vector2 linearVelocity;
+		Vector2 velocity;
 	}RigidBody2D;
 }
