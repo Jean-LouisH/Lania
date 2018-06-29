@@ -18,7 +18,9 @@ namespace Lania
 {
 	typedef struct StaticBody2D
 	{
-		double rotation;
-		Vector2 position;
+		double elasticity;
+		double friction;
+		Vector2 constantVelocity;
+		Vector2 constantAngularVelocity;
 	}StaticBody2D;
 }
