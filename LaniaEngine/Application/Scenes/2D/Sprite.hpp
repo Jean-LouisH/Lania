@@ -22,6 +22,5 @@ namespace Lania
 		Rect pixels;
 		bool xFlip;
 		bool yFlip;
-		Vector2 position;
 	}Sprite;
 }
