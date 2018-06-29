@@ -118,7 +118,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application\Application.hpp" />
+    <ClInclude Include="Application\Scenes\2D\BoxCollider2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Camera2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\CircleCollider.hpp" />
+    <ClInclude Include="Application\Scenes\2D\ConstantForce2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Entity2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Rect.hpp" />
     <ClInclude Include="Application\Scenes\2D\RigidBody2D.hpp" />
@@ -133,6 +136,9 @@
     <ClInclude Include="Constants.hpp" />
     <ClInclude Include="Core\Configuration.hpp" />
     <ClInclude Include="Core\DataStructures\List.hpp" />
+    <ClInclude Include="Core\DataStructures\Map.hpp" />
+    <ClInclude Include="Core\DataStructures\Multimap.hpp" />
+    <ClInclude Include="Core\DataStructures\Set.hpp" />
     <ClInclude Include="Core\DataStructures\Stack.hpp" />
     <ClInclude Include="Core\DataStructures\String.hpp" />
     <ClInclude Include="Core\Engine.hpp" />
