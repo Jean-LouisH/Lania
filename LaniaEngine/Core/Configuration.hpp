@@ -19,15 +19,15 @@ namespace Lania
 {
 	typedef struct AppConfig
 	{
-		int windowWidthPixels;
-		int windowHeightPixels;
-		int targetFPS;
-		uint8_t windowFlags;
+		uint16_t windowWidth_px;
+		uint16_t windowHeight_px;
+		uint16_t targetFPS;
+		uint32_t windowFlags;
 		String mainScene;
 		String appName;
 		AppConfig() :
-			windowWidthPixels(0),
-			windowHeightPixels(0),
+			windowWidth_px(0),
+			windowHeight_px(0),
 			targetFPS(0),
 			windowFlags(0)
 		{}

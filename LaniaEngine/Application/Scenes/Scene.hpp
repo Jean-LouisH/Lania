@@ -12,7 +12,7 @@
 
 #pragma once
 
-#include <Core/DataStructures/Multimap.hpp>
+#include <Core/DataStructures/Map.hpp>
 #include <stdint.h>
 #include <Core/Input.hpp>
 #include "2D/Scene2D.hpp"
@@ -24,7 +24,7 @@ namespace Lania
 	typedef struct Scene
 	{
 		List<Scene2D> subscenes2D;
-		List<uint8_t> z_indices;
+		List<uint8_t> zIndices;
 		Multimap<String, SDL_Keycode> actionInputMaps;
 		Multimap<SDL_Keycode, int> keyScriptMaps;
 	}Scene;

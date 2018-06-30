@@ -13,13 +13,13 @@
 #pragma once
 
 #include <iostream>
-#include <string>
+#include <Core/DataStructures/String.hpp>
 
 namespace Lania
 {
 	namespace Log
 	{
-		void messageConsole(std::string message);
-		void messageFile(std::string message);
+		void messageConsole(String message);
+		void messageFile(String message);
 	}
 }

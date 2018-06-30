@@ -82,16 +82,16 @@ Lania::AppConfig Lania::Config::parseInit(char* fileContent)
 				end = value.find("x", start);
 				height = value.substr(start, end - start);
 
-				appConfig.windowWidthPixels = std::stoi(width);
-				appConfig.windowHeightPixels = std::stoi(height);
+				appConfig.windowWidth_px = std::stoi(width);
+				appConfig.windowHeight_px = std::stoi(height);
 			}
-			else if (key == "rendering_api")
+			else if (key == "renderer")
 			{
-				if (value == "OpenGL")
+				if (value == "OpenGL" || value == "Lania OpenGL")
 				{
 					appConfig.windowFlags |= SDL_WINDOW_OPENGL;
 				}
-				else if (value == "Vulkan")
+				else if (value == "Vulkan" || value == "Lania Vulkan")
 				{
 					appConfig.windowFlags |= SDL_WINDOW_VULKAN;
 				}
