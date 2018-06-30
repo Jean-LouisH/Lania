@@ -20,6 +20,6 @@ namespace Lania
 	void loop(Engine* engine, Application* application);
 	void script(Engine* engine, Application* application);
 	void compute(Engine* engine, Application* application);
-	void output(Engine* engine);
+	void output(Engine* engine, Application* application);
 	void shutdown(Engine* engine, Application* application);
 }
