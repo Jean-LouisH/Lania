@@ -31,7 +31,7 @@ namespace Lania
 		{
 			Uint8 state;
 			SDL_Keycode value;
-			Uint32 timestamp;
+			Uint32 timestamp_ms;
 		}KeyEvent;
 
 		//bool isPressed(unsigned char input);

@@ -11,12 +11,14 @@
 #pragma once
 
 #include <Application/Scenes/2D/Vector2.hpp>
+#include <Application/Scenes/2D/Entity2D.hpp>
 
 namespace Lania
 {
 	typedef struct ConstantForce2D
 	{
-		Vector2 force;
-		Vector2 torque;
+		Entity2D* container;
+		Vector2 force_N;
+		Vector2 torque_Nm;
 	}ConstantForce2D;
 }

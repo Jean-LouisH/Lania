@@ -19,13 +19,13 @@ namespace Lania
 {
 	typedef struct ExecutionTimer
 	{
-		uint64_t delta;
+		uint64_t delta_ns;
 		std::chrono::time_point<std::chrono::steady_clock> start;
 		std::chrono::time_point<std::chrono::steady_clock> end;
 		void setStart();
 		void setEnd();
 		ExecutionTimer() :
-			delta(0)
+			delta_ns(0)
 		{}
 	}ExecutionTimer;
 
@@ -38,6 +38,7 @@ namespace Lania
 		ExecutionTimer compute;
 		ExecutionTimer output;
 		ExecutionTimer FPS;
+		ExecutionTimer run;
 		double simulation;
 		uint64_t lag;
 		Timer() :

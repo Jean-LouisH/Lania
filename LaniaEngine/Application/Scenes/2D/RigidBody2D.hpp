@@ -13,18 +13,29 @@
 #pragma once
 
 #include <Application/Scenes/2D/Vector2.hpp>
+#include <Application/Scenes/2D/Entity2D.hpp>
 
 namespace Lania
 {
 	typedef struct RigidBody2D
 	{
-		double mass;
-		double friction;
-		double angularDrag;
-		double gravityScale;
-		double elasticity;
-		double drag;
-		Vector2 angularVelocity;
-		Vector2 velocity;
+		Entity2D* container;
+		double mass_kg;
+		double friction_ratio;
+		double angularDrag_ratio;
+		double gravity_scale;
+		double elasticity_ratio;
+		double drag_ratio;
+		Vector2 angularVelocity_rad_per_s;
+		Vector2 velocity_px_per_s;
+
+		RigidBody2D() :
+			mass_kg(0.0),
+			friction_ratio(0.0),
+			angularDrag_ratio(0.0),
+			gravity_scale(0.0),
+			elasticity_ratio(0.0),
+			drag_ratio(0.0)
+		{}
 	}RigidBody2D;
 }

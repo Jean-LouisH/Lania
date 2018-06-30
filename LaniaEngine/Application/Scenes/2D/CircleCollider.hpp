@@ -10,10 +10,18 @@
 
 #pragma once
 
+#include <stdint.h>
+#include <Application/Scenes/2D/Entity2D.hpp>
+
 namespace Lania
 {
 	typedef struct CircleCollider
 	{
-		double radius;
+		Entity2D* container;
+		uint16_t radius_px;
+
+		CircleCollider():
+			radius_px(0)
+		{}
 	}CircleCollider;
 }
