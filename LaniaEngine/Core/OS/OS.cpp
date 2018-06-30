@@ -1,28 +1,59 @@
 #include "OS.hpp"
+#include "Constants.hpp"
 #include "Logging.hpp"
 #include <Core/Engine.hpp>
 #include <Core/Input.hpp>
 #include "SDL_events.h"
+#include <SDL_image.h>
 
 void Lania::OS::listenForEvents(Lania::Engine* engine)
 {
-	SDL_Event SDLEvents;
 	engine->timer.input.setStart();
 
 	if (SDL_NumJoysticks() != engine->input.gameControllers.size())
-	{
-		engine->input.gameControllers.clear();
+		OS::detectGameControllers(engine);
+	OS::detectBatteryLife(engine);
+	OS::pollInputEvents(engine);
+//	OS::refreshWindowIcon(engine);
 
-		for (int i = 0; i < SDL_NumJoysticks(); ++i)
+	engine->timer.input.setEnd();
+}
+
+void Lania::OS::detectGameControllers(Engine* engine)
+{
+	for (int i = 0; i < engine->input.gameControllers.size(); ++i)
+	{
+		SDL_GameControllerClose(engine->input.gameControllers.at(i));
+		SDL_HapticClose(engine->input.haptics.at(i));
+	}
+
+	engine->input.gameControllers.clear();
+	engine->input.haptics.clear();
+
+	for (int i = 0; i < SDL_NumJoysticks(); ++i)
+	{
+		if (SDL_IsGameController(i))
 		{
-			if (SDL_IsGameController(i))
-			{
-				engine->input.gameControllers.push_back(SDL_GameControllerOpen(i));
-				if (!engine->input.gameControllers.back())
-					fprintf(stderr, "Could not open gamecontroller %i: %s\n", i, SDL_GetError());
-			}
+			SDL_GameController* newController = SDL_GameControllerOpen(i);
+			SDL_Joystick* joystick = SDL_GameControllerGetJoystick(newController);
+			engine->input.gameControllers.push_back(newController);
+			engine->input.haptics.push_back(SDL_HapticOpenFromJoystick(joystick));
+			if (!engine->input.gameControllers.back())
+				fprintf(stderr, "Could not open gamecontroller %i: %s\n", i, SDL_GetError());
 		}
 	}
+}
+
+void Lania::OS::detectBatteryLife(Engine* engine)
+{
+	engine->timer.run.setEnd();
+	if (engine->timer.run.delta_ns / S_PER_NS >= 10)
+		SDL_GetPowerInfo(NULL, &engine->platform.batteryLife_pct);
+}
+
+void Lania::OS::pollInputEvents(Engine* engine)
+{
+	SDL_Event SDLEvents;
 
 	while (SDL_PollEvent(&SDLEvents))
 	{
@@ -55,5 +86,16 @@ void Lania::OS::listenForEvents(Lania::Engine* engine)
 			break;
 		}
 	}
-	engine->timer.input.setEnd();
+}
+
+void Lania::OS::refreshWindowIcon(Engine* engine)
+{
+	engine->timer.run.setEnd();
+	if (engine->timer.run.delta_ns / S_PER_NS >= 10)
+	{
+		String iconString = "../Demos/" + engine->appConfig.appName + "/Icon.png";
+		SDL_Surface* logo = IMG_Load(iconString.c_str());
+		SDL_SetWindowIcon(engine->window, logo);
+		SDL_FreeSurface(logo);
+	}
 }
