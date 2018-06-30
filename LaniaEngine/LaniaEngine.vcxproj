@@ -82,11 +82,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Software Development Kits\boost_1_65_1;C:\Software Development Kits\glm;C:\Software Development Kits\glew-2.1.0\include;C:\Software Development Kits\SDL2\SDL2-2.0.6\include;C:\Users\louis_000\Source\Repos\LaniaEngine\LaniaEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Software Development Kits\SDL2 Image\SDL2_image-2.0.3\include;C:\Software Development Kits\boost_1_65_1;C:\Software Development Kits\glm;C:\Software Development Kits\glew-2.1.0\include;C:\Software Development Kits\SDL2\SDL2-2.0.8\include;C:\Users\louis_000\Source\Repos\LaniaEngine\LaniaEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>C:\Software Development Kits\SDL2\SDL2-2.0.6\lib\x64;C:\Software Development Kits\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Software Development Kits\SDL2 Image\SDL2_image-2.0.3\lib\x64;C:\Software Development Kits\SDL2\SDL2-2.0.8\lib\x64;C:\Software Development Kits\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2_image.lib;SDL2main.lib;opengl32.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
@@ -124,6 +124,7 @@
     <ClInclude Include="Application\Scenes\2D\ConstantForce2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Entity2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Rect.hpp" />
+    <ClInclude Include="Application\Scenes\2D\AABB2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\RigidBody2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Scene2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Sprite.hpp" />
@@ -137,7 +138,6 @@
     <ClInclude Include="Core\Configuration.hpp" />
     <ClInclude Include="Core\DataStructures\List.hpp" />
     <ClInclude Include="Core\DataStructures\Map.hpp" />
-    <ClInclude Include="Core\DataStructures\Multimap.hpp" />
     <ClInclude Include="Core\DataStructures\Set.hpp" />
     <ClInclude Include="Core\DataStructures\Stack.hpp" />
     <ClInclude Include="Core\DataStructures\String.hpp" />
@@ -148,9 +148,12 @@
     <ClInclude Include="Core\OS\File.hpp" />
     <ClInclude Include="Core\OS\Logging.hpp" />
     <ClInclude Include="Core\Output.hpp" />
+    <ClInclude Include="Core\Platform.hpp" />
     <ClInclude Include="Core\Timer.hpp" />
     <ClInclude Include="Core\UnitTesting.hpp" />
     <ClInclude Include="Input\Keyboard.hpp" />
+    <ClInclude Include="Rendering\RendererSDL.hpp" />
+    <ClInclude Include="Rendering\SDLRenderable.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\Application.cpp" />
@@ -166,6 +169,7 @@
     <ClCompile Include="Core\UnitTesting.cpp" />
     <ClCompile Include="Input\Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Rendering\RendererSDL.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -111,10 +111,19 @@
     <ClInclude Include="Core\DataStructures\Map.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\DataStructures\Multimap.hpp">
+    <ClInclude Include="Core\DataStructures\Set.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\DataStructures\Set.hpp">
+    <ClInclude Include="Core\Platform.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scenes\2D\AABB2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RendererSDL.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SDLRenderable.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -156,6 +165,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\DataStructures\Stack.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RendererSDL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
