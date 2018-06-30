@@ -27,5 +27,7 @@ namespace Lania
 	{
 		List<Key::KeyEvent> keyEvents;
 		List<SDL_GameController*> gameControllers;
+		List<SDL_Haptic*> haptics;
+		List<SDL_HapticEffect> hapticEffects;
 	}Input;
 }
