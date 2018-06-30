@@ -35,5 +35,10 @@ namespace Lania
 		Map<uint8_t, uint64_t> components;
 		Map<uint64_t, Entity2D*> children;
 		Entity2D* parent;
+
+		Entity2D():
+			id(0),
+			parent(NULL)
+		{}
 	}Entity2D;
 }

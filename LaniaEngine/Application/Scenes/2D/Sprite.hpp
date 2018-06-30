@@ -13,14 +13,21 @@
 #include <SDL_render.h>
 #include <Application/Scenes/2D/Rect.hpp>
 #include <Application/Scenes/2D/Vector2.hpp>
+#include <Application/Scenes/2D/Entity2D.hpp>
 
 namespace Lania
 {
-	typedef struct
+	typedef struct Sprite
 	{
+		Entity2D* container;
 		SDL_Texture* texture;
 		Rect pixels;
 		bool xFlip;
 		bool yFlip;
+
+		Sprite():
+			xFlip(false),
+			yFlip(false)
+		{}
 	}Sprite;
 }

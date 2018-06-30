@@ -12,15 +12,22 @@
 
 #pragma once
 
+#include <stdint.h>
+
 namespace Lania
 {
 	typedef struct Vector2
 	{
-		double x;
-		double y;
+		uint16_t x;
+		uint16_t y;
 
 		double length();
 		double direction();
 		Vector2 normalized();
+
+		Vector2():
+			x(0),
+			y(0)
+		{}
 	}Vector2;
 }
