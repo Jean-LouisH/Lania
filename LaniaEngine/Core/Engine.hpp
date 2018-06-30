@@ -18,34 +18,45 @@
 #include "Configuration.hpp"
 #include "Input.hpp"
 #include "Output.hpp"
+#include "Platform.hpp"
+#include <stdint.h>
 
 namespace Lania
 {
-	enum
+	enum engineStates
 	{
 		RUNNING_APPLICATION,
 		SHUTDOWN,
+	};
+
+	enum renderers
+	{
+		SDL_RENDERER,
+		LANIA_OPENGL_RENDERER,
+		LANIA_VULKAN_RENDERER,
 	};
 
 	typedef struct Engine
 	{
 		SDL_Window* window;
 		SDL_GLContext glContext;
-		char* renderingAPI;
-		char* platform;
+		SDL_Renderer* SDLRenderer;
+		uint8_t renderer;
 		char* filepath;
+		Platform platform;
 		Timer timer;
 		AppConfig appConfig;
 		Input input;
 		Output output;
-		long long int frameCount;
-		int FPS;
-		unsigned char state;
+		uint64_t frameCount;
+		uint16_t FPS;
+		uint8_t state;
 		Engine() :
 			window(NULL),
 			glContext(NULL),
-			renderingAPI(NULL),
-			platform(NULL),
+			SDLRenderer(NULL),
+			renderer(SDL_RENDERER),
+			filepath(NULL),
 			frameCount(0),
 			FPS(0),
 			state(0) {}
