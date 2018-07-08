@@ -31,19 +31,19 @@ namespace Lania
 
 	typedef struct Timer
 	{
-		ExecutionTimer cycle;
+		ExecutionTimer process;
 		ExecutionTimer frame;
-		ExecutionTimer input;
+		ExecutionTimer OS;
 		ExecutionTimer script;
 		ExecutionTimer compute;
 		ExecutionTimer output;
 		ExecutionTimer FPS;
 		ExecutionTimer run;
-		double simulation;
-		uint64_t lag;
+		double simulation_ms;
+		uint64_t lag_ms;
 		Timer() :
-			simulation(0.0),
-			lag(0) 
+			simulation_ms(0.0),
+			lag_ms(0) 
 		{}
 	}Timing;
 }
