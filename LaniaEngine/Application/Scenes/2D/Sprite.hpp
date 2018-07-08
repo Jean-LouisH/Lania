@@ -11,6 +11,7 @@
 #pragma once
 
 #include <SDL_render.h>
+#include <stdint.h>
 #include <Application/Scenes/2D/Rect.hpp>
 #include <Application/Scenes/2D/Vector2.hpp>
 #include <Application/Scenes/2D/Entity2D.hpp>
@@ -19,15 +20,14 @@ namespace Lania
 {
 	typedef struct Sprite
 	{
-		Entity2D* container;
+		int64_t entityID;
 		SDL_Texture* texture;
+		uint8_t alpha;
 		Rect pixels;
-		bool xFlip;
-		bool yFlip;
+		SDL_RendererFlip flip;
 
 		Sprite():
-			xFlip(false),
-			yFlip(false)
+			flip (SDL_FLIP_NONE)
 		{}
 	}Sprite;
 }
