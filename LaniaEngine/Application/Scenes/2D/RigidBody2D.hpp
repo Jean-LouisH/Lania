@@ -12,6 +12,7 @@
 
 #pragma once
 
+#include <stdint.h>
 #include <Application/Scenes/2D/Vector2.hpp>
 #include <Application/Scenes/2D/Entity2D.hpp>
 
@@ -19,7 +20,7 @@ namespace Lania
 {
 	typedef struct RigidBody2D
 	{
-		Entity2D* container;
+		int64_t entityID;
 		double mass_kg;
 		double friction_ratio;
 		double angularDrag_ratio;

@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include <stdint.h>
 #include <Application/Scenes/2D/AABB2D.hpp>
 #include <Application/Scenes/2D/Entity2D.hpp>
 
@@ -17,7 +18,7 @@ namespace Lania
 {
 	typedef struct BoxCollider2D
 	{
-		Entity2D* container;
+		uint64_t entityID;
 		AABB2D aabb;
 	}BoxCollider2D;
 }

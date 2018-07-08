@@ -10,6 +10,7 @@
 
 #pragma once
 
+#include <stdint.h>
 #include <Application/Scenes/2D/Vector2.hpp>
 #include <Application/Scenes/2D/Entity2D.hpp>
 
@@ -17,7 +18,7 @@ namespace Lania
 {
 	typedef struct ConstantForce2D
 	{
-		Entity2D* container;
+		int64_t entityID;
 		Vector2 force_N;
 		Vector2 torque_Nm;
 	}ConstantForce2D;
