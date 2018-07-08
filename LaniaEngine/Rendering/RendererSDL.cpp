@@ -1,4 +1,5 @@
 #include "RendererSDL.hpp"
+#include <limits.h>
 #include "SDLRenderable.hpp"
 
 void Lania::RendererSDL::drawSprites(
@@ -17,35 +18,51 @@ void Lania::RendererSDL::drawSprites(
 	for (int i = 0; i < scene2DCount; i++)
 	{
 		Scene2D* scene2D = &scene2Ds->at(i);
+		Camera2D camera = scene2D->activeCameras.at(scene2D->currentCameraIndex);
+		List<Entity2D>* entities = &scene2D->entities;
+		Transform2D* cameraTransform = &entities->at(camera.entityID).transform;
 
-		int spriteCount = scene2D->sprites.size();
+		//Gets sprite data pointer to bypass container procedure calls
+		//Within this procedure, the sprite container is read-only.
+		Sprite* sprites = scene2D->activeSprites.data();
+		int spriteCount = scene2D->activeSprites.size();
 		for (int j = 0; j < spriteCount; j++)
 		{
-			Sprite* sprite = &scene2D->sprites.at(i);
-			Camera2D* camera = NULL;
-
-			for (int k = 0; k < scene2D->cameras.size(); k++)
-			{
-				camera = &scene2D->cameras.at(i);
-				if (camera->current)
-					break;
-			}
-
-			SDL_RendererFlip flip = SDL_FLIP_NONE;
-
-			if (sprite->xFlip)
-				flip = SDL_FLIP_HORIZONTAL;
-			if (sprite->yFlip)
-				flip = SDL_FLIP_VERTICAL;
+			Sprite* sprite = &sprites[j];
+			Transform2D* spriteTransform = &entities->at(sprite->entityID).transform;
 
 			double spriteWidth = sprite->pixels.width;
 			double spriteHeight = sprite->pixels.height;
-			double cameraWidth = camera->viewport_px.width;
-			double cameraHeight = camera->viewport_px.height;
-			double cameraX = camera->container->transform.position_px.x;
-			double cameraY = camera->container->transform.position_px.y;
-			double spriteX = sprite->container->transform.position_px.x;
-			double spriteY = sprite->container->transform.position_px.y;
+			double cameraWidth = camera.viewport_px.width;
+			double cameraHeight = camera.viewport_px.height;
+			double cameraX = cameraTransform->position_px.x;
+			double cameraY = cameraTransform->position_px.y;
+			double spriteX;
+			double spriteY;
+			double rotationRelativeToCamera;
+
+			//Offsets sprite by relative position with parent
+			EntityID spriteParent = entities->at(sprite->entityID).parent;
+			if (spriteParent != ULLONG_MAX)
+			{
+				Transform2D parentTransform = entities->at(spriteParent).transform;
+				spriteX = parentTransform.position_px.x + 
+					(spriteTransform->position_px.x * cos(parentTransform.rotation_rad * M_PI) -
+					spriteTransform->position_px.y * sin(parentTransform.rotation_rad * M_PI));
+				spriteY = parentTransform.position_px.y +
+					(spriteTransform->position_px.x * sin(parentTransform.rotation_rad * M_PI) +
+					spriteTransform->position_px.y * cos(parentTransform.rotation_rad * M_PI));
+				rotationRelativeToCamera =
+					-((spriteTransform->rotation_rad + parentTransform.rotation_rad - 
+						cameraTransform->rotation_rad) * 180.0);
+			}
+			else
+			{
+				spriteX = spriteTransform->position_px.x;
+				spriteY = spriteTransform->position_px.y;
+				rotationRelativeToCamera =
+					-((spriteTransform->rotation_rad - cameraTransform->rotation_rad) * 180.0);
+			}
 
 			SDLRenderable renderable = {
 				sprite->texture,
@@ -61,9 +78,9 @@ void Lania::RendererSDL::drawSprites(
 				renderable.texture,
 				&renderable.textureRect,
 				&renderable.renderingRect,
-				-(sprite->container->transform.rotation_rad * M_PI) * (180 / M_PI),
+				rotationRelativeToCamera,
 				NULL,
-				flip);
+				sprite->flip);
 		}
 	}
 
