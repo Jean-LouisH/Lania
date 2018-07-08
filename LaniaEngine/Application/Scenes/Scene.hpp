@@ -19,12 +19,20 @@
 #include <Core/DataStructures/List.hpp>
 #include <Core/DataStructures/String.hpp>
 
+using LayerType = uint8_t;
+
 namespace Lania
 {
+	enum LayerTypes
+	{
+		SUBSCENE_2D,
+		SUBSCENE_3D
+	};
+
 	typedef struct Scene
 	{
 		List<Scene2D> subscenes2D;
-		List<uint8_t> zIndices;
+		List<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
 		Multimap<SDL_Keycode, int> keyScriptMaps;
 	}Scene;
