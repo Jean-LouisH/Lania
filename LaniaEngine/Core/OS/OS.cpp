@@ -8,27 +8,27 @@
 
 void Lania::OS::listenForEvents(Lania::Engine* engine)
 {
-	engine->timer.input.setStart();
+	engine->timer.OS.setStart();
 
 	if (SDL_NumJoysticks() != engine->input.gameControllers.size())
-		OS::detectGameControllers(engine);
+		OS::detectGameControllers(&engine->input);
 	OS::detectBatteryLife(engine);
 	OS::pollInputEvents(engine);
 //	OS::refreshWindowIcon(engine);
 
-	engine->timer.input.setEnd();
+	engine->timer.OS.setEnd();
 }
 
-void Lania::OS::detectGameControllers(Engine* engine)
+void Lania::OS::detectGameControllers(Input* input)
 {
-	for (int i = 0; i < engine->input.gameControllers.size(); ++i)
+	for (int i = 0; i < input->gameControllers.size(); ++i)
 	{
-		SDL_GameControllerClose(engine->input.gameControllers.at(i));
-		SDL_HapticClose(engine->input.haptics.at(i));
+		SDL_GameControllerClose(input->gameControllers.at(i));
+		SDL_HapticClose(input->haptics.at(i));
 	}
 
-	engine->input.gameControllers.clear();
-	engine->input.haptics.clear();
+	input->gameControllers.clear();
+	input->haptics.clear();
 
 	for (int i = 0; i < SDL_NumJoysticks(); ++i)
 	{
@@ -36,9 +36,9 @@ void Lania::OS::detectGameControllers(Engine* engine)
 		{
 			SDL_GameController* newController = SDL_GameControllerOpen(i);
 			SDL_Joystick* joystick = SDL_GameControllerGetJoystick(newController);
-			engine->input.gameControllers.push_back(newController);
-			engine->input.haptics.push_back(SDL_HapticOpenFromJoystick(joystick));
-			if (!engine->input.gameControllers.back())
+			input->gameControllers.push_back(newController);
+			input->haptics.push_back(SDL_HapticOpenFromJoystick(joystick));
+			if (!input->gameControllers.back())
 				fprintf(stderr, "Could not open gamecontroller %i: %s\n", i, SDL_GetError());
 		}
 	}

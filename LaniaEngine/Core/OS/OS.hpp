@@ -19,7 +19,7 @@ namespace Lania
 	namespace OS
 	{
 		void listenForEvents(Engine* engine);
-		void detectGameControllers(Engine* engine);
+		void detectGameControllers(Input* input);
 		void detectBatteryLife(Engine* engine);
 		void pollInputEvents(Engine* engine);
 		void refreshWindowIcon(Engine* engine);
