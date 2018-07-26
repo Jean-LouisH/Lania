@@ -18,16 +18,16 @@ namespace Lania
 {
 	typedef struct Vector2
 	{
-		int16_t x;
-		int16_t y;
+		double x;
+		double y;
 
 		double length();
 		double direction();
 		Vector2 normalized();
 
 		Vector2():
-			x(0),
-			y(0)
+			x(0.0),
+			y(0.0)
 		{}
 	}Vector2;
 }
