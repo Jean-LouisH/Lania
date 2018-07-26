@@ -142,8 +142,6 @@ void Lania::loop(Engine* engine, Application* application)
 
 	///////////////////////////////////////////////////////////////////////
 	Entity2D camera;
-	camera.transform.position_px.x = engine->appConfig.windowWidth_px / 2;
-	camera.transform.position_px.y = engine->appConfig.windowHeight_px / 2;
 	scene2D.entities.push_back(camera);
 
 	Camera2D camera2D;
@@ -157,8 +155,6 @@ void Lania::loop(Engine* engine, Application* application)
 	////////////////////////////////////////////////////////////////////////
 
 	Entity2D background;
-	background.transform.position_px.x = engine->appConfig.windowWidth_px / 2;
-	background.transform.position_px.y = engine->appConfig.windowHeight_px / 2;
 	scene2D.entities.push_back(background);
 
 	Sprite bgSprite;
@@ -172,14 +168,20 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
 	scene2D.activeSprites.push_back(bgSprite);
 
+	scene2D.entities.back().transform.position_px.x = bgSprite.pixels.width / 2.0;
+	scene2D.entities.back().transform.position_px.y = bgSprite.pixels.height / 2.0;
+
+	scene2D.entities.at(0).transform.position_px.x = bgSprite.pixels.width / 2.0;
+	scene2D.entities.at(0).transform.position_px.y = bgSprite.pixels.height / 2.0;
 	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.width = bgSprite.pixels.height * 1.777;
 	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.height = bgSprite.pixels.height;
 
 	double testScale = 0.35;
+	//testScale = 1.0;
 
 	Entity2D pikachu1;
-	pikachu1.transform.position_px.x = 0;
-	pikachu1.transform.position_px.y = 0;
+	pikachu1.transform.position_px.x = 260;
+	pikachu1.transform.position_px.y = 200;
 	pikachu1.transform.scale.x = testScale;
 	pikachu1.transform.scale.y = testScale;
 	scene2D.entities.push_back(pikachu1);
@@ -196,8 +198,8 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.activeSprites.push_back(pkSprite);
 
 	Entity2D pikachu2;
-	pikachu2.transform.position_px.x = 260;
-	pikachu2.transform.position_px.y = 0;
+	pikachu2.transform.position_px.x = 1066;
+	pikachu2.transform.position_px.y = 200;
 	pikachu2.transform.scale.x = testScale;
 	pikachu2.transform.scale.y = testScale;
 	scene2D.entities.push_back(pikachu2);

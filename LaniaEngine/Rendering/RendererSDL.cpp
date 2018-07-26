@@ -74,8 +74,8 @@ void Lania::RendererSDL::drawSprites(
 			renderable.textureRect.w = spriteWidth;
 			renderable.textureRect.h = spriteHeight;
 
-			renderable.renderingRect.x = (int)((((spriteX - spriteWidth / 2 - cameraX) / cameraWidth) + 0.5) * (double)windowWidth_px);
-			renderable.renderingRect.y = (int)((((cameraY - spriteY - spriteHeight / 2) / cameraHeight) + 0.5) * (double)windowHeight_px);
+			renderable.renderingRect.x = (int)((((spriteX - (spriteWidthScaled / 2.0) - cameraX) / cameraWidth) + 0.5) * (double)windowWidth_px);
+			renderable.renderingRect.y = (int)((((cameraY - spriteY - (spriteHeightScaled / 2.0)) / cameraHeight) + 0.5) * (double)windowHeight_px);
 			renderable.renderingRect.w = (int)(spriteWidthScaled / cameraWidth * (double)windowWidth_px);
 			renderable.renderingRect.h = (int)(spriteHeightScaled / cameraHeight * (double)windowHeight_px);
 
