@@ -16,7 +16,7 @@
 void Lania::initialize(Engine* engine)
 {
 	//Development Test 
-	String initFilePath = "../Demos/SpriteTest/Init.cfg";
+	String initFilePath = "../Demos/IsleFightPrototypeReplica/Init.cfg";
 
 	AppConfig* appConfig = &engine->appConfig;
 	unsigned char* state = &engine->state;
@@ -44,6 +44,7 @@ void Lania::initialize(Engine* engine)
 		//Development test
 		appConfig->targetFPS = 60;
 		IMG_Init(IMG_INIT_PNG);
+		IMG_Init(IMG_INIT_JPG);
 
 		if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
 		{
@@ -139,64 +140,114 @@ void Lania::loop(Engine* engine, Application* application)
 
 	Scene2D scene2D;
 
+	///////////////////////////////////////////////////////////////////////
 	Entity2D camera;
-	//Assign data, centred to screen
 	camera.transform.position_px.x = engine->appConfig.windowWidth_px / 2;
 	camera.transform.position_px.y = engine->appConfig.windowHeight_px / 2;
-	//Add to scene
 	scene2D.entities.push_back(camera);
 
 	Camera2D camera2D;
-	//Assign data, viewing the entire scene
 	camera2D.viewport_px.width = engine->appConfig.windowWidth_px;
 	camera2D.viewport_px.height = engine->appConfig.windowHeight_px;
 	camera2D.current = true;
-	//Attach to last entity
 	camera2D.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= CAMERA2D;
-	//Add to scene
 	scene2D.activeCameras.push_back(camera2D);
-	//Camera assigned as current
 	scene2D.currentCameraIndex = scene2D.activeCameras.size() - 1;
+	////////////////////////////////////////////////////////////////////////
 
-	//Once again
+	Entity2D background;
+	background.transform.position_px.x = engine->appConfig.windowWidth_px / 2;
+	background.transform.position_px.y = engine->appConfig.windowHeight_px / 2;
+	scene2D.entities.push_back(background);
 
-	Entity2D magnemite;
-	magnemite.transform.position_px.x = engine->appConfig.windowWidth_px / 2;
-	magnemite.transform.position_px.y = engine->appConfig.windowHeight_px / 2;
-	scene2D.entities.push_back(magnemite);
-
-	Sprite magnemiteSprite;
-	SDL_Surface* magnemiteSurface =
-		IMG_Load("../Demos/SpriteTest/SpriteTest/Graphics/Textures/Magnemite_small.png");
-	magnemiteSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, magnemiteSurface);
-	magnemiteSprite.pixels.width = magnemiteSurface->w;
-	magnemiteSprite.pixels.height = magnemiteSurface->h;
-	SDL_FreeSurface(magnemiteSurface);
-	magnemiteSprite.entityID = scene2D.entities.size() - 1;
+	Sprite bgSprite;
+	SDL_Surface* bgSurface =
+		IMG_Load("../Demos/IsleFightPrototypeReplica/IsleFightPrototypeReplica/Graphics/Textures/beach.jpg");
+	bgSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, bgSurface);
+	bgSprite.pixels.width = bgSurface->w;
+	bgSprite.pixels.height = bgSurface->h;
+	SDL_FreeSurface(bgSurface);
+	bgSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
-	scene2D.activeSprites.push_back(magnemiteSprite);
+	scene2D.activeSprites.push_back(bgSprite);
 
-	Entity2D apple;
-	//As an attached entity, these are relative to magnemite
-	apple.transform.position_px.x = 0;
-	apple.transform.position_px.y = -100;
-	//Attach apple to magnemite
-	apple.parent = scene2D.entities.size() - 1;
-	scene2D.entities.back().children.push_back(scene2D.entities.size());
-	//Add to scene.
-	scene2D.entities.push_back(apple);
+	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.width = bgSprite.pixels.height * 1.777;
+	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.height = bgSprite.pixels.height;
 
-	Sprite appleSprite;
-	SDL_Surface* appleSurface =
-		IMG_Load("../Demos/SpriteTest/SpriteTest/Graphics/Textures/apple.png");
-	appleSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, appleSurface);
-	appleSprite.pixels.width = appleSurface->w;
-	appleSprite.pixels.height = appleSurface->h;
-	SDL_FreeSurface(appleSurface);
-	appleSprite.entityID = scene2D.entities.size() - 1;
+	double testScale = 0.35;
+
+	Entity2D pikachu1;
+	pikachu1.transform.position_px.x = 0;
+	pikachu1.transform.position_px.y = 0;
+	pikachu1.transform.scale.x = testScale;
+	pikachu1.transform.scale.y = testScale;
+	scene2D.entities.push_back(pikachu1);
+
+	Sprite pkSprite;
+	SDL_Surface* pkSurface =
+		IMG_Load("../Demos/IsleFightPrototypeReplica/IsleFightPrototypeReplica/Graphics/Textures/pikachu.png");
+	pkSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, pkSurface);
+	pkSprite.pixels.width = pkSurface->w;
+	pkSprite.pixels.height = pkSurface->h;
+	SDL_FreeSurface(pkSurface);
+	pkSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
-	scene2D.activeSprites.push_back(appleSprite);
+	scene2D.activeSprites.push_back(pkSprite);
+
+	Entity2D pikachu2;
+	pikachu2.transform.position_px.x = 260;
+	pikachu2.transform.position_px.y = 0;
+	pikachu2.transform.scale.x = testScale;
+	pikachu2.transform.scale.y = testScale;
+	scene2D.entities.push_back(pikachu2);
+
+	pkSprite.entityID = scene2D.entities.size() - 1;
+	pkSprite.flip = SDL_FLIP_HORIZONTAL;
+	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
+	scene2D.activeSprites.push_back(pkSprite);
+
+	Entity2D floorCollider;
+
+
+	////Once again
+
+	//Entity2D magnemite;
+	//magnemite.transform.position_px.x = engine->appConfig.windowWidth_px / 2;
+	//magnemite.transform.position_px.y = engine->appConfig.windowHeight_px / 2;
+	//scene2D.entities.push_back(magnemite);
+
+	//Sprite magnemiteSprite;
+	//SDL_Surface* magnemiteSurface =
+	//	IMG_Load("../Demos/SpriteTest/SpriteTest/Graphics/Textures/Magnemite_small.png");
+	//magnemiteSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, magnemiteSurface);
+	//magnemiteSprite.pixels.width = magnemiteSurface->w;
+	//magnemiteSprite.pixels.height = magnemiteSurface->h;
+	//SDL_FreeSurface(magnemiteSurface);
+	//magnemiteSprite.entityID = scene2D.entities.size() - 1;
+	//scene2D.entities.back().attachedComponentsFlag |= SPRITE;
+	//scene2D.activeSprites.push_back(magnemiteSprite);
+
+	//Entity2D apple;
+	////As an attached entity, these are relative to magnemite
+	//apple.transform.position_px.x = 0;
+	//apple.transform.position_px.y = -100;
+	////Attach apple to magnemite
+	//apple.parent = scene2D.entities.size() - 1;
+	//scene2D.entities.back().children.push_back(scene2D.entities.size());
+	////Add to scene.
+	//scene2D.entities.push_back(apple);
+
+	//Sprite appleSprite;
+	//SDL_Surface* appleSurface =
+	//	IMG_Load("../Demos/SpriteTest/SpriteTest/Graphics/Textures/apple.png");
+	//appleSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, appleSurface);
+	//appleSprite.pixels.width = appleSurface->w;
+	//appleSprite.pixels.height = appleSurface->h;
+	//SDL_FreeSurface(appleSurface);
+	//appleSprite.entityID = scene2D.entities.size() - 1;
+	//scene2D.entities.back().attachedComponentsFlag |= SPRITE;
+	//scene2D.activeSprites.push_back(appleSprite);
 
 	application->scene.subscenes2D.push_back(scene2D);
 
@@ -277,11 +328,6 @@ void Lania::compute(Engine* engine, Application* application)
 
 	while (time->lag_ms >= MS_PER_UPDATE)
 	{
-		//Development test
-		//Rotate magnemite through List reference. Pointers dangle after auto-reallocation.
-		application->scene.subscenes2D.at(0).entities.at(1).transform.rotation_rad += 
-			(M_PI / 6) * 1 / (engine->appConfig.targetFPS);
-
 		time->simulation_ms += MS_PER_UPDATE;
 		time->lag_ms -= MS_PER_UPDATE;
 	}
