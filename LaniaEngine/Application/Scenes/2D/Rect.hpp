@@ -16,12 +16,12 @@ namespace Lania
 {
 	typedef struct Rect
 	{
-		uint16_t width;
-		uint16_t height;
+		double width;
+		double height;
 
 		Rect():
-			width(0),
-			height(0)
+			width(0.0),
+			height(0.0)
 		{}
 	}Rect;
 }
