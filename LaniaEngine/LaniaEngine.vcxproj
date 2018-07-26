@@ -152,6 +152,7 @@
     <ClInclude Include="Core\Timer.hpp" />
     <ClInclude Include="Core\UnitTesting.hpp" />
     <ClInclude Include="Input\Keyboard.hpp" />
+    <ClInclude Include="Rendering\GPU.hpp" />
     <ClInclude Include="Rendering\RendererSDL.hpp" />
     <ClInclude Include="Rendering\SDLRenderable.hpp" />
   </ItemGroup>

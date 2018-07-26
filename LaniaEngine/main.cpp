@@ -10,6 +10,7 @@
 */
 
 #include "SDL.h"
+#include <Rendering/GPU.hpp>
 #include "Core/LaniaEngine.hpp"
 
 int main(int argc, char* argv[])
