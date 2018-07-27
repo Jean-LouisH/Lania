@@ -18,7 +18,7 @@
 #include "Camera2D.hpp"
 #include "Entity2D.hpp"
 #include "RigidBody2D.hpp"
-#include "Sprite.hpp"
+#include "Sprite2D.hpp"
 #include "StaticBody2D.hpp"
 
 using ComponentListIndex = uint64_t;
@@ -33,14 +33,14 @@ namespace Lania
 		//Active component existence-based processing lists
 		//Ordered by entity layer, but not necessarily matched to IDs
 		//Components contain parent entity IDs
-		List<Sprite> activeSprites;
+		List<Sprite2D> activeSprites;
 		List<Camera2D> activeCameras;
 		List<RigidBody2D> activeRigidBodies;
 		List<StaticBody2D> activeStaticBodies;
 
 		//Inactive storage lists
 		//No ordering enforced as long as components maintain parent entity IDs
-		List<Sprite> inactiveSprites;
+		List<Sprite2D> inactiveSprites;
 		List<Camera2D> inactiveCameras;
 		List<RigidBody2D> inactiveRigidBodies;
 		List<StaticBody2D> inactiveStaticBodies;

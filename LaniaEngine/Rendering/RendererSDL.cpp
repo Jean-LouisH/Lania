@@ -24,11 +24,11 @@ void Lania::RendererSDL::drawSprites(
 
 		//Gets sprite data pointer to bypass container procedure calls
 		//Within this procedure, the sprite container is read-only.
-		Sprite* sprites = scene2D->activeSprites.data();
+		Sprite2D* sprites = scene2D->activeSprites.data();
 		int spriteCount = scene2D->activeSprites.size();
 		for (int j = 0; j < spriteCount; j++)
 		{
-			Sprite* sprite = &sprites[j];
+			Sprite2D* sprite = &sprites[j];
 			Transform2D* spriteTransform = &entities->at(sprite->entityID).transform;
 
 			double spriteWidth = sprite->pixels.width;
