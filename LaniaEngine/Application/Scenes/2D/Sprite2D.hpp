@@ -3,7 +3,7 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Sprite
+* Sprite2D
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 */
@@ -18,7 +18,7 @@
 
 namespace Lania
 {
-	typedef struct Sprite
+	typedef struct Sprite2D
 	{
 		int64_t entityID;
 		SDL_Texture* texture;
@@ -26,8 +26,8 @@ namespace Lania
 		Rect pixels;
 		SDL_RendererFlip flip;
 
-		Sprite():
+		Sprite2D():
 			flip (SDL_FLIP_NONE)
 		{}
-	}Sprite;
+	}Sprite2D;
 }
