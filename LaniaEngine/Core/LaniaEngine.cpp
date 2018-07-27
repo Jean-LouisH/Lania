@@ -11,6 +11,7 @@
 #include <Core/DataStructures/String.hpp>
 #include <Core/DataStructures/List.hpp>
 #include <Rendering/RendererSDL.hpp>
+#include <Physics/Physics2D.hpp>
 #include <sstream>
 
 void Lania::initialize(Engine* engine)
@@ -157,7 +158,7 @@ void Lania::loop(Engine* engine, Application* application)
 	Entity2D background;
 	scene2D.entities.push_back(background);
 
-	Sprite bgSprite;
+	Sprite2D bgSprite;
 	SDL_Surface* bgSurface =
 		IMG_Load("../Demos/IsleFightPrototypeReplica/IsleFightPrototypeReplica/Graphics/Textures/beach.jpg");
 	bgSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, bgSurface);
@@ -173,20 +174,26 @@ void Lania::loop(Engine* engine, Application* application)
 
 	scene2D.entities.at(0).transform.position_px.x = bgSprite.pixels.width / 2.0;
 	scene2D.entities.at(0).transform.position_px.y = bgSprite.pixels.height / 2.0;
-	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.width = bgSprite.pixels.height * 1.777;
-	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.height = bgSprite.pixels.height;
+	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.width = bgSprite.pixels.width;
+	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.height = bgSprite.pixels.width / 1.777;
 
 	double testScale = 0.35;
 	//testScale = 1.0;
 
 	Entity2D pikachu1;
 	pikachu1.transform.position_px.x = 260;
-	pikachu1.transform.position_px.y = 200;
+	pikachu1.transform.position_px.y = 500;
 	pikachu1.transform.scale.x = testScale;
 	pikachu1.transform.scale.y = testScale;
 	scene2D.entities.push_back(pikachu1);
 
-	Sprite pkSprite;
+	RigidBody2D pkRigid;
+	pkRigid.gravity_scale = 20.0;
+	pkRigid.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= RIGIDBODY2D;
+	scene2D.activeRigidBodies.push_back(pkRigid);
+
+	Sprite2D pkSprite;
 	SDL_Surface* pkSurface =
 		IMG_Load("../Demos/IsleFightPrototypeReplica/IsleFightPrototypeReplica/Graphics/Textures/pikachu.png");
 	pkSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, pkSurface);
@@ -198,11 +205,15 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.activeSprites.push_back(pkSprite);
 
 	Entity2D pikachu2;
-	pikachu2.transform.position_px.x = 1066;
-	pikachu2.transform.position_px.y = 200;
+	pikachu2.transform.position_px.x = 1326 - 260;
+	pikachu2.transform.position_px.y = 500;
 	pikachu2.transform.scale.x = testScale;
 	pikachu2.transform.scale.y = testScale;
 	scene2D.entities.push_back(pikachu2);
+
+	pkRigid.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= RIGIDBODY2D;
+	scene2D.activeRigidBodies.push_back(pkRigid);
 
 	pkSprite.entityID = scene2D.entities.size() - 1;
 	pkSprite.flip = SDL_FLIP_HORIZONTAL;
@@ -210,46 +221,6 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.activeSprites.push_back(pkSprite);
 
 	Entity2D floorCollider;
-
-
-	////Once again
-
-	//Entity2D magnemite;
-	//magnemite.transform.position_px.x = engine->appConfig.windowWidth_px / 2;
-	//magnemite.transform.position_px.y = engine->appConfig.windowHeight_px / 2;
-	//scene2D.entities.push_back(magnemite);
-
-	//Sprite magnemiteSprite;
-	//SDL_Surface* magnemiteSurface =
-	//	IMG_Load("../Demos/SpriteTest/SpriteTest/Graphics/Textures/Magnemite_small.png");
-	//magnemiteSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, magnemiteSurface);
-	//magnemiteSprite.pixels.width = magnemiteSurface->w;
-	//magnemiteSprite.pixels.height = magnemiteSurface->h;
-	//SDL_FreeSurface(magnemiteSurface);
-	//magnemiteSprite.entityID = scene2D.entities.size() - 1;
-	//scene2D.entities.back().attachedComponentsFlag |= SPRITE;
-	//scene2D.activeSprites.push_back(magnemiteSprite);
-
-	//Entity2D apple;
-	////As an attached entity, these are relative to magnemite
-	//apple.transform.position_px.x = 0;
-	//apple.transform.position_px.y = -100;
-	////Attach apple to magnemite
-	//apple.parent = scene2D.entities.size() - 1;
-	//scene2D.entities.back().children.push_back(scene2D.entities.size());
-	////Add to scene.
-	//scene2D.entities.push_back(apple);
-
-	//Sprite appleSprite;
-	//SDL_Surface* appleSurface =
-	//	IMG_Load("../Demos/SpriteTest/SpriteTest/Graphics/Textures/apple.png");
-	//appleSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, appleSurface);
-	//appleSprite.pixels.width = appleSurface->w;
-	//appleSprite.pixels.height = appleSurface->h;
-	//SDL_FreeSurface(appleSurface);
-	//appleSprite.entityID = scene2D.entities.size() - 1;
-	//scene2D.entities.back().attachedComponentsFlag |= SPRITE;
-	//scene2D.activeSprites.push_back(appleSprite);
 
 	application->scene.subscenes2D.push_back(scene2D);
 
@@ -330,6 +301,8 @@ void Lania::compute(Engine* engine, Application* application)
 
 	while (time->lag_ms >= MS_PER_UPDATE)
 	{
+		Physics2D::gravitate(&application->scene.subscenes2D);
+		Physics2D::displace(&application->scene.subscenes2D);
 		time->simulation_ms += MS_PER_UPDATE;
 		time->lag_ms -= MS_PER_UPDATE;
 	}

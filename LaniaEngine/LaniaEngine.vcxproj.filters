@@ -72,9 +72,6 @@
     <ClInclude Include="Application\Scenes\2D\StaticBody2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Scenes\2D\Sprite.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Application\Scenes\2D\Rect.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -129,6 +126,12 @@
     <ClInclude Include="Rendering\GPU.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Physics\Physics2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scenes\2D\Sprite2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\LaniaEngine.cpp">
@@ -171,6 +174,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\RendererSDL.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics\Physics2D.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
