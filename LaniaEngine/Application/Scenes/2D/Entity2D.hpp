@@ -15,11 +15,6 @@
 #include <stdint.h>
 #include <limits.h>
 #include <Application/Scenes/2D/Transform2D.hpp>
-#include <Core/DataStructures/Map.hpp>
-#include <Application/Scenes/2D/Camera2D.hpp>
-#include <Application/Scenes/2D/RigidBody2D.hpp>
-#include <Application/Scenes/2D/Sprite.hpp>
-#include <Application/Scenes/2D/StaticBody2D.hpp>
 
 using EntityID = uint64_t;
 
