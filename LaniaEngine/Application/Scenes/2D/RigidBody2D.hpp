@@ -31,12 +31,12 @@ namespace Lania
 		Vector2 velocity_px_per_s;
 
 		RigidBody2D() :
-			mass_kg(0.0),
-			friction_ratio(0.0),
-			angularDrag_ratio(0.0),
-			gravity_scale(0.0),
-			elasticity_ratio(0.0),
-			drag_ratio(0.0)
+			mass_kg(1.0),
+			friction_ratio(1.0),
+			angularDrag_ratio(1.0),
+			gravity_scale(1.0),
+			elasticity_ratio(0.01),
+			drag_ratio(1.0)
 		{}
 	}RigidBody2D;
 }
