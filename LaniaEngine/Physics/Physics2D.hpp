@@ -16,6 +16,7 @@ namespace Lania
 {
 	namespace Physics2D
 	{
+		void detectCollisions(List<Scene2D>* scene2Ds);
 		void gravitate(List<Scene2D>* scene2Ds);
 		void displace(List<Scene2D>* scene2Ds);
 	}

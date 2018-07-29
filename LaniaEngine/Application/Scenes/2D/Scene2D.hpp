@@ -15,6 +15,7 @@
 #include <Core/Input.hpp>
 #include <Core/DataStructures/List.hpp>
 #include <Core/DataStructures/Map.hpp>
+#include "BoxCollider2D.hpp"
 #include "Camera2D.hpp"
 #include "Entity2D.hpp"
 #include "RigidBody2D.hpp"
@@ -37,6 +38,7 @@ namespace Lania
 		List<Camera2D> activeCameras;
 		List<RigidBody2D> activeRigidBodies;
 		List<StaticBody2D> activeStaticBodies;
+		List<BoxCollider2D> activeBoxColliders;
 
 		//Inactive storage lists
 		//No ordering enforced as long as components maintain parent entity IDs

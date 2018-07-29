@@ -26,7 +26,8 @@ namespace Lania
 		CAMERA2D		= 1,
 		RIGIDBODY2D		= 1 << 2,
 		SPRITE			= 1 << 2,
-		STATICBODY2D	= 1 << 3
+		STATICBODY2D	= 1 << 3,
+		BOXCOLLIDER2D	= 1 << 4
 	};
 
 	typedef struct Entity2D
