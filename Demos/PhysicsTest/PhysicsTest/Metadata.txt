@@ -1,0 +1,5 @@
+name = "Physics Test"
+version = 1.0.0
+app_type = simulation
+developer = "Jean-Louis Haywood"
+description = ""

@@ -17,7 +17,7 @@
 void Lania::initialize(Engine* engine)
 {
 	//Development Test 
-	String initFilePath = "../Demos/IsleFightPrototypeReplica/Init.cfg";
+	String initFilePath = "../Demos/PhysicsTest/Init.cfg";
 
 	AppConfig* appConfig = &engine->appConfig;
 	unsigned char* state = &engine->state;
@@ -160,7 +160,7 @@ void Lania::loop(Engine* engine, Application* application)
 
 	Sprite2D bgSprite;
 	SDL_Surface* bgSurface =
-		IMG_Load("../Demos/IsleFightPrototypeReplica/IsleFightPrototypeReplica/Graphics/Textures/beach.jpg");
+		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/background.png");
 	bgSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, bgSurface);
 	bgSprite.pixels.width = bgSurface->w;
 	bgSprite.pixels.height = bgSurface->h;
@@ -172,55 +172,105 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.entities.back().transform.position_px.x = bgSprite.pixels.width / 2.0;
 	scene2D.entities.back().transform.position_px.y = bgSprite.pixels.height / 2.0;
 
+	//Camera position
 	scene2D.entities.at(0).transform.position_px.x = bgSprite.pixels.width / 2.0;
 	scene2D.entities.at(0).transform.position_px.y = bgSprite.pixels.height / 2.0;
 	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.width = bgSprite.pixels.width;
 	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.height = bgSprite.pixels.width / 1.777;
 
-	double testScale = 0.35;
-	//testScale = 1.0;
-
-	Entity2D pikachu1;
-	pikachu1.transform.position_px.x = 260;
-	pikachu1.transform.position_px.y = 500;
-	pikachu1.transform.scale.x = testScale;
-	pikachu1.transform.scale.y = testScale;
-	scene2D.entities.push_back(pikachu1);
-
-	RigidBody2D pkRigid;
-	pkRigid.gravity_scale = 20.0;
-	pkRigid.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= RIGIDBODY2D;
-	scene2D.activeRigidBodies.push_back(pkRigid);
-
-	Sprite2D pkSprite;
-	SDL_Surface* pkSurface =
-		IMG_Load("../Demos/IsleFightPrototypeReplica/IsleFightPrototypeReplica/Graphics/Textures/pikachu.png");
-	pkSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, pkSurface);
-	pkSprite.pixels.width = pkSurface->w;
-	pkSprite.pixels.height = pkSurface->h;
-	SDL_FreeSurface(pkSurface);
-	pkSprite.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
-	scene2D.activeSprites.push_back(pkSprite);
-
-	Entity2D pikachu2;
-	pikachu2.transform.position_px.x = 1326 - 260;
-	pikachu2.transform.position_px.y = 500;
-	pikachu2.transform.scale.x = testScale;
-	pikachu2.transform.scale.y = testScale;
-	scene2D.entities.push_back(pikachu2);
-
-	pkRigid.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= RIGIDBODY2D;
-	scene2D.activeRigidBodies.push_back(pkRigid);
-
-	pkSprite.entityID = scene2D.entities.size() - 1;
-	pkSprite.flip = SDL_FLIP_HORIZONTAL;
-	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
-	scene2D.activeSprites.push_back(pkSprite);
+	///////////
 
 	Entity2D floorCollider;
+	floorCollider.transform.position_px.x = 1326 / 2;
+	floorCollider.transform.position_px.y = 150;
+	floorCollider.transform.scale.x = 15.0;
+	scene2D.entities.push_back(floorCollider);
+
+	Sprite2D boxSprite;
+	SDL_Surface* boxSurface =
+		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/box.png");
+	boxSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, boxSurface);
+	boxSprite.pixels.width = boxSurface->w;
+	boxSprite.pixels.height = boxSurface->h;
+	SDL_FreeSurface(boxSurface);
+	boxSprite.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
+	scene2D.activeSprites.push_back(boxSprite);
+
+	BoxCollider2D floorBoxCollider;
+	floorBoxCollider.aabb.max_px.x = 1400;
+	floorBoxCollider.aabb.max_px.y = boxSprite.pixels.height / 2.0;
+	floorBoxCollider.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
+	scene2D.activeBoxColliders.push_back(floorBoxCollider);
+
+	double testScale = 2.5;
+	//testScale = 1.0;
+
+	Entity2D beldum;
+	beldum.transform.position_px.x = 260;
+	beldum.transform.position_px.y = 500;
+	beldum.transform.scale.x = testScale;
+	beldum.transform.scale.y = testScale;
+	scene2D.entities.push_back(beldum);
+
+	RigidBody2D rigid;
+	rigid.gravity_scale = 20.0;
+	rigid.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= RIGIDBODY2D;
+	scene2D.activeRigidBodies.push_back(rigid);
+
+	Sprite2D beldumSprite;
+	SDL_Surface* beldumSurface =
+		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/beldum.png");
+	beldumSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, beldumSurface);
+	beldumSprite.pixels.width = beldumSurface->w;
+	beldumSprite.pixels.height = beldumSurface->h;
+	SDL_FreeSurface(beldumSurface);
+	beldumSprite.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
+	scene2D.activeSprites.push_back(beldumSprite);
+
+	BoxCollider2D beldumBoxCollider;
+	beldumBoxCollider.aabb.max_px.x = beldumSprite.pixels.width * beldum.transform.scale.x;
+	beldumBoxCollider.aabb.max_px.y = beldumSprite.pixels.height * beldum.transform.scale.y;
+	beldumBoxCollider.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
+	scene2D.activeBoxColliders.push_back(beldumBoxCollider);
+
+	//////////
+
+	Entity2D arcanine;
+	arcanine.transform.position_px.x = 1326 - 260;
+	arcanine.transform.position_px.y = 500;
+	arcanine.transform.scale.x = testScale;
+	arcanine.transform.scale.y = testScale;
+	scene2D.entities.push_back(arcanine);
+
+	rigid.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= RIGIDBODY2D;
+	scene2D.activeRigidBodies.push_back(rigid);
+
+	Sprite2D arcanineSprite;
+	SDL_Surface* arcanineSurface =
+		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/arcanine.png");
+	arcanineSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, arcanineSurface);
+	arcanineSprite.pixels.width = arcanineSurface->w;
+	arcanineSprite.pixels.height = arcanineSurface->h;
+	SDL_FreeSurface(arcanineSurface);
+	arcanineSprite.entityID = scene2D.entities.size() - 1;
+	arcanineSprite.flip = SDL_FLIP_HORIZONTAL;
+	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
+	scene2D.activeSprites.push_back(arcanineSprite);
+
+	BoxCollider2D arcanineBoxCollider;
+	arcanineBoxCollider.aabb.max_px.x = arcanineSprite.pixels.width * arcanine.transform.scale.x;
+	arcanineBoxCollider.aabb.max_px.y = arcanineSprite.pixels.height * arcanine.transform.scale.y;
+	arcanineBoxCollider.entityID = scene2D.entities.size() - 1;
+	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
+	scene2D.activeBoxColliders.push_back(arcanineBoxCollider);
+
+	////////////
 
 	application->scene.subscenes2D.push_back(scene2D);
 
@@ -301,8 +351,13 @@ void Lania::compute(Engine* engine, Application* application)
 
 	while (time->lag_ms >= MS_PER_UPDATE)
 	{
-		Physics2D::gravitate(&application->scene.subscenes2D);
-		Physics2D::displace(&application->scene.subscenes2D);
+		List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
+		if (scene2Ds->size() > 0)
+		{
+			Physics2D::detectCollisions(scene2Ds);
+			Physics2D::gravitate(scene2Ds);
+			Physics2D::displace(scene2Ds);
+		}
 		time->simulation_ms += MS_PER_UPDATE;
 		time->lag_ms -= MS_PER_UPDATE;
 	}

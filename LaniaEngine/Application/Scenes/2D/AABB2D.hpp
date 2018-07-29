@@ -16,7 +16,7 @@ namespace Lania
 {
 	typedef struct AABB2D
 	{
-		Vector2 min_px;
+	//	Vector2 min_px;
 		Vector2 max_px;
 	}AABB2D;
 }
