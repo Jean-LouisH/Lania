@@ -289,15 +289,23 @@ void Lania::loop(Engine* engine, Application* application)
 		Lania::output(engine, application);
 
 		time->process.setEnd();
+
+		int delay = 0;
 		
-		//0 or less for unlimited FPS use.
-		if (engine->appConfig.targetFPS > 0)
+		if (engine->appConfig.targetFPS < UPDATES_PER_S)
 		{
-			int delay = (1000.0 / engine->appConfig.targetFPS) -
+			delay = (MS_PER_S / engine->appConfig.targetFPS) -
 				(engine->timer.process.delta_ns / MS_PER_NS);
-			if (delay > 0)
-				SDL_Delay(delay);
 		}
+		else
+		{
+			delay = (MS_PER_S / UPDATES_PER_S) -
+				(engine->timer.process.delta_ns / MS_PER_NS);
+		}
+
+		if (delay > 0)
+			SDL_Delay(delay);
+
 		time->frame.setEnd();
 		engine->frameCount++;
 
