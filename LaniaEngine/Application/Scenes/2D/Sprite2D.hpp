@@ -20,7 +20,7 @@ namespace Lania
 {
 	typedef struct Sprite2D
 	{
-		int64_t entityID;
+		EntityID entityID;
 		SDL_Texture* texture;
 		uint8_t alpha;
 		Rect pixels;

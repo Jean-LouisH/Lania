@@ -18,7 +18,7 @@ namespace Lania
 {
 	typedef struct BoxCollider2D
 	{
-		uint64_t entityID;
+		EntityID entityID;
 		AABB2D aabb;
 	}BoxCollider2D;
 }

@@ -20,7 +20,7 @@ namespace Lania
 {
 	typedef struct StaticBody2D
 	{
-		int64_t entityID;
+		EntityID entityID;
 		double elasticity_ratio;
 		double friction_ratio;
 		Vector2 constantVelocity_px_per_s;

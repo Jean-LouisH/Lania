@@ -20,9 +20,9 @@ namespace Lania
 {
 	typedef struct Camera2D
 	{
-		int64_t entityID;
+		EntityID entityID;
 		Rect viewport_px;
-		uint64_t entityFollowed_id;
+		EntityID entityFollowed_id;
 		Vector2 scrollTarget_px;
 		Vector2 offset_px;
 		Rect zoomTarget_px;

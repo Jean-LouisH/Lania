@@ -17,7 +17,7 @@ namespace Lania
 {
 	typedef struct CircleCollider
 	{
-		int64_t entityID;
+		EntityID entityID;
 		uint16_t radius_px;
 
 		CircleCollider():

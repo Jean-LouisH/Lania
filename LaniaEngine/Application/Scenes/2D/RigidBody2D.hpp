@@ -20,7 +20,7 @@ namespace Lania
 {
 	typedef struct RigidBody2D
 	{
-		int64_t entityID;
+		EntityID entityID;
 		double mass_kg;
 		double friction_ratio;
 		double angularDrag_ratio;

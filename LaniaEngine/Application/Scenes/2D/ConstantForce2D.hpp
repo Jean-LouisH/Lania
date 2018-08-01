@@ -18,7 +18,7 @@ namespace Lania
 {
 	typedef struct ConstantForce2D
 	{
-		int64_t entityID;
+		EntityID entityID;
 		Vector2 force_N;
 		Vector2 torque_Nm;
 	}ConstantForce2D;
