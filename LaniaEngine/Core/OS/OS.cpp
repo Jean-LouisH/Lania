@@ -6,19 +6,6 @@
 #include "SDL_events.h"
 #include <SDL_image.h>
 
-void Lania::OS::listenForEvents(Lania::Engine* engine)
-{
-	engine->timer.OS.setStart();
-
-	if (SDL_NumJoysticks() != engine->input.gameControllers.size())
-		OS::detectGameControllers(&engine->input);
-	OS::detectBatteryLife(engine);
-	OS::pollInputEvents(engine);
-//	OS::refreshWindowIcon(engine);
-
-	engine->timer.OS.setEnd();
-}
-
 void Lania::OS::detectGameControllers(Input* input)
 {
 	for (int i = 0; i < input->gameControllers.size(); ++i)
@@ -85,17 +72,5 @@ void Lania::OS::pollInputEvents(Engine* engine)
 				SDLEvents.key.timestamp });
 			break;
 		}
-	}
-}
-
-void Lania::OS::refreshWindowIcon(Engine* engine)
-{
-	engine->timer.run.setEnd();
-	if (engine->timer.run.delta_ns / S_PER_NS >= 10)
-	{
-		String iconString = "../Demos/" + engine->appConfig.appName + "/Icon.png";
-		SDL_Surface* logo = IMG_Load(iconString.c_str());
-		SDL_SetWindowIcon(engine->window, logo);
-		SDL_FreeSurface(logo);
 	}
 }
