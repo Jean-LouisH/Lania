@@ -18,8 +18,9 @@ namespace Lania
 {
 	void initialize(Engine* engine);
 	void loop(Engine* engine, Application* application);
-	void script(Engine* engine, Application* application);
+	void input(Engine* engine);
+	void decide(Engine* engine, Application* application);
 	void compute(Engine* engine, Application* application);
-	void output(Engine* engine, Application* application);
+	void output(Engine* engine);
 	void shutdown(Engine* engine, Application* application);
 }

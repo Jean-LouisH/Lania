@@ -2,17 +2,15 @@
 #include <limits.h>
 #include "SDLRenderable.hpp"
 
-void Lania::RendererSDL::drawSprites(
-	SDL_Renderer* SDLRenderer,
-	SDL_Window* window,
-	List<Scene2D>* scene2Ds)
+void Lania::RendererSDL::buildRenderablesFromSprites(
+	List<SDLRenderable>* SDLRenderables,
+	List<Scene2D>* scene2Ds, 
+	SDL_Window* window)
 {
+	SDLRenderables->clear();
 	int windowWidth_px = 0;
 	int windowHeight_px = 0;
 	SDL_GetWindowSize(window, &windowWidth_px, &windowHeight_px);
-
-	SDL_SetRenderDrawColor(SDLRenderer, 0, 0, 0, 255);
-	SDL_RenderClear(SDLRenderer);
 
 	int scene2DCount = scene2Ds->size();
 	for (int i = 0; i < scene2DCount; i++)
@@ -48,14 +46,14 @@ void Lania::RendererSDL::drawSprites(
 			if (spriteParent != ULLONG_MAX)
 			{
 				Transform2D parentTransform = entities->at(spriteParent).transform;
-				spriteX = parentTransform.position_px.x + 
+				spriteX = parentTransform.position_px.x +
 					(spriteTransform->position_px.x * cos(parentTransform.rotation_rad * M_PI) -
-					spriteTransform->position_px.y * sin(parentTransform.rotation_rad * M_PI));
+						spriteTransform->position_px.y * sin(parentTransform.rotation_rad * M_PI));
 				spriteY = parentTransform.position_px.y +
 					(spriteTransform->position_px.x * sin(parentTransform.rotation_rad * M_PI) +
-					spriteTransform->position_px.y * cos(parentTransform.rotation_rad * M_PI));
+						spriteTransform->position_px.y * cos(parentTransform.rotation_rad * M_PI));
 				rotationRelativeToCamera =
-					-((spriteTransform->rotation_rad + parentTransform.rotation_rad - 
+					-((spriteTransform->rotation_rad + parentTransform.rotation_rad -
 						cameraTransform->rotation_rad) * 180.0);
 			}
 			else
@@ -79,16 +77,10 @@ void Lania::RendererSDL::drawSprites(
 			renderable.renderingRect.w = (int)(spriteWidthScaled / cameraWidth * (double)windowWidth_px);
 			renderable.renderingRect.h = (int)(spriteHeightScaled / cameraHeight * (double)windowHeight_px);
 
-			SDL_RenderCopyEx(
-				SDLRenderer,
-				renderable.texture,
-				&renderable.textureRect,
-				&renderable.renderingRect,
-				rotationRelativeToCamera,
-				NULL,
-				sprite->flip);
+			renderable.rotation = rotationRelativeToCamera;
+			renderable.flip = sprite->flip;
+
+			SDLRenderables->push_back(renderable);
 		}
 	}
-
-	SDL_RenderPresent(SDLRenderer);
 }

@@ -283,10 +283,10 @@ void Lania::loop(Engine* engine, Application* application)
 
 		time->lag_ms += time->frame.delta_ns / MS_PER_NS;
 
-		OS::listenForEvents(engine);
-		Lania::script(engine, application);
+		Lania::input(engine);
+		Lania::decide(engine, application);
 		Lania::compute(engine, application);
-		Lania::output(engine, application);
+		Lania::output(engine);
 
 		time->process.setEnd();
 
@@ -344,10 +344,37 @@ void Lania::loop(Engine* engine, Application* application)
 	} while (engine->state != SHUTDOWN);
 }
 
-void Lania::script(Engine* engine, Application* application)
+void Lania::input(Lania::Engine* engine)
+{
+	engine->timer.OS.setStart();
+
+	if (SDL_NumJoysticks() != engine->input.gameControllers.size())
+		OS::detectGameControllers(&engine->input);
+	OS::detectBatteryLife(engine);
+	OS::pollInputEvents(engine);
+
+	engine->timer.OS.setEnd();
+}
+
+void Lania::decide(Engine* engine, Application* application)
 {
 	Timer* time = &engine->timer;
 	time->script.setStart();
+
+	List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
+	if (scene2Ds->size() > 0)
+	{
+		Physics2D::detectCollisions(scene2Ds);
+	}
+
+	if (engine->renderer == SDL_RENDERER)
+	{
+		RendererSDL::buildRenderablesFromSprites(
+			&engine->output.SDLRenderables,
+			&application->scene.subscenes2D,
+			engine->window
+		);
+	}
 
 	time->script.setEnd();
 }
@@ -362,7 +389,6 @@ void Lania::compute(Engine* engine, Application* application)
 		List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
 		if (scene2Ds->size() > 0)
 		{
-			Physics2D::detectCollisions(scene2Ds);
 			Physics2D::gravitate(scene2Ds);
 			Physics2D::displace(scene2Ds);
 		}
@@ -372,7 +398,7 @@ void Lania::compute(Engine* engine, Application* application)
 	time->compute.setEnd();
 }
 
-void Lania::output(Engine* engine, Application* application)
+void Lania::output(Engine* engine)
 {
 	Timer* time = &engine->timer;
 	time->output.setStart();
@@ -388,10 +414,22 @@ void Lania::output(Engine* engine, Application* application)
 	}
 	else if (engine->renderer == SDL_RENDERER)
 	{
-		RendererSDL::drawSprites(
-			engine->SDLRenderer, 
-			engine->window, 
-			&application->scene.subscenes2D);
+		SDL_SetRenderDrawColor(engine->SDLRenderer, 0, 0, 0, 255);
+		SDL_RenderClear(engine->SDLRenderer);
+
+		int renderableCount = engine->output.SDLRenderables.size();
+		SDLRenderable* renderables = engine->output.SDLRenderables.data();
+		for (int i = 0; i < renderableCount; i++)
+			SDL_RenderCopyEx(
+				engine->SDLRenderer,
+				renderables[i].texture,
+				&renderables[i].textureRect,
+				&renderables[i].renderingRect,
+				renderables[i].rotation,
+				NULL,
+				renderables[i].flip);
+
+		SDL_RenderPresent(engine->SDLRenderer);
 	}
 	time->output.setEnd();
 }

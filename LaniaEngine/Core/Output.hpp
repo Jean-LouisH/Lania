@@ -12,10 +12,13 @@
 
 #pragma once
 
+#include <Core/DataStructures/List.hpp>
+#include <Rendering/SDLRenderable.hpp>
+
 namespace Lania
 {
 	typedef struct Output
 	{
-
+		List<SDLRenderable> SDLRenderables;
 	}Output;
 }
