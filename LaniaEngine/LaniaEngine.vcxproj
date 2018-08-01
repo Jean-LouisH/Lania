@@ -151,6 +151,7 @@
     <ClInclude Include="Core\Platform.hpp" />
     <ClInclude Include="Core\Timer.hpp" />
     <ClInclude Include="Core\UnitTesting.hpp" />
+    <ClInclude Include="Definitions.hpp" />
     <ClInclude Include="Input\Keyboard.hpp" />
     <ClInclude Include="Physics\Physics2D.hpp" />
     <ClInclude Include="Rendering\GPU.hpp" />
