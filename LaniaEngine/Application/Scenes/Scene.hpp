@@ -16,10 +16,9 @@
 #include <stdint.h>
 #include <Core/Input.hpp>
 #include "2D/Scene2D.hpp"
+#include <Definitions.hpp>
 #include <Core/DataStructures/List.hpp>
 #include <Core/DataStructures/String.hpp>
-
-using LayerType = uint8_t;
 
 namespace Lania
 {

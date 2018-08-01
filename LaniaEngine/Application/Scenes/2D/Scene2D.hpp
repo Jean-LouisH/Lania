@@ -12,6 +12,7 @@
 
 #include <map>
 #include <stdint.h>
+#include <Definitions.hpp>
 #include <Core/Input.hpp>
 #include <Core/DataStructures/List.hpp>
 #include <Core/DataStructures/Map.hpp>
@@ -21,8 +22,6 @@
 #include "RigidBody2D.hpp"
 #include "Sprite2D.hpp"
 #include "StaticBody2D.hpp"
-
-using ComponentListIndex = uint64_t;
 
 namespace Lania
 {

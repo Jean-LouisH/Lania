@@ -14,9 +14,8 @@
 
 #include <stdint.h>
 #include <limits.h>
+#include <Definitions.hpp>
 #include <Application/Scenes/2D/Transform2D.hpp>
-
-using EntityID = uint64_t;
 
 namespace Lania
 {
