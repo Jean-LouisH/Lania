@@ -5,7 +5,7 @@
 *
 * Static Body 2D
 *
-* 2D node that interfaces with direct manipulation and scripting.
+* Component that interfaces with direct manipulation and scripting.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE

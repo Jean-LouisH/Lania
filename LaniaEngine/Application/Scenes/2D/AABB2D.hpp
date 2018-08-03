@@ -3,7 +3,9 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Axis Aligned Boundary Box 2D
+* Axis Aligned Bounding Box 2D
+*
+* For defining regions in 2D for collision detection and spatial limits on cameras.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE

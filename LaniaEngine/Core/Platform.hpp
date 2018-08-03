@@ -5,6 +5,8 @@
 *
 * Platform
 *
+* Contains all the hardware and OS information for the Engine struct.
+*
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
@@ -30,7 +32,7 @@ namespace Lania
 			logicalCoreCount(0),
 			L1CacheSize_B(0),
 			systemRAM_MB(0),
-			batteryLife_pct(NULL),
+			batteryLife_pct(0),
 			renderingAPIVersion(NULL),
 			OS(NULL)
 		{}

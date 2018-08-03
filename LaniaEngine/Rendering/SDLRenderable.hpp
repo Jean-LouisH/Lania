@@ -5,6 +5,10 @@
 *
 * SDL Renderable
 *
+* Contains all data necessary for SDL_RenderCopyEx.
+* Is available to the rest of the decision procedure
+* in the engine for image acquisition and editing.
+*
 * Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */

@@ -5,7 +5,8 @@
 *
 * Timing
 *
-* Defines engine and application time data.
+* Defines engine execution and simulation timers for performance
+* monitoring and balance.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE

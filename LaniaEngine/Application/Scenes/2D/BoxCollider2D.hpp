@@ -5,6 +5,9 @@
 *
 * Box Collider 2D
 *
+* The component form of the axis aligned bounding box 2D 
+* specifically used for collision detection.
+*
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */

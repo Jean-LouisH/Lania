@@ -11,6 +11,8 @@
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
+#include <stdint.h>
+
 using EntityID = uint64_t;
 using LayerType = uint8_t;
 using ComponentListIndex = uint64_t;
