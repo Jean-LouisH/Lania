@@ -8,6 +8,7 @@
 * Contains type aliases used throughout the engine.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
+* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 using EntityID = uint64_t;

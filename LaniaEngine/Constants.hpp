@@ -8,6 +8,7 @@
 * Defines constants throughout the engine.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
+* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
 #define MS_PER_UPDATE 8
@@ -19,3 +20,5 @@
 
 #define EARTH_GRAVITY 9.80665
 #define GRAVITATIONAL_CONSTANT 6.67408e-11
+
+#define NO_PARENT 0 
