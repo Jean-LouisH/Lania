@@ -22,6 +22,8 @@ namespace Lania
 		void detectGameControllers(Input* input);
 		void detectBatteryLife(Engine* engine);
 		void pollInputEvents(Engine* engine);
-		void toggleFullscreen(SDL_Window* window);
+		void setToWindowed(SDL_Window* window, AppConfig* config);
+		void setToFullscreen(SDL_Window* window, SDL_DisplayMode* mode);
+		void toggleWindowedFullscreen(SDL_Window* window);
 	}
 }

@@ -75,21 +75,29 @@ void Lania::OS::pollInputEvents(Engine* engine)
 	}
 }
 
-void Lania::OS::toggleFullscreen(SDL_Window* window)
+void Lania::OS::setToWindowed(SDL_Window* window, AppConfig* config)
+{
+	SDL_SetWindowFullscreen(window, 0);
+	SDL_SetWindowSize(window, config->windowWidth_px, config->windowHeight_px);
+}
+
+void Lania::OS::setToFullscreen(SDL_Window* window, SDL_DisplayMode* mode)
+{
+	SDL_SetWindowDisplayMode(window, mode);
+	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+}
+
+void Lania::OS::toggleWindowedFullscreen(SDL_Window* window)
 {
 	static bool isFullscreen = false;
-	static int previousWindowWidth = 0;
-	static int previousWindowHeight = 0;
 
 	if (!isFullscreen)
 	{
-		SDL_GetWindowSize(window, &previousWindowWidth, &previousWindowHeight);
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
 	}
 	else
 	{
 		SDL_SetWindowFullscreen(window, 0);
-		SDL_SetWindowSize(window, previousWindowWidth, previousWindowHeight);
 		SDL_SetWindowPosition(
 			window,
 			SDL_WINDOWPOS_CENTERED,
