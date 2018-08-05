@@ -285,7 +285,7 @@ void Lania::loop(Engine* engine, Application* application)
 		time->lag_ms += time->frame.delta_ns / MS_PER_NS;
 
 		Lania::input(engine);
-		Lania::decide(engine, application);
+		Lania::logic(engine, application);
 		Lania::compute(engine, application);
 		Lania::output(engine);
 
@@ -357,7 +357,7 @@ void Lania::input(Lania::Engine* engine)
 	engine->timer.OS.setEnd();
 }
 
-void Lania::decide(Engine* engine, Application* application)
+void Lania::logic(Engine* engine, Application* application)
 {
 	Timer* time = &engine->timer;
 	time->script.setStart();
