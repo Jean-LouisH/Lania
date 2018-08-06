@@ -26,6 +26,7 @@
 #include "RigidBody2D.hpp"
 #include "Sprite2D.hpp"
 #include "StaticBody2D.hpp"
+#include "PointLock2D.hpp"
 
 namespace Lania
 {
@@ -40,15 +41,14 @@ namespace Lania
 		List<Sprite2D> activeSprites;
 		List<Camera2D> activeCameras;
 		List<RigidBody2D> activeRigidBodies;
-		List<StaticBody2D> activeStaticBodies;
 		List<BoxCollider2D> activeBoxColliders;
+		List<PointLock2D> pointLocks;
 
 		//Inactive storage lists
 		//No ordering enforced as long as components maintain parent entity IDs
 		List<Sprite2D> inactiveSprites;
 		List<Camera2D> inactiveCameras;
 		List<RigidBody2D> inactiveRigidBodies;
-		List<StaticBody2D> inactiveStaticBodies;
 
 		//Stores current camera list position to prevent repetitive searches
 		ComponentListIndex currentCameraIndex;

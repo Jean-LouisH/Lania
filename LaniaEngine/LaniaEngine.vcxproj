@@ -129,7 +129,6 @@
     <ClInclude Include="Application\Scenes\2D\RigidBody2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Scene2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Sprite2D.hpp" />
-    <ClInclude Include="Application\Scenes\2D\StaticBody2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Transform2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Vector2.hpp" />
     <ClInclude Include="Application\Scenes\Scene.hpp" />
