@@ -22,5 +22,6 @@ namespace Lania
 		void detectCollisions(List<Scene2D>* scene2Ds);
 		void gravitate(List<Scene2D>* scene2Ds);
 		void displace(List<Scene2D>* scene2Ds);
+		void lock(List<Scene2D>* scene2Ds);
 	}
 }

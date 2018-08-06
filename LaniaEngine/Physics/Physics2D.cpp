@@ -83,3 +83,24 @@ void Lania::Physics2D::displace(List<Scene2D>* scene2Ds)
 		}
 	}
 }
+
+void Lania::Physics2D::lock(List<Scene2D>* scene2Ds)
+{
+	int scene2DCount = scene2Ds->size();
+	for (int i = 0; i < scene2DCount; i++)
+	{
+		Scene2D* scene2D = &scene2Ds->at(i);
+		Entity2D* entities = scene2D->entities.data();
+		PointLock2D* pointLocks = scene2D->pointLocks.data();
+
+		int pointLockCount = scene2D->pointLocks.size();
+		for (int j = 0; j < pointLockCount; j++)
+		{
+			PointLock2D* pointLock = &pointLocks[j];
+			entities[pointLock->entityID].transform.position_px.x =
+				pointLock->point.x;
+			entities[pointLock->entityID].transform.position_px.y =
+				pointLock->point.y;
+		}
+	}
+}

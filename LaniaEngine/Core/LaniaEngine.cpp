@@ -392,6 +392,7 @@ void Lania::compute(Engine* engine, Application* application)
 		{
 			Physics2D::gravitate(scene2Ds);
 			Physics2D::displace(scene2Ds);
+			Physics2D::lock(scene2Ds);
 		}
 		time->simulation_ms += MS_PER_UPDATE;
 		time->lag_ms -= MS_PER_UPDATE;
