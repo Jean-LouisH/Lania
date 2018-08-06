@@ -123,6 +123,7 @@
     <ClInclude Include="Application\Scenes\2D\CircleCollider.hpp" />
     <ClInclude Include="Application\Scenes\2D\ConstantForce2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Entity2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\PointLock2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Rect.hpp" />
     <ClInclude Include="Application\Scenes\2D\AABB2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\RigidBody2D.hpp" />
