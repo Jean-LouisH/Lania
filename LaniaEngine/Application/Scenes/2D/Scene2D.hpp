@@ -25,7 +25,6 @@
 #include "Entity2D.hpp"
 #include "RigidBody2D.hpp"
 #include "Sprite2D.hpp"
-#include "StaticBody2D.hpp"
 #include "PointLock2D.hpp"
 
 namespace Lania
