@@ -27,7 +27,7 @@ icon = open(demo_directory + "icon.png", "w+")
 if not os.path.exists(inner_directory):
 	os.makedirs(inner_directory)
 metadata = open(inner_directory + "metadata.txt", "w+")
-metadata.write("name = " + demo_project_name + "\nversion = 1.0.0\napp_type = simulation\ndeveloper = ""Jean-Louis Haywood""\ndescription = ")
+metadata.write("name = " + demo_project_name + "\nversion = 1.0.0\napp_type = simulation\ndeveloper = "" ""\ndescription = ")
 
 if not os.path.exists(scripts_directory):
 	os.makedirs(scripts_directory)
