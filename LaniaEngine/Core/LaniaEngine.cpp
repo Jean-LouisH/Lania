@@ -165,6 +165,8 @@ void Lania::loop(Engine* engine, Application* application)
 	bgSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, bgSurface);
 	bgSprite.pixels.width = bgSurface->w;
 	bgSprite.pixels.height = bgSurface->h;
+	bgSprite.alpha = 255;
+	SDL_SetTextureAlphaMod(bgSprite.texture, bgSprite.alpha);
 	SDL_FreeSurface(bgSurface);
 	bgSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
@@ -193,6 +195,8 @@ void Lania::loop(Engine* engine, Application* application)
 	boxSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, boxSurface);
 	boxSprite.pixels.width = boxSurface->w;
 	boxSprite.pixels.height = boxSurface->h;
+	boxSprite.alpha = 255;
+	SDL_SetTextureAlphaMod(boxSprite.texture, boxSprite.alpha);
 	SDL_FreeSurface(boxSurface);
 	boxSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
@@ -227,6 +231,8 @@ void Lania::loop(Engine* engine, Application* application)
 	beldumSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, beldumSurface);
 	beldumSprite.pixels.width = beldumSurface->w;
 	beldumSprite.pixels.height = beldumSurface->h;
+	beldumSprite.alpha = 255;
+	SDL_SetTextureAlphaMod(beldumSprite.texture, beldumSprite.alpha);
 	SDL_FreeSurface(beldumSurface);
 	beldumSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
@@ -258,6 +264,8 @@ void Lania::loop(Engine* engine, Application* application)
 	arcanineSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, arcanineSurface);
 	arcanineSprite.pixels.width = arcanineSurface->w;
 	arcanineSprite.pixels.height = arcanineSurface->h;
+	arcanineSprite.alpha = 255;
+	SDL_SetTextureAlphaMod(arcanineSprite.texture, arcanineSprite.alpha);
 	SDL_FreeSurface(arcanineSurface);
 	arcanineSprite.entityID = scene2D.entities.size() - 1;
 	arcanineSprite.flip = SDL_FLIP_HORIZONTAL;
@@ -281,8 +289,6 @@ void Lania::loop(Engine* engine, Application* application)
 	{
 		time->frame.setStart();
 		time->process.setStart();
-
-		time->lag_ms += time->frame.delta_ns / MS_PER_NS;
 
 		Lania::input(engine);
 		Lania::logic(engine, application);
@@ -368,15 +374,6 @@ void Lania::logic(Engine* engine, Application* application)
 		Physics2D::detectCollisions(scene2Ds);
 	}
 
-	if (engine->renderer == SDL_RENDERER)
-	{
-		RendererSDL::buildRenderablesFromSprites(
-			&engine->output.SDLRenderables,
-			&application->scene.subscenes2D,
-			engine->window
-		);
-	}
-
 	time->script.setEnd();
 }
 
@@ -397,6 +394,15 @@ void Lania::compute(Engine* engine, Application* application)
 		time->simulation_ms += MS_PER_UPDATE;
 		time->lag_ms -= MS_PER_UPDATE;
 	}
+
+	RendererSDL::buildRenderablesFromSprites(
+		&engine->output.SDLRenderables,
+		&application->scene.subscenes2D,
+		engine->window
+	);
+
+	time->lag_ms += time->frame.delta_ns / MS_PER_NS;
+
 	time->compute.setEnd();
 }
 
