@@ -142,6 +142,9 @@ void Lania::loop(Engine* engine, Application* application)
 
 	Scene2D scene2D;
 
+	Entity2D dummy;
+	scene2D.entities.push_back(dummy);
+
 	///////////////////////////////////////////////////////////////////////
 	Entity2D camera;
 	scene2D.entities.push_back(camera);
@@ -176,8 +179,8 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.entities.back().transform.position_px.y = bgSprite.pixels.height / 2.0;
 
 	//Camera position
-	scene2D.entities.at(0).transform.position_px.x = bgSprite.pixels.width / 2.0;
-	scene2D.entities.at(0).transform.position_px.y = bgSprite.pixels.height / 2.0;
+	scene2D.entities.at(scene2D.activeCameras.at(scene2D.currentCameraIndex).entityID).transform.position_px.x = bgSprite.pixels.width / 2.0;
+	scene2D.entities.at(scene2D.activeCameras.at(scene2D.currentCameraIndex).entityID).transform.position_px.y = bgSprite.pixels.height / 2.0;
 	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.width = bgSprite.pixels.width;
 	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.height = bgSprite.pixels.width / 1.777;
 

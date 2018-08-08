@@ -1,6 +1,7 @@
 #include "RendererSDL.hpp"
 #include <limits.h>
 #include "SDLRenderable.hpp"
+#include <Constants.hpp>
 
 void Lania::RendererSDL::buildRenderablesFromSprites(
 	List<SDLRenderable>* SDLRenderables,
@@ -17,8 +18,8 @@ void Lania::RendererSDL::buildRenderablesFromSprites(
 	{
 		Scene2D* scene2D = &scene2Ds->at(i);
 		Camera2D camera = scene2D->activeCameras.at(scene2D->currentCameraIndex);
-		List<Entity2D>* entities = &scene2D->entities;
-		Transform2D* cameraTransform = &entities->at(camera.entityID).transform;
+		Entity2D* entities = scene2D->entities.data();
+		Transform2D* cameraTransform = &entities[camera.entityID].transform;
 
 		//Gets sprite data pointer to bypass container procedure calls
 		//Within this procedure, the sprite container is read-only.
@@ -27,7 +28,7 @@ void Lania::RendererSDL::buildRenderablesFromSprites(
 		for (int j = 0; j < spriteCount; j++)
 		{
 			Sprite2D* sprite = &sprites[j];
-			Transform2D* spriteTransform = &entities->at(sprite->entityID).transform;
+			Transform2D* spriteTransform = &entities[sprite->entityID].transform;
 
 			double spriteWidth = sprite->pixels.width;
 			double spriteHeight = sprite->pixels.height;
@@ -37,32 +38,32 @@ void Lania::RendererSDL::buildRenderablesFromSprites(
 			double cameraHeight = camera.viewport_px.height;
 			double cameraX = cameraTransform->position_px.x;
 			double cameraY = cameraTransform->position_px.y;
-			double spriteX;
-			double spriteY;
-			double rotationRelativeToCamera;
+			double spriteX = 0.0;
+			double spriteY = 0.0;
+			double rotationRelativeToCamera = 0.0;
 
 			//Offsets sprite by relative position with parent
-			EntityID spriteParent = entities->at(sprite->entityID).parent;
-			if (spriteParent != ULLONG_MAX)
+			//along the entity hierachy
+			EntityID spriteID = sprite->entityID;
+			EntityID spriteParentID;
+			do
 			{
-				Transform2D parentTransform = entities->at(spriteParent).transform;
-				spriteX = parentTransform.position_px.x +
-					(spriteTransform->position_px.x * cos(parentTransform.rotation_rad * M_PI) -
-						spriteTransform->position_px.y * sin(parentTransform.rotation_rad * M_PI));
-				spriteY = parentTransform.position_px.y +
-					(spriteTransform->position_px.x * sin(parentTransform.rotation_rad * M_PI) +
-						spriteTransform->position_px.y * cos(parentTransform.rotation_rad * M_PI));
-				rotationRelativeToCamera =
-					-((spriteTransform->rotation_rad + parentTransform.rotation_rad -
+				spriteParentID = entities[spriteID].parent;
+				Transform2D parentTransform = entities[spriteParentID].transform;
+				Transform2D currentSpriteTransform = entities[spriteID].transform;
+
+				spriteX += parentTransform.position_px.x +
+					(currentSpriteTransform.position_px.x * cos(parentTransform.rotation_rad * M_PI) -
+						currentSpriteTransform.position_px.y * sin(parentTransform.rotation_rad * M_PI));
+				spriteY += parentTransform.position_px.y +
+					(currentSpriteTransform.position_px.x * sin(parentTransform.rotation_rad * M_PI) +
+						currentSpriteTransform.position_px.y * cos(parentTransform.rotation_rad * M_PI));
+				rotationRelativeToCamera +=
+					-((currentSpriteTransform.rotation_rad + parentTransform.rotation_rad -
 						cameraTransform->rotation_rad) * 180.0);
-			}
-			else
-			{
-				spriteX = spriteTransform->position_px.x;
-				spriteY = spriteTransform->position_px.y;
-				rotationRelativeToCamera =
-					-((spriteTransform->rotation_rad - cameraTransform->rotation_rad) * 180.0);
-			}
+
+				spriteID = spriteParentID;
+			} while (spriteParentID != NO_PARENT);
 
 			SDLRenderable renderable;
 			renderable.texture = sprite->texture;

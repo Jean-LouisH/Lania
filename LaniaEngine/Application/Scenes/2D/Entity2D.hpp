@@ -17,6 +17,7 @@
 
 #include <stdint.h>
 #include <limits.h>
+#include <Constants.hpp>
 #include <Definitions.hpp>
 #include <Application/Scenes/2D/Transform2D.hpp>
 
@@ -41,7 +42,7 @@ namespace Lania
 
 		Entity2D() :
 			//Assigned to largest value to represent no parent.
-			parent(ULLONG_MAX),
+			parent(NO_PARENT),
 			attachedComponentsFlag(0)
 		{}
 	}Entity2D;
