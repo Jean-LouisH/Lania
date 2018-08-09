@@ -152,7 +152,6 @@
     <ClInclude Include="Core\Timer.hpp" />
     <ClInclude Include="Core\UnitTesting.hpp" />
     <ClInclude Include="Definitions.hpp" />
-    <ClInclude Include="Input\Keyboard.hpp" />
     <ClInclude Include="Physics\Physics2D.hpp" />
     <ClInclude Include="Rendering\GPU.hpp" />
     <ClInclude Include="Rendering\RendererSDL.hpp" />
@@ -170,7 +169,6 @@
     <ClCompile Include="Core\OS\Logging.cpp" />
     <ClCompile Include="Core\Timer.cpp" />
     <ClCompile Include="Core\UnitTesting.cpp" />
-    <ClCompile Include="Input\Keyboard.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Physics\Physics2D.cpp" />
     <ClCompile Include="Rendering\RendererSDL.cpp" />

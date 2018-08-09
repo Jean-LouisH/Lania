@@ -33,9 +33,6 @@
     <ClInclude Include="Core\OS\OS.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Input\Keyboard.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Engine.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -153,9 +150,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Core\OS\OS.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Input\Keyboard.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
