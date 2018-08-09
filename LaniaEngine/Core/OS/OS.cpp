@@ -41,6 +41,9 @@ void Lania::OS::detectBatteryLife(Engine* engine)
 void Lania::OS::pollInputEvents(Engine* engine)
 {
 	SDL_Event SDLEvents;
+	MouseState* mouse = &engine->input.mouse;
+
+	engine->input.releasedKeys.clear();
 
 	while (SDL_PollEvent(&SDLEvents))
 	{
@@ -59,17 +62,58 @@ void Lania::OS::pollInputEvents(Engine* engine)
 			}
 			else
 			{
-				engine->input.keyEvents.push_back({
-					Key::KEY_DOWN,
-					SDLEvents.key.keysym.sym,
-					SDLEvents.key.timestamp });
+				KeyEvent press;
+				press.mod = SDLEvents.key.keysym.mod;
+				press.timestamp_ms = SDLEvents.key.timestamp;
+
+				engine->input.pressedKeys.emplace(SDLEvents.key.keysym.sym, press);
 			}
 			break;
 		case SDL_KEYUP:
-			engine->input.keyEvents.push_back({
-				Key::KEY_UP,
-				SDLEvents.key.keysym.sym,
-				SDLEvents.key.timestamp });
+			KeyEvent release;
+			release.mod = SDLEvents.key.keysym.mod;
+			release.timestamp_ms = SDLEvents.key.timestamp;
+
+			engine->input.releasedKeys.emplace(SDLEvents.key.keysym.sym, release);
+			engine->input.pressedKeys.erase(SDLEvents.key.keysym.sym);
+			break;
+		case SDL_MOUSEBUTTONDOWN:
+			mouse->type = SDL_MOUSEBUTTONDOWN;
+			mouse->timestamp_ms = SDLEvents.button.timestamp;
+			mouse->windowID = SDLEvents.button.windowID;
+			mouse->button = SDLEvents.button.button;
+			mouse->buttonState = SDLEvents.button.state;
+			mouse->clicks = SDLEvents.button.clicks;
+			mouse->x = SDLEvents.button.x;
+			mouse->y = SDLEvents.button.y;
+			break;
+		case SDL_MOUSEBUTTONUP:
+			mouse->type = SDL_MOUSEBUTTONUP;
+			mouse->timestamp_ms = SDLEvents.button.timestamp;
+			mouse->windowID = SDLEvents.button.windowID;
+			mouse->button = SDLEvents.button.button;
+			mouse->buttonState = SDLEvents.button.state;
+			mouse->clicks = SDLEvents.button.clicks;
+			mouse->x = SDLEvents.button.x;
+			mouse->y = SDLEvents.button.y;
+			break;
+		case SDL_MOUSEMOTION:
+			mouse->type = SDL_MOUSEMOTION;
+			mouse->timestamp_ms = SDLEvents.motion.timestamp;
+			mouse->windowID = SDLEvents.motion.windowID;
+			mouse->motionState = SDLEvents.motion.state;
+			mouse->x = SDLEvents.motion.x;
+			mouse->y = SDLEvents.motion.y;
+			mouse->xrel = SDLEvents.motion.xrel;
+			mouse->yrel = SDLEvents.motion.yrel;
+			break;
+		case SDL_MOUSEWHEEL:
+			mouse->type = SDL_MOUSEWHEEL;
+			mouse->timestamp_ms = SDLEvents.wheel.timestamp;
+			mouse->windowID = SDLEvents.wheel.windowID;
+			mouse->xScroll = SDLEvents.wheel.x;
+			mouse->yScroll = SDLEvents.wheel.y;
+			mouse->direction = SDLEvents.wheel.direction;
 			break;
 		}
 	}
