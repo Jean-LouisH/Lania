@@ -372,9 +372,14 @@ void Lania::logic(Engine* engine, Application* application)
 	time->script.setStart();
 
 	List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
-	if (scene2Ds->size() > 0)
+	int scene2DCount = scene2Ds->size();
+	for (int i = 0; i < scene2DCount; i++)
 	{
-		Physics2D::detectCollisions(scene2Ds);
+		Scene2D* scene2D = &scene2Ds->at(i);
+		Entity2D* entities = scene2D->entities.data();
+		BoxCollider2D* boxColliders = scene2D->activeBoxColliders.data();
+		int boxColliderCount = scene2D->activeBoxColliders.size();
+		Physics2D::detectCollisions(entities, boxColliders, boxColliderCount);
 	}
 
 	time->script.setEnd();
@@ -385,15 +390,27 @@ void Lania::compute(Engine* engine, Application* application)
 	Timer* time = &engine->timer;
 	time->compute.setStart();
 
+	List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
+	int scene2DCount = scene2Ds->size();
+
 	while (time->lag_ms >= MS_PER_UPDATE)
 	{
-		List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
-		if (scene2Ds->size() > 0)
+		for (int i = 0; i < scene2DCount; i++)
 		{
-			Physics2D::gravitate(scene2Ds);
-			Physics2D::displace(scene2Ds);
-			Physics2D::lock(scene2Ds);
+			Scene2D* scene2D = &scene2Ds->at(i);
+			Entity2D* entities = scene2D->entities.data();
+
+			RigidBody2D* rigidBodies = scene2D->activeRigidBodies.data();
+			PointLock2D* pointLocks = scene2D->pointLocks.data();
+
+			int rigidBodyCount = scene2D->activeRigidBodies.size();
+			int pointLockCount = scene2D->pointLocks.size();
+
+			Physics2D::gravitate(rigidBodies, rigidBodyCount);
+			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
+			Physics2D::lock(entities, pointLocks, pointLockCount);
 		}
+
 		time->simulation_ms += MS_PER_UPDATE;
 		time->lag_ms -= MS_PER_UPDATE;
 	}
