@@ -60,6 +60,6 @@ namespace Lania
 			filepath(NULL),
 			frameCount(0),
 			FPS(0),
-			state(0) {}
+			state(RUNNING_APPLICATION) {}
 	}Engine;
 }
