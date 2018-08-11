@@ -206,8 +206,10 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.activeSprites.push_back(boxSprite);
 
 	BoxCollider2D floorBoxCollider;
-	floorBoxCollider.aabb.max_px.x = 1400;
-	floorBoxCollider.aabb.max_px.y = boxSprite.pixels.height / 2.0;
+	floorBoxCollider.aabb.min_px.x = -1400 / 2;
+	floorBoxCollider.aabb.min_px.y = -boxSprite.pixels.height / 2.0;
+	floorBoxCollider.aabb.max_px.x = -floorBoxCollider.aabb.min_px.x;
+	floorBoxCollider.aabb.max_px.y = -floorBoxCollider.aabb.min_px.y;
 	floorBoxCollider.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
 	scene2D.activeBoxColliders.push_back(floorBoxCollider);
@@ -242,8 +244,10 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.activeSprites.push_back(beldumSprite);
 
 	BoxCollider2D beldumBoxCollider;
-	beldumBoxCollider.aabb.max_px.x = beldumSprite.pixels.width * beldum.transform.scale.x;
-	beldumBoxCollider.aabb.max_px.y = beldumSprite.pixels.height * beldum.transform.scale.y;
+	beldumBoxCollider.aabb.min_px.x = -(beldumSprite.pixels.width * beldum.transform.scale.x) / 2.0;
+	beldumBoxCollider.aabb.min_px.y = -(beldumSprite.pixels.height * beldum.transform.scale.y) / 2.0;
+	beldumBoxCollider.aabb.max_px.x = -beldumBoxCollider.aabb.min_px.x;
+	beldumBoxCollider.aabb.max_px.y = -beldumBoxCollider.aabb.min_px.y;
 	beldumBoxCollider.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
 	scene2D.activeBoxColliders.push_back(beldumBoxCollider);
@@ -276,8 +280,10 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.activeSprites.push_back(arcanineSprite);
 
 	BoxCollider2D arcanineBoxCollider;
-	arcanineBoxCollider.aabb.max_px.x = arcanineSprite.pixels.width * arcanine.transform.scale.x;
-	arcanineBoxCollider.aabb.max_px.y = arcanineSprite.pixels.height * arcanine.transform.scale.y;
+	arcanineBoxCollider.aabb.min_px.x = -(arcanineSprite.pixels.width * arcanine.transform.scale.x) / 2.0;
+	arcanineBoxCollider.aabb.min_px.y = -(arcanineSprite.pixels.height * arcanine.transform.scale.y) / 2.0;
+	arcanineBoxCollider.aabb.max_px.x = -arcanineBoxCollider.aabb.min_px.x;
+	arcanineBoxCollider.aabb.max_px.y = -arcanineBoxCollider.aabb.min_px.y;
 	arcanineBoxCollider.entityID = scene2D.entities.size() - 1;
 	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
 	scene2D.activeBoxColliders.push_back(arcanineBoxCollider);
@@ -371,17 +377,6 @@ void Lania::logic(Engine* engine, Application* application)
 	Timer* time = &engine->timer;
 	time->script.setStart();
 
-	List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
-	int scene2DCount = scene2Ds->size();
-	for (int i = 0; i < scene2DCount; i++)
-	{
-		Scene2D* scene2D = &scene2Ds->at(i);
-		Entity2D* entities = scene2D->entities.data();
-		BoxCollider2D* boxColliders = scene2D->activeBoxColliders.data();
-		int boxColliderCount = scene2D->activeBoxColliders.size();
-		Physics2D::detectCollisions(entities, boxColliders, boxColliderCount);
-	}
-
 	time->script.setEnd();
 }
 
@@ -400,12 +395,15 @@ void Lania::compute(Engine* engine, Application* application)
 			Scene2D* scene2D = &scene2Ds->at(i);
 			Entity2D* entities = scene2D->entities.data();
 
+			BoxCollider2D* boxColliders = scene2D->activeBoxColliders.data();
 			RigidBody2D* rigidBodies = scene2D->activeRigidBodies.data();
 			PointLock2D* pointLocks = scene2D->pointLocks.data();
 
+			int boxColliderCount = scene2D->activeBoxColliders.size();
 			int rigidBodyCount = scene2D->activeRigidBodies.size();
 			int pointLockCount = scene2D->pointLocks.size();
 
+			Physics2D::detectCollisions(entities, boxColliders, boxColliderCount);
 			Physics2D::gravitate(rigidBodies, rigidBodyCount);
 			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
 			Physics2D::lock(entities, pointLocks, pointLockCount);

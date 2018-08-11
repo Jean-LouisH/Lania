@@ -18,20 +18,20 @@ void Lania::Physics2D::detectCollisions(
 				Vector2* position2 = &entities[boxColliders[j].entityID].transform.position_px;
 				AABB2D* aabb2 = &boxColliders[j].aabb;
 
-				double r1left = position1->x - (aabb1->max_px.x / 2.0);
-				double r1right = position1->x + (aabb1->max_px.x / 2.0);
-				double r1top = position1->y + (aabb1->max_px.y / 2.0);
-				double r1bottom = position1->y - (aabb1->max_px.y / 2.0);
+				double box1left = position1->x + aabb1->min_px.x;
+				double box1right = position1->x + aabb1->max_px.x;
+				double box1top = position1->y + aabb1->max_px.y;
+				double box1bottom = position1->y + aabb1->min_px.y;
 
-				double r2left = position2->x - (aabb2->max_px.x / 2.0);
-				double r2right = position2->x + (aabb2->max_px.x / 2.0);
-				double r2top = position2->y + (aabb2->max_px.y / 2.0);
-				double r2bottom = position2->y - (aabb2->max_px.y / 2.0);
+				double box2left = position2->x + aabb2->min_px.x;
+				double box2right = position2->x + aabb2->max_px.x;
+				double box2top = position2->y + aabb2->max_px.y;
+				double box2bottom = position2->y + aabb2->min_px.y;
 
-				if (!(r2left > r1right
-					|| r2right < r1left
-					|| r2top < r1bottom
-					|| r2bottom > r1top))
+				if (!(box2left > box1right
+					|| box2right < box1left
+					|| box2top < box1bottom
+					|| box2bottom > box1top))
 				{
 					;
 				}
