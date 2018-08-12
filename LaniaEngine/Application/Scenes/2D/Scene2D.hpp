@@ -20,6 +20,7 @@
 #include <Core/Input.hpp>
 #include <Core/DataStructures/List.hpp>
 #include <Core/DataStructures/Map.hpp>
+#include <Core/DataStructures/String.hpp>
 #include "BoxCollider2D.hpp"
 #include "Camera2D.hpp"
 #include "Entity2D.hpp"
@@ -33,6 +34,8 @@ namespace Lania
 	{
 		//Entities listed and layered by ID numbers
 		List<Entity2D> entities;
+
+		Map<String, EntityID> entityNameRegistry;
 
 		//Active component existence-based processing lists
 		//Ordered by entity layer, but not necessarily matched to IDs
