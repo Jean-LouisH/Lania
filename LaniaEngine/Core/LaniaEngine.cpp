@@ -377,6 +377,13 @@ void Lania::logic(Engine* engine, Application* application)
 	Timer* time = &engine->timer;
 	time->script.setStart();
 
+	if (engine->input.pressedKeys.count(SDLK_a))
+		application->scene.subscenes2D.at(0).activeRigidBodies.at(0).velocity_px_per_s.x = -500;
+
+	if (engine->input.pressedKeys.count(SDLK_d))
+		application->scene.subscenes2D.at(0).activeRigidBodies.at(0).velocity_px_per_s.x = 500;
+
+
 	time->script.setEnd();
 }
 
@@ -404,7 +411,8 @@ void Lania::compute(Engine* engine, Application* application)
 			int pointLockCount = scene2D->pointLocks.size();
 
 			Physics2D::detectCollisions(entities, boxColliders, boxColliderCount);
-			Physics2D::gravitate(rigidBodies, rigidBodyCount);
+			Physics2D::decelerate(rigidBodies, rigidBodyCount);
+			//Physics2D::gravitate(rigidBodies, rigidBodyCount);
 			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
 			Physics2D::lock(entities, pointLocks, pointLockCount);
 		}
