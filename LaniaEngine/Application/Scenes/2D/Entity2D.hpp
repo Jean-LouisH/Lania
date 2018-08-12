@@ -20,17 +20,19 @@
 #include <Constants.hpp>
 #include <Definitions.hpp>
 #include <Application/Scenes/2D/Transform2D.hpp>
+#include <Core/DataStructures/Set.hpp>
+#include <SDL_mixer.h>
 
 namespace Lania
 {
 	enum Components
 	{
-		NONE			= 0,
-		CAMERA2D		= 1,
-		RIGIDBODY2D		= 1 << 2,
-		SPRITE			= 1 << 2,
-		STATICBODY2D	= 1 << 3,
-		BOXCOLLIDER2D	= 1 << 4
+		NONE,
+		CAMERA2D,
+		RIGIDBODY2D,
+		SPRITE,
+		STATICBODY2D,
+		BOXCOLLIDER2D
 	};
 
 	typedef struct Entity2D
@@ -38,12 +40,12 @@ namespace Lania
 		Transform2D transform;
 		List<EntityID> children;
 		EntityID parent;
-		uint32_t attachedComponentsFlag; //to determine if searches are necessary
+		Map<ComponentType, ComponentListIndex> components;
+		List<Mix_Chunk*> audioSources;
+		List<ComponentListIndex> scripts;
 
 		Entity2D() :
-			//Assigned to largest value to represent no parent.
-			parent(NO_PARENT),
-			attachedComponentsFlag(NONE)
+			parent(NO_PARENT)
 		{}
 	}Entity2D;
 }

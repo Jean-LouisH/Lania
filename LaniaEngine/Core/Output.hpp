@@ -13,7 +13,9 @@
 
 #pragma once
 
+#include <SDL_mixer.h>
 #include <Core/DataStructures/List.hpp>
+#include <Core/DataStructures/Queue.hpp>
 #include <Rendering/SDLRenderable.hpp>
 
 namespace Lania
@@ -21,5 +23,7 @@ namespace Lania
 	typedef struct Output
 	{
 		List<SDLRenderable> SDLRenderables;
+		Queue<Mix_Chunk*> immediateSounds;
+		Queue<Mix_Chunk*> scheduledSounds;
 	}Output;
 }

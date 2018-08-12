@@ -12,6 +12,7 @@
 #include <Core/DataStructures/List.hpp>
 #include <Rendering/RendererSDL.hpp>
 #include <Physics/Physics2D.hpp>
+#include <Audio/AudioSDL.hpp>
 #include <sstream>
 
 void Lania::initialize(Engine* engine)
@@ -47,6 +48,9 @@ void Lania::initialize(Engine* engine)
 		appConfig->targetFPS = 60;
 		IMG_Init(IMG_INIT_PNG);
 		IMG_Init(IMG_INIT_JPG);
+
+		Mix_Init(MIX_INIT_OGG);
+		Mix_OpenAudio(44100, AUDIO_S16SYS, 2, pow(2, 11));
 
 		if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
 		{
@@ -154,8 +158,8 @@ void Lania::loop(Engine* engine, Application* application)
 	camera2D.viewport_px.height = engine->appConfig.windowHeight_px;
 	camera2D.current = true;
 	camera2D.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= CAMERA2D;
 	scene2D.activeCameras.push_back(camera2D);
+	scene2D.entities.back().components.emplace(CAMERA2D, scene2D.activeCameras.size() - 1);
 	scene2D.currentCameraIndex = scene2D.activeCameras.size() - 1;
 	////////////////////////////////////////////////////////////////////////
 
@@ -172,8 +176,8 @@ void Lania::loop(Engine* engine, Application* application)
 	SDL_SetTextureAlphaMod(bgSprite.texture, bgSprite.alpha);
 	SDL_FreeSurface(bgSurface);
 	bgSprite.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
 	scene2D.activeSprites.push_back(bgSprite);
+	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
 
 	scene2D.entities.back().transform.position_px.x = bgSprite.pixels.width / 2.0;
 	scene2D.entities.back().transform.position_px.y = bgSprite.pixels.height / 2.0;
@@ -202,8 +206,8 @@ void Lania::loop(Engine* engine, Application* application)
 	SDL_SetTextureAlphaMod(boxSprite.texture, boxSprite.alpha);
 	SDL_FreeSurface(boxSurface);
 	boxSprite.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
 	scene2D.activeSprites.push_back(boxSprite);
+	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
 
 	BoxCollider2D floorBoxCollider;
 	floorBoxCollider.aabb.min_px.x = -1400 / 2;
@@ -211,8 +215,8 @@ void Lania::loop(Engine* engine, Application* application)
 	floorBoxCollider.aabb.max_px.x = -floorBoxCollider.aabb.min_px.x;
 	floorBoxCollider.aabb.max_px.y = -floorBoxCollider.aabb.min_px.y;
 	floorBoxCollider.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
 	scene2D.activeBoxColliders.push_back(floorBoxCollider);
+	scene2D.entities.back().components.emplace(BOXCOLLIDER2D, scene2D.activeBoxColliders.size() - 1);
 
 	double testScale = 2.5;
 	//testScale = 1.0;
@@ -222,13 +226,14 @@ void Lania::loop(Engine* engine, Application* application)
 	beldum.transform.position_px.y = 500;
 	beldum.transform.scale.x = testScale;
 	beldum.transform.scale.y = testScale;
+	beldum.audioSources.push_back(Mix_LoadWAV("../Demos/PhysicsTest/PhysicsTest/Audio/Sounds/Beldum cry.wav"));
 	scene2D.entities.push_back(beldum);
 
 	RigidBody2D rigid;
 	rigid.gravity_scale = 20.0;
 	rigid.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= RIGIDBODY2D;
 	scene2D.activeRigidBodies.push_back(rigid);
+	scene2D.entities.back().components.emplace(RIGIDBODY2D, scene2D.activeRigidBodies.size() - 1);
 
 	Sprite2D beldumSprite;
 	SDL_Surface* beldumSurface =
@@ -240,8 +245,8 @@ void Lania::loop(Engine* engine, Application* application)
 	SDL_SetTextureAlphaMod(beldumSprite.texture, beldumSprite.alpha);
 	SDL_FreeSurface(beldumSurface);
 	beldumSprite.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
 	scene2D.activeSprites.push_back(beldumSprite);
+	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
 
 	BoxCollider2D beldumBoxCollider;
 	beldumBoxCollider.aabb.min_px.x = -(beldumSprite.pixels.width * beldum.transform.scale.x) / 2.0;
@@ -249,8 +254,8 @@ void Lania::loop(Engine* engine, Application* application)
 	beldumBoxCollider.aabb.max_px.x = -beldumBoxCollider.aabb.min_px.x;
 	beldumBoxCollider.aabb.max_px.y = -beldumBoxCollider.aabb.min_px.y;
 	beldumBoxCollider.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
 	scene2D.activeBoxColliders.push_back(beldumBoxCollider);
+	scene2D.entities.back().components.emplace(BOXCOLLIDER2D, scene2D.activeBoxColliders.size() - 1);
 
 	//////////
 
@@ -262,8 +267,8 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.entities.push_back(arcanine);
 
 	rigid.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= RIGIDBODY2D;
 	scene2D.activeRigidBodies.push_back(rigid);
+	scene2D.entities.back().components.emplace(RIGIDBODY2D, scene2D.activeRigidBodies.size() - 1);
 
 	Sprite2D arcanineSprite;
 	SDL_Surface* arcanineSurface =
@@ -276,8 +281,8 @@ void Lania::loop(Engine* engine, Application* application)
 	SDL_FreeSurface(arcanineSurface);
 	arcanineSprite.entityID = scene2D.entities.size() - 1;
 	arcanineSprite.flip = SDL_FLIP_HORIZONTAL;
-	scene2D.entities.back().attachedComponentsFlag |= SPRITE;
 	scene2D.activeSprites.push_back(arcanineSprite);
+	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
 
 	BoxCollider2D arcanineBoxCollider;
 	arcanineBoxCollider.aabb.min_px.x = -(arcanineSprite.pixels.width * arcanine.transform.scale.x) / 2.0;
@@ -285,8 +290,8 @@ void Lania::loop(Engine* engine, Application* application)
 	arcanineBoxCollider.aabb.max_px.x = -arcanineBoxCollider.aabb.min_px.x;
 	arcanineBoxCollider.aabb.max_px.y = -arcanineBoxCollider.aabb.min_px.y;
 	arcanineBoxCollider.entityID = scene2D.entities.size() - 1;
-	scene2D.entities.back().attachedComponentsFlag |= BOXCOLLIDER2D;
 	scene2D.activeBoxColliders.push_back(arcanineBoxCollider);
+	scene2D.entities.back().components.emplace(BOXCOLLIDER2D, scene2D.activeBoxColliders.size() - 1);
 
 	////////////
 
@@ -383,6 +388,8 @@ void Lania::logic(Engine* engine, Application* application)
 	if (engine->input.pressedKeys.count(SDLK_d))
 		application->scene.subscenes2D.at(0).activeRigidBodies.at(0).velocity_px_per_s.x = 500;
 
+	if (engine->input.releasedKeys.count(SDLK_k))
+		engine->output.immediateSounds.push(application->scene.subscenes2D.at(0).entities.at(4).audioSources.at(0));
 
 	time->script.setEnd();
 }
@@ -465,6 +472,8 @@ void Lania::output(Engine* engine)
 
 		SDL_RenderPresent(engine->SDLRenderer);
 	}
+
+	AudioSDL::playSounds(&engine->output.immediateSounds, &engine->output.scheduledSounds);
 	time->output.setEnd();
 }
 
