@@ -23,6 +23,9 @@ namespace Lania
 			Entity2D* entities,
 			BoxCollider2D* boxColliders,
 			int boxColliderCount);
+		void decelerate(
+			RigidBody2D* rigidBodies,
+			int rigidBodyCount);
 		void gravitate(
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);

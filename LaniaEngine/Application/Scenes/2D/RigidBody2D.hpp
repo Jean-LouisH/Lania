@@ -27,7 +27,7 @@ namespace Lania
 		double angularDrag_ratio;
 		double gravity_scale;
 		double elasticity_ratio;
-		double drag_ratio;
+		Vector2 drag_px_per_s_sq;
 		Vector2 angularVelocity_rad_per_s;
 		Vector2 velocity_px_per_s;
 
@@ -36,8 +36,10 @@ namespace Lania
 			friction_ratio(1.0),
 			angularDrag_ratio(1.0),
 			gravity_scale(1.0),
-			elasticity_ratio(0.01),
-			drag_ratio(1.0)
-		{}
+			elasticity_ratio(0.01)
+		{ 
+			drag_px_per_s_sq.x = 500.0;
+			drag_px_per_s_sq.y = 0.0; 
+		}
 	}RigidBody2D;
 }

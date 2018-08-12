@@ -40,6 +40,40 @@ void Lania::Physics2D::detectCollisions(
 	}
 }
 
+void Lania::Physics2D::decelerate(
+	RigidBody2D* rigidBodies,
+	int rigidBodyCount)
+{
+	for (int i = 0; i < rigidBodyCount; i++)
+	{
+		if (rigidBodies[i].velocity_px_per_s.x > 0)
+		{
+			rigidBodies[i].velocity_px_per_s.x -= rigidBodies[i].drag_px_per_s_sq.x * S_PER_UPDATE;
+			if (rigidBodies[i].velocity_px_per_s.x < 0)
+				rigidBodies[i].velocity_px_per_s.x = 0;
+		}
+		else if (rigidBodies[i].velocity_px_per_s.x < 0)
+		{
+			rigidBodies[i].velocity_px_per_s.x += rigidBodies[i].drag_px_per_s_sq.x * S_PER_UPDATE;
+			if (rigidBodies[i].velocity_px_per_s.x > 0)
+				rigidBodies[i].velocity_px_per_s.x = 0;
+		}
+
+		if (rigidBodies[i].velocity_px_per_s.y > 0)
+		{
+			rigidBodies[i].velocity_px_per_s.y -= rigidBodies[i].drag_px_per_s_sq.y * S_PER_UPDATE;
+			if (rigidBodies[i].velocity_px_per_s.y < 0)
+				rigidBodies[i].velocity_px_per_s.y = 0;
+		}
+		else if (rigidBodies[i].velocity_px_per_s.y < 0)
+		{
+			rigidBodies[i].velocity_px_per_s.y += rigidBodies[i].drag_px_per_s_sq.y * S_PER_UPDATE;
+			if (rigidBodies[i].velocity_px_per_s.y > 0)
+				rigidBodies[i].velocity_px_per_s.y = 0;
+		}
+	}
+}
+
 void Lania::Physics2D::gravitate(
 	RigidBody2D* rigidBodies, 
 	int rigidBodyCount)
