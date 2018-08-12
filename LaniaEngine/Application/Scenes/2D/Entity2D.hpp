@@ -43,7 +43,7 @@ namespace Lania
 		Entity2D() :
 			//Assigned to largest value to represent no parent.
 			parent(NO_PARENT),
-			attachedComponentsFlag(0)
+			attachedComponentsFlag(NONE)
 		{}
 	}Entity2D;
 }
