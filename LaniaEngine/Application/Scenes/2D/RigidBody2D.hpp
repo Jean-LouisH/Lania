@@ -38,8 +38,8 @@ namespace Lania
 			gravity_scale(1.0),
 			elasticity_ratio(0.01)
 		{ 
-			drag_ratio.x = 0.01;
-			drag_ratio.y = 0.0; 
+			drag_ratio.x = 0.0001;
+			drag_ratio.y = 1.0; 
 		}
 	}RigidBody2D;
 }
