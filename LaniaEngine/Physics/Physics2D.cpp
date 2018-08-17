@@ -1,4 +1,5 @@
 #include "Physics2D.hpp"
+#include <math.h>
 #include <Constants.hpp>
 
 void Lania::Physics2D::detectCollisions(
@@ -46,31 +47,9 @@ void Lania::Physics2D::decelerate(
 {
 	for (int i = 0; i < rigidBodyCount; i++)
 	{
-		if (rigidBodies[i].velocity_px_per_s.x > 0)
-		{
-			rigidBodies[i].velocity_px_per_s.x -= rigidBodies[i].drag_px_per_s_sq.x * S_PER_UPDATE;
-			if (rigidBodies[i].velocity_px_per_s.x < 0)
-				rigidBodies[i].velocity_px_per_s.x = 0;
-		}
-		else if (rigidBodies[i].velocity_px_per_s.x < 0)
-		{
-			rigidBodies[i].velocity_px_per_s.x += rigidBodies[i].drag_px_per_s_sq.x * S_PER_UPDATE;
-			if (rigidBodies[i].velocity_px_per_s.x > 0)
-				rigidBodies[i].velocity_px_per_s.x = 0;
-		}
-
-		if (rigidBodies[i].velocity_px_per_s.y > 0)
-		{
-			rigidBodies[i].velocity_px_per_s.y -= rigidBodies[i].drag_px_per_s_sq.y * S_PER_UPDATE;
-			if (rigidBodies[i].velocity_px_per_s.y < 0)
-				rigidBodies[i].velocity_px_per_s.y = 0;
-		}
-		else if (rigidBodies[i].velocity_px_per_s.y < 0)
-		{
-			rigidBodies[i].velocity_px_per_s.y += rigidBodies[i].drag_px_per_s_sq.y * S_PER_UPDATE;
-			if (rigidBodies[i].velocity_px_per_s.y > 0)
-				rigidBodies[i].velocity_px_per_s.y = 0;
-		}
+		double dragScale = pow(rigidBodies[i].drag_ratio.x, S_PER_UPDATE);
+		rigidBodies[i].velocity_px_per_s.x *= dragScale;
+		rigidBodies[i].velocity_px_per_s.y *= dragScale;
 	}
 }
 
