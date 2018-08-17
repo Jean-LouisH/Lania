@@ -24,7 +24,7 @@ void Lania::initialize(Engine* engine)
 	unsigned char* state = &engine->state;
 
 	engine->timer.run.setStart();
-	engine->filepath = SDL_GetBasePath();
+	engine->executableName = File::getExecutableName(engine->filepath);
 	*appConfig = Config::parseInit(File::read(initFilePath));
 	SDL_GameControllerAddMappingsFromFile("../Data/gamecontrollerdb.txt");
 	engine->platform.logicalCoreCount = SDL_GetCPUCount();
@@ -419,7 +419,7 @@ void Lania::compute(Engine* engine, Application* application)
 
 			Physics2D::detectCollisions(entities, boxColliders, boxColliderCount);
 			Physics2D::decelerate(rigidBodies, rigidBodyCount);
-			//Physics2D::gravitate(rigidBodies, rigidBodyCount);
+			Physics2D::gravitate(rigidBodies, rigidBodyCount);
 			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
 			Physics2D::lock(entities, pointLocks, pointLockCount);
 		}

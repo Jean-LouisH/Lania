@@ -20,6 +20,7 @@
 #include "Input.hpp"
 #include "Output.hpp"
 #include "Platform.hpp"
+#include <Core/DataStructures/String.hpp>
 #include <stdint.h>
 
 namespace Lania
@@ -43,7 +44,8 @@ namespace Lania
 		SDL_GLContext glContext;
 		SDL_Renderer* SDLRenderer;
 		uint8_t renderer;
-		char* filepath;
+		String filepath;
+		String executableName;
 		Platform platform;
 		Timer timer;
 		AppConfig appConfig;
@@ -57,7 +59,6 @@ namespace Lania
 			glContext(NULL),
 			SDLRenderer(NULL),
 			renderer(SDL_RENDERER),
-			filepath(NULL),
 			frameCount(0),
 			FPS(0),
 			state(RUNNING_APPLICATION) {}

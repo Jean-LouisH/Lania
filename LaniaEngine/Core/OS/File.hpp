@@ -13,16 +13,18 @@
 
 #pragma once
 
-#include <string>
+#include <Core/DataStructures/String.hpp>
+#include <stdint.h>
 
 namespace Lania
 {
 	namespace File
 	{
-		bool exists(std::string filepath);
-		char* read(std::string filePath);
-		void write(std::string filePath, char* fileData);
-		void append(std::string filePath, char* fileData);
+		bool exists(String filePath);
+		char* read(String filePath);
+		void write(String filePath, char* fileData);
+		void append(String filePath, char* fileData);
+		String getExecutableName(String filePath);
 	}
 }
 

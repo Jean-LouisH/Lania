@@ -1,11 +1,10 @@
 #include "File.hpp"
-#include <Core/DataStructures/String.hpp>
 #include <fstream>
 
-bool Lania::File::exists(std::string filepath)
+bool Lania::File::exists(String filePath)
 {
 	std::ifstream file;
-	file.open(filepath);
+	file.open(filePath);
 	if (!file)
 	{
 		file.close();
@@ -18,7 +17,7 @@ bool Lania::File::exists(std::string filepath)
 	}
 }
 
-char* Lania::File::read(std::string filePath)
+char* Lania::File::read(String filePath)
 {
 	std::ifstream inputFile;
 
@@ -67,7 +66,7 @@ char* Lania::File::read(std::string filePath)
 	}
 }
 
-void Lania::File::write(std::string filePath, char* fileData)
+void Lania::File::write(String filePath, char* fileData)
 {
 	std::ofstream outputFile;
 
@@ -99,7 +98,7 @@ void Lania::File::write(std::string filePath, char* fileData)
 	outputFile.close();
 }
 
-void Lania::File::append(std::string filePath, char* fileData)
+void Lania::File::append(String filePath, char* fileData)
 {
 	std::ofstream outputFile;
 
@@ -129,4 +128,22 @@ void Lania::File::append(std::string filePath, char* fileData)
 	}
 
 	outputFile.close();
+}
+
+Lania::String Lania::File::getExecutableName(Lania::String filePath)
+{
+	String executableName;
+	int nameIndexStart = 0;
+
+	//Find the first slash from the end
+	for (nameIndexStart = filePath.size() - 1; 
+		filePath.at(nameIndexStart) != '/' && filePath.at(nameIndexStart) != '\\';
+		nameIndexStart--)
+		;
+
+	//append from the start index to the extension name.
+	for (int j = nameIndexStart + 1; filePath.at(j) != '.'; j++)
+		executableName += filePath.at(j);
+
+	return executableName;
 }
