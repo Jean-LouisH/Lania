@@ -47,9 +47,8 @@ void Lania::Physics2D::decelerate(
 {
 	for (int i = 0; i < rigidBodyCount; i++)
 	{
-		double dragScale = pow(rigidBodies[i].drag_ratio.x, S_PER_UPDATE);
-		rigidBodies[i].velocity_px_per_s.x *= dragScale;
-		rigidBodies[i].velocity_px_per_s.y *= dragScale;
+		rigidBodies[i].velocity_px_per_s.x *= pow(rigidBodies[i].drag_ratio.x, S_PER_UPDATE);
+		rigidBodies[i].velocity_px_per_s.y *= pow(rigidBodies[i].drag_ratio.y, S_PER_UPDATE);
 	}
 }
 
