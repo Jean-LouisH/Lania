@@ -18,6 +18,8 @@ int main(int argc, char* argv[])
 {
 	Lania::Engine* engine = new Lania::Engine();
 	Lania::Application* application = new Lania::Application();
+
+	engine->filepath = argv[0];
 	
 	Lania::initialize(engine);
 	if (engine->state == Lania::RUNNING_APPLICATION)
