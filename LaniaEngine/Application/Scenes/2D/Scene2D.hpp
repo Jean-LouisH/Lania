@@ -27,6 +27,7 @@
 #include "RigidBody2D.hpp"
 #include "Sprite2D.hpp"
 #include "PointLock2D.hpp"
+#include <Application/Scenes/2D/CollisionEvent2D.hpp>
 
 namespace Lania
 {
@@ -36,6 +37,7 @@ namespace Lania
 		List<Entity2D> entities;
 
 		Map<String, EntityID> entityNameRegistry;
+		List<DynamicCollisionEvent2D> collisionEvents;
 
 		//Active component existence-based processing lists
 		//Ordered by entity layer, but not necessarily matched to IDs

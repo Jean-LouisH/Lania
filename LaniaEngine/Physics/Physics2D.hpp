@@ -14,22 +14,34 @@
 #pragma once
 
 #include <Application/Scenes/2D/Scene2D.hpp>
+#include <Application/Scenes/2D/CollisionEvent2D.hpp>
 
 namespace Lania
 {
 	namespace Physics2D
 	{
 		void detectCollisions(
+			List<DynamicCollisionEvent2D>* collisionEvents,
 			Entity2D* entities,
+			RigidBody2D* rigidBodies,
+			int rigidBodyCount,
 			BoxCollider2D* boxColliders,
 			int boxColliderCount);
+		void handleCollisions(
+			DynamicCollisionEvent2D* collisionEvents,
+			int collisionEventCount,
+			RigidBody2D* rigidBodies);
 		void decelerate(
+			RigidBody2D* rigidBodies,
+			int rigidBodyCount);
+		void force(
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);
 		void gravitate(
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);
-		void displace(Entity2D* entities,
+		void displace(
+			Entity2D* entities,
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);
 		void lock(

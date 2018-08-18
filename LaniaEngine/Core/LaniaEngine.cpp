@@ -10,7 +10,7 @@
 #include <SDL_image.h>
 #include <Core/DataStructures/String.hpp>
 #include <Core/DataStructures/List.hpp>
-#include <Rendering/RendererSDL.hpp>
+#include <Rendering/RenderingSDL.hpp>
 #include <Physics/Physics2D.hpp>
 #include <Audio/AudioSDL.hpp>
 #include <sstream>
@@ -382,6 +382,8 @@ void Lania::logic(Engine* engine, Application* application)
 	Timer* time = &engine->timer;
 	time->script.setStart();
 
+	//Testing
+
 	if (engine->input.pressedKeys.count(SDLK_a))
 		application->scene.subscenes2D.at(0).activeRigidBodies.at(0).velocity_px_per_s.x = -500;
 
@@ -390,6 +392,8 @@ void Lania::logic(Engine* engine, Application* application)
 
 	if (engine->input.releasedKeys.count(SDLK_k))
 		engine->output.immediateSounds.push(application->scene.subscenes2D.at(0).entities.at(4).audioSources.at(0));
+
+	//////////////////////////
 
 	time->script.setEnd();
 }
@@ -417,7 +421,12 @@ void Lania::compute(Engine* engine, Application* application)
 			int rigidBodyCount = scene2D->activeRigidBodies.size();
 			int pointLockCount = scene2D->pointLocks.size();
 
-			Physics2D::detectCollisions(entities, boxColliders, boxColliderCount);
+			Physics2D::detectCollisions(&scene2D->collisionEvents, entities, rigidBodies, rigidBodyCount, boxColliders, boxColliderCount);
+
+			DynamicCollisionEvent2D* collisionEvents = scene2D->collisionEvents.data();
+			int collisionEventCount = scene2D->collisionEvents.size();
+
+			//Physics2D::handleCollisions(collisionEvents, collisionEventCount, rigidBodies);
 			Physics2D::decelerate(rigidBodies, rigidBodyCount);
 			Physics2D::gravitate(rigidBodies, rigidBodyCount);
 			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
@@ -428,7 +437,7 @@ void Lania::compute(Engine* engine, Application* application)
 		time->lag_ms -= MS_PER_UPDATE;
 	}
 
-	RendererSDL::buildRenderablesFromSprites(
+	Rendering::SDL::buildRenderablesFromSprites(
 		&engine->output.SDLRenderables,
 		&application->scene.subscenes2D,
 		engine->window
@@ -473,7 +482,7 @@ void Lania::output(Engine* engine)
 		SDL_RenderPresent(engine->SDLRenderer);
 	}
 
-	AudioSDL::playSounds(&engine->output.immediateSounds, &engine->output.scheduledSounds);
+	Audio::SDL::playSounds(&engine->output.immediateSounds, &engine->output.scheduledSounds);
 	time->output.setEnd();
 }
 

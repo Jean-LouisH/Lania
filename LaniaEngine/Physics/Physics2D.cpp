@@ -3,10 +3,15 @@
 #include <Constants.hpp>
 
 void Lania::Physics2D::detectCollisions(
+	List<DynamicCollisionEvent2D>* collisionEvents,
 	Entity2D* entities, 
+	RigidBody2D* rigidBodies,
+	int rigidBodyCount,
 	BoxCollider2D* boxColliders, 
 	int boxColliderCount)
 {
+	collisionEvents->clear();
+
 	for (int i = 0; i < boxColliderCount; i++)
 	{
 		Vector2* position1 = &entities[boxColliders[i].entityID].transform.position_px;
@@ -29,16 +34,51 @@ void Lania::Physics2D::detectCollisions(
 				double box2top = position2->y + aabb2->max_px.y;
 				double box2bottom = position2->y + aabb2->min_px.y;
 
-				if (!(box2left > box1right
-					|| box2right < box1left
-					|| box2top < box1bottom
-					|| box2bottom > box1top))
+				if (!(box2left > box1right ||
+					box2right < box1left ||
+					box2top < box1bottom ||
+					box2bottom > box1top))
 				{
-					;
+					Entity2D* entity1 = &entities[boxColliders[i].entityID];
+					Entity2D* entity2 = &entities[boxColliders[j].entityID];
+
+					if (entity1->components.count(RIGIDBODY2D) &&
+						entity2->components.count(RIGIDBODY2D))
+					{
+						DynamicCollisionEvent2D collisionEvent;
+						RigidBody2D* rigidBody1 = &rigidBodies[entity1->components.at(RIGIDBODY2D)];
+						RigidBody2D* rigidBody2 = &rigidBodies[entity2->components.at(RIGIDBODY2D)];
+						collisionEvent.first.entityID = boxColliders[i].entityID;
+						collisionEvent.first.collider = BOXCOLLIDER2D;
+						collisionEvent.first.elasticity_ratio = rigidBody1->elasticity_ratio;
+						collisionEvent.first.mass_kg = rigidBody1->mass_kg;
+						collisionEvent.first.velocity_px_per_s = rigidBody1->velocity_px_per_s;
+						collisionEvent.first.rotation_rad = entity1->transform.rotation_rad;
+
+						collisionEvent.second.entityID = boxColliders[j].entityID;
+						collisionEvent.second.collider = BOXCOLLIDER2D;
+						collisionEvent.second.elasticity_ratio = rigidBody2->elasticity_ratio;
+						collisionEvent.second.mass_kg = rigidBody2->mass_kg;
+						collisionEvent.second.velocity_px_per_s = rigidBody2->velocity_px_per_s;
+						collisionEvent.second.rotation_rad = entity2->transform.rotation_rad;
+						collisionEvents->push_back(collisionEvent);
+					}
+					else
+					{
+
+					}
 				}
 			}
 		}
 	}
+}
+
+void Lania::Physics2D::handleCollisions(
+	DynamicCollisionEvent2D* collisionEvents,
+	int collisionEventCount,
+	RigidBody2D* rigidBodies)
+{
+
 }
 
 void Lania::Physics2D::decelerate(
@@ -50,6 +90,13 @@ void Lania::Physics2D::decelerate(
 		rigidBodies[i].velocity_px_per_s.x *= pow(rigidBodies[i].drag_ratio.x, S_PER_UPDATE);
 		rigidBodies[i].velocity_px_per_s.y *= pow(rigidBodies[i].drag_ratio.y, S_PER_UPDATE);
 	}
+}
+
+void Lania::Physics2D::force(
+	RigidBody2D* rigidBodies,
+	int rigidBodyCount)
+{
+
 }
 
 void Lania::Physics2D::gravitate(
