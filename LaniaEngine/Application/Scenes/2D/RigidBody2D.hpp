@@ -25,10 +25,10 @@ namespace Lania
 		double mass_kg;
 		double friction_ratio;
 		double angularDrag_ratio;
+		double angularVelocity_rad_per_s;
 		double gravity_scale;
 		double elasticity_ratio;
 		Vector2 drag_ratio;
-		Vector2 angularVelocity_rad_per_s;
 		Vector2 velocity_px_per_s;
 
 		RigidBody2D() :
