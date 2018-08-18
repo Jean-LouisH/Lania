@@ -1,9 +1,9 @@
-#include "RendererSDL.hpp"
+#include "RenderingSDL.hpp"
 #include <limits.h>
 #include "SDLRenderable.hpp"
 #include <Constants.hpp>
 
-void Lania::RendererSDL::buildRenderablesFromSprites(
+void Lania::Rendering::SDL::buildRenderablesFromSprites(
 	List<SDLRenderable>* SDLRenderables,
 	List<Scene2D>* scene2Ds, 
 	SDL_Window* window)

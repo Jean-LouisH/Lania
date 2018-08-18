@@ -121,7 +121,9 @@
     <ClInclude Include="Application\Scenes\2D\BoxCollider2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Camera2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\CircleCollider.hpp" />
-    <ClInclude Include="Application\Scenes\2D\ConstantForce2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\CollisionEvent2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\CollisionNode2D.hpp" />
+    <ClInclude Include="Application\Scenes\2D\ConstantDirectionalForce2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Entity2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\PointLock2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Rect.hpp" />
@@ -156,7 +158,7 @@
     <ClInclude Include="Definitions.hpp" />
     <ClInclude Include="Physics\Physics2D.hpp" />
     <ClInclude Include="Rendering\GPU.hpp" />
-    <ClInclude Include="Rendering\RendererSDL.hpp" />
+    <ClInclude Include="Rendering\RenderingSDL.hpp" />
     <ClInclude Include="Rendering\SDLRenderable.hpp" />
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +176,7 @@
     <ClCompile Include="Core\UnitTesting.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Physics\Physics2D.cpp" />
-    <ClCompile Include="Rendering\RendererSDL.cpp" />
+    <ClCompile Include="Rendering\RenderingSDL.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

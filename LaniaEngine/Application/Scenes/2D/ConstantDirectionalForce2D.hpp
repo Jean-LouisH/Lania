@@ -3,7 +3,7 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Constant Force 2D
+* Constant Directional Force 2D
 *
 * A component that applies a constant force and torque.
 *
@@ -19,10 +19,9 @@
 
 namespace Lania
 {
-	typedef struct ConstantForce2D
+	typedef struct ConstantDirectionalForce2D
 	{
 		EntityID entityID;
 		Vector2 force_N;
-		Vector2 torque_Nm;
 	}ConstantForce2D;
 }

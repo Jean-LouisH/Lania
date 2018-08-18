@@ -18,10 +18,13 @@
 
 namespace Lania
 {
-	namespace AudioSDL
+	namespace Audio
 	{
-		void playSounds(
-			Queue<Mix_Chunk*>* immediateSounds,
-			Queue<Mix_Chunk*>* scheduledSounds);
+		namespace SDL
+		{
+			void playSounds(
+				Queue<Mix_Chunk*>* immediateSounds,
+				Queue<Mix_Chunk*>* scheduledSounds);
+		}
 	}
 }

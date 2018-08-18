@@ -19,11 +19,14 @@
 
 namespace Lania
 {
-	namespace RendererSDL
+	namespace Rendering
 	{
-		void buildRenderablesFromSprites(
-			List<SDLRenderable>* SDLRenderables,
-			List<Scene2D>* scene2Ds, 
-			SDL_Window* window);
+		namespace SDL
+		{
+			void buildRenderablesFromSprites(
+				List<SDLRenderable>* SDLRenderables,
+				List<Scene2D>* scene2Ds,
+				SDL_Window* window);
+		}
 	}
 }

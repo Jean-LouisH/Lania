@@ -1,6 +1,6 @@
 #include "AudioSDL.hpp"
 
-void Lania::AudioSDL::playSounds(
+void Lania::Audio::SDL::playSounds(
 	Queue<Mix_Chunk*>* immediateSounds,
 	Queue<Mix_Chunk*>* scheduledSounds)
 {
