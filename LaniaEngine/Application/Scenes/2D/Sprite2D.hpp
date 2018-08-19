@@ -28,7 +28,9 @@ namespace Lania
 		SDL_RendererFlip flip;
 
 		Sprite2D():
-			flip (SDL_FLIP_NONE)
+			entityID(NO_PARENT),
+			alpha(255),
+			flip(SDL_FLIP_NONE)
 		{}
 	}Sprite2D;
 }

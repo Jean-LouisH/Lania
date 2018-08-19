@@ -23,5 +23,9 @@ namespace Lania
 	{
 		EntityID entityID;
 		Vector2 force_N;
-	}ConstantForce2D;
+
+		ConstantDirectionalForce2D():
+			entityID(NO_PARENT)
+		{}
+	}ConstantDirectionalForce2D;
 }

@@ -21,13 +21,13 @@
 
 namespace Lania
 {
-	typedef struct
+	typedef struct KeyEvent
 	{
 		Uint16 mod;
 		Uint32 timestamp_ms;
 	}KeyEvent;
 
-	typedef struct
+	typedef struct MouseState
 	{
 		Uint32 type;
 		Uint8 clicks;
@@ -43,6 +43,23 @@ namespace Lania
 		Uint32 motionState;
 		Uint32 timestamp_ms;
 		Uint32 windowID;
+
+		MouseState():
+			type(0),
+			clicks(0),
+			x(0),
+			y(0),
+			xrel(0),
+			yrel(0),
+			xScroll(0),
+			yScroll(0),
+			direction(0),
+			button(0),
+			buttonState(0),
+			motionState(0),
+			timestamp_ms(0),
+			windowID(0)
+		{}
 	}MouseState;
 
 	typedef struct Input

@@ -39,6 +39,8 @@ namespace Lania
 		bool current;
 
 		Camera2D() :
+			entityID(NO_PARENT),
+			entityFollowed_id(NO_PARENT),
 			scrollTargetSpeed_px_per_s(0.0),
 			zoomTargetSpeed_px_per_s(0.0),
 			isRotatingWithEntity(false),

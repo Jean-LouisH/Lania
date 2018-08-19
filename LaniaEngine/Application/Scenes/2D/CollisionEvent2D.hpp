@@ -21,7 +21,13 @@ namespace Lania
 		EntityID first;
 		EntityID second;
 		double timestamp_ms;
-	};
+
+		StaticCollisionEvent2D():
+			first(NO_PARENT),
+			second(NO_PARENT),
+			timestamp_ms(0.0)
+		{}
+	}StaticCollisionEvent2D;
 
 	typedef struct DynamicCollisionEvent2D
 	{
@@ -29,5 +35,10 @@ namespace Lania
 		CollisionNode2D second;
 		double attackAngle;
 		double timestamp_ms;
-	};
+
+		DynamicCollisionEvent2D():
+			attackAngle(0.0),
+			timestamp_ms(0.0)
+		{}
+	}DynamicCollisionEvent2D;
 }

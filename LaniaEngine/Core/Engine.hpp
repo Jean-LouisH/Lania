@@ -54,6 +54,7 @@ namespace Lania
 		uint64_t frameCount;
 		uint16_t FPS;
 		uint8_t state;
+
 		Engine() :
 			window(NULL),
 			glContext(NULL),

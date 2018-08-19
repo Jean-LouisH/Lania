@@ -21,5 +21,9 @@ namespace Lania
 	{
 		EntityID entityID;
 		Vector2 point;
+
+		PointLock2D():
+			entityID(NO_PARENT)
+		{}
 	}PointLock2D;
 }

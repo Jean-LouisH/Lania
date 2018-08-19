@@ -41,6 +41,13 @@ namespace Lania
 		int source2;
 		double immediateValue;
 		String immediateString;
+		Instruction():
+			opcode(0),
+			destination(0),
+			source1(0),
+			source2(0),
+			immediateValue(0.0)
+		{}
 	}Instruction;
 
 	typedef struct Bytecode

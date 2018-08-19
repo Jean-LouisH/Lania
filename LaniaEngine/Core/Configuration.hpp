@@ -26,6 +26,7 @@ namespace Lania
 		uint32_t windowFlags;
 		String mainScene;
 		String appName;
+
 		AppConfig() :
 			windowWidth_px(0),
 			windowHeight_px(0),

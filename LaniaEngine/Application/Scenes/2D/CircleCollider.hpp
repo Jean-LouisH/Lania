@@ -21,10 +21,11 @@ namespace Lania
 	typedef struct CircleCollider
 	{
 		EntityID entityID;
-		uint16_t radius_px;
+		double radius_px;
 
 		CircleCollider():
-			radius_px(0)
+			entityID(NO_PARENT),
+			radius_px(0.0)
 		{}
 	}CircleCollider;
 }

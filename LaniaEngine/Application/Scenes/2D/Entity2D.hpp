@@ -27,7 +27,7 @@ namespace Lania
 {
 	enum Components
 	{
-		NONE,
+		NO_COMPONENT,
 		CAMERA2D,
 		RIGIDBODY2D,
 		SPRITE,
