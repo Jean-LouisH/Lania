@@ -35,6 +35,7 @@ namespace Lania
 			mass_kg(1.0),
 			friction_ratio(1.0),
 			angularDrag_ratio(1.0),
+			angularVelocity_rad_per_s(0.0),
 			gravity_scale(1.0),
 			elasticity_ratio(0.01)
 		{ 
