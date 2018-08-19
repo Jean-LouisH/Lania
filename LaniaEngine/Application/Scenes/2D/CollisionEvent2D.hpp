@@ -27,7 +27,7 @@ namespace Lania
 	{
 		CollisionNode2D first;
 		CollisionNode2D second;
-		Vector2 attackAngle;
+		double attackAngle;
 		double timestamp_ms;
 	};
 }

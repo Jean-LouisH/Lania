@@ -37,7 +37,8 @@ namespace Lania
 		List<Entity2D> entities;
 
 		Map<String, EntityID> entityNameRegistry;
-		List<DynamicCollisionEvent2D> collisionEvents;
+		List<DynamicCollisionEvent2D> dynamicCollisionEvents;
+		List<StaticCollisionEvent2D> staticCollisionEvents;
 
 		//Active component existence-based processing lists
 		//Ordered by entity layer, but not necessarily matched to IDs

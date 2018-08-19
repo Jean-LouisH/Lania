@@ -21,29 +21,37 @@ namespace Lania
 	namespace Physics2D
 	{
 		void detectCollisions(
-			List<DynamicCollisionEvent2D>* collisionEvents,
+			double simulationTime_ms,
+			List<DynamicCollisionEvent2D>* dynamicCollisionEvents,
+			List<StaticCollisionEvent2D>* staticCollisionEvents,
 			Entity2D* entities,
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount,
 			BoxCollider2D* boxColliders,
 			int boxColliderCount);
+
 		void handleCollisions(
-			DynamicCollisionEvent2D* collisionEvents,
+			DynamicCollisionEvent2D* dynamicCollisionEvents,
 			int collisionEventCount,
 			RigidBody2D* rigidBodies);
+
 		void decelerate(
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);
+
 		void force(
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);
+
 		void gravitate(
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);
+
 		void displace(
 			Entity2D* entities,
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);
+
 		void lock(
 			Entity2D* entities,
 			PointLock2D* pointLocks,

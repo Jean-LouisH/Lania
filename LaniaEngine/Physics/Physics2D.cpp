@@ -3,14 +3,17 @@
 #include <Constants.hpp>
 
 void Lania::Physics2D::detectCollisions(
-	List<DynamicCollisionEvent2D>* collisionEvents,
+	double simulationTime_ms,
+	List<DynamicCollisionEvent2D>* dynamicCollisionEvents,
+	List<StaticCollisionEvent2D>* staticCollisionEvents,
 	Entity2D* entities, 
 	RigidBody2D* rigidBodies,
 	int rigidBodyCount,
 	BoxCollider2D* boxColliders, 
 	int boxColliderCount)
 {
-	collisionEvents->clear();
+	dynamicCollisionEvents->clear();
+	staticCollisionEvents->clear();
 
 	for (int i = 0; i < boxColliderCount; i++)
 	{
@@ -43,29 +46,38 @@ void Lania::Physics2D::detectCollisions(
 					Entity2D* entity2 = &entities[boxColliders[j].entityID];
 
 					if (entity1->components.count(RIGIDBODY2D) &&
+						!entity2->components.count(RIGIDBODY2D))
+					{
+
+					}
+					else if (entity1->components.count(RIGIDBODY2D) &&
 						entity2->components.count(RIGIDBODY2D))
 					{
-						DynamicCollisionEvent2D collisionEvent;
+						DynamicCollisionEvent2D dynamicCollisionEvent;
 						RigidBody2D* rigidBody1 = &rigidBodies[entity1->components.at(RIGIDBODY2D)];
 						RigidBody2D* rigidBody2 = &rigidBodies[entity2->components.at(RIGIDBODY2D)];
-						collisionEvent.first.entityID = boxColliders[i].entityID;
-						collisionEvent.first.collider = BOXCOLLIDER2D;
-						collisionEvent.first.elasticity_ratio = rigidBody1->elasticity_ratio;
-						collisionEvent.first.mass_kg = rigidBody1->mass_kg;
-						collisionEvent.first.velocity_px_per_s = rigidBody1->velocity_px_per_s;
-						collisionEvent.first.rotation_rad = entity1->transform.rotation_rad;
+						dynamicCollisionEvent.first.entityID = boxColliders[i].entityID;
+						dynamicCollisionEvent.first.collider = BOXCOLLIDER2D;
+						dynamicCollisionEvent.first.elasticity_ratio = rigidBody1->elasticity_ratio;
+						dynamicCollisionEvent.first.mass_kg = rigidBody1->mass_kg;
+						dynamicCollisionEvent.first.velocity_px_per_s = rigidBody1->velocity_px_per_s;
+						dynamicCollisionEvent.first.rotation_rad = entity1->transform.rotation_rad;
 
-						collisionEvent.second.entityID = boxColliders[j].entityID;
-						collisionEvent.second.collider = BOXCOLLIDER2D;
-						collisionEvent.second.elasticity_ratio = rigidBody2->elasticity_ratio;
-						collisionEvent.second.mass_kg = rigidBody2->mass_kg;
-						collisionEvent.second.velocity_px_per_s = rigidBody2->velocity_px_per_s;
-						collisionEvent.second.rotation_rad = entity2->transform.rotation_rad;
-						collisionEvents->push_back(collisionEvent);
+						dynamicCollisionEvent.second.entityID = boxColliders[j].entityID;
+						dynamicCollisionEvent.second.collider = BOXCOLLIDER2D;
+						dynamicCollisionEvent.second.elasticity_ratio = rigidBody2->elasticity_ratio;
+						dynamicCollisionEvent.second.mass_kg = rigidBody2->mass_kg;
+						dynamicCollisionEvent.second.velocity_px_per_s = rigidBody2->velocity_px_per_s;
+						dynamicCollisionEvent.second.rotation_rad = entity2->transform.rotation_rad;
+						dynamicCollisionEvent.attackAngle =
+							atan((entity1->transform.position_px.y - entity2->transform.position_px.y) /
+							(entity1->transform.position_px.x - entity2->transform.position_px.x));
+						dynamicCollisionEvent.timestamp_ms = simulationTime_ms;
+						dynamicCollisionEvents->push_back(dynamicCollisionEvent);
 					}
 					else
 					{
-
+						StaticCollisionEvent2D staticCollisionEvent;
 					}
 				}
 			}
