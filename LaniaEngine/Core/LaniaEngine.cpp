@@ -431,10 +431,10 @@ void Lania::compute(Engine* engine, Application* application)
 				boxColliders, 
 				boxColliderCount);
 
-			DynamicCollisionEvent2D* collisionEvents = scene2D->dynamicCollisionEvents.data();
-			int collisionEventCount = scene2D->dynamicCollisionEvents.size();
+			DynamicCollisionEvent2D* dynamicCollisionEvents = scene2D->dynamicCollisionEvents.data();
+			int DynamicCollisionEventCount = scene2D->dynamicCollisionEvents.size();
 
-			//Physics2D::handleCollisions(collisionEvents, collisionEventCount, rigidBodies);
+			Physics2D::handleCollisions(dynamicCollisionEvents, DynamicCollisionEventCount, rigidBodies);
 			Physics2D::decelerate(rigidBodies, rigidBodyCount);
 			//Physics2D::gravitate(rigidBodies, rigidBodyCount);
 			Physics2D::displace(entities, rigidBodies, rigidBodyCount);

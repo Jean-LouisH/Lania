@@ -32,7 +32,7 @@ namespace Lania
 
 		void handleCollisions(
 			DynamicCollisionEvent2D* dynamicCollisionEvents,
-			int collisionEventCount,
+			int dynamicCollisionEventCount,
 			RigidBody2D* rigidBodies);
 
 		void decelerate(

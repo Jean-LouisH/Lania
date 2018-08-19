@@ -33,10 +33,12 @@ namespace Lania
 	{
 		CollisionNode2D first;
 		CollisionNode2D second;
+		ComponentListIndex firstRigidBodyIndex;
 		double attackAngle;
 		double timestamp_ms;
 
 		DynamicCollisionEvent2D():
+			firstRigidBodyIndex(0),
 			attackAngle(0.0),
 			timestamp_ms(0.0)
 		{}
