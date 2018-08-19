@@ -315,13 +315,13 @@ void Lania::loop(Engine* engine, Application* application)
 		
 		if (engine->appConfig.targetFPS < UPDATES_PER_S)
 		{
-			delay = (MS_PER_S / engine->appConfig.targetFPS) -
-				(engine->timer.process.delta_ns / MS_PER_NS);
+			delay = (MS_IN_S / engine->appConfig.targetFPS) -
+				(engine->timer.process.delta_ns / NS_IN_MS);
 		}
 		else
 		{
-			delay = (MS_PER_S / UPDATES_PER_S) -
-				(engine->timer.process.delta_ns / MS_PER_NS);
+			delay = (MS_IN_S / UPDATES_PER_S) -
+				(engine->timer.process.delta_ns / NS_IN_MS);
 		}
 
 		if (delay > 0)
@@ -335,9 +335,9 @@ void Lania::loop(Engine* engine, Application* application)
 		time->FPS.setEnd();
 #ifdef _DEBUG
 		//Display FPS and other data to Window title.
-		if (time->FPS.delta_ns / MS_PER_NS >= MS_PER_S)
+		if (time->FPS.delta_ns / NS_IN_MS >= MS_IN_S)
 		{
-			engine->FPS = (passedFrames / (time->FPS.delta_ns / S_PER_NS));
+			engine->FPS = (passedFrames / (time->FPS.delta_ns / NS_IN_S));
 			time->FPS.setStart();
 			passedFrames = 1;
 
@@ -451,7 +451,7 @@ void Lania::compute(Engine* engine, Application* application)
 		engine->window
 	);
 
-	time->lag_ms += time->frame.delta_ns / MS_PER_NS;
+	time->lag_ms += time->frame.delta_ns / NS_IN_MS;
 
 	time->compute.setEnd();
 }
