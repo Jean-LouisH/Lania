@@ -35,8 +35,8 @@ namespace Lania
 	{
 		ExecutionTimer process;
 		ExecutionTimer frame;
-		ExecutionTimer OS;
-		ExecutionTimer script;
+		ExecutionTimer input;
+		ExecutionTimer logic;
 		ExecutionTimer compute;
 		ExecutionTimer output;
 		ExecutionTimer FPS;

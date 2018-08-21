@@ -367,20 +367,20 @@ void Lania::loop(Engine* engine, Application* application)
 
 void Lania::input(Lania::Engine* engine)
 {
-	engine->timer.OS.setStart();
+	engine->timer.input.setStart();
 
 	if (SDL_NumJoysticks() != engine->input.gameControllers.size())
 		OS::detectGameControllers(&engine->input);
 	OS::detectBatteryLife(engine);
 	OS::pollInputEvents(engine);
 
-	engine->timer.OS.setEnd();
+	engine->timer.input.setEnd();
 }
 
 void Lania::logic(Engine* engine, Application* application)
 {
 	Timer* time = &engine->timer;
-	time->script.setStart();
+	time->logic.setStart();
 
 	//Testing
 
@@ -395,7 +395,7 @@ void Lania::logic(Engine* engine, Application* application)
 
 	//////////////////////////
 
-	time->script.setEnd();
+	time->logic.setEnd();
 }
 
 void Lania::compute(Engine* engine, Application* application)
