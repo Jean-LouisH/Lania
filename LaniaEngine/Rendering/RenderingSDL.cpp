@@ -30,8 +30,8 @@ void Lania::Rendering::SDL::buildRenderablesFromSprites(
 			Sprite2D* sprite = &sprites[j];
 			Transform2D* spriteTransform = &entities[sprite->entityID].transform;
 
-			double spriteWidth = sprite->pixels.width;
-			double spriteHeight = sprite->pixels.height;
+			double spriteWidth = sprite->texture.pixels.width;
+			double spriteHeight = sprite->texture.pixels.height;
 			double spriteWidthScaled = spriteWidth * spriteTransform->scale.x;
 			double spriteHeightScaled = spriteHeight * spriteTransform->scale.y;
 			double cameraWidth = camera.viewport_px.width;
@@ -66,7 +66,7 @@ void Lania::Rendering::SDL::buildRenderablesFromSprites(
 			} while (spriteParentID != NO_PARENT);
 
 			SDLRenderable renderable;
-			renderable.texture = sprite->texture;
+			renderable.texture = sprite->texture.data;
 
 			renderable.textureRect.x = 0;
 			renderable.textureRect.y = 0;

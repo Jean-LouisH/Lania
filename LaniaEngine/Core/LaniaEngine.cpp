@@ -169,24 +169,24 @@ void Lania::loop(Engine* engine, Application* application)
 	Sprite2D bgSprite;
 	SDL_Surface* bgSurface =
 		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/background.png");
-	bgSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, bgSurface);
-	bgSprite.pixels.width = bgSurface->w;
-	bgSprite.pixels.height = bgSurface->h;
+	bgSprite.texture.data = SDL_CreateTextureFromSurface(engine->SDLRenderer, bgSurface);
+	bgSprite.texture.pixels.width = bgSurface->w;
+	bgSprite.texture.pixels.height = bgSurface->h;
 	bgSprite.alpha = 255;
-	SDL_SetTextureAlphaMod(bgSprite.texture, bgSprite.alpha);
+	SDL_SetTextureAlphaMod(bgSprite.texture.data, bgSprite.alpha);
 	SDL_FreeSurface(bgSurface);
 	bgSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.activeSprites.push_back(bgSprite);
 	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
 
-	scene2D.entities.back().transform.position_px.x = bgSprite.pixels.width / 2.0;
-	scene2D.entities.back().transform.position_px.y = bgSprite.pixels.height / 2.0;
+	scene2D.entities.back().transform.position_px.x = bgSprite.texture.pixels.width / 2.0;
+	scene2D.entities.back().transform.position_px.y = bgSprite.texture.pixels.height / 2.0;
 
 	//Camera position
-	scene2D.entities.at(scene2D.activeCameras.at(scene2D.currentCameraIndex).entityID).transform.position_px.x = bgSprite.pixels.width / 2.0;
-	scene2D.entities.at(scene2D.activeCameras.at(scene2D.currentCameraIndex).entityID).transform.position_px.y = bgSprite.pixels.height / 2.0;
-	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.width = bgSprite.pixels.width;
-	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.height = bgSprite.pixels.width / 1.777;
+	scene2D.entities.at(scene2D.activeCameras.at(scene2D.currentCameraIndex).entityID).transform.position_px.x = bgSprite.texture.pixels.width / 2.0;
+	scene2D.entities.at(scene2D.activeCameras.at(scene2D.currentCameraIndex).entityID).transform.position_px.y = bgSprite.texture.pixels.height / 2.0;
+	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.width = bgSprite.texture.pixels.width;
+	scene2D.activeCameras.at(scene2D.currentCameraIndex).viewport_px.height = bgSprite.texture.pixels.width / 1.777;
 
 	///////////
 
@@ -199,11 +199,11 @@ void Lania::loop(Engine* engine, Application* application)
 	Sprite2D boxSprite;
 	SDL_Surface* boxSurface =
 		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/box.png");
-	boxSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, boxSurface);
-	boxSprite.pixels.width = boxSurface->w;
-	boxSprite.pixels.height = boxSurface->h;
+	boxSprite.texture.data = SDL_CreateTextureFromSurface(engine->SDLRenderer, boxSurface);
+	boxSprite.texture.pixels.width = boxSurface->w;
+	boxSprite.texture.pixels.height = boxSurface->h;
 	boxSprite.alpha = 255;
-	SDL_SetTextureAlphaMod(boxSprite.texture, boxSprite.alpha);
+	SDL_SetTextureAlphaMod(boxSprite.texture.data, boxSprite.alpha);
 	SDL_FreeSurface(boxSurface);
 	boxSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.activeSprites.push_back(boxSprite);
@@ -211,7 +211,7 @@ void Lania::loop(Engine* engine, Application* application)
 
 	BoxCollider2D floorBoxCollider;
 	floorBoxCollider.aabb.min_px.x = -1400 / 2;
-	floorBoxCollider.aabb.min_px.y = -boxSprite.pixels.height / 2.0;
+	floorBoxCollider.aabb.min_px.y = -boxSprite.texture.pixels.height / 2.0;
 	floorBoxCollider.aabb.max_px.x = -floorBoxCollider.aabb.min_px.x;
 	floorBoxCollider.aabb.max_px.y = -floorBoxCollider.aabb.min_px.y;
 	floorBoxCollider.entityID = scene2D.entities.size() - 1;
@@ -238,19 +238,19 @@ void Lania::loop(Engine* engine, Application* application)
 	Sprite2D beldumSprite;
 	SDL_Surface* beldumSurface =
 		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/beldum.png");
-	beldumSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, beldumSurface);
-	beldumSprite.pixels.width = beldumSurface->w;
-	beldumSprite.pixels.height = beldumSurface->h;
+	beldumSprite.texture.data = SDL_CreateTextureFromSurface(engine->SDLRenderer, beldumSurface);
+	beldumSprite.texture.pixels.width = beldumSurface->w;
+	beldumSprite.texture.pixels.height = beldumSurface->h;
 	beldumSprite.alpha = 255;
-	SDL_SetTextureAlphaMod(beldumSprite.texture, beldumSprite.alpha);
+	SDL_SetTextureAlphaMod(beldumSprite.texture.data, beldumSprite.alpha);
 	SDL_FreeSurface(beldumSurface);
 	beldumSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.activeSprites.push_back(beldumSprite);
 	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
 
 	BoxCollider2D beldumBoxCollider;
-	beldumBoxCollider.aabb.min_px.x = -(beldumSprite.pixels.width * beldum.transform.scale.x) / 2.0;
-	beldumBoxCollider.aabb.min_px.y = -(beldumSprite.pixels.height * beldum.transform.scale.y) / 2.0;
+	beldumBoxCollider.aabb.min_px.x = -(beldumSprite.texture.pixels.width * beldum.transform.scale.x) / 2.0;
+	beldumBoxCollider.aabb.min_px.y = -(beldumSprite.texture.pixels.height * beldum.transform.scale.y) / 2.0;
 	beldumBoxCollider.aabb.max_px.x = -beldumBoxCollider.aabb.min_px.x;
 	beldumBoxCollider.aabb.max_px.y = -beldumBoxCollider.aabb.min_px.y;
 	beldumBoxCollider.entityID = scene2D.entities.size() - 1;
@@ -273,11 +273,11 @@ void Lania::loop(Engine* engine, Application* application)
 	Sprite2D arcanineSprite;
 	SDL_Surface* arcanineSurface =
 		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/arcanine.png");
-	arcanineSprite.texture = SDL_CreateTextureFromSurface(engine->SDLRenderer, arcanineSurface);
-	arcanineSprite.pixels.width = arcanineSurface->w;
-	arcanineSprite.pixels.height = arcanineSurface->h;
+	arcanineSprite.texture.data = SDL_CreateTextureFromSurface(engine->SDLRenderer, arcanineSurface);
+	arcanineSprite.texture.pixels.width = arcanineSurface->w;
+	arcanineSprite.texture.pixels.height = arcanineSurface->h;
 	arcanineSprite.alpha = 255;
-	SDL_SetTextureAlphaMod(arcanineSprite.texture, arcanineSprite.alpha);
+	SDL_SetTextureAlphaMod(arcanineSprite.texture.data, arcanineSprite.alpha);
 	SDL_FreeSurface(arcanineSurface);
 	arcanineSprite.entityID = scene2D.entities.size() - 1;
 	arcanineSprite.flip = SDL_FLIP_HORIZONTAL;
@@ -285,8 +285,8 @@ void Lania::loop(Engine* engine, Application* application)
 	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
 
 	BoxCollider2D arcanineBoxCollider;
-	arcanineBoxCollider.aabb.min_px.x = -(arcanineSprite.pixels.width * arcanine.transform.scale.x) / 2.0;
-	arcanineBoxCollider.aabb.min_px.y = -(arcanineSprite.pixels.height * arcanine.transform.scale.y) / 2.0;
+	arcanineBoxCollider.aabb.min_px.x = -(arcanineSprite.texture.pixels.width * arcanine.transform.scale.x) / 2.0;
+	arcanineBoxCollider.aabb.min_px.y = -(arcanineSprite.texture.pixels.height * arcanine.transform.scale.y) / 2.0;
 	arcanineBoxCollider.aabb.max_px.x = -arcanineBoxCollider.aabb.min_px.x;
 	arcanineBoxCollider.aabb.max_px.y = -arcanineBoxCollider.aabb.min_px.y;
 	arcanineBoxCollider.entityID = scene2D.entities.size() - 1;

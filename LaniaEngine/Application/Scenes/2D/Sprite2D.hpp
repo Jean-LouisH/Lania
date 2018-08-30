@@ -13,18 +13,17 @@
 
 #include <SDL_render.h>
 #include <stdint.h>
-#include <Application/Scenes/2D/Rect.hpp>
 #include <Application/Scenes/2D/Vector2.hpp>
 #include <Application/Scenes/2D/Entity2D.hpp>
+#include <Application/Scenes/Texture.hpp>
 
 namespace Lania
 {
 	typedef struct Sprite2D
 	{
 		EntityID entityID;
-		SDL_Texture* texture;
+		Texture texture;
 		uint8_t alpha;
-		Rect pixels;
 		SDL_RendererFlip flip;
 
 		Sprite2D():

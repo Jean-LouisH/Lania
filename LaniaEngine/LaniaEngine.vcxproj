@@ -133,7 +133,9 @@
     <ClInclude Include="Application\Scenes\2D\Sprite2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Transform2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Vector2.hpp" />
+    <ClInclude Include="Application\Scenes\AssetCache.hpp" />
     <ClInclude Include="Application\Scenes\Scene.hpp" />
+    <ClInclude Include="Application\Scenes\Texture.hpp" />
     <ClInclude Include="Application\Scripting\Bytecode.hpp" />
     <ClInclude Include="Application\Scripting\Variables.hpp" />
     <ClInclude Include="Audio\AudioSDL.hpp" />

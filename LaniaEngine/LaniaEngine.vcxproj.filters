@@ -144,6 +144,12 @@
     <ClInclude Include="Application\Scenes\2D\ConstantDirectionalForce2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Application\Scenes\AssetCache.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Application\Scenes\Texture.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\LaniaEngine.cpp">
