@@ -162,6 +162,7 @@
     <ClInclude Include="Rendering\GPU.hpp" />
     <ClInclude Include="Rendering\RenderingSDL.hpp" />
     <ClInclude Include="Rendering\SDLRenderable.hpp" />
+    <ClInclude Include="TemporarySceneTesting.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application\Application.cpp" />
@@ -179,6 +180,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Physics\Physics2D.cpp" />
     <ClCompile Include="Rendering\RenderingSDL.cpp" />
+    <ClCompile Include="TemporarySceneTesting.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
