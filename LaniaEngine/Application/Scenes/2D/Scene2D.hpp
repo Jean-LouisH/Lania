@@ -8,7 +8,7 @@
 * Contains components and entities that are processed exclusively
 * by 2D algorithms. Is layered with 3D scenes in the Scene struct.
 *
-* Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 

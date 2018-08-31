@@ -8,7 +8,7 @@
 * Contains all assets within the scene to prevent replication of memory allocation
 * when loading assets more than once.
 *
-* Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 

@@ -5,7 +5,7 @@
 *
 * Audio SDL
 *
-* 
+* Handles SDL mixer structs to play songs in sequence or simultaneously.
 *
 * Copyright (c) 2017 - 2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE

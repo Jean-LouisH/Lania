@@ -7,7 +7,7 @@
 *
 * Uses SDL's 2D hardware accelerated rendering on Renderable data vectors.
 *
-* Copyright (c) 2017 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
 */
 
