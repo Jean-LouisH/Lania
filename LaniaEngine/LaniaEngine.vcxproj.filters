@@ -33,9 +33,6 @@
     <ClInclude Include="Core\OS\OS.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Engine.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Input.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -151,6 +148,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TemporarySceneTesting.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

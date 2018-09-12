@@ -1,6 +1,6 @@
 #include "LaniaEngine.hpp"
 #include "Configuration.hpp"
-#include "Engine.hpp"
+#include "Core.hpp"
 #include "Input.hpp"
 #include "OS/File.hpp"
 #include "OS/OS.hpp"
@@ -16,23 +16,23 @@
 #include <sstream>
 #include <TemporarySceneTesting.hpp>
 
-void Lania::initialize(Engine* engine)
+void Lania::initialize(Core* core)
 {
 	//Development Test 
 	String initFilePath = "../Demos/PhysicsTest/Init.cfg";
 
-	AppConfig* appConfig = &engine->appConfig;
-	unsigned char* state = &engine->state;
+	AppConfig* appConfig = &core->appConfig;
+	unsigned char* state = &core->state;
 
-	engine->timer.run.setStart();
-	engine->executableName = File::getExecutableName(engine->filepath);
+	core->timer.run.setStart();
+	core->executableName = File::getExecutableName(core->filepath);
 	*appConfig = Config::parseInit(File::read(initFilePath));
 	SDL_GameControllerAddMappingsFromFile("../Data/gamecontrollerdb.txt");
-	engine->platform.logicalCoreCount = SDL_GetCPUCount();
-	engine->platform.L1CacheSize_B = SDL_GetCPUCacheLineSize();
-	engine->platform.systemRAM_MB = SDL_GetSystemRAM();
-	engine->platform.OS = (char*)SDL_GetPlatform();
-	SDL_GetPowerInfo(NULL, &engine->platform.batteryLife_pct);
+	core->platform.logicalCoreCount = SDL_GetCPUCount();
+	core->platform.L1CacheSize_B = SDL_GetCPUCacheLineSize();
+	core->platform.systemRAM_MB = SDL_GetSystemRAM();
+	core->platform.OS = (char*)SDL_GetPlatform();
+	SDL_GetPowerInfo(NULL, &core->platform.batteryLife_pct);
 	*state = RUNNING_APPLICATION;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
@@ -45,7 +45,7 @@ void Lania::initialize(Engine* engine)
 	else
 	{
 		//Development test
-		SDL_GetDesktopDisplayMode(0, &engine->platform.SDLDisplayMode);
+		SDL_GetDesktopDisplayMode(0, &core->platform.SDLDisplayMode);
 		appConfig->targetFPS = 60;
 		IMG_Init(IMG_INIT_PNG);
 		IMG_Init(IMG_INIT_JPG);
@@ -70,7 +70,7 @@ void Lania::initialize(Engine* engine)
 			;
 		}
 
-		engine->window = SDL_CreateWindow(
+		core->window = SDL_CreateWindow(
 			appConfig->appName.c_str(),
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
@@ -78,7 +78,7 @@ void Lania::initialize(Engine* engine)
 			appConfig->windowHeight_px,
 			appConfig->windowFlags);
 
-		if (engine->window == NULL)
+		if (core->window == NULL)
 		{
 			SDL_Log(
 				"SDL could not create the window because: %s",
@@ -95,16 +95,16 @@ void Lania::initialize(Engine* engine)
 #endif
 			String iconString = rootPath + appConfig->appName + "/Icon.png";
 			SDL_Surface* logo = IMG_Load(iconString.c_str());
-			SDL_SetWindowIcon(engine->window, logo);
+			SDL_SetWindowIcon(core->window, logo);
 			SDL_FreeSurface(logo);
 
 			SDL_DisableScreenSaver();
-			SDL_GetCurrentDisplayMode(0, &engine->platform.SDLDisplayMode);
+			SDL_GetCurrentDisplayMode(0, &core->platform.SDLDisplayMode);
 
 			if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
 			{
-				engine->renderer = LANIA_OPENGL_RENDERER;
-				engine->glContext = SDL_GL_CreateContext(engine->window);
+				core->renderer = LANIA_OPENGL_RENDERER;
+				core->glContext = SDL_GL_CreateContext(core->window);
 				glViewport(0, 0, appConfig->windowWidth_px, appConfig->windowHeight_px);
 
 				if (glewInit() != GLEW_OK)
@@ -116,65 +116,65 @@ void Lania::initialize(Engine* engine)
 					String* renderingAPIString = new String;
 					*renderingAPIString += "OpenGL ";
 					*renderingAPIString += (char*)glGetString(GL_VERSION);
-					engine->platform.renderingAPIVersion = (char*)renderingAPIString->c_str();
+					core->platform.renderingAPIVersion = (char*)renderingAPIString->c_str();
 				}
 			}
 			else if (appConfig->windowFlags & SDL_WINDOW_VULKAN)
 			{
-				engine->renderer = LANIA_VULKAN_RENDERER;
-				engine->platform.renderingAPIVersion = "Vulkan";
+				core->renderer = LANIA_VULKAN_RENDERER;
+				core->platform.renderingAPIVersion = "Vulkan";
 			}
 			else
 			{
-				engine->SDLRenderer = SDL_CreateRenderer(
-					engine->window,
+				core->SDLRenderer = SDL_CreateRenderer(
+					core->window,
 					-1,
 					SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
 				SDL_RendererInfo SDLRendererInfo;
-				SDL_GetRendererInfo(engine->SDLRenderer, &SDLRendererInfo);
-				engine->platform.renderingAPIVersion = (char*)SDLRendererInfo.name;
+				SDL_GetRendererInfo(core->SDLRenderer, &SDLRendererInfo);
+				core->platform.renderingAPIVersion = (char*)SDLRendererInfo.name;
 			}
 		}
 	}
 }
 
-void Lania::loop(Engine* engine, Application* application)
+void Lania::loop(Core* core, Application* application)
 {
-	Timer* time = &engine->timer;
+	Timer* time = &core->timer;
 	time->FPS.setStart();
 
-	testLoadEntityComponentSystem(application, engine);
+	testLoadEntityComponentSystem(application, core);
 
 	do
 	{
 		time->frame.setStart();
 		time->process.setStart();
 
-		Lania::input(engine);
-		Lania::logic(engine, application);
-		Lania::compute(engine, application);
-		Lania::output(engine);
+		Lania::input(core);
+		Lania::logic(core, application);
+		Lania::compute(core, application);
+		Lania::output(core);
 
 		time->process.setEnd();
 
 		int delay = 0;
 		
-		if (engine->appConfig.targetFPS < UPDATES_PER_S)
+		if (core->appConfig.targetFPS < UPDATES_PER_S)
 		{
-			delay = (MS_IN_S / engine->appConfig.targetFPS) -
-				(engine->timer.process.delta_ns / NS_IN_MS);
+			delay = (MS_IN_S / core->appConfig.targetFPS) -
+				(core->timer.process.delta_ns / NS_IN_MS);
 		}
 		else
 		{
 			delay = (MS_IN_S / UPDATES_PER_S) -
-				(engine->timer.process.delta_ns / NS_IN_MS);
+				(core->timer.process.delta_ns / NS_IN_MS);
 		}
 
 		if (delay > 0)
 			SDL_Delay(delay);
 
 		time->frame.setEnd();
-		engine->frameCount++;
+		core->frameCount++;
 
 		static int passedFrames;
 		passedFrames++;
@@ -183,70 +183,70 @@ void Lania::loop(Engine* engine, Application* application)
 		//Display FPS and other data to Window title.
 		if (time->FPS.delta_ns / NS_IN_MS >= MS_IN_S)
 		{
-			engine->FPS = (passedFrames / (time->FPS.delta_ns / NS_IN_S));
+			core->FPS = (passedFrames / (time->FPS.delta_ns / NS_IN_S));
 			time->FPS.setStart();
 			passedFrames = 1;
 
 			String rendererString;
-			switch (engine->renderer)
+			switch (core->renderer)
 			{
 				case SDL_RENDERER: rendererString = "SDL"; break;
 				case LANIA_OPENGL_RENDERER:
 				case LANIA_VULKAN_RENDERER: rendererString = "Lania"; break;
 			}
 
-			String FPSString = std::to_string(engine->FPS);
+			String FPSString = std::to_string(core->FPS);
 			String frameUtilizationString = 
 				std::to_string((int)(((double)time->process.delta_ns / (double)time->frame.delta_ns) * 100));
-			String batteryString = std::to_string(engine->platform.batteryLife_pct);
-			SDL_SetWindowTitle(engine->window,
-				(engine->appConfig.appName + " - Lania Engine Debug ->" + 
+			String batteryString = std::to_string(core->platform.batteryLife_pct);
+			SDL_SetWindowTitle(core->window,
+				(core->appConfig.appName + " - Lania Engine Debug ->" + 
 					" Renderer: " + rendererString + 
-					", API: " + engine->platform.renderingAPIVersion + 
+					", API: " + core->platform.renderingAPIVersion + 
 					", FPS: " + FPSString +
 					", Frame Time Utilization: " + frameUtilizationString + "%" + 
 					", Battery: " + batteryString + "%").c_str());
 		}
 #endif
-	} while (engine->state != SHUTDOWN);
+	} while (core->state != SHUTDOWN);
 }
 
-void Lania::input(Lania::Engine* engine)
+void Lania::input(Lania::Core* core)
 {
-	engine->timer.input.setStart();
+	core->timer.input.setStart();
 
-	if (SDL_NumJoysticks() != engine->input.gameControllers.size())
-		OS::detectGameControllers(&engine->input);
-	OS::detectBatteryLife(engine);
-	OS::pollInputEvents(engine);
+	if (SDL_NumJoysticks() != core->input.gameControllers.size())
+		OS::detectGameControllers(&core->input);
+	OS::detectBatteryLife(core);
+	OS::pollInputEvents(core);
 
-	engine->timer.input.setEnd();
+	core->timer.input.setEnd();
 }
 
-void Lania::logic(Engine* engine, Application* application)
+void Lania::logic(Core* core, Application* application)
 {
-	Timer* time = &engine->timer;
+	Timer* time = &core->timer;
 	time->logic.setStart();
 
 	//Testing
 
-	if (engine->input.pressedKeys.count(SDLK_a))
+	if (core->input.pressedKeys.count(SDLK_a))
 		application->scene.subscenes2D.at(0).activeRigidBodies.at(0).velocity_px_per_s.x = -500;
 
-	if (engine->input.pressedKeys.count(SDLK_d))
+	if (core->input.pressedKeys.count(SDLK_d))
 		application->scene.subscenes2D.at(0).activeRigidBodies.at(0).velocity_px_per_s.x = 500;
 
-	if (engine->input.releasedKeys.count(SDLK_k))
-		engine->output.immediateSounds.push(application->scene.subscenes2D.at(0).entities.at(4).audioSources.at(0));
+	if (core->input.releasedKeys.count(SDLK_k))
+		core->output.immediateSounds.push(application->scene.subscenes2D.at(0).entities.at(4).audioSources.at(0));
 
 	//////////////////////////
 
 	time->logic.setEnd();
 }
 
-void Lania::compute(Engine* engine, Application* application)
+void Lania::compute(Core* core, Application* application)
 {
-	Timer* time = &engine->timer;
+	Timer* time = &core->timer;
 	time->compute.setStart();
 
 	List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
@@ -292,9 +292,9 @@ void Lania::compute(Engine* engine, Application* application)
 	}
 
 	Rendering::SDL::buildRenderablesFromSprites(
-		&engine->output.SDLRenderables,
+		&core->output.SDLRenderables,
 		&application->scene.subscenes2D,
-		engine->window
+		core->window
 	);
 
 	time->lag_ms += time->frame.delta_ns / NS_IN_MS;
@@ -302,30 +302,30 @@ void Lania::compute(Engine* engine, Application* application)
 	time->compute.setEnd();
 }
 
-void Lania::output(Engine* engine)
+void Lania::output(Core* core)
 {
-	Timer* time = &engine->timer;
+	Timer* time = &core->timer;
 	time->output.setStart();
-	if (engine->renderer == LANIA_OPENGL_RENDERER)
+	if (core->renderer == LANIA_OPENGL_RENDERER)
 	{
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		SDL_GL_SwapWindow(engine->window);
+		SDL_GL_SwapWindow(core->window);
 	}
-	else if (engine->renderer == LANIA_VULKAN_RENDERER)
+	else if (core->renderer == LANIA_VULKAN_RENDERER)
 	{
 		;
 	}
-	else if (engine->renderer == SDL_RENDERER)
+	else if (core->renderer == SDL_RENDERER)
 	{
-		SDL_SetRenderDrawColor(engine->SDLRenderer, 0, 0, 0, 255);
-		SDL_RenderClear(engine->SDLRenderer);
+		SDL_SetRenderDrawColor(core->SDLRenderer, 0, 0, 0, 255);
+		SDL_RenderClear(core->SDLRenderer);
 
-		int renderableCount = engine->output.SDLRenderables.size();
-		SDLRenderable* renderables = engine->output.SDLRenderables.data();
+		int renderableCount = core->output.SDLRenderables.size();
+		SDLRenderable* renderables = core->output.SDLRenderables.data();
 		for (int i = 0; i < renderableCount; i++)
 			SDL_RenderCopyEx(
-				engine->SDLRenderer,
+				core->SDLRenderer,
 				renderables[i].texture,
 				&renderables[i].textureRect,
 				&renderables[i].renderingRect,
@@ -333,17 +333,17 @@ void Lania::output(Engine* engine)
 				NULL,
 				renderables[i].flip);
 
-		SDL_RenderPresent(engine->SDLRenderer);
+		SDL_RenderPresent(core->SDLRenderer);
 	}
 
-	Audio::SDL::playSounds(&engine->output.immediateSounds, &engine->output.scheduledSounds);
+	Audio::SDL::playSounds(&core->output.immediateSounds, &core->output.scheduledSounds);
 	time->output.setEnd();
 }
 
-void Lania::shutdown(Engine* engine, Application* application)
+void Lania::shutdown(Core* core, Application* application)
 {
-	List<SDL_GameController*>* gameControllers = &engine->input.gameControllers;
-	List<SDL_Haptic*>* haptics = &engine->input.haptics;
+	List<SDL_GameController*>* gameControllers = &core->input.gameControllers;
+	List<SDL_Haptic*>* haptics = &core->input.haptics;
 
 	for (int i = 0; i < gameControllers->size(); ++i)
 	{
@@ -354,10 +354,10 @@ void Lania::shutdown(Engine* engine, Application* application)
 	gameControllers->clear();
 	haptics->clear();
 
-	if (engine->renderer == LANIA_OPENGL_RENDERER)
-		SDL_GL_DeleteContext(engine->glContext);
-	else if (engine->renderer == SDL_RENDERER)
-		SDL_DestroyRenderer(engine->SDLRenderer);
-	SDL_DestroyWindow(engine->window);
+	if (core->renderer == LANIA_OPENGL_RENDERER)
+		SDL_GL_DeleteContext(core->glContext);
+	else if (core->renderer == SDL_RENDERER)
+		SDL_DestroyRenderer(core->SDLRenderer);
+	SDL_DestroyWindow(core->window);
 	SDL_Quit();
 }

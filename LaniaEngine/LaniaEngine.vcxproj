@@ -147,7 +147,7 @@
     <ClInclude Include="Core\DataStructures\Set.hpp" />
     <ClInclude Include="Core\DataStructures\Stack.hpp" />
     <ClInclude Include="Core\DataStructures\String.hpp" />
-    <ClInclude Include="Core\Engine.hpp" />
+    <ClInclude Include="Core\Core.hpp" />
     <ClInclude Include="Core\Input.hpp" />
     <ClInclude Include="Core\LaniaEngine.hpp" />
     <ClInclude Include="Core\OS\OS.hpp" />

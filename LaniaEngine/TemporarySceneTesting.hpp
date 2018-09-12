@@ -1,6 +1,6 @@
 #include <Application/Application.hpp>
-#include <Core/Engine.hpp>
+#include <Core/Core.hpp>
 
 void testLoadEntityComponentSystem(
 	Lania::Application* application,
-	Lania::Engine* engine);
+	Lania::Core* core);

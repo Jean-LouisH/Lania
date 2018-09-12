@@ -7,7 +7,7 @@ using namespace Lania;
 
 void testLoadEntityComponentSystem(
 	Application* application,
-	Lania::Engine* engine)
+	Lania::Core* core)
 {
 	///////// Temporary Testing (Before Procedures): Entity Component System Loading Algorithms
 
@@ -21,8 +21,8 @@ void testLoadEntityComponentSystem(
 	scene2D.entities.push_back(camera);
 
 	Camera2D camera2D;
-	camera2D.viewport_px.width = engine->appConfig.windowWidth_px;
-	camera2D.viewport_px.height = engine->appConfig.windowHeight_px;
+	camera2D.viewport_px.width = core->appConfig.windowWidth_px;
+	camera2D.viewport_px.height = core->appConfig.windowHeight_px;
 	camera2D.current = true;
 	camera2D.entityID = scene2D.entities.size() - 1;
 	scene2D.activeCameras.push_back(camera2D);
@@ -36,7 +36,7 @@ void testLoadEntityComponentSystem(
 	Sprite2D bgSprite;
 	SDL_Surface* bgSurface =
 		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/background.png");
-	bgSprite.texture.data = SDL_CreateTextureFromSurface(engine->SDLRenderer, bgSurface);
+	bgSprite.texture.data = SDL_CreateTextureFromSurface(core->SDLRenderer, bgSurface);
 	bgSprite.texture.pixels.width = bgSurface->w;
 	bgSprite.texture.pixels.height = bgSurface->h;
 	bgSprite.alpha = 255;
@@ -66,7 +66,7 @@ void testLoadEntityComponentSystem(
 	Sprite2D boxSprite;
 	SDL_Surface* boxSurface =
 		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/box.png");
-	boxSprite.texture.data = SDL_CreateTextureFromSurface(engine->SDLRenderer, boxSurface);
+	boxSprite.texture.data = SDL_CreateTextureFromSurface(core->SDLRenderer, boxSurface);
 	boxSprite.texture.pixels.width = boxSurface->w;
 	boxSprite.texture.pixels.height = boxSurface->h;
 	boxSprite.alpha = 255;
@@ -105,7 +105,7 @@ void testLoadEntityComponentSystem(
 	Sprite2D beldumSprite;
 	SDL_Surface* beldumSurface =
 		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/beldum.png");
-	beldumSprite.texture.data = SDL_CreateTextureFromSurface(engine->SDLRenderer, beldumSurface);
+	beldumSprite.texture.data = SDL_CreateTextureFromSurface(core->SDLRenderer, beldumSurface);
 	beldumSprite.texture.pixels.width = beldumSurface->w;
 	beldumSprite.texture.pixels.height = beldumSurface->h;
 	beldumSprite.alpha = 255;
@@ -140,7 +140,7 @@ void testLoadEntityComponentSystem(
 	Sprite2D arcanineSprite;
 	SDL_Surface* arcanineSurface =
 		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/arcanine.png");
-	arcanineSprite.texture.data = SDL_CreateTextureFromSurface(engine->SDLRenderer, arcanineSurface);
+	arcanineSprite.texture.data = SDL_CreateTextureFromSurface(core->SDLRenderer, arcanineSurface);
 	arcanineSprite.texture.pixels.width = arcanineSurface->w;
 	arcanineSprite.texture.pixels.height = arcanineSurface->h;
 	arcanineSprite.alpha = 255;

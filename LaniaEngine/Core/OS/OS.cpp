@@ -1,7 +1,7 @@
 #include "OS.hpp"
 #include "Constants.hpp"
 #include "Logging.hpp"
-#include <Core/Engine.hpp>
+#include <Core/Core.hpp>
 #include <Core/Input.hpp>
 #include "SDL_events.h"
 #include <SDL_image.h>
@@ -31,19 +31,19 @@ void Lania::OS::detectGameControllers(Input* input)
 	}
 }
 
-void Lania::OS::detectBatteryLife(Engine* engine)
+void Lania::OS::detectBatteryLife(Core* core)
 {
-	engine->timer.run.setEnd();
-	if (engine->timer.run.delta_ns / NS_IN_S >= 10)
-		SDL_GetPowerInfo(NULL, &engine->platform.batteryLife_pct);
+	core->timer.run.setEnd();
+	if (core->timer.run.delta_ns / NS_IN_S >= 10)
+		SDL_GetPowerInfo(NULL, &core->platform.batteryLife_pct);
 }
 
-void Lania::OS::pollInputEvents(Engine* engine)
+void Lania::OS::pollInputEvents(Core* core)
 {
 	SDL_Event SDLEvents;
-	MouseState* mouse = &engine->input.mouse;
+	MouseState* mouse = &core->input.mouse;
 
-	engine->input.releasedKeys.clear();
+	core->input.releasedKeys.clear();
 
 	while (SDL_PollEvent(&SDLEvents))
 	{
@@ -51,14 +51,14 @@ void Lania::OS::pollInputEvents(Engine* engine)
 		{
 			/*Close window button*/
 		case SDL_QUIT:
-			engine->state = Lania::SHUTDOWN;
+			core->state = Lania::SHUTDOWN;
 			break;
 
 			/*Keyboard inputs*/
 		case SDL_KEYDOWN:
 			if (SDLEvents.key.keysym.sym == SDLK_ESCAPE)
 			{
-				engine->state = Lania::SHUTDOWN;
+				core->state = Lania::SHUTDOWN;
 			}
 			else
 			{
@@ -66,7 +66,7 @@ void Lania::OS::pollInputEvents(Engine* engine)
 				press.mod = SDLEvents.key.keysym.mod;
 				press.timestamp_ms = SDLEvents.key.timestamp;
 
-				engine->input.pressedKeys.emplace(SDLEvents.key.keysym.sym, press);
+				core->input.pressedKeys.emplace(SDLEvents.key.keysym.sym, press);
 			}
 			break;
 		case SDL_KEYUP:
@@ -74,8 +74,8 @@ void Lania::OS::pollInputEvents(Engine* engine)
 			release.mod = SDLEvents.key.keysym.mod;
 			release.timestamp_ms = SDLEvents.key.timestamp;
 
-			engine->input.releasedKeys.emplace(SDLEvents.key.keysym.sym, release);
-			engine->input.pressedKeys.erase(SDLEvents.key.keysym.sym);
+			core->input.releasedKeys.emplace(SDLEvents.key.keysym.sym, release);
+			core->input.pressedKeys.erase(SDLEvents.key.keysym.sym);
 			break;
 		case SDL_MOUSEBUTTONDOWN:
 			mouse->type = SDL_MOUSEBUTTONDOWN;

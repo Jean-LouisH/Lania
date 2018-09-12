@@ -13,15 +13,15 @@
 
 #pragma once
 
-#include <Core/Engine.hpp>
+#include <Core/Core.hpp>
 
 namespace Lania
 {
 	namespace OS
 	{
 		void detectGameControllers(Input* input);
-		void detectBatteryLife(Engine* engine);
-		void pollInputEvents(Engine* engine);
+		void detectBatteryLife(Core* core);
+		void pollInputEvents(Core* core);
 		void setToWindowed(SDL_Window* window, AppConfig* config);
 		void setToFullscreen(SDL_Window* window, SDL_DisplayMode* mode);
 		void toggleWindowedFullscreen(SDL_Window* window);

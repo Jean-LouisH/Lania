@@ -12,16 +12,16 @@
 
 #pragma once
 
-#include "Engine.hpp"
+#include "Core.hpp"
 #include <Application/Application.hpp>
 
 namespace Lania
 {
-	void initialize(Engine* engine);
-	void loop(Engine* engine, Application* application);
-	void input(Engine* engine);
-	void logic(Engine* engine, Application* application);
-	void compute(Engine* engine, Application* application);
-	void output(Engine* engine);
-	void shutdown(Engine* engine, Application* application);
+	void initialize(Core* core);
+	void loop(Core* core, Application* application);
+	void input(Core* core);
+	void logic(Core* core, Application* application);
+	void compute(Core* core, Application* application);
+	void output(Core* core);
+	void shutdown(Core* core, Application* application);
 }

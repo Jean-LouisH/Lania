@@ -3,7 +3,7 @@
 *                          Lania Engine
 *           https://jean-louish.github.io/LaniaEngine/
 *
-* Engine
+* Core
 *
 * Forms the lowest layer of data that interfaces with the operating
 * system according to what the application layer dictates.
@@ -25,7 +25,7 @@
 
 namespace Lania
 {
-	enum engineStates
+	enum coreStates
 	{
 		RUNNING_APPLICATION,
 		SHUTDOWN,
@@ -38,7 +38,7 @@ namespace Lania
 		LANIA_VULKAN_RENDERER,
 	};
 
-	typedef struct Engine
+	typedef struct Core
 	{
 		SDL_Window* window;
 		SDL_GLContext glContext;
@@ -55,7 +55,7 @@ namespace Lania
 		uint16_t FPS;
 		uint8_t state;
 
-		Engine() :
+		Core() :
 			window(NULL),
 			glContext(NULL),
 			SDLRenderer(NULL),
@@ -63,5 +63,5 @@ namespace Lania
 			frameCount(0),
 			FPS(0),
 			state(RUNNING_APPLICATION) {}
-	}Engine;
+	}Core;
 }
