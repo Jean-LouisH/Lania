@@ -1,14 +1,14 @@
 Lania Engine
 ========
 
-###  Table Of Contents
+###  Table of Contents
 
-1. [Introduction](#1.-introduction)
-2. [Architecture](#2.-architecture)
-2.1 [Entity Component System](#2.1-entity-component-system)
-2.2 [Scripting and Virtual Machine](#2.2-scripting-and-virtual-machine)
-3. [Rendering Engines](#3.-rendering-engines)
-4. [Gallery](#4.-gallery)
+1. [Introduction](#introduction)
+2. [Architecture](#architecture)
+2.1 [Entity Component System](#entity-component-system)
+2.2 [Scripting and Virtual Machine](#scripting-and-virtual-machine)
+3. [Rendering Engines](#rendering-engines)
+4. [Gallery](#gallery)
 
 ## 1. Introduction
 
@@ -26,8 +26,6 @@ The engine is meant to be data-driven through application projects. In developme
 
 "Application" is the general term used for the scene and scripting data that describe the game or simulation being executed by the engine's "Core". The "Core" is the software layer below the application that contains all relevant data to the hardware platform, I/O and operating system. It also contains its own record of the executable name (for export templates), active renderer, application configuration (for startup), FPS and frame count, engine states, and high resolution timers (for profiling).
 
-![Lania Engine Data Architecture]()
-
 The application has an active scene which contains, namely, an asset cache (for instancing), scripting bytecode, action input maps, and 2D & 3D subscenes. The subscenes represent frames of game objects that are processed in their own distinct groups. They are layered in order with 2D subscenes appearing over 3D and vice versa. 
 
 This enables applications to have, for example, a 2D background with a 3D object, and a 2D heads up display or UI appearing in front of everything else. Physics and other algorithms would only have objects interact among themselves within the same subscene. So, for example, particle effects in a 2D gameplay subscene layer would not affect interactive elements in a heads up display 2D subscene layer.
@@ -35,8 +33,6 @@ This enables applications to have, for example, a 2D background with a 3D object
 ### 2.1 Entity Component System
 
 Each subscene, whether 2D or 3D is composed of an entity component system architecture. The entities are listed by ID numbers and contain transform data, a map of components and their index numbers, a reference to a parent entity, and a list of children entities.
-
-![Entity Component System]()
 
 Components are also listed in the architecture to encourage linear access by processing systems such as Physics or Rendering. All components have references to their entity containers and additional data for the systems to operate on them. They are separated in the subscene by active and inactive lists to encourage existence-based processing. 
 
@@ -47,6 +43,8 @@ A current camera component index is stored to allow the Renderer to quickly refe
 **To be determined**
 
 ## 3. Rendering Engines
+
+**To be determined**
 
 ## 4. Gallery
 
