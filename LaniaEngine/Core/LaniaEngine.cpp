@@ -33,7 +33,7 @@ void Lania::initialize(Core* core)
 	core->platform.systemRAM_MB = SDL_GetSystemRAM();
 	core->platform.OS = (char*)SDL_GetPlatform();
 	SDL_GetPowerInfo(NULL, &core->platform.batteryLife_pct);
-	*state = RUNNING_APPLICATION;
+	*state = INITIALIZING;
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{
@@ -134,6 +134,13 @@ void Lania::initialize(Core* core)
 				SDL_GetRendererInfo(core->SDLRenderer, &SDLRendererInfo);
 				core->platform.renderingAPIVersion = (char*)SDLRendererInfo.name;
 			}
+
+			if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
+				*state = RUNNING_APPLICATION_FULLSCREEN;
+			else if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN_DESKTOP)
+				*state = RUNNING_APPLICATION_FULLSCREEN_DESKTOP;
+			else if (*state != SHUTDOWN)
+				*state = RUNNING_APPLICATION_WINDOWED;
 		}
 	}
 }
@@ -208,7 +215,7 @@ void Lania::loop(Core* core, Application* application)
 					", Battery: " + batteryString + "%").c_str());
 		}
 #endif
-	} while (core->state != SHUTDOWN);
+	} while (core->state != SHUTDOWN && core->state != RESTARTING);
 }
 
 void Lania::input(Lania::Core* core)
@@ -238,6 +245,18 @@ void Lania::logic(Core* core, Application* application)
 
 	if (core->input.releasedKeys.count(SDLK_k))
 		core->output.immediateSounds.push(application->scene.subscenes2D.at(0).entities.at(4).audioSources.at(0));
+
+	if (core->input.releasedKeys.count(SDLK_r))
+		core->state = RESTARTING;
+
+	if (core->input.releasedKeys.count(SDLK_y))
+		OS::toggleWindowedFullscreen(core->window, &core->state);
+
+	if (core->input.releasedKeys.count(SDLK_u))
+		OS::setToFullscreen(core->window, &core->platform.SDLDisplayMode, &core->state);
+
+	if (core->input.releasedKeys.count(SDLK_i))
+		OS::setToWindowed(core->window, &core->appConfig, &core->state);
 
 	//////////////////////////
 

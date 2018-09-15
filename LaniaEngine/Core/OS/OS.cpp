@@ -119,25 +119,29 @@ void Lania::OS::pollInputEvents(Core* core)
 	}
 }
 
-void Lania::OS::setToWindowed(SDL_Window* window, AppConfig* config)
+void Lania::OS::setToWindowed(SDL_Window* window, AppConfig* config, uint8_t* state)
 {
 	SDL_SetWindowFullscreen(window, 0);
 	SDL_SetWindowSize(window, config->windowWidth_px, config->windowHeight_px);
+	*state = RUNNING_APPLICATION_WINDOWED;
+
 }
 
-void Lania::OS::setToFullscreen(SDL_Window* window, SDL_DisplayMode* mode)
+void Lania::OS::setToFullscreen(SDL_Window* window, SDL_DisplayMode* mode, uint8_t* state)
 {
 	SDL_SetWindowDisplayMode(window, mode);
 	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+	*state = RUNNING_APPLICATION_FULLSCREEN;
 }
 
-void Lania::OS::toggleWindowedFullscreen(SDL_Window* window)
+void Lania::OS::toggleWindowedFullscreen(SDL_Window* window, uint8_t* state)
 {
 	static bool isFullscreen = false;
 
 	if (!isFullscreen)
 	{
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+		*state = RUNNING_APPLICATION_FULLSCREEN_DESKTOP;
 	}
 	else
 	{
@@ -146,6 +150,7 @@ void Lania::OS::toggleWindowedFullscreen(SDL_Window* window)
 			window,
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED);
+		*state = RUNNING_APPLICATION_WINDOWED;
 	}
 
 	SDL_ShowCursor(isFullscreen);

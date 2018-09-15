@@ -27,7 +27,11 @@ namespace Lania
 {
 	enum coreStates
 	{
-		RUNNING_APPLICATION,
+		INITIALIZING,
+		RUNNING_APPLICATION_WINDOWED,
+		RUNNING_APPLICATION_FULLSCREEN,
+		RUNNING_APPLICATION_FULLSCREEN_DESKTOP,
+		RESTARTING,
 		SHUTDOWN,
 	};
 
@@ -62,6 +66,6 @@ namespace Lania
 			renderer(SDL_RENDERER),
 			frameCount(0),
 			FPS(0),
-			state(RUNNING_APPLICATION) {}
+			state(INITIALIZING) {}
 	}Core;
 }

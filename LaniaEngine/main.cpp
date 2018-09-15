@@ -15,19 +15,26 @@
 #include "Core/LaniaEngine.hpp"
 
 int main(int argc, char* argv[])
-{
-	Lania::Core* core = new Lania::Core();
-	Lania::Application* application = new Lania::Application();
+{	
+	bool restarting = false;
 
-	core->filepath = argv[0];
-	
-	Lania::initialize(core);
-	if (core->state == Lania::RUNNING_APPLICATION)
-		Lania::loop(core, application);
-	Lania::shutdown(core, application);
+	do
+	{
+		Lania::Core* core = new Lania::Core();
+		Lania::Application* application = new Lania::Application();
 
-	delete application;
-	delete core;
+		core->filepath = argv[0];
+
+		Lania::initialize(core);
+		if (core->state != Lania::SHUTDOWN)
+			Lania::loop(core, application);
+		Lania::shutdown(core, application);
+
+		restarting = (core->state == Lania::RESTARTING);
+
+		delete application;
+		delete core;
+	} while (restarting);
 
 	return 0;
 }
