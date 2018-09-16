@@ -141,9 +141,6 @@
     <ClInclude Include="Application\Scenes\2D\ConstantDirectionalForce2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Application\Scenes\AssetCache.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Application\Scenes\Texture.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -201,6 +198,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TemporarySceneTesting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Application\Scenes\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

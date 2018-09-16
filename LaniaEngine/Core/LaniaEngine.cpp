@@ -364,6 +364,8 @@ void Lania::shutdown(Core* core, Application* application)
 	List<SDL_GameController*>* gameControllers = &core->input.gameControllers;
 	List<SDL_Haptic*>* haptics = &core->input.haptics;
 
+	application->scene.deleteAssets();
+
 	for (int i = 0; i < gameControllers->size(); ++i)
 	{
 		SDL_GameControllerClose(gameControllers->at(i));

@@ -133,7 +133,6 @@
     <ClInclude Include="Application\Scenes\2D\Sprite2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Transform2D.hpp" />
     <ClInclude Include="Application\Scenes\2D\Vector2.hpp" />
-    <ClInclude Include="Application\Scenes\AssetCache.hpp" />
     <ClInclude Include="Application\Scenes\Scene.hpp" />
     <ClInclude Include="Application\Scenes\Texture.hpp" />
     <ClInclude Include="Application\Scripting\Bytecode.hpp" />
@@ -167,6 +166,7 @@
   <ItemGroup>
     <ClCompile Include="Application\Application.cpp" />
     <ClCompile Include="Application\Scenes\2D\Vector2.cpp" />
+    <ClCompile Include="Application\Scenes\Scene.cpp" />
     <ClCompile Include="Audio\AudioSDL.cpp" />
     <ClCompile Include="Core\Configuration.cpp" />
     <ClCompile Include="Core\DataStructures\Stack.cpp" />

@@ -26,7 +26,7 @@ void testLoadEntityComponentSystem(
 	camera2D.current = true;
 	camera2D.entityID = scene2D.entities.size() - 1;
 	scene2D.activeCameras.push_back(camera2D);
-	scene2D.entities.back().components.emplace(CAMERA2D, scene2D.activeCameras.size() - 1);
+	scene2D.entities.back().components.emplace(CAMERA_2D, scene2D.activeCameras.size() - 1);
 	scene2D.currentCameraIndex = scene2D.activeCameras.size() - 1;
 	////////////////////////////////////////////////////////////////////////
 
@@ -34,17 +34,13 @@ void testLoadEntityComponentSystem(
 	scene2D.entities.push_back(background);
 
 	Sprite2D bgSprite;
-	SDL_Surface* bgSurface =
-		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/background.png");
-	bgSprite.texture.data = SDL_CreateTextureFromSurface(core->SDLRenderer, bgSurface);
-	bgSprite.texture.pixels.width = bgSurface->w;
-	bgSprite.texture.pixels.height = bgSurface->h;
+	bgSprite.texture = application->scene.loadTexture("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/background.png", 
+		core->SDLRenderer);
 	bgSprite.alpha = 255;
 	SDL_SetTextureAlphaMod(bgSprite.texture.data, bgSprite.alpha);
-	SDL_FreeSurface(bgSurface);
 	bgSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.activeSprites.push_back(bgSprite);
-	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
+	scene2D.entities.back().components.emplace(SPRITE_2D, scene2D.activeSprites.size() - 1);
 
 	scene2D.entities.back().transform.position_px.x = bgSprite.texture.pixels.width / 2.0;
 	scene2D.entities.back().transform.position_px.y = bgSprite.texture.pixels.height / 2.0;
@@ -64,17 +60,13 @@ void testLoadEntityComponentSystem(
 	scene2D.entities.push_back(floorCollider);
 
 	Sprite2D boxSprite;
-	SDL_Surface* boxSurface =
-		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/box.png");
-	boxSprite.texture.data = SDL_CreateTextureFromSurface(core->SDLRenderer, boxSurface);
-	boxSprite.texture.pixels.width = boxSurface->w;
-	boxSprite.texture.pixels.height = boxSurface->h;
+	boxSprite.texture = application->scene.loadTexture("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/box.png", 
+		core->SDLRenderer);
 	boxSprite.alpha = 255;
 	SDL_SetTextureAlphaMod(boxSprite.texture.data, boxSprite.alpha);
-	SDL_FreeSurface(boxSurface);
 	boxSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.activeSprites.push_back(boxSprite);
-	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
+	scene2D.entities.back().components.emplace(SPRITE_2D, scene2D.activeSprites.size() - 1);
 
 	BoxCollider2D floorBoxCollider;
 	floorBoxCollider.aabb.min_px.x = -1400 / 2;
@@ -83,7 +75,7 @@ void testLoadEntityComponentSystem(
 	floorBoxCollider.aabb.max_px.y = -floorBoxCollider.aabb.min_px.y;
 	floorBoxCollider.entityID = scene2D.entities.size() - 1;
 	scene2D.activeBoxColliders.push_back(floorBoxCollider);
-	scene2D.entities.back().components.emplace(BOXCOLLIDER2D, scene2D.activeBoxColliders.size() - 1);
+	scene2D.entities.back().components.emplace(BOX_COLLIDER_2D, scene2D.activeBoxColliders.size() - 1);
 
 	double testScale = 2.5;
 	//testScale = 1.0;
@@ -100,20 +92,16 @@ void testLoadEntityComponentSystem(
 	rigid.gravity_scale = 20.0;
 	rigid.entityID = scene2D.entities.size() - 1;
 	scene2D.activeRigidBodies.push_back(rigid);
-	scene2D.entities.back().components.emplace(RIGIDBODY2D, scene2D.activeRigidBodies.size() - 1);
+	scene2D.entities.back().components.emplace(RIGID_BODY_2D, scene2D.activeRigidBodies.size() - 1);
 
 	Sprite2D beldumSprite;
-	SDL_Surface* beldumSurface =
-		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/beldum.png");
-	beldumSprite.texture.data = SDL_CreateTextureFromSurface(core->SDLRenderer, beldumSurface);
-	beldumSprite.texture.pixels.width = beldumSurface->w;
-	beldumSprite.texture.pixels.height = beldumSurface->h;
+	beldumSprite.texture = application->scene.loadTexture("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/beldum.png",
+		core->SDLRenderer);
 	beldumSprite.alpha = 255;
 	SDL_SetTextureAlphaMod(beldumSprite.texture.data, beldumSprite.alpha);
-	SDL_FreeSurface(beldumSurface);
 	beldumSprite.entityID = scene2D.entities.size() - 1;
 	scene2D.activeSprites.push_back(beldumSprite);
-	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
+	scene2D.entities.back().components.emplace(SPRITE_2D, scene2D.activeSprites.size() - 1);
 
 	BoxCollider2D beldumBoxCollider;
 	beldumBoxCollider.aabb.min_px.x = -(beldumSprite.texture.pixels.width * beldum.transform.scale.x) / 2.0;
@@ -122,7 +110,7 @@ void testLoadEntityComponentSystem(
 	beldumBoxCollider.aabb.max_px.y = -beldumBoxCollider.aabb.min_px.y;
 	beldumBoxCollider.entityID = scene2D.entities.size() - 1;
 	scene2D.activeBoxColliders.push_back(beldumBoxCollider);
-	scene2D.entities.back().components.emplace(BOXCOLLIDER2D, scene2D.activeBoxColliders.size() - 1);
+	scene2D.entities.back().components.emplace(BOX_COLLIDER_2D, scene2D.activeBoxColliders.size() - 1);
 
 	//////////
 
@@ -135,21 +123,17 @@ void testLoadEntityComponentSystem(
 
 	rigid.entityID = scene2D.entities.size() - 1;
 	scene2D.activeRigidBodies.push_back(rigid);
-	scene2D.entities.back().components.emplace(RIGIDBODY2D, scene2D.activeRigidBodies.size() - 1);
+	scene2D.entities.back().components.emplace(RIGID_BODY_2D, scene2D.activeRigidBodies.size() - 1);
 
 	Sprite2D arcanineSprite;
-	SDL_Surface* arcanineSurface =
-		IMG_Load("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/arcanine.png");
-	arcanineSprite.texture.data = SDL_CreateTextureFromSurface(core->SDLRenderer, arcanineSurface);
-	arcanineSprite.texture.pixels.width = arcanineSurface->w;
-	arcanineSprite.texture.pixels.height = arcanineSurface->h;
+	arcanineSprite.texture = application->scene.loadTexture("../Demos/PhysicsTest/PhysicsTest/Graphics/Textures/arcanine.png", 
+		core->SDLRenderer);
 	arcanineSprite.alpha = 255;
 	SDL_SetTextureAlphaMod(arcanineSprite.texture.data, arcanineSprite.alpha);
-	SDL_FreeSurface(arcanineSurface);
 	arcanineSprite.entityID = scene2D.entities.size() - 1;
 	arcanineSprite.flip = SDL_FLIP_HORIZONTAL;
 	scene2D.activeSprites.push_back(arcanineSprite);
-	scene2D.entities.back().components.emplace(SPRITE, scene2D.activeSprites.size() - 1);
+	scene2D.entities.back().components.emplace(SPRITE_2D, scene2D.activeSprites.size() - 1);
 
 	BoxCollider2D arcanineBoxCollider;
 	arcanineBoxCollider.aabb.min_px.x = -(arcanineSprite.texture.pixels.width * arcanine.transform.scale.x) / 2.0;
@@ -158,7 +142,7 @@ void testLoadEntityComponentSystem(
 	arcanineBoxCollider.aabb.max_px.y = -arcanineBoxCollider.aabb.min_px.y;
 	arcanineBoxCollider.entityID = scene2D.entities.size() - 1;
 	scene2D.activeBoxColliders.push_back(arcanineBoxCollider);
-	scene2D.entities.back().components.emplace(BOXCOLLIDER2D, scene2D.activeBoxColliders.size() - 1);
+	scene2D.entities.back().components.emplace(BOX_COLLIDER_2D, scene2D.activeBoxColliders.size() - 1);
 
 	////////////
 
