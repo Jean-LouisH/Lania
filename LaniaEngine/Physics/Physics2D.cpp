@@ -48,20 +48,20 @@ void Lania::Physics2D::detectCollisions(
 					//Rigid body colliding with a static body.
 					//Rigid body colliding with a rigid body
 					//Static body colliding with either.
-					if (entity1->components.count(RIGIDBODY2D) &&
-						!entity2->components.count(RIGIDBODY2D))
+					if (entity1->components.count(RIGID_BODY_2D) &&
+						!entity2->components.count(RIGID_BODY_2D))
 					{
 						DynamicCollisionEvent2D dynamicCollisionEvent;
-						RigidBody2D* rigidBody1 = &rigidBodies[entity1->components.at(RIGIDBODY2D)];
+						RigidBody2D* rigidBody1 = &rigidBodies[entity1->components.at(RIGID_BODY_2D)];
 						dynamicCollisionEvent.first.entityID = boxColliders[i].entityID;
-						dynamicCollisionEvent.first.collider = BOXCOLLIDER2D;
+						dynamicCollisionEvent.first.collider = BOX_COLLIDER_2D;
 						dynamicCollisionEvent.first.elasticity_ratio = rigidBody1->elasticity_ratio;
 						dynamicCollisionEvent.first.mass_kg = rigidBody1->mass_kg;
 						dynamicCollisionEvent.first.velocity_px_per_s = rigidBody1->velocity_px_per_s;
 						dynamicCollisionEvent.first.rotation_rad = entity1->transform.rotation_rad;
 
 						dynamicCollisionEvent.second.entityID = boxColliders[j].entityID;
-						dynamicCollisionEvent.second.collider = BOXCOLLIDER2D;
+						dynamicCollisionEvent.second.collider = BOX_COLLIDER_2D;
 						dynamicCollisionEvent.second.elasticity_ratio = 1,0;
 						dynamicCollisionEvent.second.mass_kg = EARTH_MASS;
 						dynamicCollisionEvent.second.velocity_px_per_s.x = 0.0;
@@ -71,24 +71,24 @@ void Lania::Physics2D::detectCollisions(
 							atan((entity1->transform.position_px.y - entity2->transform.position_px.y) /
 							(entity1->transform.position_px.x - entity2->transform.position_px.x));
 						dynamicCollisionEvent.timestamp_ms = simulationTime_ms;
-						dynamicCollisionEvent.firstRigidBodyIndex = entity1->components.at(RIGIDBODY2D);
+						dynamicCollisionEvent.firstRigidBodyIndex = entity1->components.at(RIGID_BODY_2D);
 						dynamicCollisionEvents->push_back(dynamicCollisionEvent);
 					}
-					else if (entity1->components.count(RIGIDBODY2D) &&
-						entity2->components.count(RIGIDBODY2D))
+					else if (entity1->components.count(RIGID_BODY_2D) &&
+						entity2->components.count(RIGID_BODY_2D))
 					{
 						DynamicCollisionEvent2D dynamicCollisionEvent;
-						RigidBody2D* rigidBody1 = &rigidBodies[entity1->components.at(RIGIDBODY2D)];
-						RigidBody2D* rigidBody2 = &rigidBodies[entity2->components.at(RIGIDBODY2D)];
+						RigidBody2D* rigidBody1 = &rigidBodies[entity1->components.at(RIGID_BODY_2D)];
+						RigidBody2D* rigidBody2 = &rigidBodies[entity2->components.at(RIGID_BODY_2D)];
 						dynamicCollisionEvent.first.entityID = boxColliders[i].entityID;
-						dynamicCollisionEvent.first.collider = BOXCOLLIDER2D;
+						dynamicCollisionEvent.first.collider = BOX_COLLIDER_2D;
 						dynamicCollisionEvent.first.elasticity_ratio = rigidBody1->elasticity_ratio;
 						dynamicCollisionEvent.first.mass_kg = rigidBody1->mass_kg;
 						dynamicCollisionEvent.first.velocity_px_per_s = rigidBody1->velocity_px_per_s;
 						dynamicCollisionEvent.first.rotation_rad = entity1->transform.rotation_rad;
 
 						dynamicCollisionEvent.second.entityID = boxColliders[j].entityID;
-						dynamicCollisionEvent.second.collider = BOXCOLLIDER2D;
+						dynamicCollisionEvent.second.collider = BOX_COLLIDER_2D;
 						dynamicCollisionEvent.second.elasticity_ratio = rigidBody2->elasticity_ratio;
 						dynamicCollisionEvent.second.mass_kg = rigidBody2->mass_kg;
 						dynamicCollisionEvent.second.velocity_px_per_s = rigidBody2->velocity_px_per_s;
@@ -97,7 +97,7 @@ void Lania::Physics2D::detectCollisions(
 							atan((entity1->transform.position_px.y - entity2->transform.position_px.y) /
 							(entity1->transform.position_px.x - entity2->transform.position_px.x));
 						dynamicCollisionEvent.timestamp_ms = simulationTime_ms;
-						dynamicCollisionEvent.firstRigidBodyIndex = entity1->components.at(RIGIDBODY2D);
+						dynamicCollisionEvent.firstRigidBodyIndex = entity1->components.at(RIGID_BODY_2D);
 						dynamicCollisionEvents->push_back(dynamicCollisionEvent);
 					}
 					else

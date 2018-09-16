@@ -28,11 +28,11 @@ namespace Lania
 	enum Components
 	{
 		NO_COMPONENT,
-		CAMERA2D,
-		RIGIDBODY2D,
-		SPRITE,
-		STATICBODY2D,
-		BOXCOLLIDER2D
+		CAMERA_2D,
+		RIGID_BODY_2D,
+		SPRITE_2D,
+		BOX_COLLIDER_2D,
+		POINT_LOCK_2D,
 	};
 
 	typedef struct Entity2D
