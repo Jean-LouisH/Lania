@@ -13,9 +13,6 @@ void testLoadEntityComponentSystem(
 
 	Scene2D scene2D;
 
-	Entity2D dummy;
-	scene2D.entities.push_back(dummy);
-
 	///////////////////////////////////////////////////////////////////////
 	Entity2D camera;
 	scene2D.entities.push_back(camera);

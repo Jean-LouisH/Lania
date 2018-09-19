@@ -57,5 +57,13 @@ namespace Lania
 
 		//Stores current camera list position to prevent repetitive searches
 		ComponentListIndex currentCameraIndex;
+
+		Scene2D()
+		{
+			//The universal, empty parent entity used for reference
+			//in recursive algorithms on child entities.
+			Entity2D dummy;
+			this->entities.push_back(dummy);
+		}
 	}Scene2D;
 }
