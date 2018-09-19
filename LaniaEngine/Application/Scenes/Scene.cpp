@@ -82,3 +82,38 @@ void Lania::Scene::deleteAssets()
 	this->deleteAllTextures();
 	this->deleteAllSounds();
 }
+
+void Lania::Scene::addEntity2D(LayerID subscene2D)
+{
+	Entity2D entity2D;
+	this->subscenes2D.at(subscene2D).entities.push_back(entity2D);
+}
+
+void Lania::Scene::addEntity2D(LayerID subscene2D, double x, double y)
+{
+	Entity2D entity2D;
+	entity2D.transform.position_px.x = x;
+	entity2D.transform.position_px.y = y;
+	this->subscenes2D.at(subscene2D).entities.push_back(entity2D);
+}
+
+void Lania::Scene::addEntity2D(LayerID subscene2D, double x, double y, double xScale, double yScale)
+{
+	Entity2D entity2D;
+	entity2D.transform.position_px.x = x;
+	entity2D.transform.position_px.y = y;
+	entity2D.transform.scale.x = xScale;
+	entity2D.transform.scale.y = yScale;
+	this->subscenes2D.at(subscene2D).entities.push_back(entity2D);
+}
+
+void Lania::Scene::addAudioSource2D(LayerID subscene2D, EntityID entityID, String filepath)
+{
+	this->subscenes2D.at(subscene2D).entities.at(entityID).audioSources.push_back(loadSound(filepath));
+}
+
+void Lania::Scene::removeEntity2D(LayerID subscene2D, EntityID entityID)
+{
+	List<Entity2D>* entities = &this->subscenes2D.at(subscene2D).entities;
+	entities->erase(entities->begin() + (entityID - 1));
+}
