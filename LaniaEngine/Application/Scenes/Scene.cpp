@@ -1,4 +1,5 @@
 #include <Application/Scenes/Scene.hpp>
+#include <Application/Scenes/2D/Entity2D.hpp>
 #include <SDL_image.h>
 
 Lania::Texture Lania::Scene::loadTexture(String filepath, SDL_Renderer* SDLRenderer)
@@ -83,37 +84,60 @@ void Lania::Scene::deleteAssets()
 	this->deleteAllSounds();
 }
 
-void Lania::Scene::addEntity2D(LayerID subscene2D)
+void Lania::Scene::addEntity2D(LayerID subscene2DID)
 {
 	Entity2D entity2D;
-	this->subscenes2D.at(subscene2D).entities.push_back(entity2D);
+	this->subscenes2D.at(subscene2DID).entities.push_back(entity2D);
 }
 
-void Lania::Scene::addEntity2D(LayerID subscene2D, double x, double y)
+void Lania::Scene::addEntity2D(LayerID subscene2DID, double x, double y)
 {
 	Entity2D entity2D;
 	entity2D.transform.position_px.x = x;
 	entity2D.transform.position_px.y = y;
-	this->subscenes2D.at(subscene2D).entities.push_back(entity2D);
+	this->subscenes2D.at(subscene2DID).entities.push_back(entity2D);
 }
 
-void Lania::Scene::addEntity2D(LayerID subscene2D, double x, double y, double xScale, double yScale)
+void Lania::Scene::addEntity2D(LayerID scene2DID, double x, double y, double xScale, double yScale)
 {
 	Entity2D entity2D;
 	entity2D.transform.position_px.x = x;
 	entity2D.transform.position_px.y = y;
 	entity2D.transform.scale.x = xScale;
 	entity2D.transform.scale.y = yScale;
-	this->subscenes2D.at(subscene2D).entities.push_back(entity2D);
+	this->subscenes2D.at(scene2DID).entities.push_back(entity2D);
 }
 
-void Lania::Scene::addAudioSource2D(LayerID subscene2D, EntityID entityID, String filepath)
+void Lania::Scene::removeEntity2D(LayerID scene2DID, EntityID entityID)
 {
-	this->subscenes2D.at(subscene2D).entities.at(entityID).audioSources.push_back(loadSound(filepath));
-}
-
-void Lania::Scene::removeEntity2D(LayerID subscene2D, EntityID entityID)
-{
-	List<Entity2D>* entities = &this->subscenes2D.at(subscene2D).entities;
+	List<Entity2D>* entities = &this->subscenes2D.at(scene2DID).entities;
 	entities->erase(entities->begin() + (entityID - 1));
+}
+
+void Lania::Scene::addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath)
+{
+	this->subscenes2D.at(scene2DID).entities.at(entityID).audioSources.push_back(loadSound(filepath));
+}
+
+void Lania::Scene::setComponent2DInactive(LayerID scene2DID, ComponentType componentType, ComponentListIndex componentIndex)
+{
+	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
+	switch (componentType)
+	{
+		case CAMERA_2D:
+			List<Camera2D>* cameras = &scene2D->activeCameras;
+			scene2D->inactiveCameras.push_back(cameras->at(componentIndex));
+			cameras->erase(cameras->begin() + (componentIndex - 1));
+			break;
+		case RIGID_BODY_2D:
+			List<RigidBody2D>* rigidBodies = &scene2D->activeRigidBodies;
+			scene2D->inactiveRigidBodies.push_back(rigidBodies->at(componentIndex));
+			rigidBodies->erase(rigidBodies->begin() + (componentIndex - 1));
+			break;
+		case SPRITE_2D:
+			List<Sprite2D>* sprites = &scene2D->activeSprites;
+			scene2D->inactiveSprites.push_back(sprites->at(componentIndex));
+			sprites->erase(sprites->begin() + (componentIndex - 1));
+			break;
+	}
 }

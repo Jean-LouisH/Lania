@@ -48,10 +48,11 @@ namespace Lania
 		void deleteAllSounds();
 		void deleteAssets();
 
-		void addEntity2D(LayerID subscene2D);
-		void addEntity2D(LayerID subscene2D, double x, double y);
-		void addEntity2D(LayerID subscene2D, double x, double y, double xScale, double yScale);
-		void addAudioSource2D(LayerID subscene2D, EntityID entityID, String filepath);
-		void removeEntity2D(LayerID subscene2D, EntityID entityID);
+		void addEntity2D(LayerID scene2DID);
+		void addEntity2D(LayerID scene2DID, double x, double y);
+		void addEntity2D(LayerID scene2DID, double x, double y, double xScale, double yScale);
+		void removeEntity2D(LayerID scene2DID, EntityID entityID);
+		void setComponent2DInactive(LayerID scene2DID, ComponentType componentType, ComponentListIndex componentIndex);
+		void addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath);
 	}Scene;
 }
