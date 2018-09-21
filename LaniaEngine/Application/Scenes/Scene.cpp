@@ -122,20 +122,21 @@ void Lania::Scene::addAudioSource2D(LayerID scene2DID, EntityID entityID, String
 void Lania::Scene::setComponent2DInactive(LayerID scene2DID, ComponentType componentType, ComponentListIndex componentIndex)
 {
 	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
+	List<Camera2D>* cameras = &scene2D->activeCameras;
+	List<RigidBody2D>* rigidBodies = &scene2D->activeRigidBodies;
+	List<Sprite2D>* sprites = &scene2D->activeSprites;
+
 	switch (componentType)
 	{
 		case CAMERA_2D:
-			List<Camera2D>* cameras = &scene2D->activeCameras;
 			scene2D->inactiveCameras.push_back(cameras->at(componentIndex));
 			cameras->erase(cameras->begin() + (componentIndex - 1));
 			break;
 		case RIGID_BODY_2D:
-			List<RigidBody2D>* rigidBodies = &scene2D->activeRigidBodies;
 			scene2D->inactiveRigidBodies.push_back(rigidBodies->at(componentIndex));
 			rigidBodies->erase(rigidBodies->begin() + (componentIndex - 1));
 			break;
 		case SPRITE_2D:
-			List<Sprite2D>* sprites = &scene2D->activeSprites;
 			scene2D->inactiveSprites.push_back(sprites->at(componentIndex));
 			sprites->erase(sprites->begin() + (componentIndex - 1));
 			break;
