@@ -30,10 +30,6 @@ namespace Lania
 		Stack<Variables> callStack;
 		List<Bytecode> scripts;
 
-		void loadScene(std::string filepath);
-		void clearScene();
-		SDL_Keycode getSDLKeycode(std::string inputCode);
-		unsigned int loadScript(std::string filepath);
 		Application()
 		{}
 	}Application;
