@@ -4,6 +4,7 @@ Lania Engine
 ###  Table of Contents
 
 1. [Introduction](#introduction)
+1.1 [Name Origin](#name-origin)
 2. [Architecture](#architecture)
 2.1 [Entity Component System](#entity-component-system)
 2.2 [Scripting and Virtual Machine](#scripting-and-virtual-machine)
@@ -14,11 +15,15 @@ Lania Engine
 
 **Note: This engine is experimental in nature and is under alpha development. The runtime feature set is incomplete and there is currently no implementation of the scene editor. It is not currently suitable for creating games.**
 
-**Lania Engine** or **Lania**, named after the Laniakea Supercluster (Hawaiian for "immeasurable heaven"), is a 2D & 3D real-time simulation and game engine. It is being developed as a personal exercise in applying my learning outcomes from university and reading. I also intend to have it as a modifiable codebase for future real-time applications like games and simulation software. 
+**Lania Engine** or **Lania** is a 2D & 3D real-time simulation and game engine. It is being developed as a personal exercise in applying my learning outcomes from university and reading. I also intend to have it as a modifiable codebase for future real-time applications like games and simulation software. 
 
 My learning objectives include; scene architecture & management; scripting, interpreters & programming language development; file parsing & formatting; cache locality optimizations; multithreading; data structures; profiling; physics & collision algorithms; audio programming; rendering;  and APIs such as Simple DirectMedia Layer (SDL), OpenGL and Vulkan. 
 
 This software is free, open source and [MIT Licenced](https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE). You can find the software repository [here](https://github.com/Jean-LouisH/LaniaEngine).
+
+### 1.1 Name Origin
+
+**Lania** is named after the Laniakea Supercluster. Laniakea is Hawaiian for "immeasurable heaven". This relates to the engine's representation of physical space and also the endlessness of its feature support for the future.
 
 ## 2. Architecture
 
