@@ -13,6 +13,7 @@
 
 #include <SDL_render.h>
 #include <stdint.h>
+#include <Core/DataStructures/List.hpp>
 #include <Application/Scenes/2D/Vector2.hpp>
 #include <Application/Scenes/2D/Entity2D.hpp>
 #include <Application/Scenes/Texture.hpp>
@@ -23,6 +24,7 @@ namespace Lania
 	{
 		EntityID entityID;
 		Texture texture;
+		List<Texture> animatedTextures;
 		uint8_t alpha;
 		SDL_RendererFlip flip;
 
