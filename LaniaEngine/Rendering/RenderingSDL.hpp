@@ -19,7 +19,7 @@
 
 namespace Lania
 {
-	namespace Rendering
+	namespace Rendering2D
 	{
 		namespace SDL
 		{

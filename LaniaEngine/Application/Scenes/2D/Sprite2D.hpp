@@ -23,13 +23,14 @@ namespace Lania
 	typedef struct Sprite2D
 	{
 		EntityID entityID;
-		Texture texture;
-		List<Texture> animatedTextures;
+		List<Texture> textureFrames;
+		uint8_t frameIndex;
 		uint8_t alpha;
 		SDL_RendererFlip flip;
 
 		Sprite2D():
 			entityID(NO_PARENT),
+			frameIndex(0),
 			alpha(255),
 			flip(SDL_FLIP_NONE)
 		{}

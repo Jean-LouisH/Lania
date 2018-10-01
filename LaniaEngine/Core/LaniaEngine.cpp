@@ -310,7 +310,7 @@ void Lania::compute(Core* core, Application* application)
 		time->lag_ms -= MS_PER_UPDATE;
 	}
 
-	Rendering::SDL::buildRenderablesFromSprites(
+	Rendering2D::SDL::buildRenderablesFromSprites(
 		&core->output.SDLRenderables,
 		&application->scene.subscenes2D,
 		core->window
