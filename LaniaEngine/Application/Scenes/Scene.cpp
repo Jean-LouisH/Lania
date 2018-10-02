@@ -84,6 +84,12 @@ void Lania::Scene::deleteAssets()
 	this->deleteAllSounds();
 }
 
+void Lania::Scene::addScene2D()
+{
+	Scene2D scene2D;
+	this->subscenes2D.push_back(scene2D);
+}
+
 void Lania::Scene::addEntity2D(LayerID subscene2DID)
 {
 	Entity2D entity2D;
@@ -114,31 +120,37 @@ void Lania::Scene::removeEntity2D(LayerID scene2DID, EntityID entityID)
 	entities->erase(entities->begin() + (entityID - 1));
 }
 
-void Lania::Scene::addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath)
+void Lania::Scene::addSpriteTextureFrame(LayerID scene2DID, ComponentListIndex componentIndex, String filepath)
 {
-	this->subscenes2D.at(scene2DID).entities.at(entityID).audioSources.push_back(loadSound(filepath));
+	this->subscenes2D.at(scene2DID).activeSprites.at(componentIndex).textureFrames.push_back(
+		loadTexture(filepath, this->SDLRenderer));
 }
 
-void Lania::Scene::setComponent2DInactive(LayerID scene2DID, ComponentType componentType, ComponentListIndex componentIndex)
+void Lania::Scene::setCamera2DInactive(LayerID scene2DID, ComponentListIndex componentIndex)
 {
 	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
 	List<Camera2D>* cameras = &scene2D->activeCameras;
-	List<RigidBody2D>* rigidBodies = &scene2D->activeRigidBodies;
-	List<Sprite2D>* sprites = &scene2D->activeSprites;
+	scene2D->inactiveCameras.push_back(cameras->at(componentIndex));
+	cameras->erase(cameras->begin() + (componentIndex - 1));
+}
 
-	switch (componentType)
-	{
-		case CAMERA_2D:
-			scene2D->inactiveCameras.push_back(cameras->at(componentIndex));
-			cameras->erase(cameras->begin() + (componentIndex - 1));
-			break;
-		case RIGID_BODY_2D:
-			scene2D->inactiveRigidBodies.push_back(rigidBodies->at(componentIndex));
-			rigidBodies->erase(rigidBodies->begin() + (componentIndex - 1));
-			break;
-		case SPRITE_2D:
-			scene2D->inactiveSprites.push_back(sprites->at(componentIndex));
-			sprites->erase(sprites->begin() + (componentIndex - 1));
-			break;
-	}
+void Lania::Scene::setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex componentIndex)
+{
+	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
+	List<RigidBody2D>* rigidBodies = &scene2D->activeRigidBodies;
+	scene2D->inactiveRigidBodies.push_back(rigidBodies->at(componentIndex));
+	rigidBodies->erase(rigidBodies->begin() + (componentIndex - 1));
+}
+
+void Lania::Scene::setSprite2DInactive(LayerID scene2DID, ComponentListIndex componentIndex)
+{
+	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
+	List<Sprite2D>* sprites = &scene2D->activeSprites;
+	scene2D->inactiveSprites.push_back(sprites->at(componentIndex));
+	sprites->erase(sprites->begin() + (componentIndex - 1));
+}
+
+void Lania::Scene::addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath)
+{
+	this->subscenes2D.at(scene2DID).entities.at(entityID).audioSources.push_back(loadSound(filepath));
 }

@@ -35,7 +35,7 @@ namespace Lania
 		List<Scene2D> subscenes2D;
 		List<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
-		Multimap<SDL_Keycode, int> keyScriptMaps;
+		SDL_Renderer* SDLRenderer;
 
 		Map<String, Texture> textures;
 		Map<String, Mix_Chunk*> sounds;
@@ -48,11 +48,15 @@ namespace Lania
 		void deleteAllSounds();
 		void deleteAssets();
 
+		void addScene2D();
 		void addEntity2D(LayerID scene2DID);
 		void addEntity2D(LayerID scene2DID, double x, double y);
 		void addEntity2D(LayerID scene2DID, double x, double y, double xScale, double yScale);
 		void removeEntity2D(LayerID scene2DID, EntityID entityID);
-		void setComponent2DInactive(LayerID scene2DID, ComponentType componentType, ComponentListIndex componentIndex);
+		void addSpriteTextureFrame(LayerID scene2DID, ComponentListIndex componentIndex, String filepath);
+		void setCamera2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
+		void setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
+		void setSprite2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath);
 	}Scene;
 }

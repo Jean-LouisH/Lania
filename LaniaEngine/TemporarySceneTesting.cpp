@@ -11,6 +11,8 @@ void testLoadEntityComponentSystem(
 {
 	///////// Temporary Testing (Before Procedures): Entity Component System Loading Algorithms
 
+	application->scene.SDLRenderer = core->SDLRenderer;
+
 	Scene2D scene2D;
 
 	///////////////////////////////////////////////////////////////////////
