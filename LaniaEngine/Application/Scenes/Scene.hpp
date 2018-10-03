@@ -59,6 +59,11 @@ namespace Lania
 		void addRigidBody2D(LayerID scene2DID, EntityID entityID);
 		void addSpriteTextureFrame(LayerID scene2DID, ComponentListIndex componentIndex, String filepath);
 		void removeEntity2D(LayerID scene2DID, EntityID entityID);
+
+		void centreEntity2DToSprite(LayerID scene2DID, EntityID entityID, ComponentListIndex componentIndex);
+		void centreCurrentCamera2DToSprite(LayerID scene2DID, ComponentListIndex componentIndex);
+		void flipSprite2D(LayerID scene2DID, ComponentListIndex componentIndex, SDL_RendererFlip flip);
+
 		void setCamera2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void setSprite2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);

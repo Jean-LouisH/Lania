@@ -175,6 +175,30 @@ void Lania::Scene::removeEntity2D(LayerID scene2DID, EntityID entityID)
 	entities->erase(entities->begin() + (entityID - 1));
 }
 
+void Lania::Scene::centreEntity2DToSprite(LayerID scene2DID, EntityID entityID, ComponentListIndex componentIndex)
+{
+	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
+	scene2D->entities.at(entityID).transform.position_px.x = 
+		scene2D->activeSprites.at(componentIndex).textureFrames.back().pixels.width / 2.0;
+	scene2D->entities.at(entityID).transform.position_px.y =
+		scene2D->activeSprites.at(componentIndex).textureFrames.back().pixels.height / 2.0;
+}
+
+void Lania::Scene::centreCurrentCamera2DToSprite(LayerID scene2DID, ComponentListIndex componentIndex)
+{
+	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
+	Sprite2D* sprite2D = &scene2D->activeSprites.at(componentIndex);
+	scene2D->entities.at(scene2D->activeCameras.at(scene2D->currentCameraIndex).entityID).transform.position_px.x = sprite2D->textureFrames.back().pixels.width / 2.0;
+	scene2D->entities.at(scene2D->activeCameras.at(scene2D->currentCameraIndex).entityID).transform.position_px.y = sprite2D->textureFrames.back().pixels.height / 2.0;
+	scene2D->activeCameras.at(scene2D->currentCameraIndex).viewport_px.width = sprite2D->textureFrames.back().pixels.width;
+	scene2D->activeCameras.at(scene2D->currentCameraIndex).viewport_px.height = sprite2D->textureFrames.back().pixels.width / 1.777;
+}
+
+void Lania::Scene::flipSprite2D(LayerID scene2DID, ComponentListIndex componentIndex, SDL_RendererFlip flip)
+{
+	this->subscenes2D.at(scene2DID).activeSprites.at(componentIndex).flip = flip;
+}
+
 void Lania::Scene::setCamera2DInactive(LayerID scene2DID, ComponentListIndex componentIndex)
 {
 	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
