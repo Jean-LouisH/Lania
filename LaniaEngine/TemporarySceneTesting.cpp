@@ -11,10 +11,6 @@ void testLoadEntityComponentSystem(
 {
 	///////// Temporary Testing (Before Procedures): Entity Component System Loading Algorithms
 
-	application->scene.SDLRenderer = core->SDLRenderer;
-	application->scene.window.height = core->appConfig.windowHeight_px;
-	application->scene.window.width = core->appConfig.windowWidth_px;
-
 	Scene2D scene2D;
 
 	///////////////////////////////////////////////////////////////////////

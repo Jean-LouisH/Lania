@@ -150,6 +150,10 @@ void Lania::loop(Core* core, Application* application)
 	Timer* time = &core->timer;
 	time->FPS.setStart();
 
+	application->scene.SDLRendererCopy = core->SDLRenderer;
+	application->scene.windowCopy.height = core->appConfig.windowHeight_px;
+	application->scene.windowCopy.width = core->appConfig.windowWidth_px;
+
 	testLoadEntityComponentSystem(application, core);
 
 	do
