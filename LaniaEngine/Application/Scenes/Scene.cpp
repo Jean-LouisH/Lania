@@ -118,8 +118,8 @@ void Lania::Scene::addCamera2D(LayerID scene2DID, EntityID entityID)
 {
 	Camera2D camera2D;
 	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
-	camera2D.viewport_px.width = this->window.width;
-	camera2D.viewport_px.height = this->window.height;
+	camera2D.viewport_px.width = this->windowCopy.width;
+	camera2D.viewport_px.height = this->windowCopy.height;
 	if (scene2D->activeCameras.size() < 1)
 	{
 		camera2D.current = true;
@@ -162,10 +162,21 @@ void Lania::Scene::addRigidBody2D(LayerID scene2DID, EntityID entityID)
 	scene2D->entities.at(entityID).components.emplace(RIGID_BODY_2D, scene2D->activeRigidBodies.size() - 1);
 }
 
+void Lania::Scene::addPointLock2D(LayerID scene2DID, EntityID entityID, double x, double y)
+{
+	PointLock2D pointLock2D;
+	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
+	pointLock2D.point.x = x;
+	pointLock2D.point.y = y;
+	pointLock2D.entityID = entityID;
+	scene2D->pointLocks.push_back(pointLock2D);
+	scene2D->entities.at(entityID).components.emplace(POINT_LOCK_2D, scene2D->pointLocks.size() - 1);
+}
+
 void Lania::Scene::addSpriteTextureFrame(LayerID scene2DID, ComponentListIndex componentIndex, String filepath)
 {
 	Sprite2D* sprite2D = &this->subscenes2D.at(scene2DID).activeSprites.at(componentIndex);
-	sprite2D->textureFrames.push_back(loadTexture(filepath, this->SDLRenderer));
+	sprite2D->textureFrames.push_back(loadTexture(filepath, this->SDLRendererCopy));
 	SDL_SetTextureAlphaMod(sprite2D->textureFrames.back().data, sprite2D->alpha);
 }
 

@@ -35,8 +35,8 @@ namespace Lania
 		List<Scene2D> subscenes2D;
 		List<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
-		SDL_Renderer* SDLRenderer;
-		Rect window;
+		SDL_Renderer* SDLRendererCopy;
+		Rect windowCopy;
 
 		Map<String, Texture> textures;
 		Map<String, Mix_Chunk*> sounds;
@@ -57,6 +57,7 @@ namespace Lania
 		void addSprite2D(LayerID scene2DID, EntityID entityID);
 		void addBoxCollider2D(LayerID scene2DID, EntityID entityID, double xMin, double yMin, double xMax, double yMax);
 		void addRigidBody2D(LayerID scene2DID, EntityID entityID);
+		void addPointLock2D(LayerID scene2DID, EntityID entityID, double x, double y);
 		void addSpriteTextureFrame(LayerID scene2DID, ComponentListIndex componentIndex, String filepath);
 		void removeEntity2D(LayerID scene2DID, EntityID entityID);
 
