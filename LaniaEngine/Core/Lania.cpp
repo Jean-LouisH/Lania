@@ -1,4 +1,4 @@
-#include "LaniaEngine.hpp"
+#include "Lania.hpp"
 #include "Configuration.hpp"
 #include "Core.hpp"
 #include "Input.hpp"
@@ -211,7 +211,7 @@ void Lania::loop(Core* core, Application* application)
 				std::to_string((int)(((double)time->process.delta_ns / (double)time->frame.delta_ns) * 100));
 			String batteryString = std::to_string(core->platform.batteryLife_pct);
 			SDL_SetWindowTitle(core->window,
-				(core->appConfig.appName + " - Lania Engine Debug ->" + 
+				(core->appConfig.appName + " - Lania Debug ->" + 
 					" Renderer: " + rendererString + 
 					", API: " + core->platform.renderingAPIVersion + 
 					", FPS: " + FPSString +

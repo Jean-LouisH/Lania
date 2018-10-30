@@ -1,4 +1,4 @@
-# Automatically forms a demo project directory for Lania Engine
+# Automatically forms a demo project directory for Lania
 # without having to copy and rename existing folders.
 
 import os.path
@@ -6,7 +6,7 @@ import os.path
 this_directory = os.path.dirname(__file__)
 this_directory = this_directory.replace("\\", "/") #for use in non-Windows directories
 
-print("\n\n\t\tLania Engine Development Scripts\n")
+print("\n\n\t\tLania Development Scripts\n")
 print("\t\tGenerateDemoProjects.py\n\n")
 print("Writes to Demos folder with init.cfg, icon.png and other placeholder data.\n\n")
 demo_project_name = input("Demo project name? -> \n")

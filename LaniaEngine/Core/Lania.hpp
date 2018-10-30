@@ -1,13 +1,13 @@
 /**
-*                          Lania Engine
-*           https://jean-louish.github.io/LaniaEngine/
+*                          Lania
+*           https://jean-louish.github.io/Lania/
 *
-* Lania Engine, named after the Laniakea Supercluster
+* Lania, named after the Laniakea Supercluster
 * (Hawaiian for "immeasurable heaven"), is a 2D & 3D
 * real-time simulation and game engine.
 *
 * Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
-* License: https://github.com/Jean-LouisH/LaniaEngine/blob/master/LICENSE
+* License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 
 #pragma once

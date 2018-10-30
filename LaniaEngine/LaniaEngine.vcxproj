@@ -148,7 +148,7 @@
     <ClInclude Include="Core\DataStructures\String.hpp" />
     <ClInclude Include="Core\Core.hpp" />
     <ClInclude Include="Core\Input.hpp" />
-    <ClInclude Include="Core\LaniaEngine.hpp" />
+    <ClInclude Include="Core\Lania.hpp" />
     <ClInclude Include="Core\OS\OS.hpp" />
     <ClInclude Include="Core\OS\File.hpp" />
     <ClInclude Include="Core\OS\Logging.hpp" />
@@ -171,7 +171,7 @@
     <ClCompile Include="Core\Configuration.cpp" />
     <ClCompile Include="Core\DataStructures\Stack.cpp" />
     <ClCompile Include="Core\DataStructures\String.cpp" />
-    <ClCompile Include="Core\LaniaEngine.cpp" />
+    <ClCompile Include="Core\Lania.cpp" />
     <ClCompile Include="Core\OS\OS.cpp" />
     <ClCompile Include="Core\OS\File.cpp" />
     <ClCompile Include="Core\OS\Logging.cpp" />
