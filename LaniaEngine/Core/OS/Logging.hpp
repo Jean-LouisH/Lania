@@ -20,7 +20,7 @@ namespace Lania
 {
 	namespace Log
 	{
-		void messageConsole(String message);
-		void messageFile(String message);
+		void toConsole(String message);
+		void toFile(String message);
 	}
 }
