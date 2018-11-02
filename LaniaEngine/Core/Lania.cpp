@@ -4,6 +4,7 @@
 #include "Input.hpp"
 #include "OS/File.hpp"
 #include "OS/OS.hpp"
+#include "OS/Logging.hpp"
 #include "GL/glew.h"
 #include <Constants.hpp>
 #include "SDL.h"
@@ -24,6 +25,8 @@ void Lania::initialize(Core* core)
 	AppConfig* appConfig = &core->appConfig;
 	unsigned char* state = &core->state;
 
+	Log::toConsole("Initializing Core...\n");
+
 	core->timer.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
 	*appConfig = Config::parseInit(File::read(initFilePath));
@@ -34,6 +37,11 @@ void Lania::initialize(Core* core)
 	core->platform.OS = (char*)SDL_GetPlatform();
 	SDL_GetPowerInfo(NULL, &core->platform.batteryLife_pct);
 	*state = INITIALIZING;
+
+	Log::toConsole("Executable Name: " + core->executableName + ".exe");
+	Log::toConsole("Logical Cores: " + std::to_string(core->platform.logicalCoreCount));
+	Log::toConsole("L1 Cache Size: " + std::to_string(core->platform.L1CacheSize_B) + " B");
+	Log::toConsole("System RAM Size: " + std::to_string(core->platform.systemRAM_MB) + " MB");
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{
@@ -47,6 +55,9 @@ void Lania::initialize(Core* core)
 		//Development test
 		SDL_GetDesktopDisplayMode(0, &core->platform.SDLDisplayMode);
 		appConfig->targetFPS = 60;
+
+		Log::toConsole("Target FPS: " + std::to_string(appConfig->targetFPS));
+
 		IMG_Init(IMG_INIT_PNG);
 		IMG_Init(IMG_INIT_JPG);
 
@@ -103,6 +114,7 @@ void Lania::initialize(Core* core)
 
 			if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
 			{
+				Log::toConsole("Rendering Engine: Lania OpenGL");
 				core->renderer = LANIA_OPENGL_RENDERER;
 				core->glContext = SDL_GL_CreateContext(core->window);
 				glViewport(0, 0, appConfig->windowWidth_px, appConfig->windowHeight_px);
@@ -121,11 +133,13 @@ void Lania::initialize(Core* core)
 			}
 			else if (appConfig->windowFlags & SDL_WINDOW_VULKAN)
 			{
+				Log::toConsole("Rendering Engine: Lania Vulkan");
 				core->renderer = LANIA_VULKAN_RENDERER;
 				core->platform.renderingAPIVersion = "Vulkan";
 			}
 			else
 			{
+				Log::toConsole("Rendering Engine: SDL");
 				core->SDLRenderer = SDL_CreateRenderer(
 					core->window,
 					-1,
@@ -141,6 +155,8 @@ void Lania::initialize(Core* core)
 				*state = RUNNING_APPLICATION_FULLSCREEN_DESKTOP;
 			else if (*state != SHUTDOWN)
 				*state = RUNNING_APPLICATION_WINDOWED;
+
+			Log::toConsole("Initialization complete.\n");
 		}
 	}
 }

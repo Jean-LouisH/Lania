@@ -12,6 +12,7 @@ void Lania::OS::detectGameControllers(Input* input)
 	{
 		SDL_GameControllerClose(input->gameControllers.at(i));
 		SDL_HapticClose(input->haptics.at(i));
+		Log::toConsole("Game Controller " + std::to_string(i) + " Disconnected.");
 	}
 
 	input->gameControllers.clear();
@@ -27,6 +28,7 @@ void Lania::OS::detectGameControllers(Input* input)
 			input->haptics.push_back(SDL_HapticOpenFromJoystick(joystick));
 			if (!input->gameControllers.back())
 				fprintf(stderr, "Could not open gamecontroller %i: %s\n", i, SDL_GetError());
+			Log::toConsole("Game Controller " + std::to_string(i) + " Connected.");
 		}
 	}
 }

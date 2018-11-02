@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
 		core->filepath = argv[0];
 
-		Lania::Log::messageConsole("\t\tLania Debug Console");
+		Lania::Log::toConsole("\t\tLania Debug Console\n");
 
 		Lania::initialize(core);
 		if (core->state != Lania::SHUTDOWN)
@@ -37,6 +37,8 @@ int main(int argc, char* argv[])
 
 		delete application;
 		delete core;
+
+		Lania::Log::toConsole("Shutdown...");
 	} while (restarting);
 
 	return 0;
