@@ -19,7 +19,7 @@ Lania
 
 My learning objectives include; scene architecture & management; scripting, interpreters & programming language development; file parsing & formatting; cache locality optimizations; multithreading; data structures; profiling; physics & collision algorithms; audio programming; rendering; and APIs such as Simple DirectMedia Layer (SDL), OpenGL and Vulkan. 
 
-This software is free, open source and [MIT Licenced](https://github.com/Jean-LouisH/Lania/blob/master/LICENSE). You can find the software repository [here](https://github.com/Jean-LouisH/Lania).
+This software is free, and open source. You can find the software repository [here](https://github.com/Jean-LouisH/Lania).
 
 ### 1.1 Name Origin
 

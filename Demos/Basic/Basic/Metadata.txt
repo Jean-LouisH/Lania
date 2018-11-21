@@ -1,5 +1,0 @@
-name = "Basic Lania Project"
-version = 1.0.0
-app_type = simulation
-developer = "Jean-Louis Haywood"
-description = "A test project using a titlescreen and single scene with an avatar that moves against a background."
