@@ -18,7 +18,6 @@
 #include <Core/Input.hpp>
 #include "2D/Scene2D.hpp"
 #include <Definitions.hpp>
-#include <SDL_render.h>
 #include <Core/DataStructures/List.hpp>
 #include <Core/DataStructures/String.hpp>
 
@@ -35,14 +34,12 @@ namespace Lania
 		List<Scene2D> subscenes2D;
 		List<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
-		SDL_Renderer* SDLRendererCopy;
 		Rect windowCopy;
 
 		Map<String, Texture> textures;
-		Map<String, Mix_Chunk*> sounds;
 
-		Texture loadTexture(String filepath, SDL_Renderer* SDLRenderer);
-		Mix_Chunk* loadSound(String filepath);
+		Texture loadTexture(String filepath);
+
 		void deleteTexture(String filepath);
 		void deleteSound(String filepath);
 		void deleteAllTextures();
@@ -63,7 +60,7 @@ namespace Lania
 
 		void centreEntity2DToSprite(LayerID scene2DID, EntityID entityID, ComponentListIndex componentIndex);
 		void centreCurrentCamera2DToSprite(LayerID scene2DID, ComponentListIndex componentIndex);
-		void flipSprite2D(LayerID scene2DID, ComponentListIndex componentIndex, SDL_RendererFlip flip);
+		void flipSprite2D(LayerID scene2DID, ComponentListIndex componentIndex, bool flip);
 
 		void setCamera2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);

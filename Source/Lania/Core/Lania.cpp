@@ -14,8 +14,6 @@
 #include <Rendering/RenderingSDL.hpp>
 #include <Physics/Physics2D.hpp>
 #include <Audio/AudioSDL.hpp>
-#include <sstream>
-#include <TemporarySceneTesting.hpp>
 
 void Lania::initialize(Core* core)
 {
@@ -59,10 +57,6 @@ void Lania::initialize(Core* core)
 		Log::toConsole("Target FPS: " + std::to_string(appConfig->targetFPS));
 
 		IMG_Init(IMG_INIT_PNG);
-		IMG_Init(IMG_INIT_JPG);
-
-		Mix_Init(MIX_INIT_OGG);
-		Mix_OpenAudio(44100, AUDIO_S16SYS, 2, pow(2, 11));
 
 		if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
 		{
@@ -121,6 +115,7 @@ void Lania::initialize(Core* core)
 
 				if (glewInit() != GLEW_OK)
 				{
+					Log::toConsole("GLEW failed to initialize.");
 					*state = SHUTDOWN;
 				}
 				else
@@ -136,17 +131,6 @@ void Lania::initialize(Core* core)
 				Log::toConsole("Rendering Engine: Lania Vulkan");
 				core->renderer = LANIA_VULKAN_RENDERER;
 				core->platform.renderingAPIVersion = "Vulkan";
-			}
-			else
-			{
-				Log::toConsole("Rendering Engine: SDL");
-				core->SDLRenderer = SDL_CreateRenderer(
-					core->window,
-					-1,
-					SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-				SDL_RendererInfo SDLRendererInfo;
-				SDL_GetRendererInfo(core->SDLRenderer, &SDLRendererInfo);
-				core->platform.renderingAPIVersion = (char*)SDLRendererInfo.name;
 			}
 
 			if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
@@ -166,11 +150,8 @@ void Lania::loop(Core* core, Application* application)
 	Timer* time = &core->timer;
 	time->FPS.setStart();
 
-	application->scene.SDLRendererCopy = core->SDLRenderer;
 	application->scene.windowCopy.height = core->appConfig.windowHeight_px;
 	application->scene.windowCopy.width = core->appConfig.windowWidth_px;
-
-	testLoadEntityComponentSystem(application, core);
 
 	do
 	{
@@ -214,13 +195,7 @@ void Lania::loop(Core* core, Application* application)
 			time->FPS.setStart();
 			passedFrames = 1;
 
-			String rendererString;
-			switch (core->renderer)
-			{
-				case SDL_RENDERER: rendererString = "SDL"; break;
-				case LANIA_OPENGL_RENDERER:
-				case LANIA_VULKAN_RENDERER: rendererString = "Lania"; break;
-			}
+			String rendererString = "Lania";
 
 			String FPSString = std::to_string(core->FPS);
 			String frameUtilizationString = 
@@ -254,31 +229,6 @@ void Lania::logic(Core* core, Application* application)
 {
 	Timer* time = &core->timer;
 	time->logic.setStart();
-
-	//Testing
-
-	if (core->input.pressedKeys.count(SDLK_a))
-		application->scene.subscenes2D.at(0).activeRigidBodies.at(0).velocity_px_per_s.x = -500;
-
-	if (core->input.pressedKeys.count(SDLK_d))
-		application->scene.subscenes2D.at(0).activeRigidBodies.at(0).velocity_px_per_s.x = 500;
-
-	if (core->input.releasedKeys.count(SDLK_k))
-		core->output.immediateSounds.push(application->scene.subscenes2D.at(0).entities.at(4).audioSources.at(0));
-
-	if (core->input.releasedKeys.count(SDLK_r))
-		core->state = RESTARTING;
-
-	if (core->input.releasedKeys.count(SDLK_y))
-		OS::toggleWindowedFullscreen(core->window, &core->state);
-
-	if (core->input.releasedKeys.count(SDLK_u))
-		OS::setToFullscreen(core->window, &core->platform.SDLDisplayMode, &core->state);
-
-	if (core->input.releasedKeys.count(SDLK_i))
-		OS::setToWindowed(core->window, &core->appConfig, &core->state);
-
-	//////////////////////////
 
 	time->logic.setEnd();
 }
@@ -321,7 +271,7 @@ void Lania::compute(Core* core, Application* application)
 
 			Physics2D::handleCollisions(dynamicCollisionEvents, DynamicCollisionEventCount, rigidBodies);
 			Physics2D::decelerate(rigidBodies, rigidBodyCount);
-			//Physics2D::gravitate(rigidBodies, rigidBodyCount);
+			Physics2D::gravitate(rigidBodies, rigidBodyCount);
 			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
 			Physics2D::lock(entities, pointLocks, pointLockCount);
 		}
@@ -329,12 +279,6 @@ void Lania::compute(Core* core, Application* application)
 		time->simulation_ms += MS_PER_UPDATE;
 		time->lag_ms -= MS_PER_UPDATE;
 	}
-
-	Rendering2D::SDL::buildRenderablesFromSprites(
-		&core->output.SDLRenderables,
-		&application->scene.subscenes2D,
-		core->window
-	);
 
 	time->lag_ms += time->frame.delta_ns / NS_IN_MS;
 
@@ -355,27 +299,7 @@ void Lania::output(Core* core)
 	{
 		;
 	}
-	else if (core->renderer == SDL_RENDERER)
-	{
-		SDL_SetRenderDrawColor(core->SDLRenderer, 0, 0, 0, 255);
-		SDL_RenderClear(core->SDLRenderer);
 
-		int renderableCount = core->output.SDLRenderables.size();
-		SDLRenderable* renderables = core->output.SDLRenderables.data();
-		for (int i = 0; i < renderableCount; i++)
-			SDL_RenderCopyEx(
-				core->SDLRenderer,
-				renderables[i].texture,
-				&renderables[i].textureRect,
-				&renderables[i].renderingRect,
-				renderables[i].rotation,
-				NULL,
-				renderables[i].flip);
-
-		SDL_RenderPresent(core->SDLRenderer);
-	}
-
-	Audio::SDL::playSounds(&core->output.immediateSounds, &core->output.scheduledSounds);
 	time->output.setEnd();
 }
 
@@ -397,8 +321,6 @@ void Lania::shutdown(Core* core, Application* application)
 
 	if (core->renderer == LANIA_OPENGL_RENDERER)
 		SDL_GL_DeleteContext(core->glContext);
-	else if (core->renderer == SDL_RENDERER)
-		SDL_DestroyRenderer(core->SDLRenderer);
 	SDL_DestroyWindow(core->window);
 	SDL_Quit();
 }

@@ -11,7 +11,6 @@
 
 #pragma once
 
-#include <SDL_render.h>
 #include <stdint.h>
 #include <Core/DataStructures/List.hpp>
 #include <Application/Scenes/2D/Vector2.hpp>
@@ -26,13 +25,13 @@ namespace Lania
 		List<Texture> textureFrames;
 		uint8_t frameIndex;
 		uint8_t alpha;
-		SDL_RendererFlip flip;
+		bool flip;
 
 		Sprite2D():
 			entityID(NO_PARENT),
 			frameIndex(0),
 			alpha(255),
-			flip(SDL_FLIP_NONE)
+			flip(false)
 		{}
 	}Sprite2D;
 }

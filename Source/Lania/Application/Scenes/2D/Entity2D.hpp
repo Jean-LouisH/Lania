@@ -41,8 +41,6 @@ namespace Lania
 		List<EntityID> children;
 		EntityID parent;
 		Map<ComponentType, ComponentListIndex> components;
-		List<Mix_Chunk*> audioSources;
-		List<ComponentListIndex> scripts;
 
 		Entity2D() :
 			parent(NO_PARENT)

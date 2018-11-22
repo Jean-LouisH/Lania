@@ -14,13 +14,15 @@
 #pragma once
 
 #include <SDL_video.h>
+#include <stdint.h>
 #include <Application/Scenes/2D/Rect.hpp>
 
 namespace Lania
 {
 	typedef struct Texture
 	{
-		SDL_Texture* data;
+		uint8_t* data;
+		uint64_t size;
 		Rect pixels;
 	}Texture;
 }

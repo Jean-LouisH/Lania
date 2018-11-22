@@ -37,7 +37,6 @@ namespace Lania
 
 	enum renderers
 	{
-		SDL_RENDERER,
 		LANIA_OPENGL_RENDERER,
 		LANIA_VULKAN_RENDERER,
 	};
@@ -46,7 +45,6 @@ namespace Lania
 	{
 		SDL_Window* window;
 		SDL_GLContext glContext;
-		SDL_Renderer* SDLRenderer;
 		uint8_t renderer;
 		String filepath;
 		String executableName;
@@ -62,8 +60,7 @@ namespace Lania
 		Core() :
 			window(NULL),
 			glContext(NULL),
-			SDLRenderer(NULL),
-			renderer(SDL_RENDERER),
+			renderer(LANIA_OPENGL_RENDERER),
 			frameCount(0),
 			FPS(0),
 			state(INITIALIZING) {}
