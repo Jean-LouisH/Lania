@@ -11,7 +11,7 @@
 */
 
 #include "SDL.h"
-#include <Rendering/GPU.hpp>
+#include <Core/OS/GPU.hpp>
 #include <Core/OS/Logging.hpp>
 #include "Core/Lania.hpp"
 
