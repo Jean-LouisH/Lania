@@ -39,7 +39,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -115,6 +115,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="File.hpp" />
+    <ClInclude Include="GPU.hpp" />
+    <ClInclude Include="Input.hpp" />
+    <ClInclude Include="Logging.hpp" />
+    <ClInclude Include="Memory.hpp" />
+    <ClInclude Include="OS.hpp" />
+    <ClInclude Include="Output.hpp" />
+    <ClInclude Include="Platform.hpp" />
+    <ClInclude Include="Threading.hpp" />
+    <ClInclude Include="Timer.hpp" />
+    <ClInclude Include="Windowing.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="File.cpp" />
+    <ClCompile Include="Logging.cpp" />
+    <ClCompile Include="OS.cpp" />
+    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

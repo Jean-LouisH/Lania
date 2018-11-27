@@ -13,9 +13,8 @@
 
 #pragma once
 
-#include <stdint.h>
-#include <Application/Scenes/2D/Vector2.hpp>
-#include <Application/Scenes/2D/Entity2D.hpp>
+#include "Entity2D.hpp"
+#include "../../../Utilities/Mathematics/Vector2.hpp"
 
 namespace Lania
 {

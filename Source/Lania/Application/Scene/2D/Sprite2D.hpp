@@ -12,10 +12,12 @@
 #pragma once
 
 #include <stdint.h>
-#include <Core/DataStructures/List.hpp>
-#include <Application/Scenes/2D/Vector2.hpp>
-#include <Application/Scenes/2D/Entity2D.hpp>
-#include <Application/Scenes/Texture.hpp>
+#include "../../../Utilities/Mathematics/Vector2.hpp"
+#include "../../../Utilities/DataStructures/List.hpp"
+#include "Entity2D.hpp"
+#include "../Assets/Texture.hpp"
+#include "../../../Utilities/DataStructures/Map.hpp"
+#include "../../../Utilities/DataStructures/String.hpp"
 
 namespace Lania
 {

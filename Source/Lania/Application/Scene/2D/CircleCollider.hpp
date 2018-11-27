@@ -13,8 +13,7 @@
 
 #pragma once
 
-#include <stdint.h>
-#include <Application/Scenes/2D/Entity2D.hpp>
+#include "Entity2D.hpp"
 
 namespace Lania
 {

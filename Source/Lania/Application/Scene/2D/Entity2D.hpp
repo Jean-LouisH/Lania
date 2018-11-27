@@ -15,13 +15,10 @@
 
 #pragma once
 
-#include <stdint.h>
-#include <limits.h>
-#include <Constants.hpp>
-#include <Definitions.hpp>
-#include <Application/Scenes/2D/Transform2D.hpp>
-#include <Core/DataStructures/Set.hpp>
-#include <SDL_mixer.h>
+#include "../../../Utilities/Definitions/Constants.hpp"
+#include "../../../Utilities/Definitions/Aliases.hpp"
+#include "../../../Utilities/Mathematics/Transform2D.hpp"
+#include "../../../Utilities/DataStructures/Set.hpp"
 
 namespace Lania
 {

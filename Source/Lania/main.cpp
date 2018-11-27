@@ -10,10 +10,10 @@
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 
-#include "SDL.h"
-#include <Core/OS/GPU.hpp>
-#include <Core/OS/Logging.hpp>
-#include "Core/Lania.hpp"
+#include <SDL.h>
+#include <Core/HAL/GPU.hpp>
+#include <Core/HAL/Logging.hpp>
+#include <Lania.hpp>
 
 int main(int argc, char* argv[])
 {	

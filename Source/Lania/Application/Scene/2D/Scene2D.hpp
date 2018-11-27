@@ -14,20 +14,24 @@
 
 #pragma once
 
-#include <map>
-#include <stdint.h>
-#include <Definitions.hpp>
-#include <Core/Input.hpp>
-#include <Core/DataStructures/List.hpp>
-#include <Core/DataStructures/Map.hpp>
-#include <Core/DataStructures/String.hpp>
+#include "../../../Utilities/Definitions/Aliases.hpp"
+#include "../../../Utilities/DataStructures/List.hpp"
+#include "../../../Utilities/DataStructures/Map.hpp"
+#include "../../../Utilities/DataStructures/String.hpp"
+
+#include "AABB2D.hpp"
 #include "BoxCollider2D.hpp"
 #include "Camera2D.hpp"
+#include "CircleCollider.hpp"
+#include "CollisionEvent2D.hpp"
+#include "CollisionNode2D.hpp"
+#include "ConstantDirectionalForce2D.hpp"
+#include "ConstantPointForce2D.hpp"
 #include "Entity2D.hpp"
+#include "PointLock2D.hpp"
 #include "RigidBody2D.hpp"
 #include "Sprite2D.hpp"
-#include "PointLock2D.hpp"
-#include <Application/Scenes/2D/CollisionEvent2D.hpp>
+#include "TriggerZone2D.hpp"
 
 namespace Lania
 {

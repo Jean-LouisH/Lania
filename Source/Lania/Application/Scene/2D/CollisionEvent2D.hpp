@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include <Application/Scenes/2D/CollisionNode2D.hpp>
+#include "CollisionNode2D.hpp"
 
 namespace Lania
 {

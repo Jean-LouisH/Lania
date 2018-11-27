@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include <Application/Scenes/2D/Vector2.hpp>
+#include "../../../Utilities/Mathematics/Vector2.hpp"
 
 namespace Lania
 {

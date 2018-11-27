@@ -14,12 +14,12 @@
 
 #pragma once
 
-#include <Core/DataStructures/List.hpp>
-#include <Core/DataStructures/Stack.hpp>
-#include <Core/DataStructures/String.hpp>
+#include "../Utilities/DataStructures/List.hpp"
+#include "../Utilities/DataStructures/Stack.hpp"
+#include "../Utilities/DataStructures/List.hpp"
 #include "Scripting/Variables.hpp"
 #include "Scripting/Bytecode.hpp"
-#include "Scenes/Scene.hpp"
+#include "Scene/Scene.hpp"
 
 namespace Lania
 {

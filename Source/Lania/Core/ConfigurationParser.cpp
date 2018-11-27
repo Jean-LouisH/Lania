@@ -1,5 +1,6 @@
 #include "Configuration.hpp"
-#include <Core/DataStructures/String.hpp>
+#include <SDL_video.h>
+#include <Utilities/DataStructures/String.hpp>
 
 Lania::AppConfig Lania::Config::parseInit(char* fileContent)
 {

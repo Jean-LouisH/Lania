@@ -13,9 +13,8 @@
 
 #pragma once
 
-#include <SDL_video.h>
 #include <stdint.h>
-#include <Application/Scenes/2D/Rect.hpp>
+#include "../../../Utilities/Mathematics/Rect.hpp"
 
 namespace Lania
 {

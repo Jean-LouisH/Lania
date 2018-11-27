@@ -14,13 +14,13 @@
 
 #pragma once
 
-#include "SDL.h"
-#include "Timer.hpp"
+#include <SDL.h>
+#include <Core/HAL/Timer.hpp>
 #include "Configuration.hpp"
-#include "Input.hpp"
-#include "Output.hpp"
-#include "Platform.hpp"
-#include <Core/DataStructures/String.hpp>
+#include <Core/HAL/Input.hpp>
+#include <Core/HAL/Output.hpp>
+#include <Core/HAL/Platform.hpp>
+#include <Utilities/DataStructures/String.hpp>
 #include <stdint.h>
 
 namespace Lania

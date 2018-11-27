@@ -14,9 +14,8 @@
 
 #pragma once
 
-#include <stdint.h>
-#include <Application/Scenes/2D/AABB2D.hpp>
-#include <Application/Scenes/2D/Entity2D.hpp>
+#include "AABB2D.hpp"
+#include "Entity2D.hpp"
 
 namespace Lania
 {

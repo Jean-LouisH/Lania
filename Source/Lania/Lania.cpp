@@ -1,19 +1,20 @@
-#include "Lania.hpp"
-#include "Configuration.hpp"
-#include "Core.hpp"
-#include "Input.hpp"
-#include "OS/File.hpp"
-#include "OS/OS.hpp"
-#include "OS/Logging.hpp"
-#include "GL/glew.h"
-#include <Constants.hpp>
-#include "SDL.h"
+#include <Lania.hpp>
+#include <Core/Configuration.hpp>
+#include <Core/Core.hpp>
+#include <Core/HAL/Input.hpp>
+#include <Core/HAL/OS.hpp>
+#include <Core/HAL/Logging.hpp>
+#include <GL/glew.h>
+#include <Utilities/Definitions/Constants.hpp>
+#include <SDL.h>
 #include <SDL_image.h>
-#include <Core/DataStructures/String.hpp>
-#include <Core/DataStructures/List.hpp>
-#include <Rendering/RenderingSDL.hpp>
-#include <Physics/Physics2D.hpp>
-#include <Audio/AudioSDL.hpp>
+#include <Utilities/DataStructures/String.hpp>
+#include <Utilities/DataStructures/List.hpp>
+#include <Engines/Physics/Physics2D.hpp>
+#include <Core/HAL/File.hpp>
+#include <Core/HAL/Timer.hpp>
+#include <Application/Scene/2D/Scene2D.hpp>
+#include <Engines/Physics/Physics2D.hpp>
 
 void Lania::initialize(Core* core)
 {
