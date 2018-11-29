@@ -122,10 +122,10 @@ void Lania::OS::pollInputEvents(Core* core)
 	}
 }
 
-void Lania::OS::setToWindowed(SDL_Window* window, uint16_t width, uint16_t height, uint8_t* state)
+void Lania::OS::setToWindowed(SDL_Window* window, uint16_t width_px, uint16_t height_px, uint8_t* state)
 {
 	SDL_SetWindowFullscreen(window, 0);
-	SDL_SetWindowSize(window, width, height);
+	SDL_SetWindowSize(window, width_px, height_px);
 	*state = RUNNING_APPLICATION_WINDOWED;
 
 }
