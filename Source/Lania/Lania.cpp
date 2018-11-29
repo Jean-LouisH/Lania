@@ -19,7 +19,7 @@
 void Lania::initialize(Core* core)
 {
 	//Development Test 
-	String initFilePath = "../Demos/PhysicsTest/Init.cfg";
+	String initFilePath = "../../Demos/PhysicsTest/Init.cfg";
 
 	AppConfig* appConfig = &core->appConfig;
 	unsigned char* state = &core->state;
@@ -58,6 +58,12 @@ void Lania::initialize(Core* core)
 		Log::toConsole("Target FPS: " + std::to_string(appConfig->targetFPS));
 
 		IMG_Init(IMG_INIT_PNG);
+
+		if (!(appConfig->windowFlags & SDL_WINDOW_OPENGL) &&
+			!(appConfig->windowFlags & SDL_WINDOW_VULKAN))
+		{
+			appConfig->windowFlags |= SDL_WINDOW_OPENGL;
+		}
 
 		if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
 		{
@@ -204,8 +210,7 @@ void Lania::loop(Core* core, Application* application)
 			String batteryString = std::to_string(core->platform.batteryLife_pct);
 			SDL_SetWindowTitle(core->window,
 				(core->appConfig.appName + " - Lania Debug ->" + 
-					" Renderer: " + rendererString + 
-					", API: " + core->platform.renderingAPIVersion + 
+					", Rendering API: " + core->platform.renderingAPIVersion + 
 					", FPS: " + FPSString +
 					", Frame Time Utilization: " + frameUtilizationString + "%" + 
 					", Battery: " + batteryString + "%").c_str());
