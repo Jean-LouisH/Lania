@@ -1,6 +1,5 @@
-#include <Application/Scenes/Scene.hpp>
-#include <Application/Scenes/2D/Entity2D.hpp>
-#include <SDL_image.h>
+#include "Scene.hpp"
+#include "2D/Entity2D.hpp"
 
 Lania::Texture Lania::Scene::loadTexture(String filepath)
 {

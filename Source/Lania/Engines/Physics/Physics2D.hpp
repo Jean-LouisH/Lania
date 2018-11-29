@@ -13,8 +13,8 @@
 
 #pragma once
 
-#include <Application/Scenes/2D/Scene2D.hpp>
-#include <Application/Scenes/2D/CollisionEvent2D.hpp>
+#include <Application/Scene/2D/Scene2D.hpp>
+#include <Application/Scene/2D/CollisionEvent2D.hpp>
 
 namespace Lania
 {

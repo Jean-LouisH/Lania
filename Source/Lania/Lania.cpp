@@ -131,7 +131,7 @@ void Lania::initialize(Core* core)
 			{
 				Log::toConsole("Rendering Engine: Lania Vulkan");
 				core->renderer = LANIA_VULKAN_RENDERER;
-				core->platform.renderingAPIVersion = "Vulkan";
+				core->platform.renderingAPIVersion = (char*)"Vulkan";
 			}
 
 			if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN)

@@ -1,6 +1,6 @@
 #include "Physics2D.hpp"
 #include <math.h>
-#include <Constants.hpp>
+#include <Utilities/Definitions/Constants.hpp>
 
 void Lania::Physics2D::detectCollisions(
 	double simulationTime_ms,

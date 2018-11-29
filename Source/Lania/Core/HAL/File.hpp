@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include <Core/DataStructures/String.hpp>
+#include "../../Utilities/DataStructures/String.hpp"
 #include <stdint.h>
 
 namespace Lania

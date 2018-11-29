@@ -13,13 +13,13 @@
 
 #pragma once
 
-#include <Core/DataStructures/Map.hpp>
+#include <Utilities/DataStructures/Map.hpp>
+#include <Core/HAL/Input.hpp>
+#include <Utilities/Definitions/Aliases.hpp>
+#include <Utilities/DataStructures/List.hpp>
+#include <Utilities/DataStructures/String.hpp>
 #include <stdint.h>
-#include <Core/Input.hpp>
 #include "2D/Scene2D.hpp"
-#include <Definitions.hpp>
-#include <Core/DataStructures/List.hpp>
-#include <Core/DataStructures/String.hpp>
 
 namespace Lania
 {

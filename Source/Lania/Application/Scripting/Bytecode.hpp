@@ -14,8 +14,8 @@
 
 #pragma once
 
-#include <Core/DataStructures/List.hpp>
-#include <Core/DataStructures/String.hpp>
+#include "../../Utilities/DataStructures/List.hpp"
+#include "../../Utilities/DataStructures/String.hpp"
 
 namespace Lania
 {

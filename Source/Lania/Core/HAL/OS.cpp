@@ -1,8 +1,8 @@
 #include "OS.hpp"
-#include "Constants.hpp"
+#include <Utilities/Definitions/Constants.hpp>
 #include "Logging.hpp"
 #include <Core/Core.hpp>
-#include <Core/Input.hpp>
+#include "Input.hpp"
 #include "SDL_events.h"
 #include <SDL_image.h>
 #include <stdint.h>
@@ -125,7 +125,7 @@ void Lania::OS::pollInputEvents(Core* core)
 void Lania::OS::setToWindowed(SDL_Window* window, uint16_t width, uint16_t height, uint8_t* state)
 {
 	SDL_SetWindowFullscreen(window, 0);
-	SDL_SetWindowSize(window, config->windowWidth_px, config->windowHeight_px);
+	SDL_SetWindowSize(window, width, height);
 	*state = RUNNING_APPLICATION_WINDOWED;
 
 }
