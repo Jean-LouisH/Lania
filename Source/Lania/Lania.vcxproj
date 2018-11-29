@@ -88,7 +88,7 @@
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(SolutionDir)\x64\Debug;$(SolutionDir)\ThirdParty\SDL2\SDL2-2.0.9\lib\x64;$(SolutionDir)\ThirdParty\SDL2_Image\SDL2_image-2.0.4\lib\x64;$(SolutionDir)\ThirdParty\GLEW\glew-2.1.0\lib\Release\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;glew32.lib;Application.lib;Core.lib;DataStructures.lib;HAL.lib;Mathematics.lib;Physics.lib;Scene.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;opengl32.lib;glew32.lib;Application.lib;Core.lib;DataStructures.lib;HAL.lib;Mathematics.lib;Physics.lib;Scene.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
