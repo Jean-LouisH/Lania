@@ -1,5 +1,10 @@
 #include "Timer.hpp"
 
+uint64_t Lania::ExecutionTimer::getDelta_ns()
+{
+	return this->delta_ns;
+}
+
 void Lania::ExecutionTimer::setStart()
 {
 	this->start = std::chrono::high_resolution_clock::now();

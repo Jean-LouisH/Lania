@@ -177,12 +177,12 @@ void Lania::loop(Core* core, Application* application)
 		if (core->appConfig.targetFPS < UPDATES_PER_S)
 		{
 			delay = (MS_IN_S / core->appConfig.targetFPS) -
-				(core->timer.process.delta_ns / NS_IN_MS);
+				(core->timer.process.getDelta_ns() / NS_IN_MS);
 		}
 		else
 		{
 			delay = (MS_IN_S / UPDATES_PER_S) -
-				(core->timer.process.delta_ns / NS_IN_MS);
+				(core->timer.process.getDelta_ns() / NS_IN_MS);
 		}
 
 		if (delay > 0)
@@ -196,9 +196,9 @@ void Lania::loop(Core* core, Application* application)
 		time->FPS.setEnd();
 #ifdef _DEBUG
 		//Display FPS and other data to Window title.
-		if (time->FPS.delta_ns / NS_IN_MS >= MS_IN_S)
+		if (time->FPS.getDelta_ns() / NS_IN_MS >= MS_IN_S)
 		{
-			core->FPS = (passedFrames / (time->FPS.delta_ns / NS_IN_S));
+			core->FPS = (passedFrames / (time->FPS.getDelta_ns() / NS_IN_S));
 			time->FPS.setStart();
 			passedFrames = 1;
 
@@ -206,7 +206,7 @@ void Lania::loop(Core* core, Application* application)
 
 			String FPSString = std::to_string(core->FPS);
 			String frameUtilizationString = 
-				std::to_string((int)(((double)time->process.delta_ns / (double)time->frame.delta_ns) * 100));
+				std::to_string((int)(((double)time->process.getDelta_ns() / (double)time->frame.getDelta_ns()) * 100));
 			String batteryString = std::to_string(core->platform.batteryLife_pct);
 			SDL_SetWindowTitle(core->window,
 				(core->appConfig.appName + " - Lania Debug ->" + 
@@ -286,7 +286,7 @@ void Lania::compute(Core* core, Application* application)
 		time->lag_ms -= MS_PER_UPDATE;
 	}
 
-	time->lag_ms += time->frame.delta_ns / NS_IN_MS;
+	time->lag_ms += time->frame.getDelta_ns() / NS_IN_MS;
 
 	time->compute.setEnd();
 }

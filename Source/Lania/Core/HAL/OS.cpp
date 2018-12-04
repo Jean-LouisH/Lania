@@ -37,7 +37,7 @@ void Lania::OS::detectGameControllers(Input* input)
 void Lania::OS::detectBatteryLife(Core* core)
 {
 	core->timer.run.setEnd();
-	if (core->timer.run.delta_ns / NS_IN_S >= 10)
+	if (core->timer.run.getDelta_ns() / NS_IN_S >= 10)
 		SDL_GetPowerInfo(NULL, &core->platform.batteryLife_pct);
 }
 
