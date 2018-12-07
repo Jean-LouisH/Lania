@@ -1,8 +1,8 @@
-#include "Configuration.hpp"
+#include "ConfigurationParser.hpp"
 #include <SDL_video.h>
 #include <Utilities/DataStructures/String.hpp>
 
-Lania::AppConfig Lania::Config::parseInit(char* fileContent)
+Lania::AppConfig Lania::Config::parseAppConfig(char* fileContent)
 {
 	AppConfig appConfig;
 	appConfig.windowFlags = 0;
@@ -18,7 +18,7 @@ Lania::AppConfig Lania::Config::parseInit(char* fileContent)
 		LOADING_VALUE,
 		FINISHED
 	};
-	
+
 	unsigned char parseState = LOADING_KEY;
 
 	do
@@ -52,17 +52,17 @@ Lania::AppConfig Lania::Config::parseInit(char* fileContent)
 			break;
 		}
 
-		if (parseState == LOADING_KEY && 
+		if (parseState == LOADING_KEY &&
 			fileContent[readPosition] != '\n')
 		{
 			key += fileContent[readPosition];
 		}
-		else if (parseState == LOADING_VALUE && 
+		else if (parseState == LOADING_VALUE &&
 			fileContent[readPosition] != '\n')
 		{
 			value += fileContent[readPosition];
 		}
-		
+
 		if (fileContent[readPosition + 1] == '\n')
 		{
 			if (key == "title")

@@ -16,7 +16,7 @@
 
 #include <SDL.h>
 #include <Core/HAL/Timer.hpp>
-#include "Configuration.hpp"
+#include "ConfigurationParser.hpp"
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/Output.hpp>
 #include <Core/HAL/Platform.hpp>
