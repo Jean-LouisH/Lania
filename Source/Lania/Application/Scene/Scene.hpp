@@ -34,7 +34,7 @@ namespace Lania
 		List<Scene2D> subscenes2D;
 		List<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
-		Rect windowCopy;
+		Rectangle windowCopy;
 
 		Map<String, Texture> textures;
 
