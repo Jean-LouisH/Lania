@@ -19,3 +19,32 @@ Lania::Vector2 Lania::Vector2::normalized()
 	normalizedVector.y = normalizationScale * this->y;
 	return normalizedVector;
 }
+
+double Lania::Vector2::dotProduct(Vector2 operand)
+{
+	return ((this->x * operand.x) + this->y * operand.y);
+}
+
+Lania::Vector2 Lania::Vector2::operator+=(Vector2 operand)
+{
+	Vector2 result;
+	result.x = this->x + operand.x;
+	result.y = this->y + operand.y;
+	return result;
+}
+
+Lania::Vector2 Lania::Vector2::operator-=(Vector2 operand)
+{
+	Vector2 result;
+	result.x = this->x - operand.x;
+	result.y = this->y - operand.y;
+	return result;
+}
+
+Lania::Vector2 Lania::Vector2::operator*=(double scale)
+{
+	Vector2 result;
+	result.x = this->x * scale;
+	result.y = this->y * scale;
+	return result;
+}
