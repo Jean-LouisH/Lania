@@ -1,5 +1,5 @@
 #include <Lania.hpp>
-#include <Core/Configuration.hpp>
+#include <Core/ConfigurationParser.hpp>
 #include <Core/Core.hpp>
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/OS.hpp>
@@ -19,7 +19,7 @@
 void Lania::initialize(Core* core)
 {
 	//Development Test 
-	String initFilePath = "../../Demos/PhysicsTest/Init.cfg";
+	String appConfigFilePath = "../../Demos/PhysicsTest/Init.cfg";
 
 	AppConfig* appConfig = &core->appConfig;
 	unsigned char* state = &core->state;
@@ -28,7 +28,7 @@ void Lania::initialize(Core* core)
 
 	core->timer.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
-	*appConfig = Config::parseInit(File::read(initFilePath));
+	*appConfig = Config::parseAppConfig(File::read(appConfigFilePath));
 	SDL_GameControllerAddMappingsFromFile("../Data/gamecontrollerdb.txt");
 	core->platform.logicalCoreCount = SDL_GetCPUCount();
 	core->platform.L1CacheSize_B = SDL_GetCPUCacheLineSize();
@@ -103,9 +103,9 @@ void Lania::initialize(Core* core)
 
 #if _DEBUG
 			//Development test
-			rootPath += "../Demos/";
+			rootPath += "../../Demos/";
 #endif
-			String iconString = rootPath + appConfig->appName + "/Icon.png";
+			String iconString = rootPath + appConfig->appName + "/icon.png";
 			SDL_Surface* logo = IMG_Load(iconString.c_str());
 			SDL_SetWindowIcon(core->window, logo);
 			SDL_FreeSurface(logo);
@@ -210,7 +210,7 @@ void Lania::loop(Core* core, Application* application)
 			String batteryString = std::to_string(core->platform.batteryLife_pct);
 			SDL_SetWindowTitle(core->window,
 				(core->appConfig.appName + " - Lania Debug ->" + 
-					", Rendering API: " + core->platform.renderingAPIVersion + 
+					" Rendering API: " + core->platform.renderingAPIVersion + 
 					", FPS: " + FPSString +
 					", Frame Time Utilization: " + frameUtilizationString + "%" + 
 					", Battery: " + batteryString + "%").c_str());
