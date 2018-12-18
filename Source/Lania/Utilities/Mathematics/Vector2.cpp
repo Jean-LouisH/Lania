@@ -20,12 +20,17 @@ Lania::Vector2 Lania::Vector2::normalized()
 	return normalizedVector;
 }
 
-double Lania::Vector2::dotProduct(Vector2 operand)
+double Lania::Vector2::dot(Vector2 operand)
 {
 	return ((this->x * operand.x) + this->y * operand.y);
 }
 
-Lania::Vector2 Lania::Vector2::operator+=(Vector2 operand)
+Lania::Vector2 Lania::Vector2::cross(Vector2 operand)
+{
+
+}
+
+Lania::Vector2 Lania::Vector2::operator+(Vector2 operand)
 {
 	Vector2 result;
 	result.x = this->x + operand.x;
@@ -33,7 +38,7 @@ Lania::Vector2 Lania::Vector2::operator+=(Vector2 operand)
 	return result;
 }
 
-Lania::Vector2 Lania::Vector2::operator-=(Vector2 operand)
+Lania::Vector2 Lania::Vector2::operator-(Vector2 operand)
 {
 	Vector2 result;
 	result.x = this->x - operand.x;
@@ -41,7 +46,7 @@ Lania::Vector2 Lania::Vector2::operator-=(Vector2 operand)
 	return result;
 }
 
-Lania::Vector2 Lania::Vector2::operator*=(double scale)
+Lania::Vector2 Lania::Vector2::operator*(double scale)
 {
 	Vector2 result;
 	result.x = this->x * scale;

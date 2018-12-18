@@ -23,11 +23,12 @@ namespace Lania
 		double length();
 		double direction();
 		Vector2 normalized();
-		double dotProduct(Vector2 operand);
+		double dot(Vector2 operand);
+		Vector2 cross(Vector2 operand);
 
-		Vector2 operator+=(Vector2 operand);
-		Vector2 operator-=(Vector2 operand);
-		Vector2 operator*=(double scale);
+		Vector2 operator+(Vector2 operand);
+		Vector2 operator-(Vector2 operand);
+		Vector2 operator*(double scale);
 
 		Vector2():
 			x(0.0),
