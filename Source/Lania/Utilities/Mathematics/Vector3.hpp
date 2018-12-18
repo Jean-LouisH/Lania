@@ -21,6 +21,16 @@ namespace Lania
 		double y;
 		double z;
 
+		double length();
+		Vector3 direction();
+		Vector3 normalized();
+		double dot(Vector3 operand);
+		Vector3 cross(Vector3 operand);
+
+		Vector3 operator+(Vector3 operand);
+		Vector3 operator-(Vector3 operand);
+		Vector3 operator*(double scale);
+
 		Vector3() :
 			x(0.0),
 			y(0.0),
