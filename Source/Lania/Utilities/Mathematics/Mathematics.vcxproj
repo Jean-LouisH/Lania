@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -118,6 +118,7 @@
     <ClInclude Include="Mathematics.hpp" />
     <ClInclude Include="Rectangle.hpp" />
     <ClInclude Include="Transform2D.hpp" />
+    <ClInclude Include="Transform3D.hpp" />
     <ClInclude Include="Vector2.hpp" />
     <ClInclude Include="Vector3.hpp" />
   </ItemGroup>
