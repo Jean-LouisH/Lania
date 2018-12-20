@@ -4,7 +4,6 @@
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/OS.hpp>
 #include <Core/HAL/Logging.hpp>
-#include <GL/glew.h>
 #include <Utilities/Definitions/Constants.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -59,29 +58,6 @@ void Lania::initialize(Core* core)
 
 		IMG_Init(IMG_INIT_PNG);
 
-		if (!(appConfig->windowFlags & SDL_WINDOW_OPENGL) &&
-			!(appConfig->windowFlags & SDL_WINDOW_VULKAN))
-		{
-			appConfig->windowFlags |= SDL_WINDOW_OPENGL;
-		}
-
-		if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
-		{
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-			SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
-			SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
-			SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
-			SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
-			SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
-			SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-		}
-		else if (appConfig->windowFlags & SDL_WINDOW_VULKAN)
-		{
-			;
-		}
-
 		core->window = SDL_CreateWindow(
 			appConfig->appName.c_str(),
 			SDL_WINDOWPOS_CENTERED,
@@ -113,32 +89,9 @@ void Lania::initialize(Core* core)
 			SDL_DisableScreenSaver();
 			SDL_GetCurrentDisplayMode(0, &core->platform.SDLDisplayMode);
 
-			if (appConfig->windowFlags & SDL_WINDOW_OPENGL)
-			{
-				Log::toConsole("Rendering Engine: Lania OpenGL");
-				core->renderer = LANIA_OPENGL_RENDERER;
-				core->glContext = SDL_GL_CreateContext(core->window);
-				glViewport(0, 0, appConfig->windowWidth_px, appConfig->windowHeight_px);
-
-				if (glewInit() != GLEW_OK)
-				{
-					Log::toConsole("GLEW failed to initialize.");
-					*state = SHUTDOWN;
-				}
-				else
-				{
-					String* renderingAPIString = new String;
-					*renderingAPIString += "OpenGL ";
-					*renderingAPIString += (char*)glGetString(GL_VERSION);
-					core->platform.renderingAPIVersion = (char*)renderingAPIString->c_str();
-				}
-			}
-			else if (appConfig->windowFlags & SDL_WINDOW_VULKAN)
-			{
-				Log::toConsole("Rendering Engine: Lania Vulkan");
-				core->renderer = LANIA_VULKAN_RENDERER;
-				core->platform.renderingAPIVersion = (char*)"Vulkan";
-			}
+			Log::toConsole("Rendering Engine: Lania Vulkan");
+			core->renderer = LANIA_VULKAN_RENDERER;
+			core->platform.renderingAPIVersion = (char*)"Vulkan";
 
 			if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
 				*state = RUNNING_APPLICATION_FULLSCREEN;
@@ -256,11 +209,11 @@ void Lania::compute(Core* core, Application* application)
 
 			BoxCollider2D* boxColliders = scene2D->activeBoxColliders.data();
 			RigidBody2D* rigidBodies = scene2D->activeRigidBodies.data();
-			PointLock2D* pointLocks = scene2D->pointLocks.data();
+			PositionLock2D* positionLocks = scene2D->pointLocks.data();
 
 			int boxColliderCount = scene2D->activeBoxColliders.size();
 			int rigidBodyCount = scene2D->activeRigidBodies.size();
-			int pointLockCount = scene2D->pointLocks.size();
+			int poisitionLockCount = scene2D->pointLocks.size();
 
 			Physics2D::detectCollisions(
 				time->simulation_ms,
@@ -279,7 +232,7 @@ void Lania::compute(Core* core, Application* application)
 			Physics2D::decelerate(rigidBodies, rigidBodyCount);
 			Physics2D::gravitate(rigidBodies, rigidBodyCount);
 			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
-			Physics2D::lock(entities, pointLocks, pointLockCount);
+			Physics2D::lockTranslation(entities, positionLocks, poisitionLockCount);
 		}
 
 		time->simulation_ms += MS_PER_UPDATE;
@@ -295,16 +248,6 @@ void Lania::output(Core* core)
 {
 	Timer* time = &core->timer;
 	time->output.setStart();
-	if (core->renderer == LANIA_OPENGL_RENDERER)
-	{
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-		SDL_GL_SwapWindow(core->window);
-	}
-	else if (core->renderer == LANIA_VULKAN_RENDERER)
-	{
-		;
-	}
 
 	time->output.setEnd();
 }
@@ -325,8 +268,6 @@ void Lania::shutdown(Core* core, Application* application)
 	gameControllers->clear();
 	haptics->clear();
 
-	if (core->renderer == LANIA_OPENGL_RENDERER)
-		SDL_GL_DeleteContext(core->glContext);
 	SDL_DestroyWindow(core->window);
 	SDL_Quit();
 }

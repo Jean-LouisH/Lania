@@ -37,14 +37,12 @@ namespace Lania
 
 	enum renderers
 	{
-		LANIA_OPENGL_RENDERER,
-		LANIA_VULKAN_RENDERER,
+		LANIA_VULKAN_RENDERER
 	};
 
 	typedef struct Core
 	{
 		SDL_Window* window;
-		SDL_GLContext glContext;
 		uint8_t renderer;
 		String filepath;
 		String executableName;
@@ -59,8 +57,7 @@ namespace Lania
 
 		Core() :
 			window(NULL),
-			glContext(NULL),
-			renderer(LANIA_OPENGL_RENDERER),
+			renderer(LANIA_VULKAN_RENDERER),
 			frameCount(0),
 			FPS(0),
 			state(INITIALIZING) {}

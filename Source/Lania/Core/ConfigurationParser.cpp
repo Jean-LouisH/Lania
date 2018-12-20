@@ -87,14 +87,10 @@ Lania::AppConfig Lania::Config::parseAppConfig(char* fileContent)
 			}
 			else if (key == "renderer")
 			{
-				if (value == "OpenGL" || value == "Lania OpenGL")
-				{
-					appConfig.windowFlags |= SDL_WINDOW_OPENGL;
-				}
-				else if (value == "Vulkan" || value == "Lania Vulkan")
+				//if (value == "Vulkan" || value == "Lania Vulkan")
 				{
 					appConfig.windowFlags |= SDL_WINDOW_VULKAN;
-				}
+				}				
 			}
 			else if (key == "fullscreen")
 			{
