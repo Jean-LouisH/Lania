@@ -8,7 +8,8 @@ double Lania::Vector3::length()
 
 Lania::Vector3 Lania::Vector3::direction()
 {
-
+	Vector3 result;
+	return result;
 }
 
 Lania::Vector3 Lania::Vector3::normalized()
@@ -28,7 +29,8 @@ double Lania::Vector3::dot(Vector3 operand)
 
 Lania::Vector3 Lania::Vector3::cross(Vector3 operand)
 {
-
+	Vector3 result;
+	return result;
 }
 
 Lania::Vector3 Lania::Vector3::operator+(Vector3 operand)

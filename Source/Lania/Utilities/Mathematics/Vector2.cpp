@@ -27,7 +27,8 @@ double Lania::Vector2::dot(Vector2 operand)
 
 Lania::Vector2 Lania::Vector2::cross(Vector2 operand)
 {
-
+	Vector2 result;
+	return result;
 }
 
 Lania::Vector2 Lania::Vector2::operator+(Vector2 operand)
