@@ -55,7 +55,7 @@ A current camera component index is stored to allow the Renderer to quickly refe
 
 ### 2D
 
-![Magnemite](https://jean-louish.github.io/Lania/Documentation/Images/sprite_test.png)
+**to be developed**
 
 ### 3D
 
