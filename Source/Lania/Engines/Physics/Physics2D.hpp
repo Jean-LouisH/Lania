@@ -52,9 +52,9 @@ namespace Lania
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount);
 
-		void lock(
+		void lockTranslation(
 			Entity2D* entities,
-			PointLock2D* pointLocks,
-			int pointLockCount);
+			PositionLock2D* positionLocks,
+			int positionLockCount);
 	}
 }

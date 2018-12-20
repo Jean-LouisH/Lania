@@ -172,17 +172,17 @@ void Lania::Physics2D::displace(
 	}
 }
 
-void Lania::Physics2D::lock(
+void Lania::Physics2D::lockTranslation(
 	Entity2D* entities,
-	PointLock2D* pointLocks,
-	int pointLockCount)
+	PositionLock2D* positionLocks,
+	int positionLockCount)
 {
-	for (int i = 0; i < pointLockCount; i++)
+	for (int i = 0; i < positionLockCount; i++)
 	{
-		PointLock2D* pointLock = &pointLocks[i];
-		entities[pointLock->entityID].transform.position_px.x =
-			pointLock->point.x;
-		entities[pointLock->entityID].transform.position_px.y =
-			pointLock->point.y;
+		PositionLock2D* positionLock = &positionLocks[i];
+		entities[positionLock->entityID].transform.position_px.x =
+			positionLock->point.x;
+		entities[positionLock->entityID].transform.position_px.y =
+			positionLock->point.y;
 	}
 }

@@ -3,7 +3,7 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* Point Lock 2D
+* Poisition Lock 2D
 *
 * Fixes entities to stored locations despite physics operations on them.
 *
@@ -17,13 +17,13 @@
 
 namespace Lania
 {
-	typedef struct PointLock2D
+	typedef struct PositionLock2D
 	{
 		EntityID entityID;
 		Vector2 point;
 
-		PointLock2D():
+		PositionLock2D():
 			entityID(NO_PARENT)
 		{}
-	}PointLock2D;
+	}PositionLock2D;
 }

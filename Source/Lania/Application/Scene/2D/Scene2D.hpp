@@ -28,7 +28,7 @@
 #include "ConstantDirectionalForce2D.hpp"
 #include "ConstantPointForce2D.hpp"
 #include "Entity2D.hpp"
-#include "PointLock2D.hpp"
+#include "PositionLock2D.hpp"
 #include "RigidBody2D.hpp"
 #include "Sprite2D.hpp"
 #include "TriggerZone2D.hpp"
@@ -51,7 +51,7 @@ namespace Lania
 		List<Camera2D> activeCameras;
 		List<RigidBody2D> activeRigidBodies;
 		List<BoxCollider2D> activeBoxColliders;
-		List<PointLock2D> pointLocks;
+		List<PositionLock2D> pointLocks;
 
 		//Inactive storage lists
 		//No ordering enforced as long as components maintain parent entity IDs

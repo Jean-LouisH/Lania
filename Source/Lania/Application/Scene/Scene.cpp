@@ -131,7 +131,7 @@ void Lania::Scene::addRigidBody2D(LayerID scene2DID, EntityID entityID)
 
 void Lania::Scene::addPointLock2D(LayerID scene2DID, EntityID entityID, double x, double y)
 {
-	PointLock2D pointLock2D;
+	PositionLock2D pointLock2D;
 	Scene2D* scene2D = &this->subscenes2D.at(scene2DID);
 	pointLock2D.point.x = x;
 	pointLock2D.point.y = y;

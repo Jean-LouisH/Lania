@@ -42,9 +42,6 @@
     <ClInclude Include="Entity2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PointLock2D.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RigidBody2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -55,6 +52,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="TriggerZone2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PositionLock2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
