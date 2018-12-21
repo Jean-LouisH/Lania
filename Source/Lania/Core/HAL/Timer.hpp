@@ -42,8 +42,11 @@ namespace Lania
 		ExecutionTimer logic;
 		ExecutionTimer compute;
 		ExecutionTimer output;
+		ExecutionTimer sleep;
+		ExecutionTimer benchmark;
 		ExecutionTimer FPS;
 		ExecutionTimer run;
+		ExecutionTimer shutdown;
 		double simulation_ms;
 		uint64_t lag_ms;
 		Timer() :
