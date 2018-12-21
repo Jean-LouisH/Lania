@@ -125,51 +125,65 @@ void Lania::loop(Core* core, Application* application)
 
 		time->process.setEnd();
 
-		int delay = 0;
-		
-		if (core->appConfig.targetFPS < UPDATES_PER_S)
-		{
-			delay = (MS_IN_S / core->appConfig.targetFPS) -
-				(core->timer.process.getDelta_ns() / NS_IN_MS);
-		}
-		else
-		{
-			delay = (MS_IN_S / UPDATES_PER_S) -
-				(core->timer.process.getDelta_ns() / NS_IN_MS);
-		}
-
-		if (delay > 0)
-			SDL_Delay(delay);
+		Lania::sleep(core);
 
 		time->frame.setEnd();
 		core->frameCount++;
 
-		static int passedFrames;
-		passedFrames++;
-		time->FPS.setEnd();
-#ifdef _DEBUG
-		//Display FPS and other data to Window title.
-		if (time->FPS.getDelta_ns() / NS_IN_MS >= MS_IN_S)
-		{
-			core->FPS = (passedFrames / (time->FPS.getDelta_ns() / NS_IN_S));
-			time->FPS.setStart();
-			passedFrames = 1;
+		Lania::benchmark(core);
 
-			String rendererString = "Lania";
-
-			String FPSString = std::to_string(core->FPS);
-			String frameUtilizationString = 
-				std::to_string((int)(((double)time->process.getDelta_ns() / (double)time->frame.getDelta_ns()) * 100));
-			String batteryString = std::to_string(core->platform.batteryLife_pct);
-			SDL_SetWindowTitle(core->window,
-				(core->appConfig.appName + " - Lania Debug ->" + 
-					" Rendering API: " + core->platform.renderingAPIVersion + 
-					", FPS: " + FPSString +
-					", Frame Time Utilization: " + frameUtilizationString + "%" + 
-					", Battery: " + batteryString + "%").c_str());
-		}
-#endif
 	} while (core->state != SHUTDOWN && core->state != RESTARTING);
+}
+
+void Lania::sleep(Core* core)
+{
+	int delay = 0;
+	
+	core->timer.sleep.setStart();
+
+	if (core->appConfig.targetFPS < UPDATES_PER_S)
+		delay = (MS_IN_S / core->appConfig.targetFPS) -
+			(core->timer.process.getDelta_ns() / NS_IN_MS);
+	else
+		delay = (MS_IN_S / UPDATES_PER_S) -
+			(core->timer.process.getDelta_ns() / NS_IN_MS);
+
+	if (delay > 0)
+		SDL_Delay(delay);
+
+	core->timer.sleep.setEnd();
+}
+
+void Lania::benchmark(Core* core)
+{
+	static int passedFrames;
+	Timer* time = &core->timer;
+	time->benchmark.setStart();
+	passedFrames++;
+	time->FPS.setEnd();
+#ifdef _DEBUG
+	//Display FPS and other data to Window title.
+	if (time->FPS.getDelta_ns() / NS_IN_MS >= MS_IN_S)
+	{
+		core->FPS = (passedFrames / (time->FPS.getDelta_ns() / NS_IN_S));
+		time->FPS.setStart();
+		passedFrames = 1;
+
+		String rendererString = "Lania";
+
+		String FPSString = std::to_string(core->FPS);
+		String frameUtilizationString = 
+			std::to_string((int)(((double)time->process.getDelta_ns() / (double)time->frame.getDelta_ns()) * 100));
+		String batteryString = std::to_string(core->platform.batteryLife_pct);
+		SDL_SetWindowTitle(core->window,
+			(core->appConfig.appName + " - Lania Debug ->" + 
+				" Rendering API: " + core->platform.renderingAPIVersion + 
+				", FPS: " + FPSString +
+				", Frame Time Utilization: " + frameUtilizationString + "%" + 
+				", Battery: " + batteryString + "%").c_str());
+	}
+#endif
+	time->benchmark.setEnd();
 }
 
 void Lania::input(Lania::Core* core)
@@ -257,6 +271,7 @@ void Lania::shutdown(Core* core, Application* application)
 	List<SDL_GameController*>* gameControllers = &core->input.gameControllers;
 	List<SDL_Haptic*>* haptics = &core->input.haptics;
 
+	core->timer.shutdown.setStart();
 	application->scene.deleteAssets();
 
 	for (int i = 0; i < gameControllers->size(); ++i)
@@ -270,4 +285,5 @@ void Lania::shutdown(Core* core, Application* application)
 
 	SDL_DestroyWindow(core->window);
 	SDL_Quit();
+	core->timer.shutdown.setEnd();
 }

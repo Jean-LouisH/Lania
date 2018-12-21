@@ -19,6 +19,8 @@ namespace Lania
 {
 	void initialize(Core* core);
 	void loop(Core* core, Application* application);
+	void sleep(Core* core);
+	void benchmark(Core* core);
 	void input(Core* core);
 	void logic(Core* core, Application* application);
 	void compute(Core* core, Application* application);
