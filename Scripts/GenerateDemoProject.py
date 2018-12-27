@@ -20,7 +20,7 @@ scene_directory = inner_directory + "Scenes/"
 scripts_directory = inner_directory + "Scripts/"
 
 init = open(demo_directory + "init.cfg", "w+")
-init.write("--Application Window\n\ntitle=" + demo_project_name +"\n" + "resolution=853x480\nrenderer=SDL\nfullscreen=false\nresizable=false\nmaximized=false\nmain_scene=main.lscn")
+init.write("--Application Window\n\ntitle=" + demo_project_name +"\n" + "resolution=853x480\nfullscreen=false\nresizable=false\nmaximized=false\nmain_scene=main.lscn")
 
 icon = open(demo_directory + "icon.png", "w+")
 
