@@ -38,6 +38,8 @@ namespace Lania
 		List<EntityID> children;
 		EntityID parent;
 		Map<ComponentType, ComponentListIndex> components;
+		Set<String> tags;
+		List<ScriptIndex> scripts;
 
 		Entity2D() :
 			parent(NO_PARENT)

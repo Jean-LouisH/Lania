@@ -18,3 +18,4 @@ using LayerType = uint8_t;
 using LayerID = uint64_t;
 using ComponentType = uint8_t;
 using ComponentListIndex = uint64_t;
+using ScriptIndex = uint32_t;
