@@ -7,7 +7,7 @@
 *
 * Parses configuration files.
 *
-* Copyright (c) 2017-2018 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 
