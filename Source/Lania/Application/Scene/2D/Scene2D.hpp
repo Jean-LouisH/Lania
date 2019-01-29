@@ -68,6 +68,11 @@ namespace Lania
 			//in recursive algorithms on child entities.
 			Entity2D dummy;
 			this->entities.push_back(dummy);
+
+			//Allocates memory on initialization to prevent frame stutter from
+			//first detected collisions.
+			this->dynamicCollisionEvents.reserve(sizeof(DynamicCollisionEvent2D));
+			this->staticCollisionEvents.reserve(sizeof(StaticCollisionEvent2D));
 		}
 	}Scene2D;
 }
