@@ -22,8 +22,8 @@ namespace Lania
 	{
 		void detectCollisions(
 			double simulationTime_ms,
-			List<DynamicCollisionEvent2D>* dynamicCollisionEvents,
-			List<StaticCollisionEvent2D>* staticCollisionEvents,
+			Vector<DynamicCollisionEvent2D>* dynamicCollisionEvents,
+			Vector<StaticCollisionEvent2D>* staticCollisionEvents,
 			Entity2D* entities,
 			RigidBody2D* rigidBodies,
 			int rigidBodyCount,

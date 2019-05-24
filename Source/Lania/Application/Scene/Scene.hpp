@@ -16,7 +16,7 @@
 #include <Utilities/DataStructures/Map.hpp>
 #include <Core/HAL/Input.hpp>
 #include <Utilities/Definitions/Aliases.hpp>
-#include <Utilities/DataStructures/List.hpp>
+#include <Utilities/DataStructures/Vector.hpp>
 #include <Utilities/DataStructures/String.hpp>
 #include <stdint.h>
 #include "2D/Scene2D.hpp"
@@ -31,8 +31,8 @@ namespace Lania
 
 	typedef struct Scene
 	{
-		List<Scene2D> subscenes2D;
-		List<LayerType> layers;
+		Vector<Scene2D> subscenes2D;
+		Vector<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
 		Rectangle windowCopy;
 

@@ -13,7 +13,7 @@
 
 #include <stdint.h>
 #include "../../../Utilities/Mathematics/Vector2.hpp"
-#include "../../../Utilities/DataStructures/List.hpp"
+#include "../../../Utilities/DataStructures/Vector.hpp"
 #include "Entity2D.hpp"
 #include "../Assets/Texture.hpp"
 #include "../../../Utilities/DataStructures/Map.hpp"
@@ -30,7 +30,7 @@ namespace Lania
 	typedef struct Sprite2D
 	{
 		EntityID entityID;
-		List<Texture> textureFrames;
+		Vector<Texture> textureFrames;
 		uint8_t frameIndex;
 		uint8_t alpha;
 		uint8_t flip;

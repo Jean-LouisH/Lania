@@ -13,22 +13,22 @@
 
 #pragma once
 
-#include "../../Utilities/DataStructures/List.hpp"
+#include "../../Utilities/DataStructures/Vector.hpp"
 #include <stdint.h>
 
 namespace Lania
 {
 	typedef struct Variables
 	{
-		List<uint8_t> uint8s;
-		List<uint16_t> uint16s;
-		List<uint32_t> uint32s;
-		List<uint64_t> uint64s;
-		List<int8_t> int8s;
-		List<int16_t> int16s;
-		List<int32_t> int32s;
-		List<int64_t> int64s;
-		List<float> float32s;
-		List<double> float64s;
+		Vector<uint8_t> uint8s;
+		Vector<uint16_t> uint16s;
+		Vector<uint32_t> uint32s;
+		Vector<uint64_t> uint64s;
+		Vector<int8_t> int8s;
+		Vector<int16_t> int16s;
+		Vector<int32_t> int32s;
+		Vector<int64_t> int64s;
+		Vector<float> float32s;
+		Vector<double> float64s;
 	}Variables;
 }

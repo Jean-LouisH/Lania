@@ -3,7 +3,7 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* List
+* Vector
 *
 * Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
@@ -16,5 +16,5 @@
 namespace Lania
 {
 	template <class T>
-	using List = std::vector<T>;
+	using Vector = std::vector<T>;
 }

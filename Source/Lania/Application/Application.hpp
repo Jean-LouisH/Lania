@@ -14,9 +14,8 @@
 
 #pragma once
 
-#include "../Utilities/DataStructures/List.hpp"
+#include "../Utilities/DataStructures/Vector.hpp"
 #include "../Utilities/DataStructures/Stack.hpp"
-#include "../Utilities/DataStructures/List.hpp"
 #include "Scripting/Variables.hpp"
 #include "Scripting/Bytecode.hpp"
 #include "Scene/Scene.hpp"
@@ -28,7 +27,7 @@ namespace Lania
 		Scene scene;
 		Variables global;
 		Stack<Variables> callStack;
-		List<Bytecode> scripts;
+		Vector<Bytecode> scripts;
 
 		Application()
 		{}

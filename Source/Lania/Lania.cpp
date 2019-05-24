@@ -1,4 +1,5 @@
 #include <Lania.hpp>
+#include <Native.hpp>
 #include <Core/ConfigurationParser.hpp>
 #include <Core/Core.hpp>
 #include <Core/HAL/Input.hpp>
@@ -8,12 +9,14 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <Utilities/DataStructures/String.hpp>
-#include <Utilities/DataStructures/List.hpp>
+#include <Utilities/DataStructures/Vector.hpp>
 #include <Engines/Physics/Physics2D.hpp>
 #include <Core/HAL/File.hpp>
 #include <Core/HAL/Timer.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Engines/Physics/Physics2D.hpp>
+
+#define ENABLE_NATIVE_CODE true
 
 void Lania::initialize(Core* core)
 {
@@ -30,7 +33,7 @@ void Lania::initialize(Core* core)
 	*appConfig = Config::parseAppConfig(File::read(appConfigFilePath));
 	SDL_GameControllerAddMappingsFromFile("../Data/gamecontrollerdb.txt");
 	core->platform.logicalCoreCount = SDL_GetCPUCount();
-	core->platform.L1CacheSize_B = SDL_GetCPUCacheLineSize();
+	core->platform.L1CacheLineSize_B = SDL_GetCPUCacheLineSize();
 	core->platform.systemRAM_MB = SDL_GetSystemRAM();
 	core->platform.OS = (char*)SDL_GetPlatform();
 	SDL_GetPowerInfo(NULL, &core->platform.batteryLife_pct);
@@ -38,7 +41,7 @@ void Lania::initialize(Core* core)
 
 	Log::toConsole("Executable Name: " + core->executableName + ".exe");
 	Log::toConsole("Logical Cores: " + std::to_string(core->platform.logicalCoreCount));
-	Log::toConsole("L1 Cache Size: " + std::to_string(core->platform.L1CacheSize_B) + " B");
+	Log::toConsole("L1 Cache Line Size: " + std::to_string(core->platform.L1CacheLineSize_B) + " B");
 	Log::toConsole("System RAM Size: " + std::to_string(core->platform.systemRAM_MB) + " MB");
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
@@ -112,6 +115,10 @@ void Lania::loop(Core* core, Application* application)
 
 	application->scene.windowCopy.height = core->appConfig.windowHeight_px;
 	application->scene.windowCopy.width = core->appConfig.windowWidth_px;
+
+#if ENABLE_NATIVE_CODE
+	Native::initializeApplication(core, application);
+#endif
 
 	do
 	{
@@ -203,6 +210,11 @@ void Lania::logic(Core* core, Application* application)
 	Timer* time = &core->timer;
 	time->logic.setStart();
 
+#if ENABLE_NATIVE_CODE
+	Native::processInputs(core, application);
+	Native::updateApplicationLogic(core, application);
+#endif
+
 	time->logic.setEnd();
 }
 
@@ -211,7 +223,7 @@ void Lania::compute(Core* core, Application* application)
 	Timer* time = &core->timer;
 	time->compute.setStart();
 
-	List<Scene2D>* scene2Ds = &application->scene.subscenes2D;
+	Vector<Scene2D>* scene2Ds = &application->scene.subscenes2D;
 	int scene2DCount = scene2Ds->size();
 
 	while (time->lag_ms >= MS_PER_UPDATE)
@@ -227,7 +239,7 @@ void Lania::compute(Core* core, Application* application)
 
 			int boxColliderCount = scene2D->activeBoxColliders.size();
 			int rigidBodyCount = scene2D->activeRigidBodies.size();
-			int poisitionLockCount = scene2D->pointLocks.size();
+			int positionLockCount = scene2D->pointLocks.size();
 
 			Physics2D::detectCollisions(
 				time->simulation_ms,
@@ -246,7 +258,7 @@ void Lania::compute(Core* core, Application* application)
 			Physics2D::decelerate(rigidBodies, rigidBodyCount);
 			Physics2D::gravitate(rigidBodies, rigidBodyCount);
 			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
-			Physics2D::lockTranslation(entities, positionLocks, poisitionLockCount);
+			Physics2D::lockTranslation(entities, positionLocks, positionLockCount);
 		}
 
 		time->simulation_ms += MS_PER_UPDATE;
@@ -268,8 +280,8 @@ void Lania::output(Core* core)
 
 void Lania::shutdown(Core* core, Application* application)
 {
-	List<SDL_GameController*>* gameControllers = &core->input.gameControllers;
-	List<SDL_Haptic*>* haptics = &core->input.haptics;
+	Vector<SDL_GameController*>* gameControllers = &core->input.gameControllers;
+	Vector<SDL_Haptic*>* haptics = &core->input.haptics;
 
 	core->timer.shutdown.setStart();
 	application->scene.deleteAssets();

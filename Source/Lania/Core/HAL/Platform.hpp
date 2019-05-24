@@ -22,7 +22,7 @@ namespace Lania
 	{
 		SDL_DisplayMode SDLDisplayMode;
 		uint8_t logicalCoreCount;
-		uint32_t L1CacheSize_B;
+		uint32_t L1CacheLineSize_B;
 		uint32_t systemRAM_MB;
 		int batteryLife_pct;
 		char* renderingAPIVersion;
@@ -30,7 +30,7 @@ namespace Lania
 
 		Platform():
 			logicalCoreCount(0),
-			L1CacheSize_B(0),
+			L1CacheLineSize_B(0),
 			systemRAM_MB(0),
 			batteryLife_pct(0),
 			renderingAPIVersion(NULL),

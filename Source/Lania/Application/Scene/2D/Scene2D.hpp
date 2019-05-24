@@ -15,7 +15,7 @@
 #pragma once
 
 #include "../../../Utilities/Definitions/Aliases.hpp"
-#include "../../../Utilities/DataStructures/List.hpp"
+#include "../../../Utilities/DataStructures/Vector.hpp"
 #include "../../../Utilities/DataStructures/Map.hpp"
 #include "../../../Utilities/DataStructures/String.hpp"
 
@@ -38,26 +38,26 @@ namespace Lania
 	typedef struct Scene2D
 	{
 		//Entities listed and layered by ID numbers
-		List<Entity2D> entities;
+		Vector<Entity2D> entities;
 
 		Map<String, EntityID> entityNameRegistry;
-		List<DynamicCollisionEvent2D> dynamicCollisionEvents;
-		List<StaticCollisionEvent2D> staticCollisionEvents;
+		Vector<DynamicCollisionEvent2D> dynamicCollisionEvents;
+		Vector<StaticCollisionEvent2D> staticCollisionEvents;
 
 		//Active component existence-based processing lists
 		//Ordered by entity layer, but not necessarily matched to IDs
 		//Components contain parent entity IDs
-		List<Sprite2D> activeSprites;
-		List<Camera2D> activeCameras;
-		List<RigidBody2D> activeRigidBodies;
-		List<BoxCollider2D> activeBoxColliders;
-		List<PositionLock2D> pointLocks;
+		Vector<Sprite2D> activeSprites;
+		Vector<Camera2D> activeCameras;
+		Vector<RigidBody2D> activeRigidBodies;
+		Vector<BoxCollider2D> activeBoxColliders;
+		Vector<PositionLock2D> pointLocks;
 
 		//Inactive storage lists
 		//No ordering enforced as long as components maintain parent entity IDs
-		List<Sprite2D> inactiveSprites;
-		List<Camera2D> inactiveCameras;
-		List<RigidBody2D> inactiveRigidBodies;
+		Vector<Sprite2D> inactiveSprites;
+		Vector<Camera2D> inactiveCameras;
+		Vector<RigidBody2D> inactiveRigidBodies;
 
 		//Stores current camera list position to prevent repetitive searches
 		ComponentListIndex currentCameraIndex;

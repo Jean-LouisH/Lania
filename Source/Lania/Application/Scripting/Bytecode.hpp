@@ -14,7 +14,7 @@
 
 #pragma once
 
-#include "../../Utilities/DataStructures/List.hpp"
+#include "../../Utilities/DataStructures/Vector.hpp"
 #include "../../Utilities/DataStructures/String.hpp"
 
 namespace Lania
@@ -52,6 +52,6 @@ namespace Lania
 
 	typedef struct Bytecode
 	{
-		List<Instruction> instructions;
+		Vector<Instruction> instructions;
 	}Bytecode;
 }
