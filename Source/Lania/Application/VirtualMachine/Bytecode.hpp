@@ -16,6 +16,7 @@
 
 #include "../../Utilities/DataStructures/Vector.hpp"
 #include "../../Utilities/DataStructures/String.hpp"
+#include <stdint.h>
 
 namespace Lania
 {
@@ -35,10 +36,10 @@ namespace Lania
 
 	typedef struct Instruction
 	{
-		int opcode;
-		int destination;
-		int source1;
-		int source2;
+		uint32_t opcode;
+		uint32_t destination;
+		uint32_t source1;
+		uint32_t source2;
 		double immediateValue;
 		String immediateString;
 		Instruction():
