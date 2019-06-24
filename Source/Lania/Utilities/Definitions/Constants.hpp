@@ -33,3 +33,5 @@
 #define EARTH_MASS 5.9722e24
 
 #define NO_PARENT 0 
+
+#define DEBUG_EXPORT_PATH "../../Demos/Exports/Lania/"

@@ -17,18 +17,21 @@
 
 void Lania::initialize(Core* core)
 {
-	//Development Test 
-	String appConfigFilePath = "../../Demos/PhysicsTest/Init.cfg";
+	String exportFilePath = "";
+#if _DEBUG
+	exportFilePath += DEBUG_EXPORT_PATH;
+#endif
 
 	AppConfig* appConfig = &core->appConfig;
 	unsigned char* state = &core->state;
 
 	Log::toConsole("Initializing Core...\n");
-
 	core->timer.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
-	*appConfig = Config::parseAppConfig(File::read(appConfigFilePath));
-	SDL_GameControllerAddMappingsFromFile("../Data/gamecontrollerdb.txt");
+	char* appConfigFile = File::read(exportFilePath + core->executableName + "_Data/" + "Init.cfg");
+	*appConfig = Config::parseAppConfig(appConfigFile);
+	delete[] appConfigFile;
+	SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName + "_Data/" + "gamecontrollerdb.txt").c_str());
 	core->platform.logicalCoreCount = SDL_GetCPUCount();
 	core->platform.L1CacheLineSize_B = SDL_GetCPUCacheLineSize();
 	core->platform.systemRAM_MB = SDL_GetSystemRAM();
@@ -50,7 +53,6 @@ void Lania::initialize(Core* core)
 	}
 	else
 	{
-		//Development test
 		SDL_GetDesktopDisplayMode(0, &core->platform.SDLDisplayMode);
 		appConfig->targetFPS = 60;
 
@@ -75,14 +77,7 @@ void Lania::initialize(Core* core)
 		}
 		else
 		{
-			String rootPath = "";
-
-#if _DEBUG
-			//Development test
-			rootPath += "../../Demos/";
-#endif
-			String iconString = rootPath + appConfig->appName + "/icon.png";
-			SDL_Surface* logo = IMG_Load(iconString.c_str());
+			SDL_Surface* logo = IMG_Load((exportFilePath + core->executableName + "_Data/" + "Icon.png").c_str());
 			SDL_SetWindowIcon(core->window, logo);
 			SDL_FreeSurface(logo);
 
@@ -175,7 +170,7 @@ void Lania::benchmark(Core* core)
 			std::to_string((int)(((double)time->process.getDelta_ns() / (double)time->frame.getDelta_ns()) * 100));
 		String batteryString = std::to_string(core->platform.batteryLife_pct);
 		SDL_SetWindowTitle(core->window,
-			(core->appConfig.appName + " - Lania Debug ->" + 
+			(core->appConfig.appName + " ->" + 
 				" Rendering API: " + core->platform.renderingAPIVersion + 
 				", FPS: " + FPSString +
 				", Frame Time Utilization: " + frameUtilizationString + "%" + 

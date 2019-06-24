@@ -29,14 +29,15 @@ namespace Lania
 		SUBSCENE_3D
 	};
 
-	typedef struct Scene
+	class Scene
 	{
+	private:
+	public:
 		Vector<Scene2D> subscenes2D;
 		Vector<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
-		Rectangle windowCopy;
-
 		Map<String, Texture> textures;
+		Rectangle windowCopy;
 
 		Texture loadTexture(String filepath);
 
@@ -66,5 +67,5 @@ namespace Lania
 		void setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void setSprite2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath);
-	}Scene;
+	};
 }
