@@ -110,7 +110,7 @@ void Lania::loop(Core* core, Application* application)
 	Timer* time = &core->timer;
 	time->FPS.setStart();
 
-	application->initializeLogic();
+	application->init();
 
 	do
 	{
@@ -202,8 +202,9 @@ void Lania::logic(Core* core, Application* application)
 	Timer* time = &core->timer;
 	time->logic.setStart();
 
-	application->processInputs();
-	application->interpretLogic();
+	application->interpretStartLogic();
+	application->interpretInputLogic();
+	application->interpretProcessLogic();
 
 	time->logic.setEnd();
 }
@@ -218,6 +219,8 @@ void Lania::compute(Core* core, Application* application)
 
 	while (time->lag_ms >= MS_PER_UPDATE)
 	{
+		application->interpretComputeLogic(MS_PER_UPDATE);
+
 		for (int i = 0; i < scene2DCount; i++)
 		{
 			Scene2D* scene2D = &scene2Ds->at(i);
@@ -254,6 +257,9 @@ void Lania::compute(Core* core, Application* application)
 		time->simulation_ms += MS_PER_UPDATE;
 		time->lag_ms -= MS_PER_UPDATE;
 	}
+
+	application->interpretLateLogic();
+	application->interpretFinalLogic();
 
 	time->lag_ms += time->frame.getDelta_ns() / NS_IN_MS;
 

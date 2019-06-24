@@ -30,9 +30,13 @@ namespace Lania
 	public:
 		Scene scene;
 
-		void initializeLogic();
-		void processInputs();
-		void interpretLogic();
+		void init();
+		void interpretStartLogic();
+		void interpretInputLogic();
+		void interpretProcessLogic();
+		void interpretComputeLogic(unsigned int computeTimeDelta_ms);
+		void interpretLateLogic();
+		void interpretFinalLogic();
 		Application(Core* core);
 	};
 }

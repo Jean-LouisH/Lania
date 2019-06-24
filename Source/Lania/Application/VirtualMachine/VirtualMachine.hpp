@@ -28,8 +28,12 @@ namespace Lania
 		Stack<Variables> callStack;
 		Vector<Bytecode> scripts;
 	public:
-		void initializeLogic(Scene* scene);
-		void processInputs(Scene* scene);
-		void interpretLogic(Scene* scene);
+		void init(Scene* scene);
+		void interpretStartLogic(Scene* scene);
+		void interpretInputLogic(Scene* scene);
+		void interpretProcessLogic(Scene* scene);
+		void interpretComputeLogic(Scene* scene, unsigned int computeTimeDelta_ms);
+		void interpretLateLogic(Scene* scene);
+		void interpretFinalLogic(Scene* scene);
 	};
 }
