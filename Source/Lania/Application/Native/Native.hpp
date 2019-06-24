@@ -13,15 +13,24 @@
 
 #pragma once
 
-#include <Core/Core.hpp>
-#include <Application/Application.hpp>
+#ifdef _WIN32
+	#include <windows.h>
+#endif
+
+#include "../Scene/Scene.hpp"
 
 namespace Lania
 {
-	namespace Native
+	class Native
 	{
-		void initializeApplication(Core* core, Application* application);
-		void processInputs(Core* core, Application* application);
-		void updateApplicationLogic(Core* core, Application* application);
-	}
+	private:
+#ifdef _WIN32
+		HINSTANCE hGetProcIDDLL;
+		void linkWindowsDLL();
+#endif
+	public:
+		void initializeLogic(Scene* scene);
+		void processInputs(Scene* scene);
+		void interpretLogic(Scene* scene);
+	};
 }

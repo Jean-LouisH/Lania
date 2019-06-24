@@ -14,22 +14,25 @@
 
 #pragma once
 
-#include "../Utilities/DataStructures/Vector.hpp"
-#include "../Utilities/DataStructures/Stack.hpp"
-#include "Scripting/Variables.hpp"
-#include "Scripting/Bytecode.hpp"
+#include "../Core/Core.hpp"
 #include "Scene/Scene.hpp"
+#include "VirtualMachine/VirtualMachine.hpp"
+#include "Native/Native.hpp"
 
 namespace Lania
 {
-	typedef struct Application
+	class Application
 	{
+	private:
+		Core* core;
+		VirtualMachine vm;
+		Native native;
+	public:
 		Scene scene;
-		Variables global;
-		Stack<Variables> callStack;
-		Vector<Bytecode> scripts;
 
-		Application()
-		{}
-	}Application;
+		void initializeLogic();
+		void processInputs();
+		void interpretLogic();
+		Application(Core* core);
+	};
 }

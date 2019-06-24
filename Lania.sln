@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lania", "Source\Lania\Lania.vcxproj", "{BEF1DA7A-9425-482F-B3E0-C8AE109DCD24}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -18,8 +18,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Lania", "Source\Lania\Lania
 		{435A58BF-7EA2-4A7A-B696-C58BF367D3C8} = {435A58BF-7EA2-4A7A-B696-C58BF367D3C8}
 		{7051A5C1-55CD-40FD-AC23-661F08BD53EF} = {7051A5C1-55CD-40FD-AC23-661F08BD53EF}
 	EndProjectSection
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scripting", "Source\Lania\Application\Scripting\Scripting.vcxproj", "{3E153C1A-5720-42A8-B34A-09FBBC6B766C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "Source\Lania\Core\Core.vcxproj", "{C94407AE-6521-46B1-BAD9-B4BBE493D6F0}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -100,7 +98,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Scene", "Source\Lania\Appli
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Application", "Source\Lania\Application\Application.vcxproj", "{6C120D91-529F-4933-9948-A3C7006E93B0}"
 	ProjectSection(ProjectDependencies) = postProject
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C} = {3E153C1A-5720-42A8-B34A-09FBBC6B766C}
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9} = {8879D438-2BBF-4CF1-B3F1-11F03160C1B9}
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8} = {C5C66940-0BE6-4958-AF24-0ED68A5460C8}
+		{C94407AE-6521-46B1-BAD9-B4BBE493D6F0} = {C94407AE-6521-46B1-BAD9-B4BBE493D6F0}
 		{7051A5C1-55CD-40FD-AC23-661F08BD53EF} = {7051A5C1-55CD-40FD-AC23-661F08BD53EF}
 	EndProjectSection
 EndProject
@@ -111,6 +111,16 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Mathematics", "Source\Lania\Utilities\Mathematics\Mathematics.vcxproj", "{41AAEA07-60B0-4C63-B649-03C60E75ADA3}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assets", "Source\Lania\Application\Scene\Assets\Assets.vcxproj", "{E104A1ED-CEF1-4C8C-85B9-C363B9DBE313}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "VirtualMachine", "Source\Lania\Application\VirtualMachine\VirtualMachine.vcxproj", "{C5C66940-0BE6-4958-AF24-0ED68A5460C8}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7051A5C1-55CD-40FD-AC23-661F08BD53EF} = {7051A5C1-55CD-40FD-AC23-661F08BD53EF}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Native", "Source\Lania\Application\Native\Native.vcxproj", "{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7051A5C1-55CD-40FD-AC23-661F08BD53EF} = {7051A5C1-55CD-40FD-AC23-661F08BD53EF}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -128,14 +138,6 @@ Global
 		{BEF1DA7A-9425-482F-B3E0-C8AE109DCD24}.Release|x64.Build.0 = Release|x64
 		{BEF1DA7A-9425-482F-B3E0-C8AE109DCD24}.Release|x86.ActiveCfg = Release|Win32
 		{BEF1DA7A-9425-482F-B3E0-C8AE109DCD24}.Release|x86.Build.0 = Release|Win32
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C}.Debug|x64.ActiveCfg = Debug|x64
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C}.Debug|x64.Build.0 = Debug|x64
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C}.Debug|x86.ActiveCfg = Debug|Win32
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C}.Debug|x86.Build.0 = Debug|Win32
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C}.Release|x64.ActiveCfg = Release|x64
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C}.Release|x64.Build.0 = Release|x64
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C}.Release|x86.ActiveCfg = Release|Win32
-		{3E153C1A-5720-42A8-B34A-09FBBC6B766C}.Release|x86.Build.0 = Release|Win32
 		{C94407AE-6521-46B1-BAD9-B4BBE493D6F0}.Debug|x64.ActiveCfg = Debug|x64
 		{C94407AE-6521-46B1-BAD9-B4BBE493D6F0}.Debug|x64.Build.0 = Debug|x64
 		{C94407AE-6521-46B1-BAD9-B4BBE493D6F0}.Debug|x86.ActiveCfg = Debug|Win32
@@ -264,6 +266,22 @@ Global
 		{E104A1ED-CEF1-4C8C-85B9-C363B9DBE313}.Release|x64.Build.0 = Release|x64
 		{E104A1ED-CEF1-4C8C-85B9-C363B9DBE313}.Release|x86.ActiveCfg = Release|Win32
 		{E104A1ED-CEF1-4C8C-85B9-C363B9DBE313}.Release|x86.Build.0 = Release|Win32
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8}.Debug|x64.ActiveCfg = Debug|x64
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8}.Debug|x64.Build.0 = Debug|x64
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8}.Debug|x86.Build.0 = Debug|Win32
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8}.Release|x64.ActiveCfg = Release|x64
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8}.Release|x64.Build.0 = Release|x64
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8}.Release|x86.ActiveCfg = Release|Win32
+		{C5C66940-0BE6-4958-AF24-0ED68A5460C8}.Release|x86.Build.0 = Release|Win32
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}.Debug|x64.ActiveCfg = Debug|x64
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}.Debug|x64.Build.0 = Debug|x64
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}.Debug|x86.ActiveCfg = Debug|Win32
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}.Debug|x86.Build.0 = Debug|Win32
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}.Release|x64.ActiveCfg = Release|x64
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}.Release|x64.Build.0 = Release|x64
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}.Release|x86.ActiveCfg = Release|Win32
+		{8879D438-2BBF-4CF1-B3F1-11F03160C1B9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,4 @@
 #include <Lania.hpp>
-#include <Native.hpp>
 #include <Core/ConfigurationParser.hpp>
 #include <Core/Core.hpp>
 #include <Core/HAL/Input.hpp>
@@ -15,8 +14,6 @@
 #include <Core/HAL/Timer.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Engines/Physics/Physics2D.hpp>
-
-#define ENABLE_NATIVE_CODE true
 
 void Lania::initialize(Core* core)
 {
@@ -113,12 +110,7 @@ void Lania::loop(Core* core, Application* application)
 	Timer* time = &core->timer;
 	time->FPS.setStart();
 
-	application->scene.windowCopy.height = core->appConfig.windowHeight_px;
-	application->scene.windowCopy.width = core->appConfig.windowWidth_px;
-
-#if ENABLE_NATIVE_CODE
-	Native::initializeApplication(core, application);
-#endif
+	application->initializeLogic();
 
 	do
 	{
@@ -210,10 +202,8 @@ void Lania::logic(Core* core, Application* application)
 	Timer* time = &core->timer;
 	time->logic.setStart();
 
-#if ENABLE_NATIVE_CODE
-	Native::processInputs(core, application);
-	Native::updateApplicationLogic(core, application);
-#endif
+	application->processInputs();
+	application->interpretLogic();
 
 	time->logic.setEnd();
 }

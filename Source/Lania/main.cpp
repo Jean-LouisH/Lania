@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 	do
 	{
 		Lania::Core* core = new Lania::Core();
-		Lania::Application* application = new Lania::Application();
+		Lania::Application* application = new Lania::Application(core);
 
 		core->filepath = argv[0];
 
