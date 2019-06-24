@@ -33,7 +33,7 @@ namespace Lania
 		void init();
 		void interpretStartLogic();
 		void interpretInputLogic();
-		void interpretProcessLogic();
+		void interpretFrameLogic();
 		void interpretComputeLogic(unsigned int computeTimeDelta_ms);
 		void interpretLateLogic();
 		void interpretFinalLogic();

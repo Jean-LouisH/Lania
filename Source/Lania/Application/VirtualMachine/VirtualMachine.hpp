@@ -16,6 +16,7 @@
 #include "../../Utilities/DataStructures/Vector.hpp"
 #include "../../Utilities/DataStructures/Stack.hpp"
 #include "../Scene/Scene.hpp"
+#include "../../Core/Core.hpp"
 #include "Variables.hpp"
 #include "Bytecode.hpp"
 
@@ -28,12 +29,12 @@ namespace Lania
 		Stack<Variables> callStack;
 		Vector<Bytecode> scripts;
 	public:
-		void init(Scene* scene);
-		void interpretStartLogic(Scene* scene);
-		void interpretInputLogic(Scene* scene);
-		void interpretProcessLogic(Scene* scene);
-		void interpretComputeLogic(Scene* scene, unsigned int computeTimeDelta_ms);
-		void interpretLateLogic(Scene* scene);
-		void interpretFinalLogic(Scene* scene);
+		void init(Scene* scene, Core* core);
+		void interpretStartLogic(Scene* scene, Core* core);
+		void interpretInputLogic(Scene* scene, Core* core);
+		void interpretFrameLogic(Scene* scene, Core* core);
+		void interpretComputeLogic(Scene* scene, Core* core, unsigned int computeTimeDelta_ms);
+		void interpretLateLogic(Scene* scene, Core* core);
+		void interpretFinalLogic(Scene* scene, Core* core);
 	};
 }

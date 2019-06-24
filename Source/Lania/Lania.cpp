@@ -204,7 +204,7 @@ void Lania::logic(Core* core, Application* application)
 
 	application->interpretStartLogic();
 	application->interpretInputLogic();
-	application->interpretProcessLogic();
+	application->interpretFrameLogic();
 
 	time->logic.setEnd();
 }

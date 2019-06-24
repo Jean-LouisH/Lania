@@ -14,17 +14,18 @@
 #pragma once
 
 #include "../Scene/Scene.hpp"
+#include "../../Core/Core.hpp"
 
 #ifdef _WIN32
 	#include <windows.h>
 
-	typedef void(__stdcall* cpp_init)(Lania::Scene*);
-	typedef void(__stdcall* cpp_interpretStartLogic)(Lania::Scene*);
-	typedef void(__stdcall* cpp_interpretInputLogic)(Lania::Scene*);
-	typedef void(__stdcall* cpp_interpretProcessLogic)(Lania::Scene*);
-	typedef void(__stdcall* cpp_interpretComputeLogic)(Lania::Scene*, unsigned int);
-	typedef void(__stdcall* cpp_interpretLateLogic)(Lania::Scene*);
-	typedef void(__stdcall* cpp_interpretFinalLogic)(Lania::Scene*);
+	typedef void(__stdcall* cpp_init)(Lania::Scene*, Lania::Core* core);
+	typedef void(__stdcall* cpp_interpretStartLogic)(Lania::Scene*, Lania::Core* core);
+	typedef void(__stdcall* cpp_interpretInputLogic)(Lania::Scene*, Lania::Core* core);
+	typedef void(__stdcall* cpp_interpretProcessLogic)(Lania::Scene*, Lania::Core* core);
+	typedef void(__stdcall* cpp_interpretComputeLogic)(Lania::Scene*, Lania::Core* core, unsigned int computeTimeDelta_ms);
+	typedef void(__stdcall* cpp_interpretLateLogic)(Lania::Scene*, Lania::Core* core);
+	typedef void(__stdcall* cpp_interpretFinalLogic)(Lania::Scene*, Lania::Core* core);
 #endif
 
 namespace Lania
@@ -43,12 +44,12 @@ namespace Lania
 		void linkWindowsDLL();
 #endif
 	public:
-		void init(Scene* scene);
-		void interpretStartLogic(Scene* scene);
-		void interpretInputLogic(Scene* scene);
-		void interpretProcessLogic(Scene* scene);
-		void interpretComputeLogic(Scene* scene, unsigned int computeTimeDelta_ms);
-		void interpretLateLogic(Scene* scene);
-		void interpretFinalLogic(Scene* scene);
+		void init(Scene* scene, Core* core);
+		void interpretStartLogic(Scene* scene, Core* core);
+		void interpretInputLogic(Scene* scene, Core* core);
+		void interpretFrameLogic(Scene* scene, Core* core);
+		void interpretComputeLogic(Scene* scene, Core* core, unsigned int computeTimeDelta_ms);
+		void interpretLateLogic(Scene* scene, Core* core);
+		void interpretFinalLogic(Scene* scene, Core* core);
 	};
 }

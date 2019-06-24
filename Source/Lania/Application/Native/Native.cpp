@@ -1,4 +1,4 @@
-#include "Native.hpp""
+#include "Native.hpp"
 
 #ifdef _WIN32
 	void Lania::Native::linkWindowsDLL()
@@ -18,47 +18,47 @@
 	}
 #endif
 
-void Lania::Native::init(Scene* scene)
+void Lania::Native::init(Scene* scene, Core* core)
 {
 #ifdef _WIN32
 	this->linkWindowsDLL();
 #endif
 	if (this->native_init)
-		this->native_init(scene);
+		this->native_init(scene, core);
 }
 
-void Lania::Native::interpretStartLogic(Scene* scene)
+void Lania::Native::interpretStartLogic(Scene* scene, Core* core)
 {
 	if(this->native_interpretStartLogic)
-		this->native_interpretStartLogic(scene);
+		this->native_interpretStartLogic(scene, core);
 }
 
-void Lania::Native::interpretInputLogic(Scene* scene)
+void Lania::Native::interpretInputLogic(Scene* scene, Core* core)
 {
 	if (this->native_interpretInputLogic)
-		this->native_interpretInputLogic(scene);
+		this->native_interpretInputLogic(scene, core);
 }
 
-void Lania::Native::interpretProcessLogic(Scene* scene)
+void Lania::Native::interpretFrameLogic(Scene* scene, Core* core)
 {
 	if (this->native_interpretProcessLogic)
-		this->native_interpretProcessLogic(scene);
+		this->native_interpretProcessLogic(scene, core);
 }
 
-void Lania::Native::interpretComputeLogic(Scene* scene, unsigned int computeTimeDelta_ms)
+void Lania::Native::interpretComputeLogic(Scene* scene, Core* core, unsigned int computeTimeDelta_ms)
 {
 	if (this->native_interpretComputeLogic)
-		this->native_interpretComputeLogic(scene, computeTimeDelta_ms);
+		this->native_interpretComputeLogic(scene, core, computeTimeDelta_ms);
 }
 
-void Lania::Native::interpretLateLogic(Scene* scene)
+void Lania::Native::interpretLateLogic(Scene* scene, Core* core)
 {
 	if (this->native_interpretLateLogic)
-		this->native_interpretLateLogic(scene);
+		this->native_interpretLateLogic(scene, core);
 }
 
-void Lania::Native::interpretFinalLogic(Scene* scene)
+void Lania::Native::interpretFinalLogic(Scene* scene, Core* core)
 {
 	if (this->native_interpretFinalLogic)
-		this->native_interpretFinalLogic(scene);
+		this->native_interpretFinalLogic(scene, core);
 }
