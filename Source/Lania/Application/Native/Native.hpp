@@ -13,11 +13,19 @@
 
 #pragma once
 
+#include "../Scene/Scene.hpp"
+
 #ifdef _WIN32
 	#include <windows.h>
-#endif
 
-#include "../Scene/Scene.hpp"
+	typedef void(__stdcall* cpp_init)(Lania::Scene*);
+	typedef void(__stdcall* cpp_interpretStartLogic)(Lania::Scene*);
+	typedef void(__stdcall* cpp_interpretInputLogic)(Lania::Scene*);
+	typedef void(__stdcall* cpp_interpretProcessLogic)(Lania::Scene*);
+	typedef void(__stdcall* cpp_interpretComputeLogic)(Lania::Scene*, unsigned int);
+	typedef void(__stdcall* cpp_interpretLateLogic)(Lania::Scene*);
+	typedef void(__stdcall* cpp_interpretFinalLogic)(Lania::Scene*);
+#endif
 
 namespace Lania
 {
@@ -25,12 +33,22 @@ namespace Lania
 	{
 	private:
 #ifdef _WIN32
-		HINSTANCE hGetProcIDDLL;
+		cpp_init native_init;
+		cpp_interpretStartLogic native_interpretStartLogic;
+		cpp_interpretInputLogic native_interpretInputLogic;
+		cpp_interpretProcessLogic native_interpretProcessLogic;
+		cpp_interpretComputeLogic native_interpretComputeLogic;
+		cpp_interpretLateLogic native_interpretLateLogic;
+		cpp_interpretFinalLogic native_interpretFinalLogic;
 		void linkWindowsDLL();
 #endif
 	public:
-		void initializeLogic(Scene* scene);
-		void processInputs(Scene* scene);
-		void interpretLogic(Scene* scene);
+		void init(Scene* scene);
+		void interpretStartLogic(Scene* scene);
+		void interpretInputLogic(Scene* scene);
+		void interpretProcessLogic(Scene* scene);
+		void interpretComputeLogic(Scene* scene, unsigned int computeTimeDelta_ms);
+		void interpretLateLogic(Scene* scene);
+		void interpretFinalLogic(Scene* scene);
 	};
 }
