@@ -7,6 +7,7 @@
 #include <Utilities/Definitions/Constants.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
+#include <GL/glew.h>
 #include <Utilities/DataStructures/String.hpp>
 #include <Utilities/DataStructures/Vector.hpp>
 #include <Engines/Physics/Physics2D.hpp>
@@ -28,10 +29,20 @@ void Lania::initialize(Core* core)
 	Log::toConsole("Initializing Core...\n");
 	core->timer.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
-	char* appConfigFile = File::read(exportFilePath + core->executableName + "_Data/" + "Init.cfg");
-	*appConfig = Config::parseAppConfig(appConfigFile);
-	delete[] appConfigFile;
-	SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName + "_Data/" + "gamecontrollerdb.txt").c_str());
+
+	if (File::exists(exportFilePath + core->executableName + "_Data/" + "Boot.lpk"))
+	{
+
+	}
+	else
+	{
+		char* appConfigFile = File::read(exportFilePath + core->executableName + "_Data/" + "Boot");
+		*appConfig = Config::parseAppConfig(appConfigFile);
+		delete[] appConfigFile;
+		SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName + 
+			"_Data/" + "gamecontrollerdb.txt").c_str());
+	}
+
 	core->platform.logicalCoreCount = SDL_GetCPUCount();
 	core->platform.L1CacheLineSize_B = SDL_GetCPUCacheLineSize();
 	core->platform.systemRAM_MB = SDL_GetSystemRAM();
@@ -54,11 +65,25 @@ void Lania::initialize(Core* core)
 	else
 	{
 		SDL_GetDesktopDisplayMode(0, &core->platform.SDLDisplayMode);
-		appConfig->targetFPS = 60;
-
 		Log::toConsole("Target FPS: " + std::to_string(appConfig->targetFPS));
-
 		IMG_Init(IMG_INIT_PNG);
+
+		if (appConfig->renderingAPI == "opengl 3.3")
+		{
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+			SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 8);
+			SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
+			SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
+			SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
+			SDL_GL_SetAttribute(SDL_GL_BUFFER_SIZE, 32);
+			SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+		}
+		else if (appConfig->renderingAPI == "vulkan 1.1")
+		{
+			;
+		}
 
 		core->window = SDL_CreateWindow(
 			appConfig->appName.c_str(),
@@ -84,9 +109,35 @@ void Lania::initialize(Core* core)
 			SDL_DisableScreenSaver();
 			SDL_GetCurrentDisplayMode(0, &core->platform.SDLDisplayMode);
 
-			Log::toConsole("Rendering Engine: Lania Vulkan");
-			core->renderer = LANIA_VULKAN_RENDERER;
-			core->platform.renderingAPIVersion = (char*)"Vulkan";
+			if (appConfig->renderingAPI == "opengl 3.3")
+			{
+				core->renderer = LANIA_OPENGL_3_3_RENDERER;
+				core->glContext = SDL_GL_CreateContext(core->window);
+
+				if (glewInit() != GLEW_OK)
+				{
+					Log::toConsole("GLEW failed to initialize.");
+					*state = SHUTDOWN;
+				}
+				else
+				{
+					String* renderingAPIString = new String;
+					*renderingAPIString += "OpenGL ";
+					*renderingAPIString += (char*)glGetString(GL_VERSION);
+					core->platform.renderingAPIVersion = (char*)renderingAPIString->c_str();
+
+					glViewport(0, 0, appConfig->windowWidth_px, appConfig->windowHeight_px);
+					Log::toConsole("Rendering Engine: Lania OpenGL 3.3");
+				}
+			}
+			else if (appConfig->renderingAPI == "vulkan 1.1")
+			{
+				core->renderer = LANIA_VULKAN_1_1_RENDERER;
+				core->platform.renderingAPIVersion = (char*)"Vulkan";
+				Log::toConsole("Rendering Engine: Lania Vulkan 1.1");
+			}
+
+			Log::toConsole("Rendering Engine: Lania " + appConfig->renderingAPI);
 
 			if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
 				*state = RUNNING_APPLICATION_FULLSCREEN;
@@ -265,6 +316,16 @@ void Lania::output(Core* core)
 {
 	Timer* time = &core->timer;
 	time->output.setStart();
+	if (core->renderer == LANIA_OPENGL_3_3_RENDERER)
+	{
+		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		SDL_GL_SwapWindow(core->window);
+	}
+	else if (core->renderer == LANIA_VULKAN_1_1_RENDERER)
+	{
+		;
+	}
 
 	time->output.setEnd();
 }
@@ -286,6 +347,8 @@ void Lania::shutdown(Core* core, Application* application)
 	gameControllers->clear();
 	haptics->clear();
 
+	if (core->renderer == LANIA_OPENGL_3_3_RENDERER)
+		SDL_GL_DeleteContext(core->glContext);
 	SDL_DestroyWindow(core->window);
 	SDL_Quit();
 	core->timer.shutdown.setEnd();

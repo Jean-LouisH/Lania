@@ -85,12 +85,14 @@ Lania::AppConfig Lania::Config::parseAppConfig(char* fileContent)
 				appConfig.windowWidth_px = std::stoi(width);
 				appConfig.windowHeight_px = std::stoi(height);
 			}
-			else if (key == "renderer")
+			else if (key == "rendering_api")
 			{
-				//if (value == "Vulkan" || value == "Lania Vulkan")
-				{
+				if (value == "opengl 3.3")
+					appConfig.windowFlags |= SDL_WINDOW_OPENGL;
+				else if (value == "vulkan 1.1")
 					appConfig.windowFlags |= SDL_WINDOW_VULKAN;
-				}				
+
+				appConfig.renderingAPI = value;
 			}
 			else if (key == "fullscreen")
 			{
@@ -112,6 +114,10 @@ Lania::AppConfig Lania::Config::parseAppConfig(char* fileContent)
 				{
 					appConfig.windowFlags |= SDL_WINDOW_MAXIMIZED;
 				}
+			}
+			else if (key == "target_fps")
+			{
+				appConfig.targetFPS = std::stoi(value);
 			}
 			else if (key == "main_scene")
 			{

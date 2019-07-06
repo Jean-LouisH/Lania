@@ -24,6 +24,7 @@ namespace Lania
 		uint16_t windowHeight_px;
 		uint16_t targetFPS;
 		uint32_t windowFlags;
+		String renderingAPI;
 		String mainScene;
 		String appName;
 
