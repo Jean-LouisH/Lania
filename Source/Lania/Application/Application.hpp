@@ -25,7 +25,6 @@ namespace Lania
 	{
 	private:
 		Core* core;
-		VirtualMachine vm;
 		Native native;
 	public:
 		Scene scene;
