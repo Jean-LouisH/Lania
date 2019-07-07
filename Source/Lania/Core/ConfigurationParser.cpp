@@ -58,7 +58,8 @@ Lania::AppConfig Lania::Config::parseAppConfig(char* fileContent)
 			key += fileContent[readPosition];
 		}
 		else if (parseState == LOADING_VALUE &&
-			fileContent[readPosition] != '\n')
+			fileContent[readPosition] != '\n' &&
+			fileContent[readPosition] != '\r')
 		{
 			value += fileContent[readPosition];
 		}
