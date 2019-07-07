@@ -1,46 +1,70 @@
 #include "File.hpp"
-#include <fstream>
+#include "MemoryPool.hpp"
 
 bool Lania::File::exists(String filePath)
 {
-	std::ifstream file;
-
-	file.open(filePath);
-	if (file)
-		file.close();
-	return (bool)file;
+	FILE* readFile = fopen(filePath.c_str(), "rb");
+	if (readFile != NULL)
+		fclose(readFile);
+	return (bool)readFile;
 }
 
-char* Lania::File::read(String filePath)
+Lania::MemoryPoolU8 Lania::File::read(String filePath)
 {
-	std::ifstream inputFile;
+	FILE* readFile = fopen(filePath.c_str(), "rb");
+	MemoryPoolU8 memory;
 
-	inputFile.open(filePath, std::ios::binary);
-	inputFile.seekg(0, std::ios::end);
-	int size = inputFile.tellg();
-	char* buffer = new char[size];
-	inputFile.seekg(0, std::ios::beg);
-	inputFile.read(buffer, size);
-	inputFile.close();
-	return buffer;
+	if (readFile != NULL)
+	{
+		fseek(readFile, 0, SEEK_END);
+		int capacity = ftell(readFile);
+		rewind(readFile);
+		memory.allocate(capacity);
+		if (memory.data != NULL)
+			fread(memory.data, sizeof(uint8_t), memory.size, readFile);
+		fclose(readFile);
+	}
+	return memory;
 }
 
-void Lania::File::write(String filePath, char* fileData)
+Lania::MemoryPoolU8 Lania::File::readString(String filePath)
 {
-	std::ofstream outputFile;
+	FILE* readFile = fopen(filePath.c_str(), "rb");
+	MemoryPoolU8 memory;
 
-	outputFile.open(filePath, std::ios::binary);
-	//outputFile.write(fileData, size);
-	outputFile.close();
+	if (readFile != NULL)
+	{
+		fseek(readFile, 0, SEEK_END);
+		int capacity = ftell(readFile);
+		rewind(readFile);
+		memory.allocate(capacity + 1);
+		if (memory.data != NULL)
+			fread(memory.data, sizeof(uint8_t), memory.size, readFile);
+		memory.data[memory.size - 1] = '\0';
+		fclose(readFile);
+	}
+	return memory;
 }
 
-void Lania::File::append(String filePath, char* fileData)
+void Lania::File::write(String filePath, MemoryPoolU8 memory)
 {
-	std::ofstream outputFile;
+	FILE* writeFile = fopen(filePath.c_str(), "wb");
+	if (writeFile != NULL)
+	{
+		fwrite(memory.data, sizeof(uint8_t), memory.size, writeFile);
+		fclose(writeFile);
+	}
+}
 
-	outputFile.open(filePath, std::ios::binary, std::ios::app);
-	//outputFile.write(fileData, size);
-	outputFile.close();
+void Lania::File::append(String filePath, MemoryPoolU8 memory)
+{
+
+	FILE* appendFile = fopen(filePath.c_str(), "ab");
+	if (appendFile != NULL)
+	{
+		fwrite(memory.data, sizeof(uint8_t), memory.size, appendFile);
+		fclose(appendFile);
+	}
 }
 
 Lania::String Lania::File::getExecutableName(Lania::String filePath)

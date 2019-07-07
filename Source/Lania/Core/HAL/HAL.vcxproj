@@ -76,8 +76,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Source\Lania;$(SolutionDir)\ThirdParty\SDL2\SDL2-2.0.9\include;$(SolutionDir)\ThirdParty\SDL2_Image\SDL2_image-2.0.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Source\Lania;$(SolutionDir)\ThirdParty\SDL2\SDL2-2.0.9\include;$(SolutionDir)\ThirdParty\SDL2_Image\SDL2_image-2.0.4\include;$(SolutionDir)\ThirdParty\zlib\zlib 1.2.11\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
+    <Lib>
+      <AdditionalDependencies>zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
+    <Lib>
+      <AdditionalLibraryDirectories>$(SolutionDir)\ThirdParty\zlib\zlib 1.2.11\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -120,7 +127,7 @@
     <ClInclude Include="GPU.hpp" />
     <ClInclude Include="Input.hpp" />
     <ClInclude Include="Logging.hpp" />
-    <ClInclude Include="Memory.hpp" />
+    <ClInclude Include="MemoryPool.hpp" />
     <ClInclude Include="OS.hpp" />
     <ClInclude Include="Output.hpp" />
     <ClInclude Include="Platform.hpp" />
@@ -131,6 +138,7 @@
   <ItemGroup>
     <ClCompile Include="File.cpp" />
     <ClCompile Include="Logging.cpp" />
+    <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="OS.cpp" />
     <ClCompile Include="Timer.cpp" />
   </ItemGroup>

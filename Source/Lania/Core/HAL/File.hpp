@@ -14,6 +14,7 @@
 #pragma once
 
 #include "../../Utilities/DataStructures/String.hpp"
+#include "MemoryPool.hpp"
 #include <stdint.h>
 
 namespace Lania
@@ -21,9 +22,10 @@ namespace Lania
 	namespace File
 	{
 		bool exists(String filePath);
-		char* read(String filePath);
-		void write(String filePath, char* fileData);
-		void append(String filePath, char* fileData);
+		MemoryPoolU8 read(String filePath);
+		MemoryPoolU8 readString(String filePath);
+		void write(String filePath, MemoryPoolU8 memory);
+		void append(String filePath, MemoryPoolU8 memory);
 		String getExecutableName(String filePath);
 	}
 }

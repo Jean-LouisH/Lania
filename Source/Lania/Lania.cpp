@@ -36,9 +36,9 @@ void Lania::initialize(Core* core)
 	}
 	else
 	{
-		char* appConfigFile = File::read(exportFilePath + core->executableName + "_Data/" + "Boot");
-		*appConfig = Config::parseAppConfig(appConfigFile);
-		delete[] appConfigFile;
+		MemoryPoolU8 appConfigFile = File::readString(exportFilePath + core->executableName + "_Data/" + "Boot");
+		*appConfig = Config::parseAppConfig((char*)appConfigFile.data);
+		appConfigFile.deallocate();
 		SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName + 
 			"_Data/" + "gamecontrollerdb.txt").c_str());
 	}
@@ -136,8 +136,6 @@ void Lania::initialize(Core* core)
 				core->platform.renderingAPIVersion = (char*)"Vulkan";
 				Log::toConsole("Rendering Engine: Lania Vulkan 1.1");
 			}
-
-			Log::toConsole("Rendering Engine: Lania " + appConfig->renderingAPI);
 
 			if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
 				*state = RUNNING_APPLICATION_FULLSCREEN;
