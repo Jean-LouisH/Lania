@@ -19,7 +19,7 @@ Lania::MemoryPoolU8 Lania::File::read(String filePath)
 		fseek(readFile, 0, SEEK_END);
 		int capacity = ftell(readFile);
 		rewind(readFile);
-		memory.allocate(capacity);
+		memory.allocateUninit(capacity);
 		if (memory.data != NULL)
 			fread(memory.data, sizeof(uint8_t), memory.size, readFile);
 		fclose(readFile);
@@ -37,7 +37,7 @@ Lania::MemoryPoolU8 Lania::File::readString(String filePath)
 		fseek(readFile, 0, SEEK_END);
 		int capacity = ftell(readFile);
 		rewind(readFile);
-		memory.allocate(capacity + 1);
+		memory.allocateUninit(capacity + 1);
 		if (memory.data != NULL)
 			fread(memory.data, sizeof(uint8_t), memory.size, readFile);
 		memory.data[memory.size - 1] = '\0';
