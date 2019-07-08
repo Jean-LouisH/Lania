@@ -17,15 +17,15 @@
 #include "../../Core/Core.hpp"
 
 #ifdef _WIN32
-	#include <windows.h>
+#include <windows.h>
 
-	typedef void(__stdcall* cpp_init)(Lania::Scene*, Lania::Core* core);
-	typedef void(__stdcall* cpp_interpretStartLogic)(Lania::Scene*, Lania::Core* core);
-	typedef void(__stdcall* cpp_interpretInputLogic)(Lania::Scene*, Lania::Core* core);
-	typedef void(__stdcall* cpp_interpretProcessLogic)(Lania::Scene*, Lania::Core* core);
-	typedef void(__stdcall* cpp_interpretComputeLogic)(Lania::Scene*, Lania::Core* core, unsigned int computeTimeDelta_ms);
-	typedef void(__stdcall* cpp_interpretLateLogic)(Lania::Scene*, Lania::Core* core);
-	typedef void(__stdcall* cpp_interpretFinalLogic)(Lania::Scene*, Lania::Core* core);
+typedef void(__stdcall* cpp_init)(Lania::Scene*, Lania::Core* core);
+typedef void(__stdcall* cpp_interpretStartLogic)(Lania::Scene*, Lania::Core* core);
+typedef void(__stdcall* cpp_interpretInputLogic)(Lania::Scene*, Lania::Core* core);
+typedef void(__stdcall* cpp_interpretProcessLogic)(Lania::Scene*, Lania::Core* core);
+typedef void(__stdcall* cpp_interpretComputeLogic)(Lania::Scene*, Lania::Core* core, unsigned int computeTimeDelta_ms);
+typedef void(__stdcall* cpp_interpretLateLogic)(Lania::Scene*, Lania::Core* core);
+typedef void(__stdcall* cpp_interpretFinalLogic)(Lania::Scene*, Lania::Core* core);
 #endif
 
 namespace Lania
