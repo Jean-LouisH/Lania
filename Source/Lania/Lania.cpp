@@ -30,13 +30,13 @@ void Lania::initialize(Core* core)
 	core->engineTimers.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
 
-	if (File::exists(exportFilePath + core->executableName + "_Data/" + "Boot.lpk"))
+	if (File::exists(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lpk"))
 	{
 
 	}
 	else
 	{
-		MemoryPoolU8 appConfigFile = File::readString(exportFilePath + core->executableName + "_Data/" + "Boot");
+		MemoryPoolU8 appConfigFile = File::readString(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot");
 		*appConfig = Config::parseAppConfig((char*)appConfigFile.data);
 		appConfigFile.deallocate();
 		SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName + 
@@ -265,7 +265,6 @@ void Lania::compute(Core* core, Application* application)
 		application->interpretComputeLogic(MS_PER_COMPUTE_UPDATE);
 		Physics::compute(
 			subScene2Ds, 
-			subScene2Ds->size(),
 			engineTimers->simulation_ms);
 		engineTimers->simulation_ms += MS_PER_COMPUTE_UPDATE;
 		engineTimers->lag_ms -= MS_PER_COMPUTE_UPDATE;
