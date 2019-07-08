@@ -1,8 +1,0 @@
---Application Window
-
-title=PhysicsTest
-resolution=853x480
-fullscreen=false
-resizable=true
-maximized=false
-main_scene=main.lscn
