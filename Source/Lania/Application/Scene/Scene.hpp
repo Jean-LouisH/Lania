@@ -33,7 +33,7 @@ namespace Lania
 	{
 	private:
 	public:
-		Vector<Scene2D> subscenes2D;
+		Vector<Scene2D> subScenes2D;
 		Vector<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
 		Map<String, Texture> textures;
