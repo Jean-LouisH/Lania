@@ -12,22 +12,22 @@
 #include <Utilities/DataStructures/Vector.hpp>
 #include <Engines/Physics/Physics2D.hpp>
 #include <Core/HAL/File.hpp>
-#include <Core/HAL/Timer.hpp>
+#include <Core/HAL/EngineTimers.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
-#include <Engines/Physics/Physics2D.hpp>
+#include <Engines/Physics/Physics.hpp>
 
 void Lania::initialize(Core* core)
 {
 	String exportFilePath = "";
 #if _DEBUG
-	exportFilePath += DEBUG_EXPORT_PATH;
+	exportFilePath += DEFAULT_DEBUG_EXPORT_PATH;
 #endif
 
 	AppConfig* appConfig = &core->appConfig;
 	unsigned char* state = &core->state;
 
 	Log::toConsole("Initializing Core...\n");
-	core->timer.run.setStart();
+	core->engineTimers.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
 
 	if (File::exists(exportFilePath + core->executableName + "_Data/" + "Boot.lpk"))
@@ -151,26 +151,26 @@ void Lania::initialize(Core* core)
 
 void Lania::loop(Core* core, Application* application)
 {
-	Timer* time = &core->timer;
-	time->FPS.setStart();
+	EngineTimers* engineTimers = &core->engineTimers;
+	engineTimers->FPS.setStart();
 
 	application->init();
 
 	do
 	{
-		time->frame.setStart();
-		time->process.setStart();
+		engineTimers->frame.setStart();
+		engineTimers->process.setStart();
 
 		Lania::input(core);
 		Lania::logic(core, application);
 		Lania::compute(core, application);
 		Lania::output(core);
 
-		time->process.setEnd();
+		engineTimers->process.setEnd();
 
 		Lania::sleep(core);
 
-		time->frame.setEnd();
+		engineTimers->frame.setEnd();
 		core->frameCount++;
 
 		Lania::benchmark(core);
@@ -182,41 +182,41 @@ void Lania::sleep(Core* core)
 {
 	int delay = 0;
 	
-	core->timer.sleep.setStart();
+	core->engineTimers.sleep.setStart();
 
-	if (core->appConfig.targetFPS < UPDATES_PER_S)
+	if (core->appConfig.targetFPS < COMPUTE_UPDATES_PER_S)
 		delay = (MS_IN_S / core->appConfig.targetFPS) -
-			(core->timer.process.getDelta_ns() / NS_IN_MS);
+			(core->engineTimers.process.getDelta_ns() / NS_IN_MS);
 	else
-		delay = (MS_IN_S / UPDATES_PER_S) -
-			(core->timer.process.getDelta_ns() / NS_IN_MS);
+		delay = (MS_IN_S / COMPUTE_UPDATES_PER_S) -
+			(core->engineTimers.process.getDelta_ns() / NS_IN_MS);
 
 	if (delay > 0)
 		SDL_Delay(delay);
 
-	core->timer.sleep.setEnd();
+	core->engineTimers.sleep.setEnd();
 }
 
 void Lania::benchmark(Core* core)
 {
 	static int passedFrames;
-	Timer* time = &core->timer;
-	time->benchmark.setStart();
+	EngineTimers* engineTimers = &core->engineTimers;
+	engineTimers->benchmark.setStart();
 	passedFrames++;
-	time->FPS.setEnd();
+	engineTimers->FPS.setEnd();
 #ifdef _DEBUG
 	//Display FPS and other data to Window title.
-	if (time->FPS.getDelta_ns() / NS_IN_MS >= MS_IN_S)
+	if (engineTimers->FPS.getDelta_ns() / NS_IN_MS >= MS_IN_S)
 	{
-		core->FPS = (passedFrames / (time->FPS.getDelta_ns() / NS_IN_S));
-		time->FPS.setStart();
+		core->FPS = (passedFrames / (engineTimers->FPS.getDelta_ns() / NS_IN_S));
+		engineTimers->FPS.setStart();
 		passedFrames = 1;
 
 		String rendererString = "Lania";
 
 		String FPSString = std::to_string(core->FPS);
 		String frameUtilizationString = 
-			std::to_string((int)(((double)time->process.getDelta_ns() / (double)time->frame.getDelta_ns()) * 100));
+			std::to_string((int)(((double)engineTimers->process.getDelta_ns() / (double)engineTimers->frame.getDelta_ns()) * 100));
 		String batteryString = std::to_string(core->platform.batteryLife_pct);
 		SDL_SetWindowTitle(core->window,
 			(core->appConfig.appName + " ->" + 
@@ -226,94 +226,63 @@ void Lania::benchmark(Core* core)
 				", Battery: " + batteryString + "%").c_str());
 	}
 #endif
-	time->benchmark.setEnd();
+	engineTimers->benchmark.setEnd();
 }
 
 void Lania::input(Lania::Core* core)
 {
-	core->timer.input.setStart();
+	core->engineTimers.input.setStart();
 
 	if (SDL_NumJoysticks() != core->input.gameControllers.size())
 		OS::detectGameControllers(&core->input);
 	OS::detectBatteryLife(core);
 	OS::pollInputEvents(core);
 
-	core->timer.input.setEnd();
+	core->engineTimers.input.setEnd();
 }
 
 void Lania::logic(Core* core, Application* application)
 {
-	Timer* time = &core->timer;
-	time->logic.setStart();
+	EngineTimers* engineTimers = &core->engineTimers;
+	engineTimers->logic.setStart();
 
 	application->interpretStartLogic();
 	application->interpretInputLogic();
 	application->interpretFrameLogic();
 
-	time->logic.setEnd();
+	engineTimers->logic.setEnd();
 }
 
 void Lania::compute(Core* core, Application* application)
 {
-	Timer* time = &core->timer;
-	time->compute.setStart();
+	EngineTimers* engineTimers = &core->engineTimers;
+	engineTimers->compute.setStart();
+	Vector<Scene2D>* subScene2Ds = &application->scene.subScenes2D;
+	int scene2DCount = subScene2Ds->size();
 
-	Vector<Scene2D>* scene2Ds = &application->scene.subscenes2D;
-	int scene2DCount = scene2Ds->size();
-
-	while (time->lag_ms >= MS_PER_UPDATE)
+	while (engineTimers->lag_ms >= MS_PER_COMPUTE_UPDATE)
 	{
-		application->interpretComputeLogic(MS_PER_UPDATE);
-
-		for (int i = 0; i < scene2DCount; i++)
-		{
-			Scene2D* scene2D = &scene2Ds->at(i);
-			Entity2D* entities = scene2D->entities.data();
-
-			BoxCollider2D* boxColliders = scene2D->activeBoxColliders.data();
-			RigidBody2D* rigidBodies = scene2D->activeRigidBodies.data();
-			PositionLock2D* positionLocks = scene2D->pointLocks.data();
-
-			int boxColliderCount = scene2D->activeBoxColliders.size();
-			int rigidBodyCount = scene2D->activeRigidBodies.size();
-			int positionLockCount = scene2D->pointLocks.size();
-
-			Physics2D::detectCollisions(
-				time->simulation_ms,
-				&scene2D->dynamicCollisionEvents, 
-				&scene2D->staticCollisionEvents, 
-				entities, 
-				rigidBodies, 
-				rigidBodyCount, 
-				boxColliders, 
-				boxColliderCount);
-
-			DynamicCollisionEvent2D* dynamicCollisionEvents = scene2D->dynamicCollisionEvents.data();
-			int DynamicCollisionEventCount = scene2D->dynamicCollisionEvents.size();
-
-			Physics2D::handleCollisions(dynamicCollisionEvents, DynamicCollisionEventCount, rigidBodies);
-			Physics2D::decelerate(rigidBodies, rigidBodyCount);
-			Physics2D::gravitate(rigidBodies, rigidBodyCount);
-			Physics2D::displace(entities, rigidBodies, rigidBodyCount);
-			Physics2D::lockTranslation(entities, positionLocks, positionLockCount);
-		}
-
-		time->simulation_ms += MS_PER_UPDATE;
-		time->lag_ms -= MS_PER_UPDATE;
+		application->interpretComputeLogic(MS_PER_COMPUTE_UPDATE);
+		Physics::compute(
+			subScene2Ds, 
+			subScene2Ds->size(),
+			engineTimers->simulation_ms);
+		engineTimers->simulation_ms += MS_PER_COMPUTE_UPDATE;
+		engineTimers->lag_ms -= MS_PER_COMPUTE_UPDATE;
 	}
 
 	application->interpretLateLogic();
 	application->interpretFinalLogic();
 
-	time->lag_ms += time->frame.getDelta_ns() / NS_IN_MS;
+	engineTimers->lag_ms += engineTimers->frame.getDelta_ns() / NS_IN_MS;
 
-	time->compute.setEnd();
+	engineTimers->compute.setEnd();
 }
 
 void Lania::output(Core* core)
 {
-	Timer* time = &core->timer;
-	time->output.setStart();
+	EngineTimers* engineTimers = &core->engineTimers;
+	engineTimers->output.setStart();
 	if (core->renderer == LANIA_OPENGL_3_3_RENDERER)
 	{
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
@@ -325,7 +294,7 @@ void Lania::output(Core* core)
 		;
 	}
 
-	time->output.setEnd();
+	engineTimers->output.setEnd();
 }
 
 void Lania::shutdown(Core* core, Application* application)
@@ -333,7 +302,7 @@ void Lania::shutdown(Core* core, Application* application)
 	Vector<SDL_GameController*>* gameControllers = &core->input.gameControllers;
 	Vector<SDL_Haptic*>* haptics = &core->input.haptics;
 
-	core->timer.shutdown.setStart();
+	core->engineTimers.shutdown.setStart();
 	application->scene.deleteAssets();
 
 	for (int i = 0; i < gameControllers->size(); ++i)
@@ -349,5 +318,5 @@ void Lania::shutdown(Core* core, Application* application)
 		SDL_GL_DeleteContext(core->glContext);
 	SDL_DestroyWindow(core->window);
 	SDL_Quit();
-	core->timer.shutdown.setEnd();
+	core->engineTimers.shutdown.setEnd();
 }

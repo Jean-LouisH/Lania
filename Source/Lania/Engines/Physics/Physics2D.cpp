@@ -134,8 +134,8 @@ void Lania::Physics2D::decelerate(
 {
 	for (int i = 0; i < rigidBodyCount; i++)
 	{
-		rigidBodies[i].velocity_px_per_s.x *= pow(rigidBodies[i].drag_ratio.x, S_PER_UPDATE);
-		rigidBodies[i].velocity_px_per_s.y *= pow(rigidBodies[i].drag_ratio.y, S_PER_UPDATE);
+		rigidBodies[i].velocity_px_per_s.x *= pow(rigidBodies[i].drag_ratio.x, S_PER_COMPUTE_UPDATE);
+		rigidBodies[i].velocity_px_per_s.y *= pow(rigidBodies[i].drag_ratio.y, S_PER_COMPUTE_UPDATE);
 	}
 }
 
@@ -153,7 +153,7 @@ void Lania::Physics2D::gravitate(
 	for (int i = 0; i < rigidBodyCount; i++)
 	{
 		rigidBodies[i].velocity_px_per_s.y -= 
-			EARTH_GRAVITY * S_PER_UPDATE * rigidBodies[i].gravity_scale;
+			EARTH_GRAVITY * S_PER_COMPUTE_UPDATE * rigidBodies[i].gravity_scale;
 	}
 }
 
@@ -166,9 +166,9 @@ void Lania::Physics2D::displace(
 	{
 		RigidBody2D* rigidBody = &rigidBodies[i];
 		entities[rigidBody->entityID].transform.position_px.x +=
-			rigidBody->velocity_px_per_s.x * S_PER_UPDATE;
+			rigidBody->velocity_px_per_s.x * S_PER_COMPUTE_UPDATE;
 		entities[rigidBody->entityID].transform.position_px.y +=
-			rigidBody->velocity_px_per_s.y * S_PER_UPDATE;
+			rigidBody->velocity_px_per_s.y * S_PER_COMPUTE_UPDATE;
 	}
 }
 

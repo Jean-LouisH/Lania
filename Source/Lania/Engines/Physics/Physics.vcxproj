@@ -116,9 +116,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Physics.hpp" />
     <ClInclude Include="Physics2D.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Physics2D.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
