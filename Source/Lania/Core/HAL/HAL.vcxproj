@@ -123,6 +123,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ExecutionTimer.hpp" />
     <ClInclude Include="File.hpp" />
     <ClInclude Include="GPU.hpp" />
     <ClInclude Include="Input.hpp" />
@@ -131,16 +132,14 @@
     <ClInclude Include="OS.hpp" />
     <ClInclude Include="Output.hpp" />
     <ClInclude Include="Platform.hpp" />
-    <ClInclude Include="Threading.hpp" />
-    <ClInclude Include="Timer.hpp" />
-    <ClInclude Include="Windowing.hpp" />
+    <ClInclude Include="EngineTimers.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ExecutionTimer.cpp" />
     <ClCompile Include="File.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="OS.cpp" />
-    <ClCompile Include="Timer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

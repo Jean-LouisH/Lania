@@ -15,7 +15,7 @@
 #pragma once
 
 #include <SDL.h>
-#include <Core/HAL/Timer.hpp>
+#include <Core/HAL/EngineTimers.hpp>
 #include "ConfigurationParser.hpp"
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/Output.hpp>
@@ -49,7 +49,7 @@ namespace Lania
 		String filepath;
 		String executableName;
 		Platform platform;
-		Timer timer;
+		EngineTimers engineTimers;
 		AppConfig appConfig;
 		Input input;
 		Output output;

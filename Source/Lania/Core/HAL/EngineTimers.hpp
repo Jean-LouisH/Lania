@@ -14,28 +14,14 @@
 
 #pragma once
 
-#include <chrono>
 #include <stdint.h>
+#include "ExecutionTimer.hpp"
 
 namespace Lania
 {
-	class ExecutionTimer
+	class EngineTimers
 	{
-	private:
-		uint64_t delta_ns;
-		std::chrono::time_point<std::chrono::steady_clock> start;
-		std::chrono::time_point<std::chrono::steady_clock> end;
 	public:
-		uint64_t getDelta_ns();
-		void setStart();
-		void setEnd();
-		ExecutionTimer() :
-			delta_ns(0)
-		{}
-	};
-
-	typedef struct Timer
-	{
 		ExecutionTimer process;
 		ExecutionTimer frame;
 		ExecutionTimer input;
@@ -49,9 +35,9 @@ namespace Lania
 		ExecutionTimer shutdown;
 		double simulation_ms;
 		uint64_t lag_ms;
-		Timer() :
+		EngineTimers() :
 			simulation_ms(0.0),
 			lag_ms(0) 
 		{}
-	}Timing;
+	};
 }
