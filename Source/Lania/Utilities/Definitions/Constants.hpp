@@ -11,7 +11,7 @@
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 
-#define MS_PER_UPDATE 8
+#define MS_PER_COMPUTE_UPDATE 8
 
 #define TERA 1000000000000.0
 #define GIGA 1000000000.0
@@ -25,8 +25,8 @@
 #define NS_IN_S (1.0 / NANO)
 #define NS_IN_MS (MILLI / NANO)
 #define MS_IN_S (1.0 / MILLI)
-#define S_PER_UPDATE ((double)MS_PER_UPDATE / (double)MS_IN_S)
-#define UPDATES_PER_S (1.0 / (double)S_PER_UPDATE)
+#define S_PER_COMPUTE_UPDATE ((double)MS_PER_COMPUTE_UPDATE / (double)MS_IN_S)
+#define COMPUTE_UPDATES_PER_S (1.0 / (double)S_PER_COMPUTE_UPDATE)
 
 #define EARTH_GRAVITY 9.80665
 #define GRAVITATIONAL_CONSTANT 6.67408e-11
@@ -34,4 +34,4 @@
 
 #define NO_PARENT 0 
 
-#define DEBUG_EXPORT_PATH "../../Demos/Exports/Lania/"
+#define DEFAULT_DEBUG_EXPORT_PATH "../../Demos/Exports/Lania/"
