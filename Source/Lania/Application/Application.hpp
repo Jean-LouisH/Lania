@@ -16,7 +16,6 @@
 
 #include "../Core/Core.hpp"
 #include "Scene/Scene.hpp"
-#include "VirtualMachine/VirtualMachine.hpp"
 #include "Native/Native.hpp"
 
 namespace Lania
