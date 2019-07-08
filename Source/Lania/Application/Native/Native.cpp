@@ -1,9 +1,14 @@
 #include "Native.hpp"
 
 #ifdef _WIN32
-void Lania::Native::linkWindowsDLL()
+void Lania::Native::linkWindowsDLL(String executableName)
 {
-	HINSTANCE hGetProcIDDLL = LoadLibrary("LaniaNative.dll");
+	String exportFilePath = "";
+#if _DEBUG
+	exportFilePath += DEFAULT_DEBUG_EXPORT_PATH;
+#endif
+
+	HINSTANCE hGetProcIDDLL = LoadLibrary((exportFilePath + executableName + "_Data/" + "Native_CPP.dll").c_str());
 
 	if (hGetProcIDDLL)
 	{
@@ -21,7 +26,7 @@ void Lania::Native::linkWindowsDLL()
 void Lania::Native::init(Scene* scene, Core* core)
 {
 #ifdef _WIN32
-	this->linkWindowsDLL();
+	this->linkWindowsDLL(core->executableName);
 #endif
 	if (this->native_init != NULL)
 		this->native_init(scene, core);

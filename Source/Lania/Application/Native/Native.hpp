@@ -41,7 +41,7 @@ namespace Lania
 		cpp_interpretComputeLogic native_interpretComputeLogic;
 		cpp_interpretLateLogic native_interpretLateLogic;
 		cpp_interpretFinalLogic native_interpretFinalLogic;
-		void linkWindowsDLL();
+		void linkWindowsDLL(String executableName);
 #endif
 	public:
 		void init(Scene* scene, Core* core);
