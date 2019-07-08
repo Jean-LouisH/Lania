@@ -22,8 +22,7 @@ namespace Lania
 	namespace Physics
 	{
 		void compute(
-			Vector<Scene2D>* subScene2Ds, 
-			int subScene2DCount,
+			Vector<Scene2D>* subScene2Ds,
 			double simulation_ms);
 	}
 }

@@ -4,9 +4,10 @@
 
 void Lania::Physics::compute(
 	Vector<Scene2D>* subScene2Ds,
-	int subScene2DCount,
 	double simulation_ms)
 {
+	int subScene2DCount = subScene2Ds->size();
+
 	for (int i = 0; i < subScene2DCount; i++)
 	{
 		Scene2D* subScene2D = &subScene2Ds->at(i);
