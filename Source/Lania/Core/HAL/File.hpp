@@ -25,7 +25,9 @@ namespace Lania
 		MemoryPoolU8 read(String filePath);
 		MemoryPoolU8 readString(String filePath);
 		void write(String filePath, MemoryPoolU8 memory);
+		void writeString(String filePath, MemoryPoolU8 memory);
 		void append(String filePath, MemoryPoolU8 memory);
+		void appendString(String filePath, MemoryPoolU8 memory);
 		String getExecutableName(String filePath);
 	}
 }

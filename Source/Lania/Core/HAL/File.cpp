@@ -56,10 +56,30 @@ void Lania::File::write(String filePath, MemoryPoolU8 memory)
 	}
 }
 
+void Lania::File::writeString(String filePath, MemoryPoolU8 memory)
+{
+	FILE* writeFile = fopen(filePath.c_str(), "wb");
+	if (writeFile != NULL)
+	{
+		fwrite(memory.data, sizeof(uint8_t), memory.size - 1, writeFile);
+		fclose(writeFile);
+	}
+}
+
 void Lania::File::append(String filePath, MemoryPoolU8 memory)
 {
 
 	FILE* appendFile = fopen(filePath.c_str(), "ab");
+	if (appendFile != NULL)
+	{
+		fwrite(memory.data, sizeof(uint8_t), memory.size - 1, appendFile);
+		fclose(appendFile);
+	}
+}
+
+void Lania::File::appendString(String filePath, MemoryPoolU8 memory)
+{
+	FILE* appendFile = fopen(filePath.c_str(), "a");
 	if (appendFile != NULL)
 	{
 		fwrite(memory.data, sizeof(uint8_t), memory.size, appendFile);
