@@ -15,6 +15,7 @@
 #include <Core/HAL/EngineTimers.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Engines/Physics/Physics.hpp>
+#include <zlib.h>
 
 void Lania::initialize(Core* core)
 {
@@ -30,18 +31,36 @@ void Lania::initialize(Core* core)
 	core->engineTimers.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
 
-	if (File::exists(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lpk"))
-	{
+	MemoryPoolU8 compressInput = File::readString(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.txt");
+	MemoryPoolU8 compressOutput;
+	uLong compressionUpperBound = compressBound(compressInput.size);
+	compressOutput.allocateUninit(compressionUpperBound);
+	compress2(compressOutput.data, &compressionUpperBound, compressInput.data, compressInput.size, 1);
+	compressOutput.reallocate(compressionUpperBound);
+	File::write(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lut", compressOutput);
 
+	if (File::exists(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lut"))
+	{
+		MemoryPoolU8 compressedRuntimeBoot = File::read(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lut");
+		MemoryPoolU8 runtimeBoot;
+		runtimeBoot.allocateUninit(compressedRuntimeBoot.size * 2);
+		uncompress(runtimeBoot.data, (uLongf*)&runtimeBoot.size, compressedRuntimeBoot.data, compressedRuntimeBoot.size);
+		compressedRuntimeBoot.deallocate();
+		*appConfig = Config::parseAppConfig((char*)runtimeBoot.data);
+		runtimeBoot.deallocate();
 	}
 	else
 	{
-		MemoryPoolU8 appConfigFile = File::readString(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot");
-		*appConfig = Config::parseAppConfig((char*)appConfigFile.data);
-		appConfigFile.deallocate();
-		SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName + 
-			"_Data/" + "gamecontrollerdb.txt").c_str());
+		appConfig->appName = "No Runtime Loaded";
+		appConfig->renderingAPI = "opengl 3.3";
+		appConfig->targetFPS = 30;
+		appConfig->windowFlags |= SDL_WINDOW_OPENGL;
+		appConfig->windowHeight_px = 400;
+		appConfig->windowWidth_px = 400;
 	}
+
+	SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName +
+		"_Data/" + "gamecontrollerdb.txt").c_str());
 
 	core->platform.logicalCoreCount = SDL_GetCPUCount();
 	core->platform.L1CacheLineSize_B = SDL_GetCPUCacheLineSize();
