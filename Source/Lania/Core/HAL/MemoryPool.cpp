@@ -29,7 +29,16 @@ void Lania::MemoryPoolU8::allocateUninit(uint64_t capacity)
 void Lania::MemoryPoolU8::reallocate(uint64_t newCapacity)
 {
 	if ((this->data != NULL) && (newCapacity > 0))
-		this->data = (uint8_t*) realloc(this->data, newCapacity);
+	{
+		uint8_t* newData;
+		newData = (uint8_t*)realloc(this->data, newCapacity);
+
+		if (newData != NULL)
+		{
+			this->data = newData;
+			this->size = newCapacity;
+		}
+	}
 }
 
 void Lania::MemoryPoolU8::deallocate()
