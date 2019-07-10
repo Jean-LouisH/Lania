@@ -35,7 +35,7 @@ void Lania::initialize(Core* core)
 	MemoryPoolU8 compressOutput;
 	uLong compressionUpperBound = compressBound(compressInput.size);
 	compressOutput.allocateUninit(compressionUpperBound);
-	compress2(compressOutput.data, &compressionUpperBound, compressInput.data, compressInput.size, 1);
+	compress2(compressOutput.getData(), &compressionUpperBound, compressInput.getData(), compressInput.size, 1);
 	compressOutput.reallocate(compressionUpperBound);
 	File::write(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lut", compressOutput);
 
@@ -44,9 +44,9 @@ void Lania::initialize(Core* core)
 		MemoryPoolU8 compressedRuntimeBoot = File::read(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lut");
 		MemoryPoolU8 runtimeBoot;
 		runtimeBoot.allocateUninit(compressedRuntimeBoot.size * 2);
-		uncompress(runtimeBoot.data, (uLongf*)&runtimeBoot.size, compressedRuntimeBoot.data, compressedRuntimeBoot.size);
+		uncompress(runtimeBoot.getData(), (uLongf*)&runtimeBoot.size, compressedRuntimeBoot.getData(), compressedRuntimeBoot.size);
 		compressedRuntimeBoot.deallocate();
-		*appConfig = Config::parseAppConfig((char*)runtimeBoot.data);
+		*appConfig = Config::parseAppConfig((char*)runtimeBoot.getData());
 		runtimeBoot.deallocate();
 	}
 	else

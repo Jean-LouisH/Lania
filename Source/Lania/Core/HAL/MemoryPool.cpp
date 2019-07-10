@@ -48,3 +48,8 @@ void Lania::MemoryPoolU8::deallocate()
 	this->data = NULL;
 	this->size = 0;
 }
+
+uint8_t* Lania::MemoryPoolU8::getData()
+{
+	return this->data;
+}

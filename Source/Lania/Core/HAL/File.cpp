@@ -20,8 +20,8 @@ Lania::MemoryPoolU8 Lania::File::read(String filePath)
 		int capacity = ftell(readFile);
 		rewind(readFile);
 		memory.allocateUninit(capacity);
-		if (memory.data != NULL)
-			fread(memory.data, sizeof(uint8_t), memory.size, readFile);
+		if (memory.getData() != NULL)
+			fread(memory.getData(), sizeof(uint8_t), memory.size, readFile);
 		fclose(readFile);
 	}
 	return memory;
@@ -38,9 +38,9 @@ Lania::MemoryPoolU8 Lania::File::readString(String filePath)
 		int capacity = ftell(readFile);
 		rewind(readFile);
 		memory.allocateUninit(capacity + 1);
-		if (memory.data != NULL)
-			fread(memory.data, sizeof(uint8_t), memory.size, readFile);
-		memory.data[memory.size - 1] = '\0';
+		if (memory.getData() != NULL)
+			fread(memory.getData(), sizeof(uint8_t), memory.size, readFile);
+		memory.getData()[memory.size - 1] = '\0';
 		fclose(readFile);
 	}
 	return memory;
@@ -51,7 +51,7 @@ void Lania::File::write(String filePath, MemoryPoolU8 memory)
 	FILE* writeFile = fopen(filePath.c_str(), "wb");
 	if (writeFile != NULL)
 	{
-		fwrite(memory.data, sizeof(uint8_t), memory.size, writeFile);
+		fwrite(memory.getData(), sizeof(uint8_t), memory.size, writeFile);
 		fclose(writeFile);
 	}
 }
@@ -61,7 +61,7 @@ void Lania::File::writeString(String filePath, MemoryPoolU8 memory)
 	FILE* writeFile = fopen(filePath.c_str(), "wb");
 	if (writeFile != NULL)
 	{
-		fwrite(memory.data, sizeof(uint8_t), memory.size - 1, writeFile);
+		fwrite(memory.getData(), sizeof(uint8_t), memory.size - 1, writeFile);
 		fclose(writeFile);
 	}
 }
@@ -72,7 +72,7 @@ void Lania::File::append(String filePath, MemoryPoolU8 memory)
 	FILE* appendFile = fopen(filePath.c_str(), "ab");
 	if (appendFile != NULL)
 	{
-		fwrite(memory.data, sizeof(uint8_t), memory.size - 1, appendFile);
+		fwrite(memory.getData(), sizeof(uint8_t), memory.size - 1, appendFile);
 		fclose(appendFile);
 	}
 }
@@ -82,7 +82,7 @@ void Lania::File::appendString(String filePath, MemoryPoolU8 memory)
 	FILE* appendFile = fopen(filePath.c_str(), "a");
 	if (appendFile != NULL)
 	{
-		fwrite(memory.data, sizeof(uint8_t), memory.size, appendFile);
+		fwrite(memory.getData(), sizeof(uint8_t), memory.size, appendFile);
 		fclose(appendFile);
 	}
 }
