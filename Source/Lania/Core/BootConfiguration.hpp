@@ -3,9 +3,9 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* Application Configuration
+* Boot Configuration
 *
-* Contains engine and application data according to the configuration file.
+* Contains initialization data for engine and application layers.
 *
 * Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
@@ -18,7 +18,7 @@
 
 namespace Lania
 {
-	typedef struct AppConfig
+	typedef struct BootConfiguration
 	{
 		uint16_t windowWidth_px;
 		uint16_t windowHeight_px;
@@ -28,11 +28,11 @@ namespace Lania
 		String mainScene;
 		String appName;
 
-		AppConfig() :
+		BootConfiguration() :
 			windowWidth_px(0),
 			windowHeight_px(0),
 			targetFPS(0),
 			windowFlags(0)
 		{}
-	}AppConfig;
+	}BootConfiguration;
 }

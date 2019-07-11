@@ -16,7 +16,7 @@
 
 #include <SDL.h>
 #include <Core/HAL/EngineTimers.hpp>
-#include "ConfigurationParser.hpp"
+#include "BootConfiguration.hpp"
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/Output.hpp>
 #include <Core/HAL/Platform.hpp>
@@ -50,7 +50,7 @@ namespace Lania
 		String executableName;
 		Platform platform;
 		EngineTimers engineTimers;
-		AppConfig appConfig;
+		BootConfiguration bootConfig;
 		Input input;
 		Output output;
 		uint64_t frameCount;

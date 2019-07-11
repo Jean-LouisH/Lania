@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ApplicationConfiguration.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ConfigurationParser.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Core.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RuntimeBootLoading.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BootConfiguration.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ConfigurationParser.cpp">
+    <ClCompile Include="RuntimeBootLoading.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,8 +2,8 @@
 
 void Lania::Application::init()
 {
-	this->scene.windowCopy.height = core->appConfig.windowHeight_px;
-	this->scene.windowCopy.width = core->appConfig.windowWidth_px;
+	this->scene.windowCopy.height = core->bootConfig.windowHeight_px;
+	this->scene.windowCopy.width = core->bootConfig.windowWidth_px;
 	this->native.init(&this->scene, this->core);
 }
 
