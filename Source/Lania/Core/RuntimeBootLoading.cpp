@@ -9,12 +9,24 @@ void Lania::RuntimeBootLoading::build(BootConfiguration* bootConfig, String file
 
 	for (YAML::const_iterator it1 = runtimeBoot.begin(); it1 != runtimeBoot.end(); ++it1)
 	{
+		if (it1->first.as<std::string>() == "application")
+		{
+			for (YAML::const_iterator it2 = it1->second.begin(); it2 != it1->second.end(); ++it2)
+			{
+				if (it2->first.as<std::string>() == "name")
+					bootConfig->appName = it2->second.as<std::string>();
+				else if (it2->first.as<std::string>() == "icon")
+					bootConfig->icon = it2->second.as<std::string>();
+				else if (it2->first.as<std::string>() == "main_scene")
+					bootConfig->mainScene = it2->second.as<std::string>();
+			}
+		}
 		if (it1->first.as<std::string>() == "application_window")
 		{
 			for (YAML::const_iterator it2 = it1->second.begin(); it2 != it1->second.end(); ++it2)
 			{
 				if (it2->first.as<std::string>() == "title")
-					bootConfig->appName = it2->second.as<std::string>();
+					bootConfig->windowTitle = it2->second.as<std::string>();
 				else if (it2->first.as<std::string>() == "width")
 					bootConfig->windowWidth_px = it2->second.as<int>();
 				else if (it2->first.as<std::string>() == "height")

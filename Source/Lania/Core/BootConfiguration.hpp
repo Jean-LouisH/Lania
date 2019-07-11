@@ -25,8 +25,10 @@ namespace Lania
 		uint16_t targetFPS;
 		uint32_t windowFlags;
 		String renderingAPI;
-		String mainScene;
+		String windowTitle;
 		String appName;
+		String icon;
+		String mainScene;
 
 		BootConfiguration() :
 			windowWidth_px(0),
