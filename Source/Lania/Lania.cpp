@@ -1,5 +1,5 @@
 #include <Lania.hpp>
-#include <Core/ConfigurationParser.hpp>
+#include <Core/RuntimeBootLoading.hpp>
 #include <Core/Core.hpp>
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/OS.hpp>
@@ -15,7 +15,6 @@
 #include <Core/HAL/EngineTimers.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Engines/Physics/Physics.hpp>
-#include <zlib.h>
 
 void Lania::initialize(Core* core)
 {
@@ -24,39 +23,28 @@ void Lania::initialize(Core* core)
 	exportFilePath += DEFAULT_DEBUG_EXPORT_PATH;
 #endif
 
-	AppConfig* appConfig = &core->appConfig;
+	BootConfiguration* bootConfig = &core->bootConfig;
 	unsigned char* state = &core->state;
 
 	Log::toConsole("Initializing Core...\n");
 	core->engineTimers.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
 
-	MemoryPoolU8 compressInput = File::readString(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.txt");
-	MemoryPoolU8 compressOutput;
-	uLong compressionUpperBound = compressBound(compressInput.size);
-	compressOutput.allocateUninit(compressionUpperBound);
-	compress2(compressOutput.getData(), &compressionUpperBound, compressInput.getData(), compressInput.size, 1);
-	compressOutput.reallocate(compressionUpperBound);
-	File::write(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lut", compressOutput);
+	String exportDataFilePath = exportFilePath + core->executableName + "_Data/";
+	String runtimeBootFilePath = exportDataFilePath + "Runtime_Boot.yml";
 
-	if (File::exists(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lut"))
+	if (File::exists(runtimeBootFilePath))
 	{
-		MemoryPoolU8 compressedRuntimeBoot = File::read(exportFilePath + core->executableName + "_Data/" + "Runtime_Boot.lut");
-		MemoryPoolU8 runtimeBoot;
-		runtimeBoot.allocateUninit(compressedRuntimeBoot.size * 2);
-		uncompress(runtimeBoot.getData(), (uLongf*)&runtimeBoot.size, compressedRuntimeBoot.getData(), compressedRuntimeBoot.size);
-		compressedRuntimeBoot.deallocate();
-		*appConfig = Config::parseAppConfig((char*)runtimeBoot.getData());
-		runtimeBoot.deallocate();
+		RuntimeBootLoading::build(bootConfig, runtimeBootFilePath);
 	}
 	else
 	{
-		appConfig->appName = "No Runtime Loaded";
-		appConfig->renderingAPI = "opengl 3.3";
-		appConfig->targetFPS = 30;
-		appConfig->windowFlags |= SDL_WINDOW_OPENGL;
-		appConfig->windowHeight_px = 400;
-		appConfig->windowWidth_px = 400;
+		bootConfig->appName = "No Runtime Loaded";
+		bootConfig->renderingAPI = "opengl 3.3";
+		bootConfig->targetFPS = 30;
+		bootConfig->windowFlags |= SDL_WINDOW_OPENGL;
+		bootConfig->windowHeight_px = 400;
+		bootConfig->windowWidth_px = 400;
 	}
 
 	SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName +
@@ -84,10 +72,10 @@ void Lania::initialize(Core* core)
 	else
 	{
 		SDL_GetDesktopDisplayMode(0, &core->platform.SDLDisplayMode);
-		Log::toConsole("Target FPS: " + std::to_string(appConfig->targetFPS));
+		Log::toConsole("Target FPS: " + std::to_string(bootConfig->targetFPS));
 		IMG_Init(IMG_INIT_PNG);
 
-		if (appConfig->renderingAPI == "opengl 3.3")
+		if (bootConfig->renderingAPI == "opengl 3.3")
 		{
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
@@ -99,18 +87,18 @@ void Lania::initialize(Core* core)
 			SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		}
-		else if (appConfig->renderingAPI == "vulkan 1.1")
+		else if (bootConfig->renderingAPI == "vulkan 1.1")
 		{
 			;
 		}
 
 		core->window = SDL_CreateWindow(
-			appConfig->appName.c_str(),
+			bootConfig->appName.c_str(),
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
-			appConfig->windowWidth_px,
-			appConfig->windowHeight_px,
-			appConfig->windowFlags);
+			bootConfig->windowWidth_px,
+			bootConfig->windowHeight_px,
+			bootConfig->windowFlags);
 
 		if (core->window == NULL)
 		{
@@ -128,7 +116,7 @@ void Lania::initialize(Core* core)
 			SDL_DisableScreenSaver();
 			SDL_GetCurrentDisplayMode(0, &core->platform.SDLDisplayMode);
 
-			if (appConfig->renderingAPI == "opengl 3.3")
+			if (bootConfig->renderingAPI == "opengl 3.3")
 			{
 				core->renderer = LANIA_OPENGL_3_3_RENDERER;
 				core->glContext = SDL_GL_CreateContext(core->window);
@@ -145,20 +133,20 @@ void Lania::initialize(Core* core)
 					*renderingAPIString += (char*)glGetString(GL_VERSION);
 					core->platform.renderingAPIVersion = (char*)renderingAPIString->c_str();
 
-					glViewport(0, 0, appConfig->windowWidth_px, appConfig->windowHeight_px);
+					glViewport(0, 0, bootConfig->windowWidth_px, bootConfig->windowHeight_px);
 					Log::toConsole("Rendering Engine: Lania OpenGL 3.3");
 				}
 			}
-			else if (appConfig->renderingAPI == "vulkan 1.1")
+			else if (bootConfig->renderingAPI == "vulkan 1.1")
 			{
 				core->renderer = LANIA_VULKAN_1_1_RENDERER;
 				core->platform.renderingAPIVersion = (char*)"Vulkan";
 				Log::toConsole("Rendering Engine: Lania Vulkan 1.1");
 			}
 
-			if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
+			if (bootConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
 				*state = RUNNING_APPLICATION_FULLSCREEN;
-			else if (appConfig->windowFlags & SDL_WINDOW_FULLSCREEN_DESKTOP)
+			else if (bootConfig->windowFlags & SDL_WINDOW_FULLSCREEN_DESKTOP)
 				*state = RUNNING_APPLICATION_FULLSCREEN_DESKTOP;
 			else if (*state != SHUTDOWN)
 				*state = RUNNING_APPLICATION_WINDOWED;
@@ -203,8 +191,8 @@ void Lania::sleep(Core* core)
 	
 	core->engineTimers.sleep.setStart();
 
-	if (core->appConfig.targetFPS < COMPUTE_UPDATES_PER_S)
-		delay = (MS_IN_S / core->appConfig.targetFPS) -
+	if (core->bootConfig.targetFPS < COMPUTE_UPDATES_PER_S)
+		delay = (MS_IN_S / core->bootConfig.targetFPS) -
 			(core->engineTimers.process.getDelta_ns() / NS_IN_MS);
 	else
 		delay = (MS_IN_S / COMPUTE_UPDATES_PER_S) -
@@ -238,7 +226,7 @@ void Lania::benchmark(Core* core)
 			std::to_string((int)(((double)engineTimers->process.getDelta_ns() / (double)engineTimers->frame.getDelta_ns()) * 100));
 		String batteryString = std::to_string(core->platform.batteryLife_pct);
 		SDL_SetWindowTitle(core->window,
-			(core->appConfig.appName + " ->" + 
+			(core->bootConfig.appName + " ->" + 
 				" Rendering API: " + core->platform.renderingAPIVersion + 
 				", FPS: " + FPSString +
 				", Frame Time Utilization: " + frameUtilizationString + "%" + 
