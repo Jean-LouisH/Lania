@@ -1,9 +1,0 @@
---Application Window
-
-title=Lania Debug
-resolution=853x480
-fullscreen=false
-resizable=true
-maximized=false
-rendering_api=opengl 3.3
-target_fps=60
