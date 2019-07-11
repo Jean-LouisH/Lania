@@ -53,3 +53,8 @@ uint8_t* Lania::MemoryPoolU8::getData()
 {
 	return this->data;
 }
+
+uint64_t Lania::MemoryPoolU8::getSize()
+{
+	return this->size;
+}

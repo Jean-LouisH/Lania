@@ -21,8 +21,8 @@ namespace Lania
 	{
 	private:
 		uint8_t* data;
-	public:
 		uint64_t size;
+	public:
 
 		MemoryPoolU8();
 		void allocate(uint64_t capacity);
@@ -30,5 +30,6 @@ namespace Lania
 		void reallocate(uint64_t newCapacity);
 		void deallocate();
 		uint8_t* getData();
+		uint64_t getSize();
 	};
 }
