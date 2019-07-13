@@ -24,8 +24,8 @@ namespace Lania
 		double timestamp_ms;
 
 		StaticCollisionEvent2D():
-			first(NO_PARENT),
-			second(NO_PARENT),
+			first(NO_ENTITY),
+			second(NO_ENTITY),
 			timestamp_ms(0.0)
 		{}
 	}StaticCollisionEvent2D;

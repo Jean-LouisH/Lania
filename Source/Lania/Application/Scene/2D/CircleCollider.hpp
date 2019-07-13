@@ -23,7 +23,7 @@ namespace Lania
 		double radius_px;
 
 		CircleCollider():
-			entityID(NO_PARENT),
+			entityID(NO_ENTITY),
 			radius_px(0.0)
 		{}
 	}CircleCollider;

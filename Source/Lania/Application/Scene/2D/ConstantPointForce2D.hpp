@@ -23,7 +23,7 @@ namespace Lania
 		double force_N;
 
 		ConstantPointForce2D() :
-			entityID(NO_PARENT)
+			entityID(NO_ENTITY)
 		{}
 	}ConstantPointForce2D;
 }

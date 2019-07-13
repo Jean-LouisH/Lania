@@ -24,7 +24,7 @@ namespace Lania
 		EntityID entityID;
 		AABB2D aabb;
 		BoxCollider2D():
-			entityID(NO_PARENT)
+			entityID(NO_ENTITY)
 		{}
 	}BoxCollider2D;
 }

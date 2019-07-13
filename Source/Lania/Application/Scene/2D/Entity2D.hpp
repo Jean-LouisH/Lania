@@ -35,14 +35,14 @@ namespace Lania
 	typedef struct Entity2D
 	{
 		Transform2D transform;
-		Vector<EntityID> children;
+		List<EntityID> children;
 		EntityID parent;
 		Map<ComponentType, ComponentListIndex> components;
 		Set<String> tags;
-		Vector<ScriptIndex> scripts;
+		List<ScriptIndex> scripts;
 
 		Entity2D() :
-			parent(NO_PARENT)
+			parent(NO_ENTITY)
 		{}
 	}Entity2D;
 }

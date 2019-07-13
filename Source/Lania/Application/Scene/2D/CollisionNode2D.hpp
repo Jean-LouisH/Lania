@@ -27,7 +27,7 @@ namespace Lania
 		ComponentType collider;
 
 		CollisionNode2D():
-			entityID(NO_PARENT),
+			entityID(NO_ENTITY),
 			mass_kg(0.0),
 			rotation_rad(0.0),
 			elasticity_ratio(0.0),

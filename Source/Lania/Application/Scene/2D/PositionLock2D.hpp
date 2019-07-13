@@ -23,7 +23,7 @@ namespace Lania
 		Vector2 point;
 
 		PositionLock2D():
-			entityID(NO_PARENT)
+			entityID(NO_ENTITY)
 		{}
 	}PositionLock2D;
 }
