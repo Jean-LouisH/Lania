@@ -1,6 +1,6 @@
 application:
   name: Lania
-  icon: Icon.png
+  icon: Textures/Horizontal_Environment.JPG
   main_scene: Main.yml
 application_window:
   title: Lania Debug
