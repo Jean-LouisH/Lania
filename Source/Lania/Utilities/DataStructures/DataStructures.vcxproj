@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Vector.hpp" />
+    <ClInclude Include="List.hpp" />
     <ClInclude Include="Map.hpp" />
     <ClInclude Include="Queue.hpp" />
     <ClInclude Include="Set.hpp" />

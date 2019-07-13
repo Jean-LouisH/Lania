@@ -16,7 +16,7 @@
 #include <SDL.h>
 #include "SDL_stdinc.h"
 #include "SDL_keycode.h"
-#include "../../Utilities/DataStructures/Vector.hpp"
+#include "../../Utilities/DataStructures/List.hpp"
 #include "../../Utilities/DataStructures/Map.hpp"
 
 namespace Lania
@@ -67,8 +67,8 @@ namespace Lania
 		Map<SDL_Keycode, KeyEvent> pressedKeys;
 		Map<SDL_Keycode, KeyEvent> releasedKeys;
 		MouseState mouse;
-		Vector<SDL_GameController*> gameControllers;
-		Vector<SDL_Haptic*> haptics;
-		Vector<SDL_HapticEffect> hapticEffects;
+		List<SDL_GameController*> gameControllers;
+		List<SDL_Haptic*> haptics;
+		List<SDL_HapticEffect> hapticEffects;
 	}Input;
 }

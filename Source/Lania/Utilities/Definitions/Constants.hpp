@@ -32,6 +32,6 @@
 #define GRAVITATIONAL_CONSTANT 6.67408e-11
 #define EARTH_MASS 5.9722e24
 
-#define NO_PARENT 0 
+#define NO_ENTITY 0 
 
 #define DEFAULT_DEBUG_EXPORT_PATH "../../Demos/Exports/Lania/"

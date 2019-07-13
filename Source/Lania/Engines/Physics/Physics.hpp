@@ -15,14 +15,14 @@
 
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Application/Scene/2D/CollisionEvent2D.hpp>
-#include <Utilities/DataStructures/Vector.hpp>
+#include <Utilities/DataStructures/List.hpp>
 
 namespace Lania
 {
 	namespace Physics
 	{
 		void compute(
-			Vector<Scene2D>* subScene2Ds,
+			List<Scene2D>* subScene2Ds,
 			double simulation_ms);
 	}
 }

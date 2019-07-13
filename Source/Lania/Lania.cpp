@@ -9,7 +9,7 @@
 #include <SDL_image.h>
 #include <GL/glew.h>
 #include <Utilities/DataStructures/String.hpp>
-#include <Utilities/DataStructures/Vector.hpp>
+#include <Utilities/DataStructures/List.hpp>
 #include <Engines/Physics/Physics2D.hpp>
 #include <Core/HAL/File.hpp>
 #include <Core/HAL/EngineTimers.hpp>
@@ -39,7 +39,7 @@ void Lania::initialize(Core* core)
 	}
 	else
 	{
-		bootConfig->appName = "No Runtime Loaded";
+		bootConfig->windowTitle = "No Runtime Loaded";
 		bootConfig->renderingAPI = "opengl 3.3";
 		bootConfig->targetFPS = 30;
 		bootConfig->windowFlags |= SDL_WINDOW_OPENGL;
@@ -93,7 +93,7 @@ void Lania::initialize(Core* core)
 		}
 
 		core->window = SDL_CreateWindow(
-			bootConfig->appName.c_str(),
+			bootConfig->windowTitle.c_str(),
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED,
 			bootConfig->windowWidth_px,
@@ -109,7 +109,7 @@ void Lania::initialize(Core* core)
 		}
 		else
 		{
-			SDL_Surface* logo = IMG_Load((exportFilePath + core->executableName + "_Data/" + "Icon.png").c_str());
+			SDL_Surface* logo = IMG_Load((exportDataFilePath + bootConfig->icon).c_str());
 			SDL_SetWindowIcon(core->window, logo);
 			SDL_FreeSurface(logo);
 
@@ -226,7 +226,7 @@ void Lania::benchmark(Core* core)
 			std::to_string((int)(((double)engineTimers->process.getDelta_ns() / (double)engineTimers->frame.getDelta_ns()) * 100));
 		String batteryString = std::to_string(core->platform.batteryLife_pct);
 		SDL_SetWindowTitle(core->window,
-			(core->bootConfig.appName + " ->" + 
+			(core->bootConfig.windowTitle + " ->" + 
 				" Rendering API: " + core->platform.renderingAPIVersion + 
 				", FPS: " + FPSString +
 				", Frame Time Utilization: " + frameUtilizationString + "%" + 
@@ -264,15 +264,13 @@ void Lania::compute(Core* core, Application* application)
 {
 	EngineTimers* engineTimers = &core->engineTimers;
 	engineTimers->compute.setStart();
-	Vector<Scene2D>* subScene2Ds = &application->scene.subScenes2D;
+	List<Scene2D>* subScene2Ds = &application->scene.subScenes2D;
 	int scene2DCount = subScene2Ds->size();
 
 	while (engineTimers->lag_ms >= MS_PER_COMPUTE_UPDATE)
 	{
 		application->interpretComputeLogic(MS_PER_COMPUTE_UPDATE);
-		Physics::compute(
-			subScene2Ds, 
-			engineTimers->simulation_ms);
+		Physics::compute(subScene2Ds, engineTimers->simulation_ms);
 		engineTimers->simulation_ms += MS_PER_COMPUTE_UPDATE;
 		engineTimers->lag_ms -= MS_PER_COMPUTE_UPDATE;
 	}
@@ -305,8 +303,8 @@ void Lania::output(Core* core)
 
 void Lania::shutdown(Core* core, Application* application)
 {
-	Vector<SDL_GameController*>* gameControllers = &core->input.gameControllers;
-	Vector<SDL_Haptic*>* haptics = &core->input.haptics;
+	List<SDL_GameController*>* gameControllers = &core->input.gameControllers;
+	List<SDL_Haptic*>* haptics = &core->input.haptics;
 
 	core->engineTimers.shutdown.setStart();
 	application->scene.deleteAssets();
