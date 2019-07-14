@@ -37,35 +37,35 @@ namespace Lania
 		List<LayerType> layers;
 		Multimap<String, SDL_Keycode> actionInputMaps;
 		Map<String, Texture> textures;
-		Rectangle windowCopy;
+		Rectangle windowDimensions;
+		String dataFilePath;
 
-		Texture loadTexture(String filepath);
+		void load(String filePath);
+		Texture loadTexture(String filePath);
 
-		void deleteTexture(String filepath);
-		void deleteSound(String filepath);
-		void deleteAllTextures();
-		void deleteAllSounds();
-		void deleteAssets();
-
-		void addScene2D();
+		/*Scene modifier methods*/
+		void addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath);
+		void addBoxCollider2D(LayerID scene2DID, EntityID entityID, double xMin, double yMin, double xMax, double yMax);
 		void addEntity2D(LayerID scene2DID);
 		void addEntity2D(LayerID scene2DID, double x, double y);
-		void addEntity2D(LayerID scene2DID, double x, double y, double xScale, double yScale);
+		void addEntity2D(LayerID scene2DID, String name, double x, double y, double rotation, double xScale, double yScale);
 		void addCamera2D(LayerID scene2DID, EntityID entityID);
-		void addSprite2D(LayerID scene2DID, EntityID entityID);
-		void addBoxCollider2D(LayerID scene2DID, EntityID entityID, double xMin, double yMin, double xMax, double yMax);
-		void addRigidBody2D(LayerID scene2DID, EntityID entityID);
 		void addPointLock2D(LayerID scene2DID, EntityID entityID, double x, double y);
+		void addRigidBody2D(LayerID scene2DID, EntityID entityID);
+		void addScene2D();
+		void addSprite2D(LayerID scene2DID, EntityID entityID);
 		void addSpriteTextureFrame(LayerID scene2DID, ComponentListIndex componentIndex, String filepath);
-		void removeEntity2D(LayerID scene2DID, EntityID entityID);
-
 		void centreEntity2DToSprite(LayerID scene2DID, EntityID entityID, ComponentListIndex componentIndex);
 		void centreCurrentCamera2DToSprite(LayerID scene2DID, ComponentListIndex componentIndex);
+		void deleteAllSounds();
+		void deleteAllTextures();
+		void deleteAssets();
+		void deleteSound(String filepath);
+		void deleteTexture(String filepath);
 		void flipSprite2D(LayerID scene2DID, ComponentListIndex componentIndex, bool flip);
-
+		void removeEntity2D(LayerID scene2DID, EntityID entityID);
 		void setCamera2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void setSprite2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
-		void addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath);
 	};
 }
