@@ -15,13 +15,23 @@
 
 #include <stdint.h>
 #include "../../../Utilities/Mathematics/Mathematics.hpp"
+#include "../../../Utilities/DataStructures/String.hpp"
+#include <SDL_image.h>
+#include <SDL.h>
 
 namespace Lania
 {
-	typedef struct Texture
+	class Texture
 	{
-		uint8_t* data;
-		uint64_t size;
-		Rectangle pixels;
-	}Texture;
+	private:
+		SDL_Surface* surface;
+	public:
+		uint8_t* getData();
+		uint64_t getSize();
+		Rectangle getDimensions();
+		double getWidth();
+		double getHeight();
+		void load(String filePath);
+		~Texture();
+	};
 }
