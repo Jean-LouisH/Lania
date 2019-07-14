@@ -28,6 +28,7 @@ namespace Lania
 		String windowTitle;
 		String appName;
 		String icon;
+		String dataFilePath;
 		String mainScene;
 
 		BootConfiguration() :
