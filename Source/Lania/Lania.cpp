@@ -29,27 +29,11 @@ void Lania::initialize(Core* core)
 	Log::toConsole("Initializing Core...\n");
 	core->engineTimers.run.setStart();
 	core->executableName = File::getExecutableName(core->filepath);
-
-	String exportDataFilePath = exportFilePath + core->executableName + "_Data/";
-	String runtimeBootFilePath = exportDataFilePath + "Runtime_Boot.yml";
-
-	if (File::exists(runtimeBootFilePath))
-	{
-		RuntimeBootLoading::build(bootConfig, runtimeBootFilePath);
-	}
-	else
-	{
-		bootConfig->windowTitle = "No Runtime Loaded";
-		bootConfig->renderingAPI = "opengl 3.3";
-		bootConfig->targetFPS = 30;
-		bootConfig->windowFlags |= SDL_WINDOW_OPENGL;
-		bootConfig->windowHeight_px = 400;
-		bootConfig->windowWidth_px = 400;
-	}
-
+	core->bootConfig.dataFilePath = exportFilePath + core->executableName + "_Data/";
+	String runtimeBootFilePath = core->bootConfig.dataFilePath + "Runtime_Boot.yml";
+	RuntimeBootLoading::build(bootConfig, runtimeBootFilePath);
 	SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName +
 		"_Data/" + "gamecontrollerdb.txt").c_str());
-
 	core->platform.logicalCoreCount = SDL_GetCPUCount();
 	core->platform.L1CacheLineSize_B = SDL_GetCPUCacheLineSize();
 	core->platform.systemRAM_MB = SDL_GetSystemRAM();
@@ -109,7 +93,7 @@ void Lania::initialize(Core* core)
 		}
 		else
 		{
-			SDL_Surface* logo = IMG_Load((exportDataFilePath + bootConfig->icon).c_str());
+			SDL_Surface* logo = IMG_Load((core->bootConfig.dataFilePath + bootConfig->icon).c_str());
 			SDL_SetWindowIcon(core->window, logo);
 			SDL_FreeSurface(logo);
 
