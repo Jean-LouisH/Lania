@@ -1,7 +1,7 @@
 application:
   name: Lania
   icon: Textures/Horizontal_Environment.JPG
-  main_scene: Main.yml
+  main_scene: Scenes/Main.yml
 application_window:
   title: Lania Debug
   width: 853
