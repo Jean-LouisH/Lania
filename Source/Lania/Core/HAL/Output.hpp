@@ -15,8 +15,13 @@
 
 namespace Lania
 {
-	typedef struct Output
+	typedef struct Renderables
 	{
 
+	}Renderables;
+
+	typedef struct Output
+	{
+		Renderables renderables;
 	}Output;
 }

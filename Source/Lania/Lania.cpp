@@ -15,6 +15,7 @@
 #include <Core/HAL/EngineTimers.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Engines/Physics/Physics.hpp>
+#include <Engines/Rendering/Rendering.hpp>
 
 void Lania::initialize(Core* core)
 {
@@ -271,17 +272,7 @@ void Lania::output(Core* core)
 {
 	EngineTimers* engineTimers = &core->engineTimers;
 	engineTimers->output.setStart();
-	if (core->renderer == LANIA_OPENGL_3_3_RENDERER)
-	{
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		SDL_GL_SwapWindow(core->window);
-	}
-	else if (core->renderer == LANIA_VULKAN_1_1_RENDERER)
-	{
-		;
-	}
-
+	Rendering::render(&core->output.renderables, core->renderer, core->window);
 	engineTimers->output.setEnd();
 }
 
