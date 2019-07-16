@@ -2,6 +2,7 @@
 #include "2D/Entity2D.hpp"
 #include <yaml-cpp/yaml.h>
 #include <SDL_image.h>
+#include <Utilities/Definitions/Constants.hpp>
 
 void Lania::Scene::load(String filePath)
 {
@@ -9,7 +10,7 @@ void Lania::Scene::load(String filePath)
 	{
 		YAML::Node newScene = YAML::LoadFile(filePath);
 		subScenes2D.clear();
-		layers.clear();
+		layerTypeList.clear();
 
 		for (YAML::const_iterator it0 = newScene.begin(); it0 != newScene.end(); ++it0)
 		{
@@ -17,7 +18,7 @@ void Lania::Scene::load(String filePath)
 			{
 				if (this->subScenes2D.size() == 0)
 					this->addScene2D();
-				this->layers.push_back(SUBSCENE_2D);
+				this->layerTypeList.push_back(SUBSCENE_2D);
 
 				for (YAML::const_iterator it1 = it0->second.begin(); it1 != it0->second.end(); ++it1)
 				{
@@ -93,7 +94,7 @@ void Lania::Scene::load(String filePath)
 							}
 						}
 
-						LayerID lastLayer = this->layers.size() - 1;
+						LayerID lastLayer = this->layerTypeList.size() - 1;
 
 						this->addEntity2D(
 							lastLayer,

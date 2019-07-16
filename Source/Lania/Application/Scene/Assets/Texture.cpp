@@ -7,7 +7,7 @@ uint8_t* Lania::Texture::getData()
 
 uint64_t Lania::Texture::getSize()
 {
-	return (this->surface->w * this->surface->h) * (int)this->surface->format->BytesPerPixel;
+	return (uint64_t) this->surface->w * (uint64_t) this->surface->h * (uint64_t)this->surface->format->BytesPerPixel;
 }
 
 Lania::Rectangle Lania::Texture::getDimensions()

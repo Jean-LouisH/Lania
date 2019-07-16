@@ -23,18 +23,12 @@
 
 namespace Lania
 {
-	enum LayerTypes
-	{
-		SUBSCENE_2D,
-		SUBSCENE_3D
-	};
-
 	class Scene
 	{
 	private:
 	public:
 		List<Scene2D> subScenes2D;
-		List<LayerType> layers;
+		List<LayerType> layerTypeList;
 		Multimap<String, SDL_Keycode> actionInputMaps;
 		Map<String, Texture> textures;
 		Rectangle windowDimensions;
