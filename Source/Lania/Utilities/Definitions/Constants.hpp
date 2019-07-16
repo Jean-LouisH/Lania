@@ -11,6 +11,8 @@
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 
+#pragma once
+
 #define MS_PER_COMPUTE_UPDATE 8
 
 #define TERA 1000000000000.0
@@ -35,3 +37,9 @@
 #define NO_ENTITY 0 
 
 #define DEFAULT_DEBUG_EXPORT_PATH "../../Demos/Exports/Lania/"
+
+enum LayerTypes
+{
+	SUBSCENE_2D,
+	SUBSCENE_3D
+};

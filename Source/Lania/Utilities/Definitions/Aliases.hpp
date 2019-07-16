@@ -11,6 +11,8 @@
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 
+#pragma once
+
 #include <stdint.h>
 
 using EntityID = uint64_t;
