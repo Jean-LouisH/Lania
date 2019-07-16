@@ -133,6 +133,7 @@
     <ClInclude Include="Output.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="EngineTimers.hpp" />
+    <ClInclude Include="Renderables.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ExecutionTimer.cpp" />

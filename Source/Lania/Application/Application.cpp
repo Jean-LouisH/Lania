@@ -39,6 +39,13 @@ void Lania::Application::interpretFinalLogic()
 	this->native.interpretFinalLogic(&this->scene, this->core);
 }
 
+Lania::Renderables Lania::Application::buildRenderables()
+{
+	Renderables renderables;
+
+	return renderables;
+}
+
 Lania::Application::Application(Core* core)
 {
 	this->core = core;

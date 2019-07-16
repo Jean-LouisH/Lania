@@ -13,13 +13,10 @@
 
 #pragma once
 
+#include "Renderables.hpp"
+
 namespace Lania
 {
-	typedef struct Renderables
-	{
-
-	}Renderables;
-
 	typedef struct Output
 	{
 		Renderables renderables;

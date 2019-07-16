@@ -14,9 +14,10 @@
 
 #pragma once
 
-#include "../Core/Core.hpp"
+#include <Core/Core.hpp>
 #include "Scene/Scene.hpp"
 #include "Native/Native.hpp"
+#include <Core/HAL/Renderables.hpp>
 
 namespace Lania
 {
@@ -35,6 +36,7 @@ namespace Lania
 		void interpretComputeLogic(unsigned int computeTimeDelta_ms);
 		void interpretLateLogic();
 		void interpretFinalLogic();
+		Renderables buildRenderables();
 		Application(Core* core);
 	};
 }
