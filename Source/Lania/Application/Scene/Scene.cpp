@@ -3,6 +3,7 @@
 #include <yaml-cpp/yaml.h>
 #include <SDL_image.h>
 #include <Utilities/Definitions/Constants.hpp>
+#include <Core/HAL/File.hpp>
 
 void Lania::Scene::load(String filePath)
 {
@@ -26,6 +27,7 @@ void Lania::Scene::load(String filePath)
 					{
 						String name = "";
 						Transform2D transform;
+						List<String> shaders2D;
 
 						bool hasCamera2D = false;
 						Vector2 cameraViewport_px;
@@ -56,6 +58,13 @@ void Lania::Scene::load(String filePath)
 							{
 								transform.scale.x = it2->second[0].as<double>();
 								transform.scale.y = it2->second[1].as<double>();
+							}
+							else if (it2->first.as<std::string>() == "shader2D")
+							{
+								MemoryPoolU8 shaderContents = File::readString(this->dataFilePath + it2->second.as<std::string>());
+								shaders2D.push_back((const char*) shaderContents.getData());
+								shaderContents.deallocate();
+
 							}
 							else if (it2->first.as<std::string>() == "Camera2D")
 							{
@@ -107,6 +116,8 @@ void Lania::Scene::load(String filePath)
 
 						List<Entity2D>* entities = &this->subScenes2D.at(lastLayer).entities;
 						EntityID lastEntity = this->subScenes2D.at(lastLayer).entities.size() - 1;
+
+						entities->at(lastEntity).shaders2D = shaders2D;
 
 						if (hasCamera2D)
 						{

@@ -4,6 +4,8 @@ Layer2D:
     position_px: [0, 0]
     rotation_rad: 0.0
     scale: [1.0, 1.0]
+    shader2D: Shaders/Simple_Fragment.glsl
+    shader2D: Shaders/Simple_Vertex.glsl
     Camera2D:
       viewport_px: [0, 0]
   Entity2D:
