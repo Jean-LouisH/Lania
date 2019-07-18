@@ -26,36 +26,36 @@ namespace Lania
 	{
 		Transform2D transform_px;
 		Rectangle viewport_px;
+		List<String> postProcessingShaders;
 	}Camera2DRenderable;
 
 	typedef struct Sprite2DRenderable
 	{
 		Transform2D transform_px;
 		Texture texture;
+		List<String> shaders2D;
 	}Sprite2DRenderable;
 
 	typedef struct Layer2D
 	{
 		Camera2DRenderable currentCamera2D;
-		List<Sprite2DRenderable> sprite2Ds;
-		List<String> shader2Ds;
+		List<Sprite2DRenderable> sprites2D;
 	}Layer2D;
 
 	typedef struct Camera3DRenderable
 	{
-
+		List<String> postProcessingShaders;
 	}Camera3DRenderable;
 
 	typedef struct MeshRenderable
 	{
-
+		List<String> shader3Ds;
 	}MeshRenderable;
 
 	typedef struct Layer3D
 	{
 		Camera3DRenderable currentCamera3D;
 		List<MeshRenderable> meshes;
-		List<String> shader3Ds;
 	}Layer3D;
 
 	typedef struct Renderables

@@ -39,6 +39,7 @@ namespace Lania
 		EntityID parent;
 		Map<ComponentType, ComponentListIndex> components;
 		Set<String> tags;
+		List<String> shaders2D;
 		List<ScriptIndex> scripts;
 
 		Entity2D() :
