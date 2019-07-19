@@ -33,8 +33,13 @@ void Lania::Texture::load(String filePath)
 	this->surface = IMG_Load(filePath.c_str());
 }
 
-Lania::Texture::~Texture()
+void Lania::Texture::unload()
 {
 	if (this->surface != NULL)
 		SDL_FreeSurface(this->surface);
+}
+
+Lania::Texture::~Texture()
+{
+
 }

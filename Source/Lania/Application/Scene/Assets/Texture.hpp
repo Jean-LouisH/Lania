@@ -32,6 +32,7 @@ namespace Lania
 		double getWidth();
 		double getHeight();
 		void load(String filePath);
+		void unload();
 		~Texture();
 	};
 }
