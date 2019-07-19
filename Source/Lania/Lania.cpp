@@ -262,6 +262,7 @@ void Lania::compute(Core* core, Application* application)
 
 	application->interpretLateLogic();
 	application->interpretFinalLogic();
+	application->buildRenderables();
 
 	engineTimers->lag_ms += engineTimers->frame.getDelta_ns() / NS_IN_MS;
 

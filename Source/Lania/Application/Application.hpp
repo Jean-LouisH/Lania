@@ -36,7 +36,7 @@ namespace Lania
 		void interpretComputeLogic(unsigned int computeTimeDelta_ms);
 		void interpretLateLogic();
 		void interpretFinalLogic();
-		Renderables buildRenderables();
+		void buildRenderables();
 		Application(Core* core);
 	};
 }
