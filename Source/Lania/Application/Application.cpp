@@ -5,7 +5,7 @@ void Lania::Application::init()
 	this->scene.windowDimensions.height = core->bootConfig.windowHeight_px;
 	this->scene.windowDimensions.width = core->bootConfig.windowWidth_px;
 	this->scene.dataFilePath = core->bootConfig.dataFilePath;
-	this->scene.load(core->bootConfig.dataFilePath + core->bootConfig.mainScene);
+	this->scene.load(scene.dataFilePath + core->bootConfig.mainScene);
 	this->native.init(&this->scene, this->core);
 }
 
@@ -54,19 +54,34 @@ void Lania::Application::buildRenderables()
 		{
 			Layer2D newLayer2D;
 			Scene2D* scene2D = &this->scene.subScenes2D.at(currentSubscene2D);
-			Camera2D* currentCameraComponent = &scene2D->activeCameras.at(scene2D->currentCameraIndex);
-			Entity2D* currentCameraEntity = &scene2D->entities.at(currentCameraComponent->entityID);
+			Entity2D* entities = scene2D->entities.data();
 
-			newLayer2D.currentCamera2D.transform_px = currentCameraEntity->transform;
+			Camera2D* currentCameraComponent = &scene2D->activeCameras.at(scene2D->currentCameraIndex);
+			Entity2D* currentCameraEntity = &entities[currentCameraComponent->entityID];
+
+			this->compound2DEntityParentTransforms(
+				&newLayer2D.currentCamera2D.transform_px, 
+				entities, 
+				currentCameraComponent->entityID);
+
+			newLayer2D.currentCamera2D.transform_px.scale = currentCameraEntity->transform.scale;
 			newLayer2D.currentCamera2D.viewport_px = currentCameraComponent->viewport_px;
 			newLayer2D.currentCamera2D.postProcessingShaders = currentCameraEntity->shaders2D;
 			
+			Sprite2D* sprites = scene2D->activeSprites.data();
+
 			for (int i = 0; i < scene2D->activeSprites.size(); i++)
 			{
 				Sprite2DRenderable sprite2D;
 				Sprite2D* spriteComponent = &scene2D->activeSprites.at(i);
 				Entity2D* spriteEntity = &scene2D->entities.at(spriteComponent->entityID);
-				sprite2D.transform_px = spriteEntity->transform;
+
+				this->compound2DEntityParentTransforms(
+					&sprite2D.transform_px, 
+					entities, 
+					spriteComponent->entityID);
+
+				sprite2D.transform_px.scale = spriteEntity->transform.scale;
 				sprite2D.shaders2D = spriteEntity->shaders2D;
 				sprite2D.texture = spriteComponent->textureFrames.at(spriteComponent->frameIndex);
 				newLayer2D.sprites2D.push_back(sprite2D);
@@ -84,6 +99,32 @@ void Lania::Application::buildRenderables()
 	}
 
 	this->core->output.renderables = renderables;
+}
+
+void Lania::Application::compound2DEntityParentTransforms(
+	Transform2D* finalTransform,
+	Entity2D* entities,
+	EntityID leafEntityID)
+{
+	EntityID currentEntityID = leafEntityID;
+	EntityID parentEntityID;
+	do
+	{
+		parentEntityID = entities[currentEntityID].parent;
+		Transform2D parentTransform = entities[parentEntityID].transform;
+		Transform2D currentEntityTransform = entities[currentEntityID].transform;
+
+		finalTransform->position_px.x += parentTransform.position_px.x +
+			(currentEntityTransform.position_px.x * cos(parentTransform.rotation_rad * M_PI) -
+				currentEntityTransform.position_px.y * sin(parentTransform.rotation_rad * M_PI));
+		finalTransform->position_px.y += parentTransform.position_px.y +
+			(currentEntityTransform.position_px.x * sin(parentTransform.rotation_rad * M_PI) +
+				currentEntityTransform.position_px.y * cos(parentTransform.rotation_rad * M_PI));
+		finalTransform->rotation_rad +=
+			-((currentEntityTransform.rotation_rad + parentTransform.rotation_rad));
+
+		currentEntityID = parentEntityID;
+	} while (parentEntityID != NO_ENTITY);
 }
 
 Lania::Application::Application(Core* core)

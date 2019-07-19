@@ -26,6 +26,10 @@ namespace Lania
 	private:
 		Core* core;
 		Native native;
+		void compound2DEntityParentTransforms(
+			Transform2D* finalTransform, 
+			Entity2D* entities, 
+			EntityID leafEntityID);
 	public:
 		Scene scene;
 
