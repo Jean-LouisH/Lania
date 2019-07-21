@@ -17,8 +17,16 @@ Layer2D:
       texture: Textures/Horizontal_Environment.JPG
   Entity2D:
     name: Circle
-    position_px: [0.0, 0.0]
+    position_px: [0, 0]
     rotation_rad: 0.0
     scale: [1.0, 1.0]
     Sprite2D:
       texture: Textures/Placeholder_Circle.png
+  Entity2D:
+    name: Square
+    parent: Circle
+    position_px: [5, -5]
+    rotation_rad: 0.0
+    scale: [1.0, 1.0]
+    Sprite2D:
+      texture: Textures/Grid.jpg
