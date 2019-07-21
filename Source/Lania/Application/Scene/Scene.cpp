@@ -29,6 +29,9 @@ void Lania::Scene::load(String filePath)
 						Transform2D transform;
 						List<String> shaders2D;
 
+						bool hasParent = false;
+						String parentName;
+
 						bool hasCamera2D = false;
 						Vector2 cameraViewport_px;
 
@@ -44,6 +47,11 @@ void Lania::Scene::load(String filePath)
 							if (it2->first.as<std::string>() == "name")
 							{
 								name = it2->second.as<std::string>();
+							}
+							else if (it2->first.as<std::string>() == "parent")
+							{
+								hasParent = true;
+								parentName = it2->second.as<std::string>();
 							}
 							else if (it2->first.as<std::string>() == "position_px")
 							{
@@ -119,6 +127,10 @@ void Lania::Scene::load(String filePath)
 
 						entities->at(lastEntity).shaders2D = shaders2D;
 
+						if (hasParent)
+						{
+							this->addParentToEntity2D(lastLayer, lastEntity, parentName);
+						}
 						if (hasCamera2D)
 						{
 							this->addCamera2D(lastLayer, lastEntity);
@@ -199,20 +211,6 @@ void Lania::Scene::addScene2D()
 	this->subScenes2D.push_back(scene2D);
 }
 
-void Lania::Scene::addEntity2D(LayerID subscene2DID)
-{
-	Entity2D entity2D;
-	this->subScenes2D.at(subscene2DID).entities.push_back(entity2D);
-}
-
-void Lania::Scene::addEntity2D(LayerID subscene2DID, double x, double y)
-{
-	Entity2D entity2D;
-	entity2D.transform.position_px.x = x;
-	entity2D.transform.position_px.y = y;
-	this->subScenes2D.at(subscene2DID).entities.push_back(entity2D);
-}
-
 void Lania::Scene::addEntity2D(LayerID scene2DID, String name, double x, double y, double rotation, double xScale, double yScale)
 {
 	Entity2D entity2D;
@@ -271,6 +269,14 @@ void Lania::Scene::addRigidBody2D(LayerID scene2DID, EntityID entityID)
 	rigidBody2D.entityID = entityID;
 	scene2D->activeRigidBodies.push_back(rigidBody2D);
 	scene2D->entities.at(entityID).components.emplace(RIGID_BODY_2D, scene2D->activeRigidBodies.size() - 1);
+}
+
+void Lania::Scene::addParentToEntity2D(LayerID scene2DID, EntityID entityID, String parentName)
+{
+	Scene2D* scene2D = &this->subScenes2D.at(scene2DID);
+	EntityID parentEntityID = scene2D->entityNameRegistry.at(parentName);
+	scene2D->entities.at(entityID).parent = parentEntityID;
+	scene2D->entities.at(parentEntityID).children.push_back(entityID);
 }
 
 void Lania::Scene::addPointLock2D(LayerID scene2DID, EntityID entityID, double x, double y)

@@ -40,10 +40,9 @@ namespace Lania
 		/*Scene modifier methods*/
 		void addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath);
 		void addBoxCollider2D(LayerID scene2DID, EntityID entityID, double xMin, double yMin, double xMax, double yMax);
-		void addEntity2D(LayerID scene2DID);
-		void addEntity2D(LayerID scene2DID, double x, double y);
 		void addEntity2D(LayerID scene2DID, String name, double x, double y, double rotation, double xScale, double yScale);
 		void addCamera2D(LayerID scene2DID, EntityID entityID);
+		void addParentToEntity2D(LayerID scene2DID, EntityID entityID, String parentName);
 		void addPointLock2D(LayerID scene2DID, EntityID entityID, double x, double y);
 		void addRigidBody2D(LayerID scene2DID, EntityID entityID);
 		void addScene2D();
