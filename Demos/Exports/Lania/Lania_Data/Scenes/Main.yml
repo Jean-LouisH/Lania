@@ -17,6 +17,7 @@ Layer2D:
       texture: Textures/Horizontal_Environment.JPG
   Entity2D:
     name: Circle
+    parent: Background
     position_px: [0, 0]
     rotation_rad: 0.0
     scale: [1.0, 1.0]

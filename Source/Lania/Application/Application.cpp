@@ -1,4 +1,5 @@
 #include "Application.hpp"
+#include <math.h>
 
 void Lania::Application::init()
 {
@@ -106,25 +107,27 @@ void Lania::Application::compound2DEntityParentTransforms(
 	Entity2D* entities,
 	EntityID leafEntityID)
 {
+	EntityID parentEntityID = entities[leafEntityID].parent;
 	EntityID currentEntityID = leafEntityID;
-	EntityID parentEntityID;
-	do
-	{
-		parentEntityID = entities[currentEntityID].parent;
-		Transform2D parentTransform = entities[parentEntityID].transform;
-		Transform2D currentEntityTransform = entities[currentEntityID].transform;
 
-		finalTransform->position_px.x += parentTransform.position_px.x +
-			(currentEntityTransform.position_px.x * cos(parentTransform.rotation_rad * M_PI) -
-				currentEntityTransform.position_px.y * sin(parentTransform.rotation_rad * M_PI));
-		finalTransform->position_px.y += parentTransform.position_px.y +
-			(currentEntityTransform.position_px.x * sin(parentTransform.rotation_rad * M_PI) +
-				currentEntityTransform.position_px.y * cos(parentTransform.rotation_rad * M_PI));
-		finalTransform->rotation_rad +=
-			-((currentEntityTransform.rotation_rad + parentTransform.rotation_rad));
+	*finalTransform = entities[leafEntityID].transform;
+
+	while (parentEntityID != NO_ENTITY)
+	{
+		Transform2D parentTransform = entities[parentEntityID].transform;
+
+		finalTransform->rotation_rad += parentTransform.rotation_rad;
+
+		finalTransform->position_px.x = parentTransform.position_px.x +
+			(finalTransform->position_px.x * cos(parentTransform.rotation_rad) -
+				finalTransform->position_px.y * sin(parentTransform.rotation_rad));
+		finalTransform->position_px.y = parentTransform.position_px.y +
+			(finalTransform->position_px.x * sin(parentTransform.rotation_rad) +
+				finalTransform->position_px.y * cos(parentTransform.rotation_rad));
 
 		currentEntityID = parentEntityID;
-	} while (parentEntityID != NO_ENTITY);
+		parentEntityID = entities[currentEntityID].parent;
+	}
 }
 
 Lania::Application::Application(Core* core)
