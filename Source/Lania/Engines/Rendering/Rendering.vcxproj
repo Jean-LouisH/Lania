@@ -120,6 +120,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="DefaultShaders.hpp" />
     <ClInclude Include="Rendering.hpp" />
     <ClInclude Include="Rendering2D.hpp" />
     <ClInclude Include="Rendering3D.hpp" />
