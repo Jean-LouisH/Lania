@@ -18,7 +18,7 @@ namespace Lania
 {
 	namespace Rendering
 	{
-		char defaultVertexShader[] =
+		const char defaultVertexShader[] =
 
 			"#version 330 core\n"
 			"layout(location = 0) in vec3 aPos;\n"
@@ -27,7 +27,7 @@ namespace Lania
 			"gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);"
 			"}";
 
-		char defaultFragmentShader[] =
+		const char defaultFragmentShader[] =
 
 			"#version 330 core\n"
 			"out vec4 FragColor;\n"
