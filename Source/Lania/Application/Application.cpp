@@ -44,14 +44,14 @@ void Lania::Application::buildRenderables()
 {
 	Renderables renderables;
 
-	renderables.layerIndices = this->scene.layerTypeList;
+	renderables.layerTypeOrder = this->scene.layerTypeList;
 
-	for (int i = 0; i < renderables.layerIndices.size(); i++)
+	for (int i = 0; i < renderables.layerTypeOrder.size(); i++)
 	{
 		int currentSubscene2D = 0;
 		int currentSubscene3D = 0;
 
-		if (renderables.layerIndices.at(i) == SUBSCENE_2D)
+		if (renderables.layerTypeOrder.at(i) == SUBSCENE_2D)
 		{
 			Layer2D newLayer2D;
 			Scene2D* scene2D = &this->scene.subScenes2D.at(currentSubscene2D);
@@ -91,7 +91,7 @@ void Lania::Application::buildRenderables()
 			renderables.layer2Ds.push_back(newLayer2D);
 			currentSubscene2D++;
 		}
-		else if (renderables.layerIndices.at(i) == SUBSCENE_3D)
+		else if (renderables.layerTypeOrder.at(i) == SUBSCENE_3D)
 		{
 			Layer3D newLayer3D;
 			renderables.layer3Ds.push_back(newLayer3D);

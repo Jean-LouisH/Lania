@@ -62,6 +62,6 @@ namespace Lania
 	{
 		List<Layer2D> layer2Ds;
 		List<Layer3D> layer3Ds;
-		List<LayerType> layerIndices;
+		List<LayerType> layerTypeOrder;
 	}Renderables;
 }
