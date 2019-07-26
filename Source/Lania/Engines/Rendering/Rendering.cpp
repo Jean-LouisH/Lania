@@ -1,4 +1,5 @@
 #include "Rendering.hpp"
+#include "Rendering2D.hpp"
 #include <Utilities/Definitions/Constants.hpp>
 #include <GL/glew.h>
 
@@ -10,6 +11,8 @@ void Lania::Rendering::render(Renderables* renderables, uint8_t renderer, SDL_Wi
 	int layer2DCount = renderables->layer2Ds.size();
 	int layer3DCount = renderables->layer3Ds.size();
 	int totalLayerCount = layer2DCount + layer3DCount;
+	int currentSubscene2D = 0;
+	int currentSubscene3D = 0;
 
 	if (renderer == LANIA_OPENGL_3_3_RENDERER)
 	{
@@ -20,11 +23,14 @@ void Lania::Rendering::render(Renderables* renderables, uint8_t renderer, SDL_Wi
 		{
 			if (layerTypeOrder[i] == SUBSCENE_2D)
 			{
-
+				Layer2D* currentLayer2D = &layer2Ds[currentSubscene2D];
+				List<Sprite2DRenderable>* sprites2D = &currentLayer2D->sprites2D;
+				Rendering2D::OpenGL::drawSprites(sprites2D->data(), sprites2D->size(), &currentLayer2D->currentCamera2D);
+				currentSubscene2D++;
 			}
 			else if (layerTypeOrder[i] == SUBSCENE_3D)
 			{
-
+				currentSubscene3D++;
 			}
 		}
 		SDL_GL_SwapWindow(window);

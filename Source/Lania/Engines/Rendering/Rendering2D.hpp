@@ -13,10 +13,18 @@
 
 #pragma once
 
+#include <Core/HAL/Renderables.hpp>
+
 namespace Lania
 {
 	namespace Rendering2D
 	{
-
+		namespace OpenGL
+		{
+			void drawSprites(
+				Sprite2DRenderable* sprites2D, 
+				int spriteCount,
+				Camera2DRenderable* currentCamera2D);
+		}
 	}
 }
