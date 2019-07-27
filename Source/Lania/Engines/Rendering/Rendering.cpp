@@ -14,29 +14,36 @@ void Lania::Rendering::render(Renderables* renderables, uint8_t renderer, SDL_Wi
 	int currentSubscene2D = 0;
 	int currentSubscene3D = 0;
 
-	if (renderer == LANIA_OPENGL_3_3_RENDERER)
+	switch (renderer)
 	{
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		case LANIA_OPENGL_3_3_RENDERER:
 
-		for (int i = 0; i < totalLayerCount; i++)
-		{
-			if (layerTypeOrder[i] == SUBSCENE_2D)
+			Rendering::OpenGL::clearBuffers();
+
+			for (int i = 0; i < totalLayerCount; i++)
 			{
-				Layer2D* currentLayer2D = &layer2Ds[currentSubscene2D];
-				List<Sprite2DRenderable>* sprites2D = &currentLayer2D->sprites2D;
-				Rendering2D::OpenGL::drawSprites(sprites2D->data(), sprites2D->size(), &currentLayer2D->currentCamera2D);
-				currentSubscene2D++;
+				if (layerTypeOrder[i] == SUBSCENE_2D)
+				{
+					Layer2D* currentLayer2D = &layer2Ds[currentSubscene2D];
+					List<Sprite2DRenderable>* sprites2D = &currentLayer2D->sprites2D;
+					Rendering2D::OpenGL::drawSprites(sprites2D->data(), sprites2D->size(), &currentLayer2D->currentCamera2D);
+					currentSubscene2D++;
+				}
+				else if (layerTypeOrder[i] == SUBSCENE_3D)
+				{
+					currentSubscene3D++;
+				}
 			}
-			else if (layerTypeOrder[i] == SUBSCENE_3D)
-			{
-				currentSubscene3D++;
-			}
-		}
-		SDL_GL_SwapWindow(window);
+			SDL_GL_SwapWindow(window);
+			break;
+
+		case LANIA_VULKAN_1_1_RENDERER:
+			break;
 	}
-	else if (renderer == LANIA_VULKAN_1_1_RENDERER)
-	{
-		;
-	}
+}
+
+void Lania::Rendering::OpenGL::clearBuffers()
+{
+	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
