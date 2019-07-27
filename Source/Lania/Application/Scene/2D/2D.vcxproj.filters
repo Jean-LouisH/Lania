@@ -57,5 +57,8 @@
     <ClInclude Include="PositionLock2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="RichTextLabel.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

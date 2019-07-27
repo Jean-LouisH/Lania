@@ -19,6 +19,8 @@
 #include <Application/Scene/Assets/Texture.hpp>
 #include <Utilities/DataStructures/String.hpp>
 #include <Utilities/Definitions/Aliases.hpp>
+#include <Utilities/Mathematics/Colour.hpp>
+#include <Application/Scene/Assets/Font.hpp>
 
 namespace Lania
 {
@@ -36,10 +38,20 @@ namespace Lania
 		List<String> shaders2D;
 	}Sprite2DRenderable;
 
+	typedef struct Text2DRenderable
+	{
+		Transform2D transform_px;
+		String text;
+		Font font;
+		Colour colour;
+		List<String> shaders2D;
+	}Text2DRenderable;
+
 	typedef struct Layer2D
 	{
 		Camera2DRenderable currentCamera2D;
 		List<Sprite2DRenderable> sprites2D;
+		List<Text2DRenderable> texts2D;
 	}Layer2D;
 
 	typedef struct Camera3DRenderable

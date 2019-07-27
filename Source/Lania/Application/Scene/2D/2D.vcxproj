@@ -131,6 +131,7 @@
     <ClInclude Include="ConstantPointForce2D.hpp" />
     <ClInclude Include="Entity2D.hpp" />
     <ClInclude Include="PositionLock2D.hpp" />
+    <ClInclude Include="RichTextLabel.hpp" />
     <ClInclude Include="RigidBody2D.hpp" />
     <ClInclude Include="Scene2D.hpp" />
     <ClInclude Include="Sprite2D.hpp" />
