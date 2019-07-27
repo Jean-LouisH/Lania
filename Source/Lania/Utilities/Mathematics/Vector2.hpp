@@ -13,26 +13,9 @@
 
 #pragma once
 
+#include "../../../../ThirdParty/GLM/glm-0.9.9.3/glm/glm/glm.hpp"
+
 namespace Lania
 {
-	typedef struct Vector2
-	{
-		double x;
-		double y;
-
-		double length();
-		double direction();
-		Vector2 normalized();
-		double dot(Vector2 operand);
-		Vector2 cross(Vector2 operand);
-
-		Vector2 operator+(Vector2 operand);
-		Vector2 operator-(Vector2 operand);
-		Vector2 operator*(double scale);
-
-		Vector2():
-			x(0.0),
-			y(0.0)
-		{}
-	}Vector2;
+	using Vector2 = glm::dvec2;
 }

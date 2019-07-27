@@ -13,28 +13,9 @@
 
 #pragma once
 
+#include "../../../../ThirdParty/GLM/glm-0.9.9.3/glm/glm/glm.hpp"
+
 namespace Lania
 {
-	typedef struct Vector3
-	{
-		double x;
-		double y;
-		double z;
-
-		double length();
-		Vector3 direction();
-		Vector3 normalized();
-		double dot(Vector3 operand);
-		Vector3 cross(Vector3 operand);
-
-		Vector3 operator+(Vector3 operand);
-		Vector3 operator-(Vector3 operand);
-		Vector3 operator*(double scale);
-
-		Vector3() :
-			x(0.0),
-			y(0.0),
-			z(0.0)
-		{}
-	}Vector3;
+	using Vector3 = glm::dvec3;
 }
