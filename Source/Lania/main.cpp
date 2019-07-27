@@ -29,11 +29,11 @@ int main(int argc, char* argv[])
 		Lania::Log::toConsole("\t\tLania Debug Console\n");
 
 		Lania::initialize(core);
-		if (core->state != Lania::SHUTDOWN)
+		if (core->state != Lania::coreStates::SHUTDOWN)
 			Lania::loop(core, application);
 		Lania::shutdown(core, application);
 
-		restarting = (core->state == Lania::RESTARTING);
+		restarting = (core->state == Lania::coreStates::RESTARTING);
 
 		delete application;
 		delete core;
