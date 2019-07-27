@@ -122,12 +122,6 @@
     <ClInclude Include="Stack.hpp" />
     <ClInclude Include="String.hpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Vector.cpp" />
-    <ClCompile Include="Queue.cpp" />
-    <ClCompile Include="Stack.cpp" />
-    <ClCompile Include="String.cpp" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
