@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Colour.hpp" />
     <ClInclude Include="Mathematics.hpp" />
     <ClInclude Include="Rectangle.hpp" />
     <ClInclude Include="Transform2D.hpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="Vector3.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Colour.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />
   </ItemGroup>

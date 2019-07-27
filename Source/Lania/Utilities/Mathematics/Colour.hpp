@@ -3,7 +3,7 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* Mathematics
+* Colour
 *
 * Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
@@ -11,8 +11,18 @@
 
 #pragma once
 
-#include "Rectangle.hpp"
-#include "Transform2D.hpp"
-#include "Vector2.hpp"
-#include "Vector3.hpp"
-#include "Colour.hpp"
+#include <stdint.h>
+#include <string>
+
+namespace Lania
+{
+	typedef struct Colour
+	{
+		double red;
+		double blue;
+		double green;
+		double alpha;
+		Colour();
+		Colour(std::string hex);
+	}Colour;
+}
