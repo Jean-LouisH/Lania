@@ -28,6 +28,11 @@ double Lania::Texture::getHeight()
 	return this->surface->h;
 }
 
+uint8_t Lania::Texture::getBytesPerPixel()
+{
+	return this->surface->format->BytesPerPixel;
+}
+
 void Lania::Texture::load(String filePath)
 {
 	this->surface = IMG_Load(filePath.c_str());

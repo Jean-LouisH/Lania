@@ -31,6 +31,7 @@ namespace Lania
 		Rectangle getDimensions();
 		double getWidth();
 		double getHeight();
+		uint8_t getBytesPerPixel();
 		void load(String filePath);
 		void unload();
 		~Texture();
