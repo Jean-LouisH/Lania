@@ -14,6 +14,8 @@
 #pragma once
 
 #include <Core/HAL/Renderables.hpp>
+#include <Utilities/DataStructures/List.hpp>
+#include <GL/glew.h>
 
 namespace Lania
 {
@@ -21,9 +23,16 @@ namespace Lania
 	{
 		namespace OpenGL
 		{
+			void generate2DTextures(
+				Sprite2DRenderable* sprites2D,
+				int spriteCount,
+				List<GLuint>* glTextureIDs);
+			void delete2DTextures(
+				List<GLuint>* glTextureIDs);
 			void drawSprites(
 				Sprite2DRenderable* sprites2D, 
 				int spriteCount,
+				GLuint* glTextureIDs,
 				Camera2DRenderable* currentCamera2D);
 		}
 	}

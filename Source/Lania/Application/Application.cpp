@@ -99,6 +99,15 @@ void Lania::Application::buildRenderables()
 		}
 	}
 
+	if (this->core->output.renderables.layerTypeOrder.size() == 
+		renderables.layerTypeOrder.size())
+	{
+		renderables.hasChanged = false;
+	}
+	else
+	{
+		renderables.hasChanged = true;
+	}
 	this->core->output.renderables = renderables;
 }
 

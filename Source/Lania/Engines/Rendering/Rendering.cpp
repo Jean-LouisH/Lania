@@ -26,7 +26,19 @@ void Lania::Rendering::render(Renderables* renderables, uint8_t renderer, SDL_Wi
 				{
 					Layer2D* currentLayer2D = &layer2Ds[currentSubscene2D];
 					List<Sprite2DRenderable>* sprites2D = &currentLayer2D->sprites2D;
-					Rendering2D::OpenGL::drawSprites(sprites2D->data(), sprites2D->size(), &currentLayer2D->currentCamera2D);
+					static List<GLuint> glTextureIDs;
+					
+					if (renderables->hasChanged)
+					{
+						Rendering2D::OpenGL::delete2DTextures(&glTextureIDs);
+						glTextureIDs.clear();
+						Rendering2D::OpenGL::generate2DTextures(sprites2D->data(), sprites2D->size(), &glTextureIDs);
+					}
+					Rendering2D::OpenGL::drawSprites(
+						sprites2D->data(),
+						sprites2D->size(),
+						glTextureIDs.data(),
+						&currentLayer2D->currentCamera2D);
 					currentSubscene2D++;
 				}
 				else if (layerTypeOrder[i] == SUBSCENE_3D)

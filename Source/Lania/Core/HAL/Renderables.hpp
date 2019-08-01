@@ -75,5 +75,11 @@ namespace Lania
 		List<Layer2D> layer2Ds;
 		List<Layer3D> layer3Ds;
 		List<LayerType> layerTypeOrder;
+		bool hasChanged;
+
+		Renderables()
+		{
+			this->hasChanged = false;
+		}
 	}Renderables;
 }
