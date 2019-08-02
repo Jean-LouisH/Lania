@@ -1,6 +1,7 @@
 #include "Rendering.hpp"
 #include "Rendering2D.hpp"
 #include "GLSLShader.hpp"
+#include "DefaultGLSLShaders.hpp"
 #include <Utilities/Definitions/Constants.hpp>
 #include <GL/glew.h>
 
@@ -24,6 +25,8 @@ void Lania::Rendering::render(Renderables* renderables, uint8_t renderer, SDL_Wi
 			for (int i = 0; i < totalLayerCount; i++)
 			{
 				static List<GLuint> glTextureIDs;
+				static List<String> glslVertexShaderSources;
+				static List<String> glslFragmentShaderSources;
 				static Rendering::OpenGL::GLSLShaders glslShaders;
 
 				if (layerTypeOrder[i] == SUBSCENE_2D)
@@ -33,7 +36,11 @@ void Lania::Rendering::render(Renderables* renderables, uint8_t renderer, SDL_Wi
 					
 					if (renderables->hasChanged)
 					{
-						glslShaders.compileShaders();
+						glslVertexShaderSources.clear();
+						glslFragmentShaderSources.clear();
+						glslVertexShaderSources.push_back(Rendering::OpenGL::defaultVertexShader);
+						glslFragmentShaderSources.push_back(Rendering::OpenGL::defaultFragmentShader);
+						glslShaders.compileShaders(&glslVertexShaderSources, &glslFragmentShaderSources);
 						Rendering2D::OpenGL::delete2DTextures(&glTextureIDs);
 						glTextureIDs.clear();
 						Rendering2D::OpenGL::generate2DTextures(sprites2D->data(), sprites2D->size(), &glTextureIDs);

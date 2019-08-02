@@ -2,11 +2,21 @@
 #include "DefaultGLSLShaders.hpp"
 #include <iostream>
 
-void Lania::Rendering::OpenGL::GLSLShaders::compileShaders()
+void Lania::Rendering::OpenGL::GLSLShaders::compileShaders(List<String>* vertexShaderSources, List<String>* fragmentShaderSources)
 {
-	if (this->compileVertexShaders())
-		if (this->compileFragmentShaders())
-			this->linkShaderProgram();
+	bool compilationSuccess = true;
+
+	int vertexShaderSourceCount = vertexShaderSources->size();
+	for (int i = 0; i < vertexShaderSourceCount && compilationSuccess; i++)
+		compilationSuccess = this->compileVertexShader(vertexShaderSources->at(i));
+
+	int fragmentShaderSourceCount = fragmentShaderSources->size();
+	for (int i = 0; i < fragmentShaderSourceCount && compilationSuccess; i++)
+		compilationSuccess = this->compileFragmentShader(fragmentShaderSources->at(i));
+
+	if (compilationSuccess)
+		this->linkShaderProgram();
+
 	this->deleteShaders();
 }
 
@@ -15,21 +25,21 @@ void Lania::Rendering::OpenGL::GLSLShaders::use()
 	glUseProgram(this->shaderProgram);
 }
 
-bool Lania::Rendering::OpenGL::GLSLShaders::compileVertexShaders()
+bool Lania::Rendering::OpenGL::GLSLShaders::compileVertexShader(String vertexShaderSource)
 {
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	GLchar* vertexShaderSource = (GLchar*)Rendering::OpenGL::defaultVertexShader;
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
+	GLchar* source = (GLchar*)vertexShaderSource.c_str();
+	glShaderSource(vertexShader, 1, &source, NULL);
 	glCompileShader(vertexShader);
 	this->vertexShaders.push_back(vertexShader);
 	return this->checkCompileTimeErrors(vertexShader, GL_COMPILE_STATUS);
 }
 
-bool Lania::Rendering::OpenGL::GLSLShaders::compileFragmentShaders()
+bool Lania::Rendering::OpenGL::GLSLShaders::compileFragmentShader(String fragmentShaderSource)
 {
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	GLchar* fragmentShaderSource = (GLchar*)Rendering::OpenGL::defaultFragmentShader;
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
+	GLchar* source = (GLchar*)fragmentShaderSource.c_str();
+	glShaderSource(fragmentShader, 1, &source, NULL);
 	glCompileShader(fragmentShader);
 	this->fragmentShaders.push_back(fragmentShader);
 	return this->checkCompileTimeErrors(fragmentShader, GL_COMPILE_STATUS);

@@ -29,13 +29,13 @@ namespace Lania
 				List<GLuint> vertexShaders;
 				List<GLuint> fragmentShaders;
 				GLuint shaderProgram;
-				bool compileVertexShaders();
-				bool compileFragmentShaders();
+				bool compileVertexShader(String vertexShaderSource);
+				bool compileFragmentShader(String fragmentShaderSource);
 				void linkShaderProgram();
 				bool checkCompileTimeErrors(GLuint ID, GLuint status);
 				void deleteShaders();
 			public:
-				void compileShaders();
+				void compileShaders(List<String>* vertexShaderSources, List<String>* fragmentShaderSources);
 				void use();
 			};
 		}
