@@ -120,14 +120,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DefaultShaders.hpp" />
+    <ClInclude Include="DefaultGLSLShaders.hpp" />
     <ClInclude Include="Rendering.hpp" />
     <ClInclude Include="Rendering2D.hpp" />
     <ClInclude Include="Rendering3D.hpp" />
+    <ClInclude Include="GLSLShader.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Rendering.cpp" />
     <ClCompile Include="Rendering2D.cpp" />
+    <ClCompile Include="GLSLShader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
