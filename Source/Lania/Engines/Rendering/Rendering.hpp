@@ -24,6 +24,7 @@ namespace Lania
 		void render(Renderables* renderables, uint8_t renderer, SDL_Window* window);
 		namespace OpenGL
 		{
+			void render(Renderables* renderables);
 			void clearBuffers();
 		}
 	}
