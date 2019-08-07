@@ -30,10 +30,12 @@ namespace Lania
 			Transform2D* finalTransform, 
 			Entity2D* entities, 
 			EntityID leafEntityID);
+		bool isWaitingOnCommand;
 	public:
 		Scene scene;
 
 		void init();
+		void runCommandLine();
 		void interpretStartLogic();
 		void interpretInputLogic();
 		void interpretFrameLogic();

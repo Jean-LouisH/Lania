@@ -238,6 +238,7 @@ void Lania::logic(Core* core, Application* application)
 	EngineTimers* engineTimers = &core->engineTimers;
 	engineTimers->logic.setStart();
 
+	application->runCommandLine();
 	application->interpretStartLogic();
 	application->interpretInputLogic();
 	application->interpretFrameLogic();

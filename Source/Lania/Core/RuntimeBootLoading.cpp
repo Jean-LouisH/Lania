@@ -21,6 +21,8 @@ void Lania::RuntimeBootLoading::build(BootConfiguration* bootConfig, String file
 						bootConfig->icon = it1->second.as<std::string>();
 					else if (it1->first.as<std::string>() == "main_scene")
 						bootConfig->mainScene = it1->second.as<std::string>();
+					else if (it1->first.as<std::string>() == "command_line_on_start")
+						bootConfig->commandLineOnStart = it1->second.as<bool>();
 				}
 			}
 			if (it0->first.as<std::string>() == "application_window")

@@ -30,12 +30,14 @@ namespace Lania
 		String icon;
 		String dataFilePath;
 		String mainScene;
+		bool commandLineOnStart;
 
 		BootConfiguration() :
 			windowWidth_px(0),
 			windowHeight_px(0),
 			targetFPS(0),
-			windowFlags(0)
+			windowFlags(0),
+			commandLineOnStart(false)
 		{}
 	}BootConfiguration;
 }
