@@ -19,6 +19,9 @@
 #include "../../../Utilities/Definitions/Aliases.hpp"
 #include "../../../Utilities/Mathematics/Transform2D.hpp"
 #include "../../../Utilities/DataStructures/Set.hpp"
+#include "../../../Utilities/DataStructures/List.hpp"
+#include "../../../Utilities/DataStructures/Map.hpp"
+#include "../../../Utilities/DataStructures/String.hpp"
 
 namespace Lania
 {
