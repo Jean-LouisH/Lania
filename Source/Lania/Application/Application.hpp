@@ -18,6 +18,7 @@
 #include "Scene/Scene.hpp"
 #include "Native/Native.hpp"
 #include <Core/HAL/Renderables.hpp>
+#include "CommandLine.hpp"
 
 namespace Lania
 {
@@ -26,11 +27,12 @@ namespace Lania
 	private:
 		Core* core;
 		Native native;
+		CommandLine commandLine;
+
 		void compound2DEntityParentTransforms(
 			Transform2D* finalTransform, 
 			Entity2D* entities, 
 			EntityID leafEntityID);
-		bool isWaitingOnCommand;
 	public:
 		Scene scene;
 

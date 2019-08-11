@@ -1,5 +1,4 @@
 #include "Application.hpp"
-#include <iostream>
 #include <math.h>
 
 void Lania::Application::init()
@@ -9,29 +8,12 @@ void Lania::Application::init()
 	this->scene.dataFilePath = core->bootConfig.dataFilePath;
 	this->scene.load(scene.dataFilePath + core->bootConfig.mainScene);
 	this->native.init(&this->scene, this->core);
-	this->isWaitingOnCommand = this->core->bootConfig.commandLineOnStart;
+	this->commandLine.isWaitingOnCommand = this->core->bootConfig.commandLineOnStart;
 }
 
 void Lania::Application::runCommandLine()
 {
-#if _DEBUG
-	bool isRepeating = true;
-
-	std::cout << "Lania Command Line\n";
-
-	if (isWaitingOnCommand)
-		while (isRepeating)
-		{
-			String command;
-			std::cin >> command;
-			
-			if (command == "shutdown")
-			{
-				isRepeating = false;
-				this->core->state = Lania::coreStates::SHUTDOWN;
-			}
-		}
-#endif
+	this->commandLine.run(this->core, &this->scene);
 }
 
 void Lania::Application::interpretStartLogic()
@@ -159,5 +141,4 @@ void Lania::Application::compound2DEntityParentTransforms(
 Lania::Application::Application(Core* core)
 {
 	this->core = core;
-	this->isWaitingOnCommand = false;
 }
