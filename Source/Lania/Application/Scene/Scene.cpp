@@ -4,6 +4,7 @@
 #include <SDL_image.h>
 #include <Utilities/Definitions/Constants.hpp>
 #include <Core/HAL/File.hpp>
+#include <Application/Scene/Assets/Model.hpp>
 
 void Lania::Scene::load(String filePath)
 {
