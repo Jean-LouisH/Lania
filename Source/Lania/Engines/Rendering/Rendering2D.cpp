@@ -57,10 +57,15 @@ void Lania::Rendering2D::OpenGL::drawSprites(
 	Sprite2DRenderable* sprites2D, 
 	int spriteCount,
 	GLuint* glTextureIDs,
-	Camera2DRenderable* currentCamera2D)
+	Camera2DRenderable* currentCamera2D,
+	Rendering::OpenGL::GLSLShaders* glslShaders)
 {
+	glslShaders->use();
+
 	for (int i = 0; i < spriteCount; i++)
 	{
-
+		glBindVertexArray(0);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
+		glBindVertexArray(0);
 	}
 }

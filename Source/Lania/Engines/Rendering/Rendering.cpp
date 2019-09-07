@@ -56,12 +56,13 @@ void Lania::Rendering::OpenGL::render(Renderables* renderables)
 				Rendering2D::OpenGL::generate2DTextures(sprites2D->data(), sprites2D->size(), &glTextureIDs);
 			}
 
-			glslShaders.use();
 			Rendering2D::OpenGL::drawSprites(
 				sprites2D->data(),
 				sprites2D->size(),
 				glTextureIDs.data(),
-				&currentLayer2D->currentCamera2D);
+				&currentLayer2D->currentCamera2D,
+				&glslShaders);
+
 			currentSubscene2D++;
 		}
 		else if (layerTypeOrder[i] == SUBSCENE_3D)

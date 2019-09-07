@@ -14,6 +14,7 @@
 #pragma once
 
 #include <Core/HAL/Renderables.hpp>
+#include "GLSLShader.hpp"
 #include <Utilities/DataStructures/List.hpp>
 #include <GL/glew.h>
 
@@ -33,7 +34,8 @@ namespace Lania
 				Sprite2DRenderable* sprites2D, 
 				int spriteCount,
 				GLuint* glTextureIDs,
-				Camera2DRenderable* currentCamera2D);
+				Camera2DRenderable* currentCamera2D,
+				Rendering::OpenGL::GLSLShaders* glslShaders);
 		}
 	}
 }
