@@ -40,7 +40,7 @@ void Lania::initialize(Core* core)
 	core->platform.systemRAM_MB = SDL_GetSystemRAM();
 	core->platform.OS = (char*)SDL_GetPlatform();
 	SDL_GetPowerInfo(NULL, &core->platform.batteryLife_pct);
-	*state = INITIALIZING;
+	*state = Core::states::INITIALIZING;
 
 	Log::toConsole("Executable Name: " + core->executableName + ".exe");
 	Log::toConsole("Logical Cores: " + std::to_string(core->platform.logicalCoreCount));
@@ -52,7 +52,7 @@ void Lania::initialize(Core* core)
 		SDL_Log(
 			"SDL could not initialize because: %s",
 			SDL_GetError);
-		*state = SHUTDOWN;
+		*state = Core::states::SHUTDOWN;
 	}
 	else
 	{
@@ -90,7 +90,7 @@ void Lania::initialize(Core* core)
 			SDL_Log(
 				"SDL could not create the window because: %s",
 				SDL_GetError());
-			*state = SHUTDOWN;
+			*state = Core::states::SHUTDOWN;
 		}
 		else
 		{
@@ -103,13 +103,13 @@ void Lania::initialize(Core* core)
 
 			if (bootConfig->renderingAPI == "opengl 3.3")
 			{
-				core->renderer = LANIA_OPENGL_3_3_RENDERER;
+				core->renderer = Core::renderers::LANIA_OPENGL_3_3_RENDERER;
 				core->glContext = SDL_GL_CreateContext(core->window);
 
 				if (glewInit() != GLEW_OK)
 				{
 					Log::toConsole("GLEW failed to initialize.");
-					*state = SHUTDOWN;
+					*state = Core::states::SHUTDOWN;
 				}
 				else
 				{
@@ -124,17 +124,17 @@ void Lania::initialize(Core* core)
 			}
 			else if (bootConfig->renderingAPI == "vulkan 1.1")
 			{
-				core->renderer = LANIA_VULKAN_1_1_RENDERER;
+				core->renderer = Core::renderers::LANIA_VULKAN_1_1_RENDERER;
 				core->platform.renderingAPIVersion = (char*)"Vulkan";
 				Log::toConsole("Rendering Engine: Lania Vulkan 1.1");
 			}
 
 			if (bootConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
-				*state = RUNNING_APPLICATION_FULLSCREEN;
+				*state = Core::states::RUNNING_APPLICATION_FULLSCREEN;
 			else if (bootConfig->windowFlags & SDL_WINDOW_FULLSCREEN_DESKTOP)
-				*state = RUNNING_APPLICATION_FULLSCREEN_DESKTOP;
-			else if (*state != SHUTDOWN)
-				*state = RUNNING_APPLICATION_WINDOWED;
+				*state = Core::states::RUNNING_APPLICATION_FULLSCREEN_DESKTOP;
+			else if (*state != Core::states::SHUTDOWN)
+				*state = Core::states::RUNNING_APPLICATION_WINDOWED;
 
 			Log::toConsole("Initialization complete.\n");
 		}
@@ -167,7 +167,8 @@ void Lania::loop(Core* core, Application* application)
 
 		Lania::benchmark(core);
 
-	} while (core->state != SHUTDOWN && core->state != RESTARTING);
+	} while (core->state != Core::states::SHUTDOWN && 
+		core->state != Core::states::RESTARTING);
 }
 
 void Lania::sleep(Core* core)
@@ -235,15 +236,14 @@ void Lania::input(Lania::Core* core)
 
 void Lania::logic(Core* core, Application* application)
 {
-	EngineTimers* engineTimers = &core->engineTimers;
-	engineTimers->logic.setStart();
+	core->engineTimers.logic.setStart();
 
 	application->runCommandLine();
 	application->interpretStartLogic();
 	application->interpretInputLogic();
 	application->interpretFrameLogic();
 
-	engineTimers->logic.setEnd();
+	core->engineTimers.logic.setEnd();
 }
 
 void Lania::compute(Core* core, Application* application)
@@ -272,10 +272,9 @@ void Lania::compute(Core* core, Application* application)
 
 void Lania::output(Core* core)
 {
-	EngineTimers* engineTimers = &core->engineTimers;
-	engineTimers->output.setStart();
+	core->engineTimers.output.setStart();
 	Rendering::render(&core->output.renderables, core->renderer, core->window);
-	engineTimers->output.setEnd();
+	core->engineTimers.output.setEnd();
 }
 
 void Lania::shutdown(Core* core, Application* application)
@@ -295,7 +294,8 @@ void Lania::shutdown(Core* core, Application* application)
 	gameControllers->clear();
 	haptics->clear();
 
-	if (core->renderer == LANIA_OPENGL_3_3_RENDERER)
+	IMG_Quit();
+	if (core->renderer == Core::renderers::LANIA_OPENGL_3_3_RENDERER)
 		SDL_GL_DeleteContext(core->glContext);
 	SDL_DestroyWindow(core->window);
 	SDL_Quit();

@@ -25,18 +25,18 @@
 
 namespace Lania
 {
-	enum Components
-	{
-		NO_COMPONENT,
-		CAMERA_2D,
-		RIGID_BODY_2D,
-		SPRITE_2D,
-		BOX_COLLIDER_2D,
-		POINT_LOCK_2D,
-	};
-
 	typedef struct Entity2D
 	{
+		enum components
+		{
+			NO_COMPONENT,
+			CAMERA_2D,
+			RIGID_BODY_2D,
+			SPRITE_2D,
+			BOX_COLLIDER_2D,
+			POINT_LOCK_2D,
+		};
+
 		Transform2D transform;
 		List<EntityID> children;
 		EntityID parent;

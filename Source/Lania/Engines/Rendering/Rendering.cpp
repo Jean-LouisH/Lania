@@ -9,12 +9,12 @@ void Lania::Rendering::render(Renderables* renderables, uint8_t renderer, SDL_Wi
 {
 	switch (renderer)
 	{
-		case LANIA_OPENGL_3_3_RENDERER:
+		case Core::renderers::LANIA_OPENGL_3_3_RENDERER:
 			Rendering::OpenGL::render(renderables);
 			SDL_GL_SwapWindow(window);
 			break;
 
-		case LANIA_VULKAN_1_1_RENDERER:
+		case Core::renderers::LANIA_VULKAN_1_1_RENDERER:
 			break;
 	}
 }

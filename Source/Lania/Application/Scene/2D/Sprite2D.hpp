@@ -21,14 +21,14 @@
 
 namespace Lania
 {
-	enum flipStates
-	{
-		FLIP_HORIZONTAL = 1 << 0,
-		FLIP_VERTICAL = 1 << 1
-	};
-
 	typedef struct Sprite2D
 	{
+		enum flipStates
+		{
+			FLIP_HORIZONTAL = 1 << 0,
+			FLIP_VERTICAL = 1 << 1
+		};
+
 		EntityID entityID;
 		List<Texture> textureFrames;
 		uint8_t frameIndex;

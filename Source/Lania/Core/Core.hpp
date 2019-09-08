@@ -25,24 +25,24 @@
 
 namespace Lania
 {
-	enum coreStates
-	{
-		INITIALIZING,
-		RUNNING_APPLICATION_WINDOWED,
-		RUNNING_APPLICATION_FULLSCREEN,
-		RUNNING_APPLICATION_FULLSCREEN_DESKTOP,
-		RESTARTING,
-		SHUTDOWN,
-	};
-
-	enum renderers
-	{
-		LANIA_OPENGL_3_3_RENDERER,
-		LANIA_VULKAN_1_1_RENDERER
-	};
-
 	typedef struct Core
 	{
+		enum states
+		{
+			INITIALIZING,
+			RUNNING_APPLICATION_WINDOWED,
+			RUNNING_APPLICATION_FULLSCREEN,
+			RUNNING_APPLICATION_FULLSCREEN_DESKTOP,
+			RESTARTING,
+			SHUTDOWN,
+		};
+
+		enum renderers
+		{
+			LANIA_OPENGL_3_3_RENDERER,
+			LANIA_VULKAN_1_1_RENDERER
+		};
+
 		SDL_Window* window;
 		SDL_GLContext glContext;
 		uint8_t renderer;

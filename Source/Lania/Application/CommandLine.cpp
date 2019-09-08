@@ -21,7 +21,7 @@ void Lania::CommandLine::run(Core* core, Scene* scene)
 			{
 				isRepeating = false;
 				this->isWaitingOnCommand = false;
-				core->state = Lania::coreStates::SHUTDOWN;
+				core->state = Core::states::SHUTDOWN;
 			}
 		}
 

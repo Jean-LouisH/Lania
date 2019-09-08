@@ -54,14 +54,14 @@ void Lania::OS::pollInputEvents(Core* core)
 		{
 			/*Close window button*/
 		case SDL_QUIT:
-			core->state = Lania::SHUTDOWN;
+			core->state = Lania::Core::states::SHUTDOWN;
 			break;
 
 			/*Keyboard inputs*/
 		case SDL_KEYDOWN:
 			if (SDLEvents.key.keysym.sym == SDLK_ESCAPE)
 			{
-				core->state = Lania::SHUTDOWN;
+				core->state = Lania::Core::states::SHUTDOWN;
 			}
 			else
 			{
@@ -126,7 +126,7 @@ void Lania::OS::setToWindowed(SDL_Window* window, uint16_t width_px, uint16_t he
 {
 	SDL_SetWindowFullscreen(window, 0);
 	SDL_SetWindowSize(window, width_px, height_px);
-	*state = RUNNING_APPLICATION_WINDOWED;
+	*state = Core::states::RUNNING_APPLICATION_WINDOWED;
 
 }
 
@@ -134,7 +134,7 @@ void Lania::OS::setToFullscreen(SDL_Window* window, SDL_DisplayMode* mode, uint8
 {
 	SDL_SetWindowDisplayMode(window, mode);
 	SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
-	*state = RUNNING_APPLICATION_FULLSCREEN;
+	*state = Core::states::RUNNING_APPLICATION_FULLSCREEN;
 }
 
 void Lania::OS::toggleWindowedFullscreen(SDL_Window* window, uint8_t* state)
@@ -144,7 +144,7 @@ void Lania::OS::toggleWindowedFullscreen(SDL_Window* window, uint8_t* state)
 	if (!isFullscreen)
 	{
 		SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
-		*state = RUNNING_APPLICATION_FULLSCREEN_DESKTOP;
+		*state = Core::states::RUNNING_APPLICATION_FULLSCREEN_DESKTOP;
 	}
 	else
 	{
@@ -153,7 +153,7 @@ void Lania::OS::toggleWindowedFullscreen(SDL_Window* window, uint8_t* state)
 			window,
 			SDL_WINDOWPOS_CENTERED,
 			SDL_WINDOWPOS_CENTERED);
-		*state = RUNNING_APPLICATION_WINDOWED;
+		*state = Core::states::RUNNING_APPLICATION_WINDOWED;
 	}
 
 	SDL_ShowCursor(isFullscreen);

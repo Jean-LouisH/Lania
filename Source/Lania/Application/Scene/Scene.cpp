@@ -142,7 +142,7 @@ void Lania::Scene::load(String filePath)
 							for (int i = 0; i < textureFrameFilePaths.size(); i++)
 								this->addSpriteTextureFrame(
 									lastLayer,
-									entities->at(lastEntity).components.at(SPRITE_2D), 
+									entities->at(lastEntity).components.at(Entity2D::components::SPRITE_2D), 
 									this->dataFilePath + textureFrameFilePaths.at(i));
 						}
 					}
@@ -237,7 +237,7 @@ void Lania::Scene::addCamera2D(LayerID scene2DID, EntityID entityID)
 	}
 	camera2D.entityID = entityID;
 	scene2D->activeCameras.push_back(camera2D);
-	scene2D->entities.at(entityID).components.emplace(CAMERA_2D, scene2D->activeCameras.size() - 1);
+	scene2D->entities.at(entityID).components.emplace(Entity2D::components::CAMERA_2D, scene2D->activeCameras.size() - 1);
 }
 
 void Lania::Scene::addSprite2D(LayerID scene2DID, EntityID entityID)
@@ -247,7 +247,7 @@ void Lania::Scene::addSprite2D(LayerID scene2DID, EntityID entityID)
 	sprite2D.alpha = 255;
 	sprite2D.entityID = entityID;
 	scene2D->activeSprites.push_back(sprite2D);
-	scene2D->entities.at(entityID).components.emplace(SPRITE_2D, scene2D->activeSprites.size() - 1);
+	scene2D->entities.at(entityID).components.emplace(Entity2D::components::SPRITE_2D, scene2D->activeSprites.size() - 1);
 }
 
 void Lania::Scene::addBoxCollider2D(LayerID scene2DID, EntityID entityID, double xMin, double yMin, double xMax, double yMax)
@@ -260,7 +260,7 @@ void Lania::Scene::addBoxCollider2D(LayerID scene2DID, EntityID entityID, double
 	boxCollider2D.aabb.max_px.y = yMax;
 	boxCollider2D.entityID = entityID;
 	scene2D->activeBoxColliders.push_back(boxCollider2D);
-	scene2D->entities.at(entityID).components.emplace(BOX_COLLIDER_2D, scene2D->activeBoxColliders.size() - 1);
+	scene2D->entities.at(entityID).components.emplace(Entity2D::components::BOX_COLLIDER_2D, scene2D->activeBoxColliders.size() - 1);
 }
 
 void Lania::Scene::addRigidBody2D(LayerID scene2DID, EntityID entityID)
@@ -269,7 +269,7 @@ void Lania::Scene::addRigidBody2D(LayerID scene2DID, EntityID entityID)
 	Scene2D* scene2D = &this->subScenes2D.at(scene2DID);
 	rigidBody2D.entityID = entityID;
 	scene2D->activeRigidBodies.push_back(rigidBody2D);
-	scene2D->entities.at(entityID).components.emplace(RIGID_BODY_2D, scene2D->activeRigidBodies.size() - 1);
+	scene2D->entities.at(entityID).components.emplace(Entity2D::components::RIGID_BODY_2D, scene2D->activeRigidBodies.size() - 1);
 }
 
 void Lania::Scene::addParentToEntity2D(LayerID scene2DID, EntityID entityID, String parentName)
@@ -288,7 +288,7 @@ void Lania::Scene::addPointLock2D(LayerID scene2DID, EntityID entityID, double x
 	pointLock2D.point.y = y;
 	pointLock2D.entityID = entityID;
 	scene2D->pointLocks.push_back(pointLock2D);
-	scene2D->entities.at(entityID).components.emplace(POINT_LOCK_2D, scene2D->pointLocks.size() - 1);
+	scene2D->entities.at(entityID).components.emplace(Entity2D::components::POINT_LOCK_2D, scene2D->pointLocks.size() - 1);
 }
 
 void Lania::Scene::addSpriteTextureFrame(LayerID scene2DID, ComponentListIndex componentIndex, String filepath)

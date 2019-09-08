@@ -31,7 +31,7 @@ namespace Lania
 			mass_kg(0.0),
 			rotation_rad(0.0),
 			elasticity_ratio(0.0),
-			collider(NO_COMPONENT)
+			collider(Entity2D::components::NO_COMPONENT)
 		{}
 	}CollisionNode2D;
 }
