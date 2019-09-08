@@ -92,3 +92,8 @@ void Lania::Rendering::OpenGL::GLSLShaders::deleteShaders()
 		glDeleteShader(this->fragmentShaders.at(i));
 	this->fragmentShaders.clear();
 }
+
+void Lania::Rendering::OpenGL::GLSLShaders::setIntUniform(String name, int value)
+{
+	glUniform1i(glGetUniformLocation(this->shaderProgram, name.c_str()), value);
+}

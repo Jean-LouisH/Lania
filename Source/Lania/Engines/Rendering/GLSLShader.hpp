@@ -37,6 +37,7 @@ namespace Lania
 			public:
 				void compileShaders(List<String>* vertexShaderSources, List<String>* fragmentShaderSources);
 				void use();
+				void setIntUniform(String name, int value);
 			};
 		}
 	}
