@@ -17,7 +17,7 @@ For the sake of learning, select portions of the engine will be made from my own
 * [Profiling](https://en.wikipedia.org/wiki/Profiling_(computer_programming)); 
 * [Physics, Collision Detection & Response](https://en.wikipedia.org/wiki/Collision_detection); 
 * [Audio Programming](https://en.wikipedia.org/wiki/Game_engine#Audio_engine); 
-* [Real-Time Rendering] (https://en.wikipedia.org/wiki/Real-time_computer_graphics); 
+* [Real-Time Rendering](https://en.wikipedia.org/wiki/Real-time_computer_graphics); 
 * APIs such as [Simple DirectMedia Layer (SDL)](https://www.libsdl.org/), [PortAudio](http://www.portaudio.com/), [OpenGL](https://www.khronos.org/registry/OpenGL/specs/gl/glspec33.core.pdf) and [Vulkan](https://www.khronos.org/registry/vulkan/specs/1.1-extensions/html/vkspec.html).
 
 among others.
