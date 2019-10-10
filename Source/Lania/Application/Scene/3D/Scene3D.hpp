@@ -15,9 +15,9 @@
 #pragma once
 
 #include "../../../Utilities/Definitions/Aliases.hpp"
-#include "../../../Utilities/DataStructures/List.hpp"
-#include "../../../Utilities/DataStructures/Map.hpp"
-#include "../../../Utilities/DataStructures/String.hpp"
+#include "../../../Utilities/GenericCollections/List.hpp"
+#include "../../../Utilities/GenericCollections/Map.hpp"
+#include "../../../Utilities/GenericCollections/String.hpp"
 
 #include "Entity3D.hpp"
 

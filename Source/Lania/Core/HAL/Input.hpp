@@ -16,8 +16,8 @@
 #include <SDL.h>
 #include "SDL_stdinc.h"
 #include "SDL_keycode.h"
-#include "../../Utilities/DataStructures/List.hpp"
-#include "../../Utilities/DataStructures/Map.hpp"
+#include "../../Utilities/GenericCollections/List.hpp"
+#include "../../Utilities/GenericCollections/Map.hpp"
 
 namespace Lania
 {

@@ -15,6 +15,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="List.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Map.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -28,9 +31,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="String.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="List.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

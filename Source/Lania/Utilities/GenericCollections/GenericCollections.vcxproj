@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,9 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{435A58BF-7EA2-4A7A-B696-C58BF367D3C8}</ProjectGuid>
-    <RootNamespace>DataStructures</RootNamespace>
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <ProjectGuid>{01D9DD36-4FDD-4D1E-8095-9706BF413061}</ProjectGuid>
+    <RootNamespace>GenericCollections</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -39,7 +39,7 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
@@ -77,6 +77,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -85,6 +88,9 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -96,6 +102,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
@@ -110,6 +117,7 @@
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
     </Link>

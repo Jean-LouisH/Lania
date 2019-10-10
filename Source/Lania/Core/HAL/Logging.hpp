@@ -14,7 +14,7 @@
 #pragma once
 
 #include <iostream>
-#include "../../Utilities/DataStructures/String.hpp"
+#include "../../Utilities/GenericCollections/String.hpp"
 
 namespace Lania
 {

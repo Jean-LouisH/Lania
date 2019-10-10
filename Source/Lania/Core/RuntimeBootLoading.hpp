@@ -14,7 +14,7 @@
 #pragma once
 
 #include "BootConfiguration.hpp"
-#include <Utilities/DataStructures/String.hpp>
+#include <Utilities/GenericCollections/String.hpp>
 
 namespace Lania
 {

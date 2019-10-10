@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include "../../Utilities/DataStructures/String.hpp"
+#include "../../Utilities/GenericCollections/String.hpp"
 #include "MemoryPool.hpp"
 #include <stdint.h>
 

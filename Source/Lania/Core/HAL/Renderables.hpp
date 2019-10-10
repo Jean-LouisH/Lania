@@ -13,11 +13,11 @@
 
 #pragma once
 
-#include <Utilities/DataStructures/List.hpp>
+#include <Utilities/GenericCollections/List.hpp>
 #include <Utilities/Mathematics/Transform2D.hpp>
 #include <Utilities/Mathematics/Rectangle.hpp>
 #include <Application/Scene/Assets/Texture.hpp>
-#include <Utilities/DataStructures/String.hpp>
+#include <Utilities/GenericCollections/String.hpp>
 #include <Utilities/Definitions/Aliases.hpp>
 #include <Utilities/Mathematics/Colour.hpp>
 #include <Application/Scene/Assets/Font.hpp>

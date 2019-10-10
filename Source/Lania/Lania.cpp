@@ -8,8 +8,8 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <GL/glew.h>
-#include <Utilities/DataStructures/String.hpp>
-#include <Utilities/DataStructures/List.hpp>
+#include <Utilities/GenericCollections/String.hpp>
+#include <Utilities/GenericCollections/List.hpp>
 #include <Engines/Physics/Physics2D.hpp>
 #include <Core/HAL/File.hpp>
 #include <Core/HAL/EngineTimers.hpp>

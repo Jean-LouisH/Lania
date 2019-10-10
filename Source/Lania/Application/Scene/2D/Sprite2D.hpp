@@ -13,11 +13,11 @@
 
 #include <stdint.h>
 #include "../../../Utilities/Mathematics/Vector2.hpp"
-#include "../../../Utilities/DataStructures/List.hpp"
+#include "../../../Utilities/GenericCollections/List.hpp"
 #include "Entity2D.hpp"
 #include "../Assets/Texture.hpp"
-#include "../../../Utilities/DataStructures/Map.hpp"
-#include "../../../Utilities/DataStructures/String.hpp"
+#include "../../../Utilities/GenericCollections/Map.hpp"
+#include "../../../Utilities/GenericCollections/String.hpp"
 
 namespace Lania
 {

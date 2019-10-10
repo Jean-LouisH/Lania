@@ -14,8 +14,8 @@
 #pragma once
 
 #include <GL/glew.h>
-#include <Utilities/DataStructures/List.hpp>
-#include <Utilities/DataStructures/String.hpp>
+#include <Utilities/GenericCollections/List.hpp>
+#include <Utilities/GenericCollections/String.hpp>
 
 namespace Lania
 {

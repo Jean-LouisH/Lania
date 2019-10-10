@@ -15,7 +15,7 @@
 
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Application/Scene/2D/CollisionEvent2D.hpp>
-#include <Utilities/DataStructures/List.hpp>
+#include <Utilities/GenericCollections/List.hpp>
 
 namespace Lania
 {

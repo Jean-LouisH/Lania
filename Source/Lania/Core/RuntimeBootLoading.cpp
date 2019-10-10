@@ -1,6 +1,6 @@
 #include "RuntimeBootLoading.hpp"
 #include <SDL_video.h>
-#include <Utilities/DataStructures/String.hpp>
+#include <Utilities/GenericCollections/String.hpp>
 #include <yaml-cpp/yaml.h>
 
 void Lania::RuntimeBootLoading::build(BootConfiguration* bootConfig, String filePath)

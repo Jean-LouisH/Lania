@@ -12,7 +12,7 @@
 #pragma once
 
 #include "Entity2D.hpp"
-#include "../../../Utilities/DataStructures/String.hpp"
+#include "../../../Utilities/GenericCollections/String.hpp"
 #include "../Assets/Font.hpp"
 #include "../../../Utilities/Mathematics/Colour.hpp"
 #include "../../../Utilities/Mathematics/Vector2.hpp"

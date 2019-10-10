@@ -15,7 +15,7 @@
 
 #include <Core/HAL/Renderables.hpp>
 #include "GLSLShader.hpp"
-#include <Utilities/DataStructures/List.hpp>
+#include <Utilities/GenericCollections/List.hpp>
 #include <GL/glew.h>
 
 namespace Lania

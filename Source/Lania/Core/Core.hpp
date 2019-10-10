@@ -20,7 +20,7 @@
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/Output.hpp>
 #include <Core/HAL/Platform.hpp>
-#include <Utilities/DataStructures/String.hpp>
+#include <Utilities/GenericCollections/String.hpp>
 #include <stdint.h>
 
 namespace Lania

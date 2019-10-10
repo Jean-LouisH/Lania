@@ -13,7 +13,7 @@
 #pragma once
 
 #include "../../../../ThirdParty/TinyGLTF/tinygltf 2.3.0/include/tiny_gltf.h"
-#include "../../../Utilities/DataStructures/String.hpp"
+#include "../../../Utilities/GenericCollections/String.hpp"
 
 namespace Lania
 {

@@ -15,7 +15,7 @@
 
 #include <stdint.h>
 #include "../../../Utilities/Mathematics/Mathematics.hpp"
-#include "../../../Utilities/DataStructures/String.hpp"
+#include "../../../Utilities/GenericCollections/String.hpp"
 #include <SDL_image.h>
 #include <SDL.h>
 
