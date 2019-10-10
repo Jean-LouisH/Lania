@@ -66,8 +66,8 @@ namespace Lania
 		{
 			//The universal, empty parent entity used for reference
 			//in recursive algorithms on child entities.
-			Entity2D dummy;
-			this->entities.push_back(dummy);
+			Entity2D scene2DEntity;
+			this->entities.push_back(scene2DEntity);
 
 			//Allocates memory on initialization to prevent frame stutter from
 			//first detected collisions.
