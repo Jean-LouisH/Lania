@@ -28,7 +28,7 @@ namespace Lania
 		String windowTitle;
 		String appName;
 		String icon;
-		String dataFilePath;
+		String dataDirectoryPath;
 		String mainScene;
 		bool commandLineOnStart;
 
