@@ -79,8 +79,8 @@
       <AdditionalIncludeDirectories>$(SolutionDir)\ThirdParty\yaml-cpp\include;$(SolutionDir)\ThirdParty\SDL2\SDL2-2.0.9\include;$(SolutionDir)\Source\Lania;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)\ThirdParty\yaml-cpp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libyaml-cppmdd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -121,11 +121,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BootConfiguration.hpp" />
-    <ClInclude Include="RuntimeBootLoading.hpp" />
     <ClInclude Include="Core.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="RuntimeBootLoading.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

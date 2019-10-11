@@ -3,7 +3,7 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* Runtime Boot Loading
+* Application Booting
 *
 * Populates application configuration
 *
@@ -13,13 +13,13 @@
 
 #pragma once
 
-#include "BootConfiguration.hpp"
+#include <Core/BootConfiguration.hpp>
 #include <Utilities/GenericCollections/String.hpp>
 
 namespace Lania
 {
-	namespace RuntimeBootLoading
+	namespace ApplicationBooting
 	{
-		void build(BootConfiguration* bootConfig, String filePath);
+		void build(BootConfiguration* bootConfig);
 	}
 }

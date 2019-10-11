@@ -76,11 +76,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\Source\Lania;$(SolutionDir)\ThirdParty\SDL2\SDL2-2.0.9\include;$(SolutionDir)\ThirdParty\SDL2_Image\SDL2_image-2.0.4\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\Source\Lania;$(SolutionDir)\ThirdParty\SDL2\SDL2-2.0.9\include;$(SolutionDir)\ThirdParty\SDL2_Image\SDL2_image-2.0.4\include;$(SolutionDir)\ThirdParty\yaml-cpp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Lib>
-      <AdditionalLibraryDirectories>$(SolutionDir)\x64\Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>Native.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\x64\Debug;$(SolutionDir)\ThirdParty\yaml-cpp\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Native.lib;libyaml-cppmdd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -121,10 +121,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Application.hpp" />
+    <ClInclude Include="ApplicationBooting.hpp" />
     <ClInclude Include="CommandLine.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
+    <ClCompile Include="ApplicationBooting.cpp" />
     <ClCompile Include="CommandLine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

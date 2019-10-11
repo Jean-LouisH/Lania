@@ -18,16 +18,8 @@
     <ClInclude Include="Core.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="RuntimeBootLoading.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BootConfiguration.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="RuntimeBootLoading.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

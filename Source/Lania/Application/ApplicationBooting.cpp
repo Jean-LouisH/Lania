@@ -1,13 +1,15 @@
-#include "RuntimeBootLoading.hpp"
+#include "ApplicationBooting.hpp"
 #include <SDL_video.h>
 #include <Utilities/GenericCollections/String.hpp>
 #include <yaml-cpp/yaml.h>
 
-void Lania::RuntimeBootLoading::build(BootConfiguration* bootConfig, String filePath)
+void Lania::ApplicationBooting::build(BootConfiguration* bootConfig)
 {
+	Lania::String bootFile = bootConfig->dataDirectoryPath + "Application_Boot.yml";
+
 	try
 	{
-		YAML::Node runtimeBoot = YAML::LoadFile(filePath);
+		YAML::Node runtimeBoot = YAML::LoadFile(bootFile);
 
 		for (YAML::const_iterator it0 = runtimeBoot.begin(); it0 != runtimeBoot.end(); ++it0)
 		{
