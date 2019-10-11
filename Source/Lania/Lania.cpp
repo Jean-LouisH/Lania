@@ -1,5 +1,5 @@
 #include <Lania.hpp>
-#include <Core/RuntimeBootLoading.hpp>
+#include <Application/ApplicationBooting.hpp>
 #include <Core/Core.hpp>
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/OS.hpp>
@@ -11,7 +11,7 @@
 #include <Utilities/GenericCollections/String.hpp>
 #include <Utilities/GenericCollections/List.hpp>
 #include <Engines/Physics/Physics2D.hpp>
-#include <Core/HAL/File.hpp>
+#include <Core/HAL/FileSystem.hpp>
 #include <Core/HAL/EngineTimers.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Engines/Physics/Physics.hpp>
@@ -23,29 +23,33 @@ void Lania::initialize(Core* core)
 #if _DEBUG
 	exportFilePath += DEFAULT_DEBUG_EXPORT_PATH;
 #endif
-
-	BootConfiguration* bootConfig = &core->bootConfig;
 	unsigned char* state = &core->state;
+	BootConfiguration* bootConfig = &core->bootConfig;
+	Platform* platform = &core->platform;
 
 	Log::toConsole("Initializing Core...\n");
 	core->engineTimers.run.setStart();
 	core->executableName = FileSystem::getExecutableName(core->filepath);
-	core->bootConfig.dataFilePath = exportFilePath + core->executableName + "_Data/";
-	String runtimeBootFilePath = core->bootConfig.dataFilePath + "Runtime_Boot.yml";
-	RuntimeBootLoading::build(bootConfig, runtimeBootFilePath);
+	bootConfig->dataDirectoryPath = exportFilePath + core->executableName + "_Data/";
+
+	if (FileSystem::exists(bootConfig->dataDirectoryPath))
+		ApplicationBooting::build(bootConfig);
+	else
+		;
+
 	SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName +
 		"_Data/" + "gamecontrollerdb.txt").c_str());
-	core->platform.logicalCoreCount = SDL_GetCPUCount();
-	core->platform.L1CacheLineSize_B = SDL_GetCPUCacheLineSize();
-	core->platform.systemRAM_MB = SDL_GetSystemRAM();
-	core->platform.OS = (char*)SDL_GetPlatform();
-	SDL_GetPowerInfo(NULL, &core->platform.batteryLife_pct);
+	platform->logicalCoreCount = SDL_GetCPUCount();
+	platform->L1CacheLineSize_B = SDL_GetCPUCacheLineSize();
+	platform->systemRAM_MB = SDL_GetSystemRAM();
+	platform->OS = (char*)SDL_GetPlatform();
+	SDL_GetPowerInfo(NULL, &platform->batteryLife_pct);
 	*state = Core::states::INITIALIZING;
 
 	Log::toConsole("Executable Name: " + core->executableName + ".exe");
-	Log::toConsole("Logical Cores: " + std::to_string(core->platform.logicalCoreCount));
-	Log::toConsole("L1 Cache Line Size: " + std::to_string(core->platform.L1CacheLineSize_B) + " B");
-	Log::toConsole("System RAM Size: " + std::to_string(core->platform.systemRAM_MB) + " MB");
+	Log::toConsole("Logical Cores: " + std::to_string(platform->logicalCoreCount));
+	Log::toConsole("L1 Cache Line Size: " + std::to_string(platform->L1CacheLineSize_B) + " B");
+	Log::toConsole("System RAM Size: " + std::to_string(platform->systemRAM_MB) + " MB");
 
 	if (SDL_Init(SDL_INIT_EVERYTHING))
 	{
@@ -56,7 +60,7 @@ void Lania::initialize(Core* core)
 	}
 	else
 	{
-		SDL_GetDesktopDisplayMode(0, &core->platform.SDLDisplayMode);
+		SDL_GetDesktopDisplayMode(0, &platform->SDLDisplayMode);
 		Log::toConsole("Target FPS: " + std::to_string(bootConfig->targetFPS));
 		IMG_Init(IMG_INIT_PNG);
 
@@ -90,12 +94,12 @@ void Lania::initialize(Core* core)
 		}
 		else
 		{
-			SDL_Surface* logo = IMG_Load((core->bootConfig.dataFilePath + bootConfig->icon).c_str());
+			SDL_Surface* logo = IMG_Load((bootConfig->dataDirectoryPath + bootConfig->icon).c_str());
 			SDL_SetWindowIcon(core->window, logo);
 			SDL_FreeSurface(logo);
 
 			SDL_DisableScreenSaver();
-			SDL_GetCurrentDisplayMode(0, &core->platform.SDLDisplayMode);
+			SDL_GetCurrentDisplayMode(0, &platform->SDLDisplayMode);
 
 			if (bootConfig->renderingAPI == "opengl 3.3")
 			{
