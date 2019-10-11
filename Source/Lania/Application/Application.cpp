@@ -6,9 +6,17 @@ void Lania::Application::init()
 	this->scene.windowDimensions.height = core->bootConfig.windowHeight_px;
 	this->scene.windowDimensions.width = core->bootConfig.windowWidth_px;
 	this->scene.dataFilePath = core->bootConfig.dataDirectoryPath;
-	this->scene.load(scene.dataFilePath + core->bootConfig.mainScene);
-	this->native.init(&this->scene, this->core);
-	this->commandLine.isWaitingOnCommand = this->core->bootConfig.commandLineOnStart;
+
+	if (core->bootConfig.appName != EDITOR_APPLICATION_NAME)
+	{
+		this->scene.load(scene.dataFilePath + core->bootConfig.mainScene);
+		this->native.init(&this->scene, this->core);
+		this->commandLine.isWaitingOnCommand = this->core->bootConfig.commandLineOnStart;
+	}
+	else
+	{
+
+	}
 }
 
 void Lania::Application::runCommandLine()

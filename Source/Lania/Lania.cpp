@@ -1,5 +1,6 @@
 #include <Lania.hpp>
 #include <Application/ApplicationBooting.hpp>
+#include <Editor/EditorBooting.hpp>
 #include <Core/Core.hpp>
 #include <Core/HAL/Input.hpp>
 #include <Core/HAL/OS.hpp>
@@ -35,7 +36,7 @@ void Lania::initialize(Core* core)
 	if (FileSystem::exists(bootConfig->dataDirectoryPath))
 		ApplicationBooting::build(bootConfig);
 	else
-		;
+		EditorBooting::build(bootConfig);
 
 	SDL_GameControllerAddMappingsFromFile((exportFilePath + core->executableName +
 		"_Data/" + "gamecontrollerdb.txt").c_str());
