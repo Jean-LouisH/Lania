@@ -51,8 +51,6 @@ void Lania::RuntimeBootLoading::build(BootConfiguration* bootConfig, String file
 
 		if (bootConfig->renderingAPI == "opengl 3.3")
 			bootConfig->windowFlags |= SDL_WINDOW_OPENGL;
-		else if (bootConfig->renderingAPI == "vulkan 1.1")
-			bootConfig->windowFlags |= SDL_WINDOW_VULKAN;
 	}
 	catch(int e)
 	{

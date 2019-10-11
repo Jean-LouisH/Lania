@@ -13,9 +13,6 @@ void Lania::Rendering::render(Renderables* renderables, uint8_t renderer, SDL_Wi
 			Rendering::OpenGL::render(renderables);
 			SDL_GL_SwapWindow(window);
 			break;
-
-		case Core::renderers::LANIA_VULKAN_1_1_RENDERER:
-			break;
 	}
 }
 

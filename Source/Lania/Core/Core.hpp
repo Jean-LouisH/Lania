@@ -40,7 +40,6 @@ namespace Lania
 		enum renderers
 		{
 			LANIA_OPENGL_3_3_RENDERER,
-			LANIA_VULKAN_1_1_RENDERER
 		};
 
 		SDL_Window* window;

@@ -72,10 +72,6 @@ void Lania::initialize(Core* core)
 			SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
 			SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 		}
-		else if (bootConfig->renderingAPI == "vulkan 1.1")
-		{
-			;
-		}
 
 		core->window = SDL_CreateWindow(
 			bootConfig->windowTitle.c_str(),
@@ -121,12 +117,6 @@ void Lania::initialize(Core* core)
 					glViewport(0, 0, bootConfig->windowWidth_px, bootConfig->windowHeight_px);
 					Log::toConsole("Rendering Engine: Lania OpenGL 3.3");
 				}
-			}
-			else if (bootConfig->renderingAPI == "vulkan 1.1")
-			{
-				core->renderer = Core::renderers::LANIA_VULKAN_1_1_RENDERER;
-				core->platform.renderingAPIVersion = (char*)"Vulkan";
-				Log::toConsole("Rendering Engine: Lania Vulkan 1.1");
 			}
 
 			if (bootConfig->windowFlags & SDL_WINDOW_FULLSCREEN)
