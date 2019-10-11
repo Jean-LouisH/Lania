@@ -70,7 +70,7 @@ void Lania::Scene::load(String filePath)
 							}
 							else if (it2->first.as<std::string>() == "shader2D")
 							{
-								MemoryPoolU8 shaderContents = File::readString(this->dataFilePath + it2->second.as<std::string>());
+								MemoryPoolU8 shaderContents = FileSystem::readString(this->dataFilePath + it2->second.as<std::string>());
 								shaders2D.push_back((const char*) shaderContents.getData());
 								shaderContents.deallocate();
 

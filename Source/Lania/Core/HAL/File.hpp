@@ -19,7 +19,7 @@
 
 namespace Lania
 {
-	namespace File
+	namespace FileSystem
 	{
 		bool exists(String filePath);
 		MemoryPoolU8 read(String filePath);

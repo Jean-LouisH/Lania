@@ -1,7 +1,7 @@
 #include "File.hpp"
 #include "MemoryPool.hpp"
 
-bool Lania::File::exists(String filePath)
+bool Lania::FileSystem::exists(String filePath)
 {
 	FILE* readFile = fopen(filePath.c_str(), "rb");
 	if (readFile != NULL)
@@ -9,7 +9,7 @@ bool Lania::File::exists(String filePath)
 	return (bool)readFile;
 }
 
-Lania::MemoryPoolU8 Lania::File::read(String filePath)
+Lania::MemoryPoolU8 Lania::FileSystem::read(String filePath)
 {
 	FILE* readFile = fopen(filePath.c_str(), "rb");
 	MemoryPoolU8 memory;
@@ -27,7 +27,7 @@ Lania::MemoryPoolU8 Lania::File::read(String filePath)
 	return memory;
 }
 
-Lania::MemoryPoolU8 Lania::File::readString(String filePath)
+Lania::MemoryPoolU8 Lania::FileSystem::readString(String filePath)
 {
 	FILE* readFile = fopen(filePath.c_str(), "rb");
 	MemoryPoolU8 memory;
@@ -46,7 +46,7 @@ Lania::MemoryPoolU8 Lania::File::readString(String filePath)
 	return memory;
 }
 
-void Lania::File::write(String filePath, MemoryPoolU8 memory)
+void Lania::FileSystem::write(String filePath, MemoryPoolU8 memory)
 {
 	FILE* writeFile = fopen(filePath.c_str(), "wb");
 	if (writeFile != NULL)
@@ -56,7 +56,7 @@ void Lania::File::write(String filePath, MemoryPoolU8 memory)
 	}
 }
 
-void Lania::File::writeString(String filePath, MemoryPoolU8 memory)
+void Lania::FileSystem::writeString(String filePath, MemoryPoolU8 memory)
 {
 	FILE* writeFile = fopen(filePath.c_str(), "wb");
 	if (writeFile != NULL)
@@ -66,9 +66,8 @@ void Lania::File::writeString(String filePath, MemoryPoolU8 memory)
 	}
 }
 
-void Lania::File::append(String filePath, MemoryPoolU8 memory)
+void Lania::FileSystem::append(String filePath, MemoryPoolU8 memory)
 {
-
 	FILE* appendFile = fopen(filePath.c_str(), "ab");
 	if (appendFile != NULL)
 	{
@@ -77,7 +76,7 @@ void Lania::File::append(String filePath, MemoryPoolU8 memory)
 	}
 }
 
-void Lania::File::appendString(String filePath, MemoryPoolU8 memory)
+void Lania::FileSystem::appendString(String filePath, MemoryPoolU8 memory)
 {
 	FILE* appendFile = fopen(filePath.c_str(), "a");
 	if (appendFile != NULL)
@@ -87,7 +86,7 @@ void Lania::File::appendString(String filePath, MemoryPoolU8 memory)
 	}
 }
 
-Lania::String Lania::File::getExecutableName(Lania::String filePath)
+Lania::String Lania::FileSystem::getExecutableName(Lania::String filePath)
 {
 	String executableName;
 	int nameIndexStart = 0;

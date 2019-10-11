@@ -29,7 +29,7 @@ void Lania::initialize(Core* core)
 
 	Log::toConsole("Initializing Core...\n");
 	core->engineTimers.run.setStart();
-	core->executableName = File::getExecutableName(core->filepath);
+	core->executableName = FileSystem::getExecutableName(core->filepath);
 	core->bootConfig.dataFilePath = exportFilePath + core->executableName + "_Data/";
 	String runtimeBootFilePath = core->bootConfig.dataFilePath + "Runtime_Boot.yml";
 	RuntimeBootLoading::build(bootConfig, runtimeBootFilePath);
