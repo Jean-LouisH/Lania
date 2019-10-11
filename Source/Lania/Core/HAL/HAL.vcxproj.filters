@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="File.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GPU.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -48,11 +45,11 @@
     <ClInclude Include="Renderables.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="FileSystem.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="File.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Logging.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -63,6 +60,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ExecutionTimer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FileSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

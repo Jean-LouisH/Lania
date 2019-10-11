@@ -3,7 +3,7 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* File
+* FileSystem
 *
 * Handles all file input and output requests throughout the engine.
 *
