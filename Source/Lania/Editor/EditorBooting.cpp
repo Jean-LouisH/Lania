@@ -9,9 +9,7 @@ void Lania::EditorBooting::build(BootConfiguration* bootConfig)
 	bootConfig->windowTitle = bootConfig->appName;
 	bootConfig->renderingAPI = "opengl 3.3";
 	bootConfig->targetFPS = 60;
-	bootConfig->windowFlags |= SDL_WINDOW_OPENGL;
-	bootConfig->windowFlags |= SDL_WINDOW_RESIZABLE;
-	bootConfig->windowFlags |= SDL_WINDOW_MAXIMIZED;
+	bootConfig->windowFlags |= SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE | SDL_WINDOW_MAXIMIZED;
 	bootConfig->windowWidth_px = 1280;
 	bootConfig->windowHeight_px = 720;
 }
