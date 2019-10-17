@@ -33,7 +33,7 @@ void Lania::initialize(Core* core)
 	core->executableName = FileSystem::getExecutableName(core->filepath);
 	bootConfig->dataDirectoryPath = exportFilePath + core->executableName + "_Data/";
 
-	if (FileSystem::exists(bootConfig->dataDirectoryPath))
+	if (FileSystem::exists(bootConfig->dataDirectoryPath + "Application_Boot.yml"))
 		ApplicationBooting::build(bootConfig);
 	else
 		EditorBooting::build(bootConfig);
