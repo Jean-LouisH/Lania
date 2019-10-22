@@ -14,7 +14,7 @@
 
 #pragma once
 
-#include "AABB2D.hpp"
+#include "../../../Utilities/Mathematics/AABB2D.hpp"
 #include "Entity2D.hpp"
 
 namespace Lania

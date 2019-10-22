@@ -36,6 +36,9 @@
     <ClInclude Include="Colour.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AABB2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Colour.cpp">

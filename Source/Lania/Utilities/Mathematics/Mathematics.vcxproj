@@ -119,6 +119,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AABB2D.hpp" />
     <ClInclude Include="Colour.hpp" />
     <ClInclude Include="Mathematics.hpp" />
     <ClInclude Include="Rectangle.hpp" />

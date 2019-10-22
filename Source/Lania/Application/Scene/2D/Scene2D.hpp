@@ -19,7 +19,7 @@
 #include "../../../Utilities/GenericCollections/Map.hpp"
 #include "../../../Utilities/GenericCollections/String.hpp"
 
-#include "AABB2D.hpp"
+#include "../../../Utilities/Mathematics/AABB2D.hpp"
 #include "BoxCollider2D.hpp"
 #include "Camera2D.hpp"
 #include "CircleCollider.hpp"
