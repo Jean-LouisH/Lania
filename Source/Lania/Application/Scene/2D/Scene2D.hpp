@@ -19,6 +19,8 @@
 #include "../../../Utilities/GenericCollections/Map.hpp"
 #include "../../../Utilities/GenericCollections/String.hpp"
 
+#include "AudioListener2D.hpp"
+#include "AudioSource2D.hpp"
 #include "BoxCollider2D.hpp"
 #include "Camera2D.hpp"
 #include "CircleCollider.hpp"
@@ -51,12 +53,16 @@ namespace Lania
 		List<RigidBody2D> activeRigidBodies;
 		List<BoxCollider2D> activeBoxColliders;
 		List<PositionLock2D> pointLocks;
+		List<AudioSource2D> activeAudioSources;
+		List<AudioListener2D> activeAudioListeners;
 
 		//Inactive storage lists
 		//No ordering enforced as long as components maintain parent entity IDs
 		List<Sprite2D> inactiveSprites;
 		List<Camera2D> inactiveCameras;
 		List<RigidBody2D> inactiveRigidBodies;
+		List<AudioSource2D> inactiveAudioSources;
+		List<AudioListener2D> inactiveAudioListeners;
 
 		//Stores current camera list position to prevent repetitive searches
 		ComponentListIndex currentCameraIndex;

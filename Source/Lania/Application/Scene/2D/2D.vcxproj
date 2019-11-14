@@ -121,6 +121,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AudioListener2D.hpp" />
+    <ClInclude Include="AudioSource2D.hpp" />
     <ClInclude Include="BoxCollider2D.hpp" />
     <ClInclude Include="Camera2D.hpp" />
     <ClInclude Include="CircleCollider.hpp" />
