@@ -136,6 +136,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Scene.hpp" />
+    <ClInclude Include="Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene.cpp" />

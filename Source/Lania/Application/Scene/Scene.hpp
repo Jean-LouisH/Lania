@@ -20,6 +20,7 @@
 #include <Utilities/GenericCollections/String.hpp>
 #include <stdint.h>
 #include "2D/Scene2D.hpp"
+#include "Timer.hpp"
 
 namespace Lania
 {
@@ -30,6 +31,7 @@ namespace Lania
 		List<Scene2D> subScenes2D;
 		List<LayerType> layerTypeList;
 		Multimap<String, SDL_Keycode> actionInputMaps;
+		List<Timer> timers;
 		Map<String, Texture> textures;
 		Rectangle windowDimensions;
 		String dataFilePath;
