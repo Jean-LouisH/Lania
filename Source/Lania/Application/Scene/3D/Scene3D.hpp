@@ -3,10 +3,10 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* Scene 2D 
+* Scene 3D 
 *
 * Contains components and entities that are processed exclusively
-* by 2D algorithms. Is layered with 3D scenes in the Scene struct.
+* by 3D algorithms.
 *
 * Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
