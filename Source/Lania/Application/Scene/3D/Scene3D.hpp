@@ -33,8 +33,8 @@ namespace Lania
 		{
 			//The universal, empty parent entity used for reference
 			//in recursive algorithms on child entities.
-			Entity3D dummy;
-			this->entities.push_back(dummy);
+			Entity3D scene3DEntity;
+			this->entities.push_back(scene3DEntity);
 		}
 	}Scene3D;
 }
