@@ -251,8 +251,8 @@ void Lania::compute(Core* core, Application* application)
 	while (engineTimers->lag_ms >= MS_PER_COMPUTE_UPDATE)
 	{
 		application->interpretComputeLogic(MS_PER_COMPUTE_UPDATE);
-		Physics::compute(subScene2Ds, engineTimers->simulation_ms);
-		engineTimers->simulation_ms += MS_PER_COMPUTE_UPDATE;
+		Physics::compute(subScene2Ds, application->runtime_ms);
+		application->runtime_ms += MS_PER_COMPUTE_UPDATE;
 		engineTimers->lag_ms -= MS_PER_COMPUTE_UPDATE;
 	}
 

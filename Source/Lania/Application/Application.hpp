@@ -35,6 +35,7 @@ namespace Lania
 			EntityID leafEntityID);
 	public:
 		Scene scene;
+		double runtime_ms;
 
 		void init();
 		void runCommandLine();

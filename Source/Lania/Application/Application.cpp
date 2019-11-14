@@ -149,4 +149,5 @@ void Lania::Application::compound2DEntityParentTransforms(
 Lania::Application::Application(Core* core)
 {
 	this->core = core;
+	this->runtime_ms = 0.0;
 }

@@ -34,10 +34,8 @@ namespace Lania
 		ExecutionTimer run;
 		ExecutionTimer shutdown;
 		ExecutionTimer debug;
-		double simulation_ms;
 		uint64_t lag_ms;
 		EngineTimers() :
-			simulation_ms(0.0),
 			lag_ms(0) 
 		{}
 	};
