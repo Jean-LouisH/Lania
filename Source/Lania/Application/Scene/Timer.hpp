@@ -29,16 +29,16 @@ namespace Lania
 			RESET
 		};
 
-		double delta_s;
-		double startTime_s;
-		double endTime_s;
+		double delta_ms;
+		double startTime_ms;
+		double endTime_ms;
 		uint8_t request;
-		List<double> deltaLaps_s;
+		List<double> deltaLaps_ms;
 
 		Timer() :
-			delta_s(0.0),
-			startTime_s(0.0),
-			endTime_s(0.0),
+			delta_ms(0.0),
+			startTime_ms(0.0),
+			endTime_ms(0.0),
 			request(NO_REQUEST)
 		{};
 	};
