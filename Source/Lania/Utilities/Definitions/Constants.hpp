@@ -38,7 +38,7 @@ namespace Lania
 
 #define NO_ENTITY 0 
 
-#define DEFAULT_DEBUG_EXPORT_PATH "../../Demos/Debug/Lania/"
+#define DEFAULT_DEBUG_EXPORT_PATH "../../Demos/Default Debug/Lania/"
 #define EDITOR_APPLICATION_NAME "Lania Editor"
 
 	enum LayerTypes
