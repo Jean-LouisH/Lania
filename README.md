@@ -4,7 +4,7 @@
 
 ![screenshot](Documentation/Images/sprite_test.png)
 
-[Lania](https://github.com/Jean-LouisH/Lania) is **a 2D/3D engine for real-time simulations and games**. 
+[Lania](https://github.com/Jean-LouisH/Lania) is **a hobbyist and experimental 2D/3D engine for real-time simulations and games**. 
 
 It is named after the [Laniakea Supercluster](https://en.wikipedia.org/wiki/Laniakea_Supercluster). Laniakea is Hawaiian for "immeasurable heaven". This relates to the engine's representation of physical space and also the endlessness of its feature support for the future.
 
