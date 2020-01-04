@@ -1,5 +1,10 @@
 #include "Texture.hpp"
 
+SDL_Surface* Lania::Texture::getSDLSurface()
+{
+	return this->surface;
+}
+
 uint8_t* Lania::Texture::getData()
 {
 	return (uint8_t*) this->surface->pixels;

@@ -26,6 +26,7 @@ namespace Lania
 	private:
 		SDL_Surface* surface;
 	public:
+		SDL_Surface* getSDLSurface();
 		uint8_t* getData();
 		uint64_t getSize();
 		Rectangle getDimensions();
