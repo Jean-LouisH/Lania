@@ -142,8 +142,8 @@ void Lania::Rendering::OpenGL33::render(Renderables* renderables)
 			{
 				glslVertexShaderSources.clear();
 				glslFragmentShaderSources.clear();
-				glslVertexShaderSources.push_back(Rendering::OpenGL33::defaultVertexShader);
-				glslFragmentShaderSources.push_back(Rendering::OpenGL33::defaultFragmentShader);
+				glslVertexShaderSources.push_back(Rendering::OpenGL33::builtInVertexShader);
+				glslFragmentShaderSources.push_back(Rendering::OpenGL33::builtInFragmentShader);
 				glslShaders.compileShaders(&glslVertexShaderSources, &glslFragmentShaderSources);
 				Rendering2D::OpenGL33::delete2DTextures(&glTextureIDs);
 				glTextureIDs.clear();

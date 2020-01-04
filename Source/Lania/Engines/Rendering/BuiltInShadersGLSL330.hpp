@@ -22,7 +22,7 @@ namespace Lania
 	{
 		namespace OpenGL33
 		{
-			const char defaultVertexShader[] = R"(
+			const char builtInVertexShader[] = R"(
 
 				#version 330 core
 				layout (location = 0) in vec4 vertex;
@@ -39,7 +39,7 @@ namespace Lania
 				}	
 			)";
 
-			const char defaultFragmentShader[] = R"(
+			const char builtInFragmentShader[] = R"(
 
 				#version 330 core
 				in vec2 texCoords;
