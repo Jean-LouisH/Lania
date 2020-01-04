@@ -14,7 +14,7 @@
 #pragma once
 
 #include <Core/HAL/Renderables.hpp>
-#include "GLSLShader.hpp"
+#include "ShaderCompilerGLSL330.hpp"
 #include <Utilities/GenericCollections/List.hpp>
 #include <GL/glew.h>
 
@@ -22,7 +22,7 @@ namespace Lania
 {
 	namespace Rendering2D
 	{
-		namespace OpenGL
+		namespace OpenGL33
 		{
 			void generate2DTextures(
 				Sprite2DRenderable* sprites2D,
@@ -35,7 +35,7 @@ namespace Lania
 				int spriteCount,
 				GLuint* glTextureIDs,
 				Camera2DRenderable* currentCamera2D,
-				Rendering::OpenGL::GLSLShaders* glslShaders);
+				Rendering::OpenGL33::ShaderCompilerGLSL330* glslShaderCompiler);
 		}
 	}
 }

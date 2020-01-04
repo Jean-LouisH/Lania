@@ -1,8 +1,8 @@
-#include "Rendering2D.hpp"
+#include "Rendering2DOpenGL33.hpp"
 #include <GL/glew.h>
 #include <glm/glm.hpp>
 
-void Lania::Rendering2D::OpenGL::generate2DTextures(
+void Lania::Rendering2D::OpenGL33::generate2DTextures(
 	Sprite2DRenderable* sprites2D,
 	int spriteCount,
 	List<GLuint>* glTextureIDs)
@@ -44,7 +44,7 @@ void Lania::Rendering2D::OpenGL::generate2DTextures(
 	}
 }
 
-void Lania::Rendering2D::OpenGL::delete2DTextures(
+void Lania::Rendering2D::OpenGL33::delete2DTextures(
 	List<GLuint>* glTextureIDs)
 {
 	int size = glTextureIDs->size();
@@ -53,14 +53,14 @@ void Lania::Rendering2D::OpenGL::delete2DTextures(
 		glDeleteTextures(1, &glTextureIDs->at(i));
 }
 
-void Lania::Rendering2D::OpenGL::drawSprites(
+void Lania::Rendering2D::OpenGL33::drawSprites(
 	Sprite2DRenderable* sprites2D, 
 	int spriteCount,
 	GLuint* glTextureIDs,
 	Camera2DRenderable* currentCamera2D,
-	Rendering::OpenGL::GLSLShaders* glslShaders)
+	Rendering::OpenGL33::ShaderCompilerGLSL330* glslShaderCompiler)
 {
-	glslShaders->use();
+	glslShaderCompiler->use();
 
 	for (int i = 0; i < spriteCount; i++)
 	{
