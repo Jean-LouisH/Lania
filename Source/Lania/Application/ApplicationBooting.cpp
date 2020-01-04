@@ -51,13 +51,13 @@ void Lania::ApplicationBooting::build(BootConfiguration* bootConfig)
 			}
 		}
 
-		if (bootConfig->renderingAPI == "opengl 3.3")
+		if (bootConfig->renderingAPI == "opengl_3_3")
 			bootConfig->windowFlags |= SDL_WINDOW_OPENGL;
 	}
 	catch(int e)
 	{
 		bootConfig->windowTitle = "No Runtime Loaded";
-		bootConfig->renderingAPI = "opengl 3.3";
+		bootConfig->renderingAPI = "opengl_3_3";
 		bootConfig->targetFPS = 30;
 		bootConfig->windowFlags |= SDL_WINDOW_OPENGL;
 		bootConfig->windowHeight_px = 400;
