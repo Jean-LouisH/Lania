@@ -3,7 +3,7 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* Default Shaders
+* Built-In Shaders
 *
 * Shaders that are always rendered by default to give the general look of a Lania application
 * even without user defined shaders. User defined shaders can be used together with these shaders, however.
@@ -20,7 +20,7 @@ namespace Lania
 {
 	namespace Rendering
 	{
-		namespace OpenGL
+		namespace OpenGL33
 		{
 			const char defaultVertexShader[] = R"(
 
