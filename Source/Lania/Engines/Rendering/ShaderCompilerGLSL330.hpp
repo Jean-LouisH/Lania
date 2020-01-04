@@ -3,7 +3,7 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* GLSL Shader
+* Shader Compiler GLSL 330
 *
 * Code for handling GLSL compilation and verification.
 *
@@ -21,9 +21,9 @@ namespace Lania
 {
 	namespace Rendering
 	{
-		namespace OpenGL
+		namespace OpenGL33
 		{
-			class GLSLShaders
+			class ShaderCompilerGLSL330
 			{
 			private:
 				List<GLuint> vertexShaders;

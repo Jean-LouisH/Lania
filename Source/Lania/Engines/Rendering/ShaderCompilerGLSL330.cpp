@@ -1,8 +1,8 @@
-#include "GLSLShader.hpp"
-#include "DefaultGLSLShaders.hpp"
+#include "ShaderCompilerGLSL330.hpp"
+#include "BuiltInShadersGLSL330.hpp"
 #include <iostream>
 
-void Lania::Rendering::OpenGL::GLSLShaders::compileShaders(List<String>* vertexShaderSources, List<String>* fragmentShaderSources)
+void Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::compileShaders(List<String>* vertexShaderSources, List<String>* fragmentShaderSources)
 {
 	bool compilationSuccess = true;
 
@@ -20,12 +20,12 @@ void Lania::Rendering::OpenGL::GLSLShaders::compileShaders(List<String>* vertexS
 	this->deleteShaders();
 }
 
-void Lania::Rendering::OpenGL::GLSLShaders::use()
+void Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::use()
 {
 	glUseProgram(this->shaderProgram);
 }
 
-bool Lania::Rendering::OpenGL::GLSLShaders::compileVertexShader(String vertexShaderSource)
+bool Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::compileVertexShader(String vertexShaderSource)
 {
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	GLchar* source = (GLchar*)vertexShaderSource.c_str();
@@ -35,7 +35,7 @@ bool Lania::Rendering::OpenGL::GLSLShaders::compileVertexShader(String vertexSha
 	return this->checkCompileTimeErrors(vertexShader, GL_COMPILE_STATUS);
 }
 
-bool Lania::Rendering::OpenGL::GLSLShaders::compileFragmentShader(String fragmentShaderSource)
+bool Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::compileFragmentShader(String fragmentShaderSource)
 {
 	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
 	GLchar* source = (GLchar*)fragmentShaderSource.c_str();
@@ -45,7 +45,7 @@ bool Lania::Rendering::OpenGL::GLSLShaders::compileFragmentShader(String fragmen
 	return this->checkCompileTimeErrors(fragmentShader, GL_COMPILE_STATUS);
 }
 
-void Lania::Rendering::OpenGL::GLSLShaders::linkShaderProgram()
+void Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::linkShaderProgram()
 {
 	GLuint shaderProgram = glCreateProgram();
 	int vertexShaderCount = this->vertexShaders.size();
@@ -61,7 +61,7 @@ void Lania::Rendering::OpenGL::GLSLShaders::linkShaderProgram()
 	this->shaderProgram = shaderProgram;
 }
 
-bool Lania::Rendering::OpenGL::GLSLShaders::checkCompileTimeErrors(GLuint ID, GLuint status)
+bool Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::checkCompileTimeErrors(GLuint ID, GLuint status)
 {
 	GLint compilationSuccess = GL_FALSE;
 	char infoLog[512];
@@ -80,7 +80,7 @@ bool Lania::Rendering::OpenGL::GLSLShaders::checkCompileTimeErrors(GLuint ID, GL
 	return compilationSuccess;
 }
 
-void Lania::Rendering::OpenGL::GLSLShaders::deleteShaders()
+void Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::deleteShaders()
 {
 	int vertexShaderCount = this->vertexShaders.size();
 	for (int i = 0; i < vertexShaderCount; i++)
@@ -93,7 +93,7 @@ void Lania::Rendering::OpenGL::GLSLShaders::deleteShaders()
 	this->fragmentShaders.clear();
 }
 
-void Lania::Rendering::OpenGL::GLSLShaders::setIntUniform(String name, int value)
+void Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::setIntUniform(String name, int value)
 {
 	glUniform1i(glGetUniformLocation(this->shaderProgram, name.c_str()), value);
 }
