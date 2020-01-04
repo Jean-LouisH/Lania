@@ -15,19 +15,40 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Rendering2D.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Rendering3D.hpp">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Rendering.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DefaultGLSLShaders.hpp">
+    <ClInclude Include="Camera2D.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GLSLShader.hpp">
+    <ClInclude Include="Rect.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SDLRenderable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sprite2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform2D.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Vector2.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering2DOpenGL33.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="BuiltInShadersGLSL330.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderCompilerGLSL330.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering2DSDL2.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -35,10 +56,13 @@
     <ClCompile Include="Rendering.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Rendering2D.cpp">
+    <ClCompile Include="Rendering2DOpenGL33.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GLSLShader.cpp">
+    <ClCompile Include="ShaderCompilerGLSL330.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering2DSDL2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

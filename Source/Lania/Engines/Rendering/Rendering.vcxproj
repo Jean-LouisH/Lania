@@ -139,16 +139,24 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="DefaultGLSLShaders.hpp" />
+    <ClInclude Include="Camera2D.hpp" />
+    <ClInclude Include="BuiltInShadersGLSL330.hpp" />
+    <ClInclude Include="Rect.hpp" />
     <ClInclude Include="Rendering.hpp" />
-    <ClInclude Include="Rendering2D.hpp" />
-    <ClInclude Include="Rendering3D.hpp" />
-    <ClInclude Include="GLSLShader.hpp" />
+    <ClInclude Include="Rendering2DOpenGL33.hpp" />
+    <ClInclude Include="ShaderCompilerGLSL330.hpp" />
+    <ClInclude Include="Rendering2DSDL2.hpp" />
+    <ClInclude Include="SDLRenderable.hpp" />
+    <ClInclude Include="Sprite2D.hpp" />
+    <ClInclude Include="Texture.hpp" />
+    <ClInclude Include="Transform2D.hpp" />
+    <ClInclude Include="Vector2.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Rendering.cpp" />
-    <ClCompile Include="Rendering2D.cpp" />
-    <ClCompile Include="GLSLShader.cpp" />
+    <ClCompile Include="Rendering2DOpenGL33.cpp" />
+    <ClCompile Include="ShaderCompilerGLSL330.cpp" />
+    <ClCompile Include="Rendering2DSDL2.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

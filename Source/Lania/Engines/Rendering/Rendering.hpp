@@ -21,8 +21,19 @@ namespace Lania
 {
 	namespace Rendering
 	{
-		void render(Renderables* renderables, uint8_t renderer, SDL_Window* window);
-		namespace OpenGL
+		void render(
+			Renderables* renderables,
+			uint8_t renderer, 
+			SDL_Window* window, 
+			SDL_Renderer* sdlRenderer);
+
+		namespace SDL2
+		{
+			void render(Renderables* renderables, SDL_Window* window, SDL_Renderer* sdlRenderer);
+			void clearBuffers(SDL_Renderer* sdlRenderer);
+		}
+
+		namespace OpenGL33
 		{
 			void render(Renderables* renderables);
 			void clearBuffers();

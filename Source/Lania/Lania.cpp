@@ -65,7 +65,11 @@ void Lania::initialize(Core* core)
 		Log::toConsole("Target FPS: " + std::to_string(bootConfig->targetFPS));
 		IMG_Init(IMG_INIT_PNG);
 
-		if (bootConfig->renderingAPI == "opengl 3.3")
+		if (bootConfig->renderingAPI == "sdl_2")
+		{
+
+		}
+		else if (bootConfig->renderingAPI == "opengl_3_3")
 		{
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 			SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
@@ -102,7 +106,21 @@ void Lania::initialize(Core* core)
 			SDL_DisableScreenSaver();
 			SDL_GetCurrentDisplayMode(0, &platform->SDLDisplayMode);
 
-			if (bootConfig->renderingAPI == "opengl 3.3")
+			if (bootConfig->renderingAPI == "sdl_2")
+			{
+				SDL_RendererInfo sdlRendererInfo;
+
+				core->renderer = Core::renderers::LANIA_SDL_2_RENDERER;
+				core->sdlRenderer = SDL_CreateRenderer(
+					core->window, 
+					-1, 
+					SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+				SDL_GetRendererInfo(core->sdlRenderer, &sdlRendererInfo);
+				core->platform.renderingAPIVersion = (char*)sdlRendererInfo.name;
+
+				Log::toConsole("Rendering Engine: Lania SDL 2");
+			}
+			else if (bootConfig->renderingAPI == "opengl_3_3")
 			{
 				core->renderer = Core::renderers::LANIA_OPENGL_3_3_RENDERER;
 				core->glContext = SDL_GL_CreateContext(core->window);
@@ -268,7 +286,7 @@ void Lania::compute(Core* core, Application* application)
 void Lania::output(Core* core)
 {
 	core->engineTimers.output.setStart();
-	Rendering::render(&core->output.renderables, core->renderer, core->window);
+	Rendering::render(&core->output.renderables, core->renderer, core->window, core->sdlRenderer);
 	core->engineTimers.output.setEnd();
 }
 

@@ -10,5 +10,5 @@ application_window:
   fullscreen: false
   resizable: true
   maximized: false
-  rendering_api: opengl 3.3
+  rendering_api: sdl_2
   target_fps: 60
