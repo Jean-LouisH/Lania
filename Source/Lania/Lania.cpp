@@ -63,7 +63,7 @@ void Lania::initialize(Core* core)
 	{
 		SDL_GetDesktopDisplayMode(0, &platform->SDLDisplayMode);
 		Log::toConsole("Target FPS: " + std::to_string(bootConfig->targetFPS));
-		IMG_Init(IMG_INIT_PNG);
+		IMG_Init(IMG_INIT_PNG | IMG_INIT_JPG | IMG_INIT_TIF | IMG_INIT_WEBP);
 
 		if (bootConfig->renderingAPI == "sdl_2")
 		{
