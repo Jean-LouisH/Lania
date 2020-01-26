@@ -32,7 +32,6 @@ namespace Lania
 		ExecutionTimer benchmark;
 		ExecutionTimer FPS;
 		ExecutionTimer run;
-		ExecutionTimer shutdown;
 		ExecutionTimer debug;
 		uint64_t lag_ms;
 		EngineTimers() :
