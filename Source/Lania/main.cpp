@@ -31,7 +31,7 @@ int main(int argc, char* argv[])
 		Lania::initialize(core);
 		if (core->state != Lania::Core::states::SHUTDOWN)
 			Lania::loop(core, application);
-		Lania::shutdown(core, application);
+		Lania::shutdown(core);
 
 		restarting = (core->state == Lania::Core::states::RESTARTING);
 

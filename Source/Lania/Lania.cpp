@@ -182,6 +182,8 @@ void Lania::loop(Core* core, Application* application)
 
 	} while (core->state != Core::states::SHUTDOWN && 
 		core->state != Core::states::RESTARTING);
+
+	application->deinit();
 }
 
 void Lania::sleep(Core* core)
@@ -290,13 +292,10 @@ void Lania::output(Core* core)
 	core->engineTimers.output.setEnd();
 }
 
-void Lania::shutdown(Core* core, Application* application)
+void Lania::shutdown(Core* core)
 {
 	List<SDL_GameController*>* gameControllers = &core->input.gameControllers;
 	List<SDL_Haptic*>* haptics = &core->input.haptics;
-
-	core->engineTimers.shutdown.setStart();
-	application->scene.deleteAssets();
 
 	for (int i = 0; i < gameControllers->size(); ++i)
 	{
@@ -312,5 +311,4 @@ void Lania::shutdown(Core* core, Application* application)
 		SDL_GL_DeleteContext(core->glContext);
 	SDL_DestroyWindow(core->window);
 	SDL_Quit();
-	core->engineTimers.shutdown.setEnd();
 }

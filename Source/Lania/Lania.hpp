@@ -25,5 +25,5 @@ namespace Lania
 	void logic(Core* core, Application* application);
 	void compute(Core* core, Application* application);
 	void output(Core* core);
-	void shutdown(Core* core, Application* application);
+	void shutdown(Core* core);
 }
