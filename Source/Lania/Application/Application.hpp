@@ -46,6 +46,7 @@ namespace Lania
 		void interpretLateLogic();
 		void interpretFinalLogic();
 		void buildRenderables();
+		void deinit();
 		Application(Core* core);
 	};
 }

@@ -146,6 +146,11 @@ void Lania::Application::compound2DEntityParentTransforms(
 	}
 }
 
+void Lania::Application::deinit()
+{
+	this->scene.deleteAssets();
+}
+
 Lania::Application::Application(Core* core)
 {
 	this->core = core;
