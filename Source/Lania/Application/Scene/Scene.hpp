@@ -14,7 +14,7 @@
 #pragma once
 
 #include <Utilities/GenericCollections/Map.hpp>
-#include <Core/HAL/Input.hpp>
+#include <Core/Input.hpp>
 #include <Utilities/Definitions/Aliases.hpp>
 #include <Utilities/GenericCollections/List.hpp>
 #include <Utilities/GenericCollections/String.hpp>
@@ -62,5 +62,7 @@ namespace Lania
 		void setCamera2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
 		void setSprite2DInactive(LayerID scene2DID, ComponentListIndex componentIndex);
+
+		void updateTimers(double runtime_ms);
 	};
 }

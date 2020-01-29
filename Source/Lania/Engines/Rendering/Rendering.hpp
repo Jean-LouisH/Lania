@@ -14,7 +14,7 @@
 #pragma once
 
 #include <stdint.h>
-#include <Core/HAL/Output.hpp>
+#include <Core/Output.hpp>
 #include <Core/Core.hpp>
 
 namespace Lania

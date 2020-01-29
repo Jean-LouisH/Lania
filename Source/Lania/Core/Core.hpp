@@ -15,11 +15,11 @@
 #pragma once
 
 #include <SDL.h>
-#include <Core/HAL/EngineTimers.hpp>
+#include <Core/EngineTimers.hpp>
 #include "BootConfiguration.hpp"
-#include <Core/HAL/Input.hpp>
-#include <Core/HAL/Output.hpp>
-#include <Core/HAL/Platform.hpp>
+#include <Core/Input.hpp>
+#include <Core/Output.hpp>
+#include <Core/Platform.hpp>
 #include <Utilities/GenericCollections/String.hpp>
 #include <stdint.h>
 

@@ -2,9 +2,9 @@
 #include <Application/ApplicationBooting.hpp>
 #include <Editor/EditorBooting.hpp>
 #include <Core/Core.hpp>
-#include <Core/HAL/Input.hpp>
-#include <Core/HAL/OS.hpp>
-#include <Core/HAL/Logging.hpp>
+#include <Core/Input.hpp>
+#include <Core/OS.hpp>
+#include <Core/Logging.hpp>
 #include <Utilities/Definitions/Constants.hpp>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -12,8 +12,9 @@
 #include <Utilities/GenericCollections/String.hpp>
 #include <Utilities/GenericCollections/List.hpp>
 #include <Engines/Physics/Physics2D.hpp>
-#include <Core/HAL/FileSystem.hpp>
-#include <Core/HAL/EngineTimers.hpp>
+#include <Core/FileSystem.hpp>
+#include <Core/EngineTimers.hpp>
+#include <Core/Platform.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Engines/Physics/Physics.hpp>
 #include <Engines/Rendering/Rendering.hpp>

@@ -17,7 +17,7 @@
 #include <Core/Core.hpp>
 #include "Scene/Scene.hpp"
 #include "Native/Native.hpp"
-#include <Core/HAL/Renderables.hpp>
+#include <Core/Renderables.hpp>
 #include "CommandLine.hpp"
 
 namespace Lania

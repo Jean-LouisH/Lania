@@ -11,8 +11,8 @@
 */
 
 #include <SDL.h>
-#include <Core/HAL/GPU.hpp>
-#include <Core/HAL/Logging.hpp>
+#include <Core/GPU.hpp>
+#include <Core/Logging.hpp>
 #include <Lania.hpp>
 
 int main(int argc, char* argv[])

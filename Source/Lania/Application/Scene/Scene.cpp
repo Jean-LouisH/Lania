@@ -3,7 +3,7 @@
 #include <yaml-cpp/yaml.h>
 #include <SDL_image.h>
 #include <Utilities/Definitions/Constants.hpp>
-#include <Core/HAL/FileSystem.hpp>
+#include <Core/FileSystem.hpp>
 #include <Application/Scene/Assets/Model.hpp>
 
 void Lania::Scene::load(String filePath)
@@ -354,4 +354,21 @@ void Lania::Scene::setSprite2DInactive(LayerID scene2DID, ComponentListIndex com
 void Lania::Scene::addAudioSource2D(LayerID scene2DID, EntityID entityID, String filepath)
 {
 
+}
+
+void Lania::Scene::updateTimers(double runtime_ms) 
+{
+	int timerCount = this->timers.size();
+	Timer* timers = this->timers.data();
+
+	for (int i = 0; i < timerCount; i++)
+	{
+		switch (timers[i].request)
+		{
+		case Timer::requestFlags::SET_START:; break;
+		case Timer::requestFlags::SET_END:; break;
+		case Timer::requestFlags::RESET:; break;
+		case Timer::requestFlags::LAP:; break;
+		}
+	}
 }

@@ -13,7 +13,7 @@
 
 #pragma once
 
-#include <Core/HAL/Renderables.hpp>
+#include <Core/Renderables.hpp>
 #include "ShaderCompilerGLSL330.hpp"
 #include <Utilities/GenericCollections/List.hpp>
 #include <GL/glew.h>

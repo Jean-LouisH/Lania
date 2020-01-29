@@ -1,7 +1,7 @@
 #include "OS.hpp"
 #include <Utilities/Definitions/Constants.hpp>
 #include "Logging.hpp"
-#include <Core/Core.hpp>
+#include "Core.hpp"
 #include "Input.hpp"
 #include "SDL_events.h"
 #include <SDL_image.h>
