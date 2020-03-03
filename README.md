@@ -27,6 +27,10 @@ among others.
 * [Architecture](Documentation/Architecture.md)
 * [Entity Component System](Documentation/EntityComponentSystem.md)
 
+## Contributing
+
+* Jean-Louis Haywood (Jean-LouisH)
+
 ## License
 
 [MIT License](LICENSE)
