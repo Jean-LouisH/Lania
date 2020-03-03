@@ -17,29 +17,7 @@
 
 int main(int argc, char* argv[])
 {	
-	bool restarting = false;
-
-	do
-	{
-		Lania::Core* core = new Lania::Core();
-		Lania::Application* application = new Lania::Application(core);
-
-		core->filepath = argv[0];
-
-		Lania::Log::toConsole("\t\tLania Debug Console\n");
-
-		Lania::initialize(core);
-		if (core->state != Lania::Core::states::SHUTDOWN)
-			Lania::loop(core, application);
-		Lania::shutdown(core);
-
-		restarting = (core->state == Lania::Core::states::RESTARTING);
-
-		delete application;
-		delete core;
-
-		Lania::Log::toConsole("Shutdown...");
-	} while (restarting);
-
+	Lania::Engine lania(argc, argv);
+	lania.run();
 	return 0;
 }

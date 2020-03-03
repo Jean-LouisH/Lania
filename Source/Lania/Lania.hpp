@@ -17,13 +17,24 @@
 
 namespace Lania
 {
-	void initialize(Core* core);
-	void loop(Core* core, Application* application);
-	void sleep(Core* core);
-	void benchmark(Core* core);
-	void input(Core* core);
-	void logic(Core* core, Application* application);
-	void compute(Core* core, Application* application);
-	void output(Core* core);
-	void shutdown(Core* core);
+	class Engine
+	{
+	private:
+		Core* core;
+		Application* application;
+
+		void sleep();
+		void benchmark();
+		void input();
+		void logic();
+		void compute();
+		void output();
+		void initialize();
+		void loop();
+		void shutdown();
+	public:
+		Engine(int argc, char* argv[]);
+		~Engine();
+		void run();
+	};
 }

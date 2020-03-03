@@ -10,7 +10,7 @@
 #include <SDL_image.h>
 #include <GL/glew.h>
 #include <Utilities/GenericCollections/String.hpp>
-#include <Utilities/GenericCollections/List.hpp>
+#include <Utilities/GenericCollections/Vector.hpp>
 #include <Engines/Physics/Physics2D.hpp>
 #include <Core/FileSystem.hpp>
 #include <Core/EngineTimers.hpp>
@@ -19,7 +19,21 @@
 #include <Engines/Physics/Physics.hpp>
 #include <Engines/Rendering/Rendering.hpp>
 
-void Lania::initialize(Core* core)
+Lania::Engine::Engine(int argc, char* argv[])
+{
+	this->core = new Core();
+	this->application = new Application(core);
+
+	this->core->filepath = argv[0];
+}
+
+Lania::Engine::~Engine()
+{
+	delete this->application;
+	delete this->core;
+}
+
+void Lania::Engine::initialize()
 {
 	String exportFilePath = "";
 #if _DEBUG
@@ -155,7 +169,7 @@ void Lania::initialize(Core* core)
 	}
 }
 
-void Lania::loop(Core* core, Application* application)
+void Lania::Engine::loop()
 {
 	EngineTimers* engineTimers = &core->engineTimers;
 	engineTimers->FPS.setStart();
@@ -167,19 +181,19 @@ void Lania::loop(Core* core, Application* application)
 		engineTimers->frame.setStart();
 		engineTimers->process.setStart();
 
-		Lania::input(core);
-		Lania::logic(core, application);
-		Lania::compute(core, application);
-		Lania::output(core);
+		Engine::input();
+		Engine::logic();
+		Engine::compute();
+		Engine::output();
 
 		engineTimers->process.setEnd();
 
-		Lania::sleep(core);
+		Engine::sleep();
 
 		engineTimers->frame.setEnd();
 		core->frameCount++;
 
-		Lania::benchmark(core);
+		Engine::benchmark();
 
 	} while (core->state != Core::states::SHUTDOWN && 
 		core->state != Core::states::RESTARTING);
@@ -187,7 +201,26 @@ void Lania::loop(Core* core, Application* application)
 	application->deinit();
 }
 
-void Lania::sleep(Core* core)
+void Lania::Engine::run()
+{
+	bool restarting = false;
+
+	do
+	{
+		Lania::Log::toConsole("\t\tLania Debug Console\n");
+
+		this->initialize();
+		if (core->state != Lania::Core::states::SHUTDOWN)
+			this->loop();
+		this->shutdown();
+
+		restarting = (core->state == Lania::Core::states::RESTARTING);
+
+		Lania::Log::toConsole("Shutdown...");
+	} while (restarting);
+}
+
+void Lania::Engine::sleep()
 {
 	int delay = 0;
 	
@@ -206,7 +239,7 @@ void Lania::sleep(Core* core)
 	core->engineTimers.sleep.setEnd();
 }
 
-void Lania::benchmark(Core* core)
+void Lania::Engine::benchmark()
 {
 	static int passedFrames;
 	EngineTimers* engineTimers = &core->engineTimers;
@@ -238,7 +271,7 @@ void Lania::benchmark(Core* core)
 	engineTimers->benchmark.setEnd();
 }
 
-void Lania::input(Lania::Core* core)
+void Lania::Engine::input()
 {
 	core->engineTimers.input.setStart();
 
@@ -250,7 +283,7 @@ void Lania::input(Lania::Core* core)
 	core->engineTimers.input.setEnd();
 }
 
-void Lania::logic(Core* core, Application* application)
+void Lania::Engine::logic()
 {
 	core->engineTimers.logic.setStart();
 
@@ -262,11 +295,11 @@ void Lania::logic(Core* core, Application* application)
 	core->engineTimers.logic.setEnd();
 }
 
-void Lania::compute(Core* core, Application* application)
+void Lania::Engine::compute()
 {
 	EngineTimers* engineTimers = &core->engineTimers;
 	engineTimers->compute.setStart();
-	List<Scene2D>* subScene2Ds = &application->scene.subScenes2D;
+	Vector<Scene2D>* subScene2Ds = &application->scene.subScenes2D;
 	int scene2DCount = subScene2Ds->size();
 
 	while (engineTimers->lag_ms >= MS_PER_COMPUTE_UPDATE)
@@ -286,17 +319,17 @@ void Lania::compute(Core* core, Application* application)
 	engineTimers->compute.setEnd();
 }
 
-void Lania::output(Core* core)
+void Lania::Engine::output()
 {
 	core->engineTimers.output.setStart();
 	Rendering::render(&core->output.renderables, core->renderer, core->window, core->sdlRenderer);
 	core->engineTimers.output.setEnd();
 }
 
-void Lania::shutdown(Core* core)
+void Lania::Engine::shutdown()
 {
-	List<SDL_GameController*>* gameControllers = &core->input.gameControllers;
-	List<SDL_Haptic*>* haptics = &core->input.haptics;
+	Vector<SDL_GameController*>* gameControllers = &core->input.gameControllers;
+	Vector<SDL_Haptic*>* haptics = &core->input.haptics;
 
 	for (int i = 0; i < gameControllers->size(); ++i)
 	{
