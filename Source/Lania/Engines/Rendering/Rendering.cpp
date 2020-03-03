@@ -28,8 +28,8 @@ void Lania::Rendering::render(
 
 void Lania::Rendering::SDL2::render(Renderables* renderables, SDL_Window* window, SDL_Renderer* sdlRenderer)
 {
-	static List<SDLSubEngines::SDLRenderable> sdlRenderables;
-	static List<SDLSubEngines::Sprite2D> sprite2Ds;
+	static Vector<SDLSubEngines::SDLRenderable> sdlRenderables;
+	static Vector<SDLSubEngines::Sprite2D> sprite2Ds;
 	static SDLSubEngines::Camera2D camera2D;
 
 	Lania::Rendering::SDL2::clearBuffers(sdlRenderer);
@@ -124,9 +124,9 @@ void Lania::Rendering::OpenGL33::render(Renderables* renderables)
 	int currentSubscene2D = 0;
 	int currentSubscene3D = 0;
 
-	static List<GLuint> glTextureIDs;
-	static List<String> glslVertexShaderSources;
-	static List<String> glslFragmentShaderSources;
+	static Vector<GLuint> glTextureIDs;
+	static Vector<String> glslVertexShaderSources;
+	static Vector<String> glslFragmentShaderSources;
 	static Rendering::OpenGL33::ShaderCompilerGLSL330 glslShaders;
 
 	Rendering::OpenGL33::clearBuffers();
@@ -136,7 +136,7 @@ void Lania::Rendering::OpenGL33::render(Renderables* renderables)
 		if (layerTypeOrder[i] == SUBSCENE_2D)
 		{
 			Layer2D* currentLayer2D = &layer2Ds[currentSubscene2D];
-			List<Sprite2DRenderable>* sprites2D = &currentLayer2D->sprites2D;
+			Vector<Sprite2DRenderable>* sprites2D = &currentLayer2D->sprites2D;
 
 			if (renderables->hasChanged)
 			{

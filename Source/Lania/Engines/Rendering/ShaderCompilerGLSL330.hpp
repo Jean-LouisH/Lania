@@ -14,7 +14,7 @@
 #pragma once
 
 #include <GL/glew.h>
-#include <Utilities/GenericCollections/List.hpp>
+#include <Utilities/GenericCollections/Vector.hpp>
 #include <Utilities/GenericCollections/String.hpp>
 
 namespace Lania
@@ -26,8 +26,8 @@ namespace Lania
 			class ShaderCompilerGLSL330
 			{
 			private:
-				List<GLuint> vertexShaders;
-				List<GLuint> fragmentShaders;
+				Vector<GLuint> vertexShaders;
+				Vector<GLuint> fragmentShaders;
 				GLuint shaderProgram;
 				bool compileVertexShader(String vertexShaderSource);
 				bool compileFragmentShader(String fragmentShaderSource);
@@ -35,7 +35,7 @@ namespace Lania
 				bool checkCompileTimeErrors(GLuint ID, GLuint status);
 				void deleteShaders();
 			public:
-				void compileShaders(List<String>* vertexShaderSources, List<String>* fragmentShaderSources);
+				void compileShaders(Vector<String>* vertexShaderSources, Vector<String>* fragmentShaderSources);
 				void use();
 				void setIntUniform(String name, int value);
 			};

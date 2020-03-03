@@ -28,7 +28,7 @@ void Lania::Scene::load(String filePath)
 					{
 						String name = "";
 						Transform2D transform;
-						List<String> shaders2D;
+						Vector<String> shaders2D;
 
 						bool hasParent = false;
 						String parentName;
@@ -37,7 +37,7 @@ void Lania::Scene::load(String filePath)
 						Vector2 cameraViewport_px;
 
 						bool hasSprite2D = false;
-						List<String> textureFrameFilePaths;
+						Vector<String> textureFrameFilePaths;
 
 						bool hasRigidBody2D = false;
 						bool hasBoxCollider2D = false;
@@ -123,7 +123,7 @@ void Lania::Scene::load(String filePath)
 							transform.scale.x, 
 							transform.scale.y);
 
-						List<Entity2D>* entities = &this->subScenes2D.at(lastLayer).entities;
+						Vector<Entity2D>* entities = &this->subScenes2D.at(lastLayer).entities;
 						EntityID lastEntity = this->subScenes2D.at(lastLayer).entities.size() - 1;
 
 						entities->at(lastEntity).shaders2D = shaders2D;
@@ -299,7 +299,7 @@ void Lania::Scene::addSpriteTextureFrame(LayerID scene2DID, ComponentListIndex c
 
 void Lania::Scene::removeEntity2D(LayerID scene2DID, EntityID entityID)
 {
-	List<Entity2D>* entities = &this->subScenes2D.at(scene2DID).entities;
+	Vector<Entity2D>* entities = &this->subScenes2D.at(scene2DID).entities;
 	entities->erase(entities->begin() + (entityID - 1));
 }
 
@@ -330,7 +330,7 @@ void Lania::Scene::flipSprite2D(LayerID scene2DID, ComponentListIndex componentI
 void Lania::Scene::setCamera2DInactive(LayerID scene2DID, ComponentListIndex componentIndex)
 {
 	Scene2D* scene2D = &this->subScenes2D.at(scene2DID);
-	List<Camera2D>* cameras = &scene2D->activeCameras;
+	Vector<Camera2D>* cameras = &scene2D->activeCameras;
 	scene2D->inactiveCameras.push_back(cameras->at(componentIndex));
 	cameras->erase(cameras->begin() + (componentIndex - 1));
 }
@@ -338,7 +338,7 @@ void Lania::Scene::setCamera2DInactive(LayerID scene2DID, ComponentListIndex com
 void Lania::Scene::setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex componentIndex)
 {
 	Scene2D* scene2D = &this->subScenes2D.at(scene2DID);
-	List<RigidBody2D>* rigidBodies = &scene2D->activeRigidBodies;
+	Vector<RigidBody2D>* rigidBodies = &scene2D->activeRigidBodies;
 	scene2D->inactiveRigidBodies.push_back(rigidBodies->at(componentIndex));
 	rigidBodies->erase(rigidBodies->begin() + (componentIndex - 1));
 }
@@ -346,7 +346,7 @@ void Lania::Scene::setRigidBody2DInactive(LayerID scene2DID, ComponentListIndex 
 void Lania::Scene::setSprite2DInactive(LayerID scene2DID, ComponentListIndex componentIndex)
 {
 	Scene2D* scene2D = &this->subScenes2D.at(scene2DID);
-	List<Sprite2D>* sprites = &scene2D->activeSprites;
+	Vector<Sprite2D>* sprites = &scene2D->activeSprites;
 	scene2D->inactiveSprites.push_back(sprites->at(componentIndex));
 	sprites->erase(sprites->begin() + (componentIndex - 1));
 }

@@ -15,7 +15,7 @@
 #pragma once
 
 #include "../../../Utilities/Definitions/Aliases.hpp"
-#include "../../../Utilities/GenericCollections/List.hpp"
+#include "../../../Utilities/GenericCollections/Vector.hpp"
 #include "../../../Utilities/GenericCollections/Map.hpp"
 #include "../../../Utilities/GenericCollections/String.hpp"
 
@@ -25,7 +25,7 @@ namespace Lania
 {
 	typedef struct Scene3D
 	{
-		List<Entity3D> entities;
+		Vector<Entity3D> entities;
 		Map<String, EntityID> entityNameRegistry;
 		ComponentListIndex currentCameraIndex;
 

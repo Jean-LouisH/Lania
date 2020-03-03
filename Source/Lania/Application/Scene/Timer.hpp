@@ -14,7 +14,7 @@
 #pragma once
 
 #include <stdint.h>
-#include <Utilities/GenericCollections/List.hpp>
+#include <Utilities/GenericCollections/Vector.hpp>
 
 namespace Lania
 {
@@ -33,7 +33,7 @@ namespace Lania
 		double startTime_ms;
 		double endTime_ms;
 		uint8_t request;
-		List<double> deltaLaps_ms;
+		Vector<double> deltaLaps_ms;
 
 		Timer() :
 			delta_ms(0.0),

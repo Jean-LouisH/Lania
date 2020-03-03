@@ -19,7 +19,7 @@
 #include "../../../Utilities/Definitions/Aliases.hpp"
 #include "../../../Utilities/Mathematics/Transform3D.hpp"
 #include "../../../Utilities/GenericCollections/Set.hpp"
-#include "../../../Utilities/GenericCollections/List.hpp"
+#include "../../../Utilities/GenericCollections/Vector.hpp"
 #include "../../../Utilities/GenericCollections/Map.hpp"
 #include "../../../Utilities/GenericCollections/String.hpp"
 
@@ -39,12 +39,12 @@ namespace Lania
 		};
 
 		Transform3D transform;
-		List<EntityID> children;
+		Vector<EntityID> children;
 		EntityID parent;
 		Map<ComponentType, ComponentListIndex> components;
 		Set<String> tags;
-		List<String> shaders3D;
-		List<ScriptIndex> scripts;
+		Vector<String> shaders3D;
+		Vector<ScriptIndex> scripts;
 
 		Entity3D() :
 			parent(NO_ENTITY)

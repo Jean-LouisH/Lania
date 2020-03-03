@@ -3,7 +3,7 @@
 #include <Utilities/Definitions/Constants.hpp>
 
 void Lania::Physics::compute(
-	List<Scene2D>* subScene2Ds,
+	Vector<Scene2D>* subScene2Ds,
 	double simulation_ms)
 {
 	int subScene2DCount = subScene2Ds->size();

@@ -15,7 +15,7 @@
 
 #include <Core/Renderables.hpp>
 #include "ShaderCompilerGLSL330.hpp"
-#include <Utilities/GenericCollections/List.hpp>
+#include <Utilities/GenericCollections/Vector.hpp>
 #include <GL/glew.h>
 
 namespace Lania
@@ -27,9 +27,9 @@ namespace Lania
 			void generate2DTextures(
 				Sprite2DRenderable* sprites2D,
 				int spriteCount,
-				List<GLuint>* glTextureIDs);
+				Vector<GLuint>* glTextureIDs);
 			void delete2DTextures(
-				List<GLuint>* glTextureIDs);
+				Vector<GLuint>* glTextureIDs);
 			void drawSprites(
 				Sprite2DRenderable* sprites2D, 
 				int spriteCount,

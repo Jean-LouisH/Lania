@@ -5,7 +5,7 @@
 void Lania::Rendering2D::OpenGL33::generate2DTextures(
 	Sprite2DRenderable* sprites2D,
 	int spriteCount,
-	List<GLuint>* glTextureIDs)
+	Vector<GLuint>* glTextureIDs)
 {
 	for (int i = 0; i < spriteCount; i++)
 	{
@@ -45,7 +45,7 @@ void Lania::Rendering2D::OpenGL33::generate2DTextures(
 }
 
 void Lania::Rendering2D::OpenGL33::delete2DTextures(
-	List<GLuint>* glTextureIDs)
+	Vector<GLuint>* glTextureIDs)
 {
 	int size = glTextureIDs->size();
 

@@ -19,7 +19,7 @@
 #include "../../../Utilities/Definitions/Aliases.hpp"
 #include "../../../Utilities/Mathematics/Transform2D.hpp"
 #include "../../../Utilities/GenericCollections/Set.hpp"
-#include "../../../Utilities/GenericCollections/List.hpp"
+#include "../../../Utilities/GenericCollections/Vector.hpp"
 #include "../../../Utilities/GenericCollections/Map.hpp"
 #include "../../../Utilities/GenericCollections/String.hpp"
 
@@ -38,12 +38,12 @@ namespace Lania
 		};
 
 		Transform2D transform;
-		List<EntityID> children;
+		Vector<EntityID> children;
 		EntityID parent;
 		Map<ComponentType, ComponentListIndex> components;
 		Set<String> tags;
-		List<String> shaders2D;
-		List<ScriptIndex> scripts;
+		Vector<String> shaders2D;
+		Vector<ScriptIndex> scripts;
 
 		Entity2D() :
 			parent(NO_ENTITY)

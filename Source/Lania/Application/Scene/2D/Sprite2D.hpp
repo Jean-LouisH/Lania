@@ -13,7 +13,7 @@
 
 #include <stdint.h>
 #include "../../../Utilities/Mathematics/Vector2.hpp"
-#include "../../../Utilities/GenericCollections/List.hpp"
+#include "../../../Utilities/GenericCollections/Vector.hpp"
 #include "Entity2D.hpp"
 #include "../Assets/Texture.hpp"
 #include "../../../Utilities/GenericCollections/Map.hpp"
@@ -30,7 +30,7 @@ namespace Lania
 		};
 
 		EntityID entityID;
-		List<Texture> textureFrames;
+		Vector<Texture> textureFrames;
 		uint8_t frameIndex;
 		uint8_t alpha;
 		uint8_t flip;

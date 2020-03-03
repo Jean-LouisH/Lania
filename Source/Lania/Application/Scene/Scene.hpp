@@ -16,7 +16,7 @@
 #include <Utilities/GenericCollections/Map.hpp>
 #include <Core/Input.hpp>
 #include <Utilities/Definitions/Aliases.hpp>
-#include <Utilities/GenericCollections/List.hpp>
+#include <Utilities/GenericCollections/Vector.hpp>
 #include <Utilities/GenericCollections/String.hpp>
 #include <stdint.h>
 #include "2D/Scene2D.hpp"
@@ -28,10 +28,10 @@ namespace Lania
 	{
 	private:
 	public:
-		List<Scene2D> subScenes2D;
-		List<LayerType> layerTypeList;
+		Vector<Scene2D> subScenes2D;
+		Vector<LayerType> layerTypeList;
 		Multimap<String, SDL_Keycode> actionInputMaps;
-		List<Timer> timers;
+		Vector<Timer> timers;
 		Map<String, Texture> textures;
 		Rectangle windowDimensions;
 		String dataFilePath;

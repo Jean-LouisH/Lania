@@ -2,7 +2,7 @@
 #include "BuiltInShadersGLSL330.hpp"
 #include <iostream>
 
-void Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::compileShaders(List<String>* vertexShaderSources, List<String>* fragmentShaderSources)
+void Lania::Rendering::OpenGL33::ShaderCompilerGLSL330::compileShaders(Vector<String>* vertexShaderSources, Vector<String>* fragmentShaderSources)
 {
 	bool compilationSuccess = true;
 
