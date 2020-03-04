@@ -21,12 +21,14 @@
 #include <stdint.h>
 #include "2D/Scene2D.hpp"
 #include "Timer.hpp"
+#include "EventSystem.hpp"
 
 namespace Lania
 {
 	class Scene
 	{
 	private:
+		EventSystem eventSystem;
 	public:
 		Vector<Scene2D> subScenes2D;
 		Vector<LayerType> layerTypeList;

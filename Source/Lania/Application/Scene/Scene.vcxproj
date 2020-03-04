@@ -135,10 +135,12 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="EventSystem.hpp" />
     <ClInclude Include="Scene.hpp" />
     <ClInclude Include="Timer.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="EventSystem.cpp" />
     <ClCompile Include="Scene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
