@@ -8,7 +8,7 @@
 * Forms the lowest layer of data that interfaces with the operating
 * system according to what the application layer dictates.
 *
-* Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2020 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 

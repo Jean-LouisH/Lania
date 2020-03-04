@@ -8,7 +8,7 @@
 * Shaders that are always rendered by default to give the general look of a Lania application
 * even without user defined shaders. User defined shaders can be used together with these shaders, however.
 *
-* Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2020 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 

@@ -7,7 +7,7 @@
 *
 * Delegates physics processing work by components in scene.
 *
-* Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2020 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 

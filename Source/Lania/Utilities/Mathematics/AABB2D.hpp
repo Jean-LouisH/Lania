@@ -7,7 +7,7 @@
 *
 * For defining regions in 2D for collision detection and spatial limits on cameras.
 *
-* Copyright (c) 2017-2019 Jean-Louis Haywood. All rights reserved.
+* Copyright (c) 2017-2020 Jean-Louis Haywood. All rights reserved.
 * License: https://github.com/Jean-LouisH/Lania/blob/master/LICENSE
 */
 
