@@ -12,7 +12,6 @@
 
 #include <SDL.h>
 #include <Core/GPU.hpp>
-#include <Core/Logging.hpp>
 #include <Lania.hpp>
 
 int main(int argc, char* argv[])

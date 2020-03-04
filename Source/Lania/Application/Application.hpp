@@ -19,6 +19,7 @@
 #include "Native/Native.hpp"
 #include <Core/Renderables.hpp>
 #include "CommandLine.hpp"
+#include "SceneLoader.hpp"
 
 namespace Lania
 {
@@ -28,6 +29,7 @@ namespace Lania
 		Core* core;
 		Native native;
 		CommandLine commandLine;
+		SceneLoader sceneLoader;
 
 		void compound2DEntityParentTransforms(
 			Transform2D* finalTransform, 

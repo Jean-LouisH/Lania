@@ -144,11 +144,13 @@
     <ClInclude Include="Application.hpp" />
     <ClInclude Include="ApplicationBooting.hpp" />
     <ClInclude Include="CommandLine.hpp" />
+    <ClInclude Include="SceneLoader.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="ApplicationBooting.cpp" />
     <ClCompile Include="CommandLine.cpp" />
+    <ClCompile Include="SceneLoader.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
