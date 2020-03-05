@@ -133,24 +133,30 @@
   <ItemGroup>
     <ClInclude Include="BootConfiguration.hpp" />
     <ClInclude Include="Core.hpp" />
-    <ClInclude Include="EngineTimers.hpp" />
-    <ClInclude Include="ExecutionTimer.hpp" />
+    <ClInclude Include="Engine.hpp" />
+    <ClInclude Include="Profiler.hpp" />
+    <ClInclude Include="HiResTimer.hpp" />
     <ClInclude Include="FileSystem.hpp" />
     <ClInclude Include="GPU.hpp" />
     <ClInclude Include="Input.hpp" />
     <ClInclude Include="Logging.hpp" />
     <ClInclude Include="MemoryPool.hpp" />
     <ClInclude Include="OS.hpp" />
+    <ClInclude Include="OSWindow.hpp" />
     <ClInclude Include="Output.hpp" />
     <ClInclude Include="Platform.hpp" />
     <ClInclude Include="Renderables.hpp" />
+    <ClInclude Include="ThreadPool.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ExecutionTimer.cpp" />
+    <ClCompile Include="Engine.cpp" />
+    <ClCompile Include="HiResTimer.cpp" />
     <ClCompile Include="FileSystem.cpp" />
     <ClCompile Include="Logging.cpp" />
     <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="OS.cpp" />
+    <ClCompile Include="OSWindow.cpp" />
+    <ClCompile Include="ThreadPool.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
