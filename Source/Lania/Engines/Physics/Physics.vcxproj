@@ -121,10 +121,12 @@
   <ItemGroup>
     <ClInclude Include="Physics.hpp" />
     <ClInclude Include="Physics2D.hpp" />
+    <ClInclude Include="PhysicsEngine.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Physics2D.cpp" />
+    <ClCompile Include="PhysicsEngine.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -155,8 +155,12 @@
   <ItemGroup>
     <ClCompile Include="Rendering.cpp" />
     <ClCompile Include="Rendering2DOpenGL33.cpp" />
+    <ClCompile Include="RenderingEngine.cpp" />
     <ClCompile Include="ShaderCompilerGLSL330.cpp" />
     <ClCompile Include="Rendering2DSDL2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="RenderingEngine.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
