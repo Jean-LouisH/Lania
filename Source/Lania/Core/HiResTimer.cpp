@@ -1,16 +1,16 @@
-#include "ExecutionTimer.hpp"
+#include "HiResTimer.hpp"
 
-uint64_t Lania::ExecutionTimer::getDelta_ns()
+uint64_t Lania::HiResTimer::getDelta_ns()
 {
 	return this->delta_ns;
 }
 
-void Lania::ExecutionTimer::setStart()
+void Lania::HiResTimer::setStart()
 {
 	this->start = std::chrono::high_resolution_clock::now();
 }
 
-void Lania::ExecutionTimer::setEnd()
+void Lania::HiResTimer::setEnd()
 {
 	this->end = std::chrono::high_resolution_clock::now();
 	

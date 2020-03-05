@@ -3,7 +3,7 @@
 
 namespace Lania 
 {
-	class ExecutionTimer
+	class HiResTimer
 	{
 	private:
 		uint64_t delta_ns;
@@ -13,7 +13,7 @@ namespace Lania
 		uint64_t getDelta_ns();
 		void setStart();
 		void setEnd();
-		ExecutionTimer() :
+		HiResTimer() :
 			delta_ns(0)
 		{}
 	};
