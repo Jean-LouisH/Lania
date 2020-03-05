@@ -15,7 +15,7 @@
 #pragma once
 
 #include <SDL.h>
-#include <Core/EngineTimers.hpp>
+#include <Core/Profiler.hpp>
 #include "BootConfiguration.hpp"
 #include <Core/Input.hpp>
 #include <Core/Output.hpp>
@@ -51,7 +51,7 @@ namespace Lania
 		String filepath;
 		String executableName;
 		Platform platform;
-		EngineTimers engineTimers;
+		Profiler profiler;
 		BootConfiguration bootConfig;
 		Input input;
 		Output output;

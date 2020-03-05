@@ -13,7 +13,7 @@
 #include <Utilities/GenericCollections/Vector.hpp>
 #include <Engines/Physics/Physics2D.hpp>
 #include <Core/FileSystem.hpp>
-#include <Core/EngineTimers.hpp>
+#include <Core/Profiler.hpp>
 #include <Core/Platform.hpp>
 #include <Application/Scene/2D/Scene2D.hpp>
 #include <Engines/Physics/Physics.hpp>
@@ -44,7 +44,7 @@ void Lania::Engine::initialize()
 	Platform* platform = &core->platform;
 
 	Log::toConsole("Initializing Core...\n");
-	core->engineTimers.run.setStart();
+	core->profiler.run.setStart();
 	core->executableName = FileSystem::getExecutableName(core->filepath);
 	bootConfig->dataDirectoryPath = exportFilePath + core->executableName + "_Data/";
 
@@ -171,7 +171,7 @@ void Lania::Engine::initialize()
 
 void Lania::Engine::loop()
 {
-	EngineTimers* engineTimers = &core->engineTimers;
+	Profiler* engineTimers = &core->profiler;
 	engineTimers->FPS.setStart();
 
 	application->init();
@@ -224,25 +224,25 @@ void Lania::Engine::sleep()
 {
 	int delay = 0;
 	
-	core->engineTimers.sleep.setStart();
+	core->profiler.sleep.setStart();
 
 	if (core->bootConfig.targetFPS < COMPUTE_UPDATES_PER_S)
 		delay = (MS_IN_S / core->bootConfig.targetFPS) -
-			(core->engineTimers.process.getDelta_ns() / NS_IN_MS);
+			(core->profiler.process.getDelta_ns() / NS_IN_MS);
 	else
 		delay = (MS_IN_S / COMPUTE_UPDATES_PER_S) -
-			(core->engineTimers.process.getDelta_ns() / NS_IN_MS);
+			(core->profiler.process.getDelta_ns() / NS_IN_MS);
 
 	if (delay > 0)
 		SDL_Delay(delay);
 
-	core->engineTimers.sleep.setEnd();
+	core->profiler.sleep.setEnd();
 }
 
 void Lania::Engine::benchmark()
 {
 	static int passedFrames;
-	EngineTimers* engineTimers = &core->engineTimers;
+	Profiler* engineTimers = &core->profiler;
 	engineTimers->benchmark.setStart();
 	passedFrames++;
 	engineTimers->FPS.setEnd();
@@ -273,31 +273,31 @@ void Lania::Engine::benchmark()
 
 void Lania::Engine::input()
 {
-	core->engineTimers.input.setStart();
+	core->profiler.input.setStart();
 
 	if (SDL_NumJoysticks() != core->input.gameControllers.size())
 		OS::detectGameControllers(&core->input);
 	OS::detectBatteryLife(core);
 	OS::pollInputEvents(core);
 
-	core->engineTimers.input.setEnd();
+	core->profiler.input.setEnd();
 }
 
 void Lania::Engine::logic()
 {
-	core->engineTimers.logic.setStart();
+	core->profiler.logic.setStart();
 
 	application->runCommandLine();
 	application->interpretStartLogic();
 	application->interpretInputLogic();
 	application->interpretFrameLogic();
 
-	core->engineTimers.logic.setEnd();
+	core->profiler.logic.setEnd();
 }
 
 void Lania::Engine::compute()
 {
-	EngineTimers* engineTimers = &core->engineTimers;
+	Profiler* engineTimers = &core->profiler;
 	engineTimers->compute.setStart();
 	Vector<Scene2D>* subScene2Ds = &application->scene.subScenes2D;
 	int scene2DCount = subScene2Ds->size();
@@ -321,9 +321,9 @@ void Lania::Engine::compute()
 
 void Lania::Engine::output()
 {
-	core->engineTimers.output.setStart();
+	core->profiler.output.setStart();
 	Rendering::render(&core->output.renderables, core->renderer, core->window, core->sdlRenderer);
-	core->engineTimers.output.setEnd();
+	core->profiler.output.setEnd();
 }
 
 void Lania::Engine::shutdown()
