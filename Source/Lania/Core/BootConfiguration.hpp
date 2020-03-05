@@ -18,8 +18,10 @@
 
 namespace Lania
 {
-	typedef struct BootConfiguration
+	class BootConfiguration
 	{
+	private:
+	public:
 		uint16_t windowWidth_px;
 		uint16_t windowHeight_px;
 		uint16_t targetFPS;
@@ -39,5 +41,5 @@ namespace Lania
 			windowFlags(0),
 			commandLineOnStart(false)
 		{}
-	}BootConfiguration;
+	};
 }
