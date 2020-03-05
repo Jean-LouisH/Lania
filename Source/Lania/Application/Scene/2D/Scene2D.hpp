@@ -38,6 +38,8 @@ namespace Lania
 {
 	typedef struct Scene2D
 	{
+		Entity2D rootEntity;
+
 		//Entities listed and layered by ID numbers
 		Vector<Entity2D> entities;
 

@@ -25,6 +25,7 @@ namespace Lania
 {
 	typedef struct Scene3D
 	{
+		Entity3D rootEntity;
 		Vector<Entity3D> entities;
 		Map<String, EntityID> entityNameRegistry;
 		ComponentListIndex currentCameraIndex;
