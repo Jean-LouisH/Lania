@@ -17,7 +17,8 @@
 #include <Engines/Physics/PhysicsEngine.hpp>
 #include <Engines/Rendering/RenderingEngine.hpp>
 #include <Engines/Audio/AudioEngine.hpp>
-#include "OS.hpp"
+#include <Engines/Animation/AnimationEngine.hpp>
+#include "OSWindow.hpp"
 #include "Profiler.hpp"
 #include "ThreadPool.hpp"
 
@@ -29,6 +30,7 @@ namespace Lania
 		Application* application;
 
 		AudioEngine* audioEngine;
+		AnimationEngine* animationEngine;
 		PhysicsEngine* physicsEngine;
 		RenderingEngine* renderingEngine;
 

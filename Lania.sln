@@ -116,6 +116,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GenericCollections", "Sourc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Assets", "Source\Lania\Application\Scene\Assets\Assets.vcxproj", "{E104A1ED-CEF1-4C8C-85B9-C363B9DBE313}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Animation", "Source\Lania\Engines\Animation\Animation.vcxproj", "{82719BF5-97E2-4372-A603-2E605E30F99C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -260,6 +262,14 @@ Global
 		{E104A1ED-CEF1-4C8C-85B9-C363B9DBE313}.Release|x64.Build.0 = Release|x64
 		{E104A1ED-CEF1-4C8C-85B9-C363B9DBE313}.Release|x86.ActiveCfg = Release|Win32
 		{E104A1ED-CEF1-4C8C-85B9-C363B9DBE313}.Release|x86.Build.0 = Release|Win32
+		{82719BF5-97E2-4372-A603-2E605E30F99C}.Debug|x64.ActiveCfg = Debug|x64
+		{82719BF5-97E2-4372-A603-2E605E30F99C}.Debug|x64.Build.0 = Debug|x64
+		{82719BF5-97E2-4372-A603-2E605E30F99C}.Debug|x86.ActiveCfg = Debug|Win32
+		{82719BF5-97E2-4372-A603-2E605E30F99C}.Debug|x86.Build.0 = Debug|Win32
+		{82719BF5-97E2-4372-A603-2E605E30F99C}.Release|x64.ActiveCfg = Release|x64
+		{82719BF5-97E2-4372-A603-2E605E30F99C}.Release|x64.Build.0 = Release|x64
+		{82719BF5-97E2-4372-A603-2E605E30F99C}.Release|x86.ActiveCfg = Release|Win32
+		{82719BF5-97E2-4372-A603-2E605E30F99C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
