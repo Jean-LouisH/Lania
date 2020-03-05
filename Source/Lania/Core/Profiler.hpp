@@ -3,7 +3,7 @@
 *                          Lania
 *           https://jean-louish.github.io/Lania/
 *
-* Timing
+* Profiler
 *
 * Defines engine execution and simulation timers for performance
 * monitoring and balance.
@@ -15,26 +15,26 @@
 #pragma once
 
 #include <stdint.h>
-#include "ExecutionTimer.hpp"
+#include "HiResTimer.hpp"
 
 namespace Lania
 {
-	class EngineTimers
+	class Profiler
 	{
 	public:
-		ExecutionTimer process;
-		ExecutionTimer frame;
-		ExecutionTimer input;
-		ExecutionTimer logic;
-		ExecutionTimer compute;
-		ExecutionTimer output;
-		ExecutionTimer sleep;
-		ExecutionTimer benchmark;
-		ExecutionTimer FPS;
-		ExecutionTimer run;
-		ExecutionTimer debug;
+		HiResTimer process;
+		HiResTimer frame;
+		HiResTimer input;
+		HiResTimer logic;
+		HiResTimer compute;
+		HiResTimer output;
+		HiResTimer sleep;
+		HiResTimer benchmark;
+		HiResTimer FPS;
+		HiResTimer run;
+		HiResTimer debug;
 		uint64_t lag_ms;
-		EngineTimers() :
+		Profiler() :
 			lag_ms(0) 
 		{}
 	};
