@@ -1,0 +1,8 @@
+Layer2D:
+  Entity2D:
+    name: Camera
+    position_px: [0, 0]
+    rotation_rad: 0.0
+    scale: [1.0, 1.0]
+    Camera2D:
+      viewport_px: [0, 0]
