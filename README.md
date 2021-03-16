@@ -2,7 +2,7 @@
 
 **Note: This engine is experimental in nature and is under alpha development. The runtime feature set is incomplete and there is currently no implementation of the scene editor. It is not currently suitable for creating applications.**
 
-![screenshot](Documentation/Images/Screenshot.gif)
+![screenshot](Screenshot.gif)
 
 [Lania](https://github.com/Jean-LouisH/Lania) is **a hobbyist and experimental 2D/3D game engine**. 
 
