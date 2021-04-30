@@ -1,5 +1,5 @@
 #include "engine.hpp"
-#include "gpu.hpp"
+#include "../gpu.hpp"
 
 #undef main
 

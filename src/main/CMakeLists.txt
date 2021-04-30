@@ -7,7 +7,7 @@ add_executable(application
 
  add_executable(application_high_performance_gpu 
 	  "application_high_performance_gpu/main.cpp"
-	  "application_high_performance_gpu/gpu.hpp"
+	  "gpu.hpp"
  )
 
  add_executable(steam_application 
@@ -16,7 +16,7 @@ add_executable(application
 
  add_executable(steam_application_high_performance_gpu 
 	  "steam_application_high_performance_gpu/main.cpp"
-	  "steam_application_high_performance_gpu/gpu.hpp"
+	  "gpu.hpp"
  )
 
 add_dependencies(application
