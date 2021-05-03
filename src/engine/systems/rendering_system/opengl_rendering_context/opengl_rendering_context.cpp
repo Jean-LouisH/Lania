@@ -1,11 +1,11 @@
-#include "opengl_rendering_api.hpp"
+#include "opengl_rendering_context.hpp"
 
 Lania::OpenGLRenderingAPI::~OpenGLRenderingAPI()
 {
 
 }
 
-Lania::RenderingAPIType Lania::OpenGLRenderingAPI::getRenderingAPIType()
+Lania::RenderingContextType Lania::OpenGLRenderingAPI::getRenderingAPIType()
 {
 	return this->type;
 }
